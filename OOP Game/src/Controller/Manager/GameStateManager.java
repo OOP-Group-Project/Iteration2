@@ -1,10 +1,10 @@
-package Manager;
+package Controller.Manager;
 
 import java.awt.Graphics2D;
 
-import GameStates.GameState;
-import GameStates.IntroState;
-import GameStates.StartMenuState;
+import Controller.GameStates.*;
+
+
 
 public class GameStateManager {
 	

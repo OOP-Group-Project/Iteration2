@@ -49,7 +49,7 @@ public class Stats {
     public int level() {return level;}
 
     // mutators
-    public void livesUp() {return lives;}
+    /*public void livesUp() {return lives;}
     public void strengthUp() {return str;}
     public void agilityUp() {return agi;}
     public void intellectUp() {return intl;}
@@ -62,5 +62,5 @@ public class Stats {
     public void defenseRatingUp() {return def;}
     public void armorRatingUp() {return arm;}
     public void levelUp() {return level;}
-
+*/
 }

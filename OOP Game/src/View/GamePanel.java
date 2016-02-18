@@ -9,8 +9,10 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import ../Controller.Manager.GameStateManager;
-import ../Controller.Manager.KeysManager;
+import Controller.Manager.GameStateManager;
+import Controller.Manager.KeysManager;
+
+
 
 public class GamePanel extends JPanel implements KeyListener, Runnable {
 
@@ -30,7 +32,7 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
 	private Graphics2D g;
 
 	// KEEP TRACK GAME STATE
-	private Manager.GameStateManager gsm;
+	private GameStateManager gsm;
 
 	
 	public GamePanel() {

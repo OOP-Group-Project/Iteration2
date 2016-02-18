@@ -1,11 +1,11 @@
-package GameStates;
+package Controller.GameStates;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-import Main.GamePanel;
-import Manager.GameStateManager;
-import Manager.KeysManager;
+import View.GamePanel;
+import Controller.Manager.GameStateManager;
+import Controller.Manager.KeysManager;
 
 public class IntroState extends GameState{
 	

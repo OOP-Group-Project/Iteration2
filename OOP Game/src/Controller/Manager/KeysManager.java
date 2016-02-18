@@ -1,4 +1,4 @@
-package Manager;
+package Controller.Manager;
 
 import java.awt.event.KeyEvent;
 

@@ -1,8 +1,8 @@
-package GameStates;
+package Controller.GameStates;
 
 import java.awt.Graphics;
 
-import Manager.GameStateManager;
+import Controller.Manager.GameStateManager;
 
 public class StartMenuState extends GameState{
 

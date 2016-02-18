@@ -1,4 +1,4 @@
-package Manager;
+package Controller.Manager;
 
 public class SoundManager {
 	
