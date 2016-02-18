@@ -10,7 +10,6 @@ public class Map {
 	private int numTilesAcross;
 	private Tile[][] tiles;
 	
-	
 	//MAP DIMENSIONS
 	private Tile[][] Map; 
 	private int numRows;
@@ -29,6 +28,4 @@ public class Map {
 	public void loadMap(String path){
 		
 	}
-	
-	
 }

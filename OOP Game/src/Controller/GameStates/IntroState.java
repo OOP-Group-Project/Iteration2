@@ -3,9 +3,9 @@ package Controller.GameStates;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import View.GamePanel;
 import Controller.Manager.GameStateManager;
 import Controller.Manager.KeysManager;
+import Main.GamePanel;
 
 public class IntroState extends GameState{
 	
