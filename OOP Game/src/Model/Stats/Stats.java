@@ -4,7 +4,7 @@ package Model.Stats;
  * Created by walkhard on 2/18/16.
  */
 public class Stats {
-    // constructor takes level to determine stats
+    // constructor takes level to determine basic stats
     public Stats(int lvl) {
         max_lives = 3;  //number of lives left
         max_str = STAT_MOD * lvl;    //strength
@@ -16,18 +16,38 @@ public class Stats {
         level = lvl;
     }
 
+    /*
+
+        Modifiers are used to calculate stats without having to remember how much of a stat is required at each level.
+
+            Example: Stats(25) will automatically set each stat based on the character's level so the programmer doesn't
+                have to remember what the base stats should be at each level.
+
+    */
+
     // basic modifiers
     private int STAT_MOD = 3;
     private int EXP_MOD = 100;
     private double EXP_PCT = 0.75;
 
+    /*
+
+        Stats are broken down into max(imum) stats and cur(rent) stats. Current stats are the current level of the stat.
+        Maximum stats are the maximum level. This allows for possible buffing or debuffing of characters in the future.
+
+            Example: character has 40/50 health [cur_hp/max_hp]
+            Example: character normally has 40 agility but receives an agility debuff reducing their agility to 30
+                     [max_agi/cur_agi]
+
+    */
+
     // primary stats (maximum)
-    private int max_lives;
-    private int max_str;
-    private int max_agi;
-    private int max_int;
-    private int max_har;
-    private int max_mov;
+    private int max_lives;  //number of lives available
+    private int max_str;    //strength
+    private int max_agi;    //agility
+    private int max_int;    //intellect
+    private int max_har;    //hardiness
+    private int max_mov;    //movement
 
     // primary stats (current)
     private int cur_lives = max_lives;
@@ -37,6 +57,19 @@ public class Stats {
     private int cur_har = max_har;
     private int cur_mov = max_mov;
     private int cur_exp;
+
+    /*
+
+        Derived stats are calculated based on some combination of primary stats. There is not a formal calculation for
+        calculating these stats, yet. I included the stats that are supposed to be used to calculate the derived stats
+        only.
+
+            Example: max_hp = max_har * level
+                max_hp is calculated based on the characters hardiness and level
+
+        The exact calculation can be adjusted at a later time.
+
+    */
 
     // derived stats
     private int level;
@@ -113,12 +146,7 @@ public class Stats {
     public void curOffenseUp(int amt) {cur_dmg += amt;}
     public void curDefenseUp(int amt) {cur_def += amt;}
     public void curArmorUp(int amt) {cur_arm += amt;}
-
-
-
-
-    public void levelUp(int amt) {level += amt;}
-
+    //
     public void curLivesDown(int amt) {cur_lives -= amt;}
     public void curStrengthDown(int amt) {cur_str -= amt;}
     public void curAgilityDown(int amt) {cur_agi -= amt;}
@@ -131,5 +159,7 @@ public class Stats {
     public void curOffenseDown(int amt) {cur_dmg -= amt;}
     public void curDefenseDown(int amt) {cur_def -= amt;}
     public void curArmorRatingDown(int amt) {cur_arm -= amt;}
+    //
+    public void levelUp(int amt) {level += amt;}
     public void levelDown(int amt) {level -= amt;}
 }
