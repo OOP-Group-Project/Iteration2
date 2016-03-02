@@ -1,19 +1,22 @@
 package Model.Stats;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by walkhard on 2/18/16.
  */
+
 public class Stats {
-    // constructor takes level to determine basic stats
-    public Stats(int lvl) {
-        max_lives = 3;  //number of lives left
-        max_str = STAT_MOD * lvl;    //strength
-        max_agi = STAT_MOD * lvl;    //agility
-        max_int = STAT_MOD * lvl;   //intellect
-        max_har = STAT_MOD * lvl;    //hardiness
-        cur_exp = 0;    //experience
-        max_mov = 1;    //movement
+    //
+    public Stats(Map<String, Double> occupation_modifier, int lvl) {
         level = lvl;
+        OCCUPATION_STAT_MOD.putAll(occupation_modifier);
+        calculatePrimaryStats();
+        calculateSecondaryStats();
+        setCurExperience();
+        changeMaxExperience();
+        setMaxMovement();
+        setCurMovement();
     }
 
     /*
@@ -26,7 +29,9 @@ public class Stats {
     */
 
     // basic modifiers
-    private int STAT_MOD = 3;
+    private Map<String, Double> OCCUPATION_STAT_MOD = new HashMap<>();
+    private int BASE_STAT_MOD = 3;
+    private double MOV_MOD = 0.025;
     private int EXP_MOD = 100;
     private double EXP_PCT = 0.75;
 
@@ -42,21 +47,22 @@ public class Stats {
     */
 
     // primary stats (maximum)
-    private int max_lives;  //number of lives available
-    private int max_str;    //strength
-    private int max_agi;    //agility
-    private int max_int;    //intellect
-    private int max_har;    //hardiness
-    private int max_mov;    //movement
+    private double max_str;    //strength
+    private double max_agi;    //agility
+    private double max_int;    //intellect
+    private double max_har;    //hardiness
+    private double max_mov;    //movement
+    private int max_exp;       //experience required to reach next level
+    private int max_lives;     //number of lives available
 
     // primary stats (current)
-    private int cur_lives = max_lives;
-    private int cur_str = max_str;
-    private int cur_agi = max_agi;
-    private int cur_int = max_int;
-    private int cur_har = max_har;
-    private int cur_mov = max_mov;
+    private double cur_str;
+    private double cur_agi;
+    private double cur_int;
+    private double cur_har;
+    private double cur_mov;
     private int cur_exp;
+    private int cur_lives;
 
     /*
 
@@ -75,91 +81,373 @@ public class Stats {
     private int level;
 
     // derived stats (maximum)
-    private int max_hp = max_har * level;
-    private int max_mp = max_int * level;
-    private int max_dmg = max_str * level;
-    private int max_def = max_agi * level;
-    private int max_arm = max_har;
-    private int max_exp = (int)(EXP_PCT * (level * EXP_MOD));
+    private double max_hp;  //hardiness and level
+    private double max_mp;  //intellect and level
+    private double max_dmg; //strength and level
+    private double max_def; //agility and level
+    private double max_arm; //hardiness and agility
 
     // derived stats (current)
-    private int cur_hp;
-    private int cur_mp;
-    private int cur_dmg;
-    private int cur_def;
-    private int cur_arm;
+    private double cur_hp;
+    private double cur_mp;
+    private double cur_dmg;
+    private double cur_def;
+    private double cur_arm;
 
     // accessors (maximum)
-    public int maxLives() {return max_lives;}
-    public int maxStrength() {return max_str;}
-    public int maxAgility() {return max_agi;}
-    public int maxIntellect() {return max_int;}
-    public int maxHardiness() {return max_har;}
+    public double maxStrength() {return max_str;}
+    public double maxAgility() {return max_agi;}
+    public double maxIntellect() {return max_int;}
+    public double maxHardiness() {return max_har;}
+    public double maxMovement() {return max_mov;}
+    public double maxLife() {return max_hp;}
+    public double maxMana() {return max_mp;}
+    public double maxOffense() {return max_dmg;}
+    public double maxDefense() {return max_def;}
+    public double maxArmor() {return max_arm;}
     public int maxExperience() {return max_exp;}
-    public int maxMovement() {return max_mov;}
-    public int maxLife() {return max_hp;}
-    public int maxMana() {return max_mp;}
-    public int maxOffense() {return max_dmg;}
-    public int maxDefense() {return max_def;}
-    public int maxArmor() {return max_arm;}
+    public int maxLives() {return max_lives;}
+
     //
     public int level() {return level;}
 
     // accessors (current)
-    public int curLives() {return cur_lives;}
-    public int curStrength() {return cur_str;}
-    public int curAgility() {return cur_agi;}
-    public int curIntellect() {return cur_int;}
-    public int curHardiness() {return cur_har;}
+    public double curStrength() {return cur_str;}
+    public double curAgility() {return cur_agi;}
+    public double curIntellect() {return cur_int;}
+    public double curHardiness() {return cur_har;}
+    public double curMovement() {return cur_mov;}
+    public double curLife() {return cur_hp;}
+    public double curMana() {return cur_mp;}
+    public double curOffense() {return cur_dmg;}
+    public double curDefense() {return cur_def;}
+    public double curArmor() {return cur_arm;}
     public int curExperience() {return cur_exp;}
-    public int curMovement() {return cur_mov;}
-    public int curLife() {return cur_hp;}
-    public int curMana() {return cur_mp;}
-    public int curOffense() {return cur_dmg;}
-    public int curDefense() {return cur_def;}
-    public int curArmor() {return cur_arm;}
+    public int curLives() {return cur_lives;}
+
+    // setters
+    private void setCurExperience(){cur_exp = 0;}
+    private void setCurMovement(){cur_mov = max_mov;}
+    private void setMaxMovement(){max_mov = (MOV_MOD * level) + 1;}
+    /*
+
+        Mutators are designed to take values as percents or actual values. This is a bit of future-
+        proofing allowing for buffing and debuffing in the future in addition to current use in changing
+        stats through levelling, area of effect, etc.
+
+            Example: Percents [-0.99, 0.99] and values [-inf, -1.00] U [1.00, inf].
+
+    */
 
     // mutators (maximum)
-    public void maxLivesUp(int amt) {max_lives += amt;}
-    public void maxStrengthUp(int amt) {max_str += amt;}
-    public void maxAgilityUp(int amt) {max_agi += amt;}
-    public void maxIntellectUp(int amt) {max_int += amt;}
-    public void maxHardinessUp(int amt) {max_har += amt;}
-    public void maxExperienceUp() {max_exp = (int)(EXP_PCT * (level * EXP_MOD));}
-    public void maxMovementUp(int amt) {max_mov += amt;}
-    public void maxLifeUp(int amt) {max_hp += amt;}
-    public void maxManaUp(int amt) {max_mp += amt;}
-    public void maxOffenseUp(int amt) {max_dmg += amt;}
-    public void maxDefenseUp(int amt) {max_def += amt;}
-    public void maxArmorUp(int amt) {max_arm += amt;}
+    private void changeMaxLives(int amt) {
+        if(amt > 0)
+            max_lives += amt;
+        else if(amt < 0)
+            max_lives -= amt;
+    }
+    private void changeMaxStrength(double amt) {
+        if(amt > 0.99)
+            max_str += amt;
+        else if(amt < -0.99)
+            max_str -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            max_str += max_str * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            max_str -= max_str * amt;
+    }
+    private void changeMaxAgility(double amt) {
+        if(amt > 0.99)
+            max_agi += amt;
+        else if(amt < -0.99)
+            max_agi -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            max_agi += max_agi * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            max_agi -= max_agi * amt;
+    }
+    private void changeMaxIntellect(double amt) {
+        if(amt > 0.99)
+            max_int += amt;
+        else if(amt < -0.99)
+            max_int -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            max_int += max_int * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            max_int -= max_int * amt;
+    }
+    private void changeMaxHardiness(double amt) {
+        if(amt > 0.99)
+            max_har += amt;
+        else if(amt < -0.99)
+            max_har -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            max_har += max_har * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            max_har -= max_har * amt;
+    }
+    private void changeMaxMovement(double amt) {
+        if(amt > 0.99)
+            max_mov += amt;
+        else if(amt < -0.99)
+            max_mov -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            max_mov += max_mov * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            max_mov -= max_mov * amt;
+    }
+    private void changeMaxLife(double amt) {
+        if(amt > 0.99)
+            max_hp += amt;
+        else if(amt < -0.99)
+            max_hp -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            max_hp += max_hp * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            max_hp -= max_hp * amt;
+    }
+    private void changeMaxMana(double amt) {
+        if(amt > 0.99)
+            max_mp += amt;
+        else if(amt < -0.99)
+            max_mp -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            max_mp += max_mp * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            max_mp -= max_mp * amt;
+    }
+    private void changeMaxOffense(double amt) {
+        if(amt > 0.99)
+            max_dmg += amt;
+        else if(amt < -0.99)
+            max_dmg -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            max_dmg += max_dmg * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            max_dmg -= max_dmg * amt;
+    }
+    private void changeMaxDefense(double amt) {
+        if(amt > 0.99)
+            max_def += amt;
+        else if(amt < -0.99)
+            max_def -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            max_def += max_def * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            max_def -= max_def * amt;
+    }
+    private void changeMaxArmor(double amt) {
+        if(amt > 0.99)
+            max_arm += amt;
+        else if(amt < -0.99)
+            max_arm -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            max_arm += max_arm * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            max_arm -= max_arm * amt;
+    }
+    private void changeMaxExperience() {
+        max_exp = (int)(EXP_PCT * (level * EXP_MOD));
+    }
 
     // mutators (current)
-    public void curLivesUp(int amt) {cur_lives += amt;}
-    public void curStrengthUp(int amt) {cur_str += amt;}
-    public void curAgilityUp(int amt) {cur_agi += amt;}
-    public void curIntellectUp(int amt) {cur_int += amt;}
-    public void curHardinessUp(int amt) {cur_har += amt;}
-    public void curExperienceUp(int amt) {cur_exp += amt;}
-    public void curMovementUp(int amt) {cur_mov += amt;}
-    public void curLifeUp(int amt) {cur_hp += amt;}
-    public void curManaUp(int amt) {cur_mp += amt;}
-    public void curOffenseUp(int amt) {cur_dmg += amt;}
-    public void curDefenseUp(int amt) {cur_def += amt;}
-    public void curArmorUp(int amt) {cur_arm += amt;}
+    private void changeCurLives(int amt) {
+        if(amt > 0)
+            cur_lives += amt;
+        else if(amt < 0)
+            cur_lives -= amt;
+    }
+    private void changeCurStrength(double amt) {
+        if(amt > 0.99)
+            cur_str += amt;
+        else if(amt < -0.99)
+            cur_str -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            cur_str += cur_str * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            cur_str -= cur_str * amt;
+    }
+    private void changeCurAgility(double amt) {
+        if(amt > 0.99)
+            cur_agi += amt;
+        else if(amt < -0.99)
+            cur_agi -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            cur_agi += cur_agi * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            cur_agi -= cur_agi * amt;
+    }
+    private void changeCurIntellect(double amt) {
+        if(amt > 0.99)
+            cur_int += amt;
+        else if(amt < -0.99)
+            cur_int -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            cur_int += cur_int * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            cur_int -= cur_int * amt;
+    }
+    private void changeCurHardiness(double amt) {
+        if(amt > 0.99)
+            cur_har += amt;
+        else if(amt < -0.99)
+            cur_har -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            cur_har += cur_har * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            cur_har -= cur_har * amt;
+    }
+    private void changeCurMovement(double amt) {
+        if(amt > 0.99)
+            cur_mov += amt;
+        else if(amt < -0.99)
+            cur_mov -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            cur_mov += cur_mov * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            cur_mov -= cur_mov * amt;
+    }
+    private void changeCurLife(double amt) {
+        if(amt > 0.99)
+            cur_hp += amt;
+        else if(amt < -0.99)
+            cur_hp -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            cur_hp += cur_hp * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            cur_hp -= cur_hp * amt;
+    }
+    private void changeCurMana(double amt) {
+        if(amt > 0.99)
+            cur_mp += amt;
+        else if(amt < -0.99)
+            cur_mp -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            cur_mp += cur_mp * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            cur_mp -= cur_mp * amt;
+    }
+    private void changeCurOffense(double amt) {
+        if(amt > 0.99)
+            cur_dmg += amt;
+        else if(amt < -0.99)
+            cur_dmg -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            cur_dmg += cur_dmg * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            cur_dmg -= cur_dmg * amt;
+    }
+    private void changeCurDefense(double amt) {
+        if(amt > 0.99)
+            cur_def += amt;
+        else if(amt < -0.99)
+            cur_def -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            cur_def += cur_def * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            cur_def -= cur_def * amt;
+    }
+    private void changeCurArmor(double amt) {
+        if(amt > 0.99)
+            cur_arm += amt;
+        else if(amt < -0.99)
+            cur_arm -= amt;
+        else if(amt >= 0.0 && amt < 1.00)
+            cur_arm += cur_arm * amt;
+        else if(amt > -1.00 && amt <= 0.00)
+            cur_arm -= cur_arm * amt;
+    }
+    private void changeCurExperience(int amt){cur_exp += amt;}
     //
-    public void curLivesDown(int amt) {cur_lives -= amt;}
-    public void curStrengthDown(int amt) {cur_str -= amt;}
-    public void curAgilityDown(int amt) {cur_agi -= amt;}
-    public void curIntellectDown(int amt) {cur_int -= amt;}
-    public void cuHardinessDown(int amt) {cur_har -= amt;}
-    public void curExperienceDown(int amt) {cur_exp -= amt;}
-    public void curMovementDown(int amt) {cur_mov -= amt;}
-    public void curLifeDown(int amt) {cur_hp -= amt;}
-    public void curManaDown(int amt) {cur_mp -= amt;}
-    public void curOffenseDown(int amt) {cur_dmg -= amt;}
-    public void curDefenseDown(int amt) {cur_def -= amt;}
-    public void curArmorRatingDown(int amt) {cur_arm -= amt;}
+    private void changeLevel(int amt) {
+        if (amt > 0)
+            level += amt;
+        else if (amt < 0)
+            level -= amt;
+    }
+
     //
-    public void levelUp(int amt) {level += amt;}
-    public void levelDown(int amt) {level -= amt;}
+    private void calculatePrimaryStats() {
+        max_str = OCCUPATION_STAT_MOD.get("str") * BASE_STAT_MOD * maxStrength();
+        max_agi = OCCUPATION_STAT_MOD.get("agi") * BASE_STAT_MOD * maxAgility();
+        max_int = OCCUPATION_STAT_MOD.get("int") * BASE_STAT_MOD * maxIntellect();
+        max_har = OCCUPATION_STAT_MOD.get("har") * BASE_STAT_MOD * maxHardiness();
+    }
+
+    // TODO: determine formula to calculate secondary stats
+    private void calculateSecondaryStats() {
+
+    }
+
+    // mutators
+    public void livesDown(int amt){changeCurLives(amt);}
+    public void livesUp(int amt){changeCurLives(amt);}
+    //
+    public void healthUp(){}
+    public void healthDown(){}
+    public void manaUp(){}
+    public void manaDown(){}
+    //
+    public void experienceUp(int amt) {changeCurExperience(amt);}
+    public void levelUp() {
+        changeLevel(1);
+        calculatePrimaryStats();
+        calculateSecondaryStats();
+    }
+    public void buff(String stat_to_buff, Double amt) {
+        switch(stat_to_buff) {
+            case "str": changeMaxStrength(amt);
+                        changeCurStrength(amt);
+                        break;
+            case "agi": changeMaxAgility(amt);
+                        changeCurAgility(amt);
+                        break;
+            case "int": changeMaxIntellect(amt);
+                        changeCurIntellect(amt);
+                        break;
+            case "har": changeMaxHardiness(amt);
+                        changeCurHardiness(amt);
+                        break;
+            case "hp":  changeMaxLife(amt);
+                        changeCurLife(amt);
+                        break;
+            case "mp":  changeMaxMana(amt);
+                        changeCurMana(amt);
+                        break;
+            case "off": changeMaxOffense(amt);
+                        changeCurOffense(amt);
+                        break;
+            case "def": changeMaxDefense(amt);
+                        changeCurDefense(amt);
+                        break;
+            case "arm": changeMaxArmor(amt);
+                        changeCurArmor(amt);
+                        break;
+            case "mov": changeMaxMovement(amt);
+                        changeCurMovement(amt);
+                        break;
+        }
+        calculateSecondaryStats();
+    }
+
+    // print
+    public void printStats() {
+        // primary stats
+        System.out.println("Primary Stats:");
+        System.out.println("Level: " + level());
+        System.out.println("Lives: " + curLives() + "/" + maxLives());
+        System.out.println("Experience: " + curExperience() + "/" + maxExperience());
+        System.out.println("Strength: " + curStrength() + "/" + maxStrength());
+        System.out.println("Agility: " + curAgility() + "/" + maxAgility());
+        System.out.println("Intellect: " + curIntellect() + "/" + maxIntellect());
+        System.out.println("Hardiness: " + curHardiness() + "/" + maxHardiness());
+        System.out.println("Movement: " + curMovement() + "/" + maxMovement());
+        // secondary stats
+        System.out.println("Secondary Stats:");
+        System.out.println("Life: " + curLife() + "/" + maxLife());
+        System.out.println("Mana: " + curMana() + "/" + maxMana());
+        System.out.println("Offense: " + curOffense() + "/" + maxOffense());
+        System.out.println("Defense: " + curDefense() + "/" + maxDefense());
+        System.out.println("Armor: " + curArmor() + "/" + maxArmor());
+    }
 }
