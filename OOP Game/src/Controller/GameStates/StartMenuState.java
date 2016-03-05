@@ -1,8 +1,9 @@
 package Controller.GameStates;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 import Controller.Manager.GameStateManager;
+import Main.GamePanel;
 
 public class StartMenuState extends GameState{
 
@@ -25,6 +26,8 @@ public class StartMenuState extends GameState{
 
 	@Override
 	public void render(Graphics g) {
+		g.setColor(Color.RED);
+		g.fillRect(100,100, GamePanel.WIDTH,GamePanel.HEIGHT);
 		// TODO Auto-generated method stub
 		
 	}

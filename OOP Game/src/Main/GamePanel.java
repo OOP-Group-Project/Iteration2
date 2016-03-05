@@ -10,6 +10,8 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
+import Controller.GameStates.GameState;
+import Controller.GameStates.PlayState;
 import Controller.Manager.AssetManager;
 import Controller.Manager.GameStateManager;
 import Controller.Manager.KeysManager;
@@ -59,14 +61,10 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
 	};
 	
 	private void init() {
-		// Initialize the resources
-		AssetManager.init();
-
 		gameIsRunning = true;
 		imageToRender = new BufferedImage(WIDTH, HEIGHT, 1);
 		g = (Graphics2D) imageToRender.getGraphics();
 		gsm = new GameStateManager();
-
 	}
 
 	@Override
@@ -104,15 +102,23 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
 		KeysManager.update();
 		gsm.update();
 	}
+
+	// GameStateManager handles which state should be rendering
 	private void render(){
 		gsm.render(g);
 	}
-	
+
+	// Renders the graphics from the specified state to the screen
 	private void renderToScreen(){
 		Graphics g2 = super.getGraphics();
-		//g2.drawImage(imageToRender, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);
-//		Uncomment this to test the animations for walking up
-		g2.drawImage(AssetManager.playerWalkDown[x],10,10,null);
+		g2.drawImage(imageToRender, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);
+
+//		Uncomment this to test the walking animations
+//		g2.clearRect(0,0,WIDTH,HEIGHT);
+//		g2.drawImage(AssetManager.playerWalkDown[x],10,10,null);
+//		g2.drawImage(AssetManager.playerWalkRight[x],10,70,null);
+//		g2.drawImage(AssetManager.playerWalkDown[x],10,130,null);
+//		g2.drawImage(AssetManager.playerWalkLeft[x],10,190,null);
 		g2.dispose();
 	}
 	

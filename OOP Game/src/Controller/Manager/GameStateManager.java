@@ -17,9 +17,12 @@ public class GameStateManager {
 	private int currentState;
 	
 	public GameStateManager(){
-		
+
+		// Initialize the resources
+		AssetManager.init();
+
 		//JukeBox.init(); // music
-		
+
 		gameStates = new GameState[NUM_STATES];
 		setState(INTRO);
 	}
