@@ -36,6 +36,9 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
 	// KEEP TRACK GAME STATE
 	private GameStateManager gsm;
 
+	// TESTING WALKING ANIMATIONS
+	int x = 0;
+
 	public GamePanel() {
 		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT *SCALE));
 		setFocusable(true);
@@ -95,6 +98,9 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
 	}
 	
 	private void update(){
+		// Used to test walking animations
+		x = (x + 1) % AssetManager.playerWalkDown.length;
+
 		KeysManager.update();
 		gsm.update();
 	}
@@ -104,9 +110,9 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
 	
 	private void renderToScreen(){
 		Graphics g2 = super.getGraphics();
-		g2.drawImage(imageToRender, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);
+		//g2.drawImage(imageToRender, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);
 //		Uncomment this to test the animations for walking up
-//		g2.drawImage(AssetManager.playerWalkUp[1],10,10,null);
+		g2.drawImage(AssetManager.playerWalkDown[x],10,10,null);
 		g2.dispose();
 	}
 	

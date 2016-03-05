@@ -6,24 +6,28 @@ import java.awt.image.BufferedImage;
 
 /**
  * Created by Michael on 3/5/16.
+ * This class serves to initialize all of the images
+ * that will be used throughout the game
  */
 public class AssetManager {
 
-    private static final int width = 30;
-    private static final int height = 47;
-    private static final int padding = 64;
-    private static final int xStart = 17;
-    private static final int xEnd = 529;
-    private static final int yWalkUp = 527;
-    private static final int yWalkRight = 591;
-    private static final int yWalkDown = 655;
-    private static final int yWalkLeft = 719;
+    // Constants that represent the pixel locations on the sprite sheet
+    private static final int WIDTH = 30;
+    private static final int HEIGHT = 47;
+    private static final int PADDING = 64;
+    private static final int X_START = 17;
+    private static final int X_END = 529;
+    private static final int Y_WALK_UP = 527;
+    private static final int Y_WALK_RIGHT = 591;
+    private static final int Y_WALK_DOWN = 655;
+    private static final int Y_WALK_LEFT = 719;
 
-
+    // Arrays that hold the 4 walking directions of the player (others to be added)
     public static BufferedImage[] playerWalkUp = new BufferedImage[9];
     public static BufferedImage[] playerWalkRight = new BufferedImage[9];
     public static BufferedImage[] playerWalkDown = new BufferedImage[9];
     public static BufferedImage[] playerWalkLeft = new BufferedImage[9];
+
     public static BufferedImage grass;
     public static BufferedImage mountain;
     public static BufferedImage water;
@@ -34,17 +38,17 @@ public class AssetManager {
 
     public static void init(){
         int i = 0;
-        int currentX = xStart;
+        int currentX = X_START;
 
         SpriteSheet mSpriteSheet = new SpriteSheet(ImageLoader.loadImage("/Resources/PlayerSpriteSheet.png"));
 
-        // Initialize animations for a player walking
-        while(currentX < xEnd){
-            playerWalkUp[i] = mSpriteSheet.crop(currentX,yWalkUp,width,height);
-            playerWalkRight[i] = mSpriteSheet.crop(currentX,yWalkRight,width,height);
-            playerWalkDown[i] = mSpriteSheet.crop(currentX,yWalkDown,width,height);
-            playerWalkLeft[i] = mSpriteSheet.crop(currentX,yWalkLeft,width,height);
-            currentX += padding;
+        // Initialize sprites for a player walking
+        while(currentX < X_END){
+            playerWalkUp[i] = mSpriteSheet.crop(currentX, Y_WALK_UP, WIDTH, HEIGHT);
+            playerWalkRight[i] = mSpriteSheet.crop(currentX, Y_WALK_RIGHT, WIDTH, HEIGHT);
+            playerWalkDown[i] = mSpriteSheet.crop(currentX, Y_WALK_DOWN, WIDTH, HEIGHT);
+            playerWalkLeft[i] = mSpriteSheet.crop(currentX, Y_WALK_LEFT, WIDTH, HEIGHT);
+            currentX += PADDING;
             i++;
         }
 
