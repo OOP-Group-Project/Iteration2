@@ -6,9 +6,11 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
+import Controller.Manager.AssetManager;
 import Controller.Manager.GameStateManager;
 import Controller.Manager.KeysManager;
 
@@ -34,7 +36,6 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
 	// KEEP TRACK GAME STATE
 	private GameStateManager gsm;
 
-	
 	public GamePanel() {
 		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT *SCALE));
 		setFocusable(true);
@@ -55,10 +56,14 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
 	};
 	
 	private void init() {
+		// Initialize the resources
+		AssetManager.init();
+
 		gameIsRunning = true;
 		imageToRender = new BufferedImage(WIDTH, HEIGHT, 1);
 		g = (Graphics2D) imageToRender.getGraphics();
 		gsm = new GameStateManager();
+
 	}
 
 	@Override
@@ -100,6 +105,8 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
 	private void renderToScreen(){
 		Graphics g2 = super.getGraphics();
 		g2.drawImage(imageToRender, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);
+//		Uncomment this to test the animations for walking up
+//		g2.drawImage(AssetManager.playerWalkUp[1],10,10,null);
 		g2.dispose();
 	}
 	
