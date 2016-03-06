@@ -111,11 +111,11 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
 		g2.drawImage(imageToRender, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);
 
 //		Uncomment this to test the walking animations
-//		g2.clearRect(0,0,WIDTH,HEIGHT);
-//		g2.drawImage(AssetManager.playerWalkDown[x],10,10,null);
-//		g2.drawImage(AssetManager.playerWalkRight[x],10,70,null);
-//		g2.drawImage(AssetManager.playerWalkDown[x],10,130,null);
-//		g2.drawImage(AssetManager.playerWalkLeft[x],10,190,null);
+		g2.clearRect(0,0,WIDTH,HEIGHT);
+		g2.drawImage(AssetManager.playerWalkDown[x],10,10,null);
+		g2.drawImage(AssetManager.playerWalkRight[x],10,70,null);
+		g2.drawImage(AssetManager.playerWalkDown[x],10,130,null);
+		g2.drawImage(AssetManager.playerWalkLeft[x],10,190,null);
 		g2.dispose();
 	}
 	
