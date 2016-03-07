@@ -12,7 +12,8 @@ import javax.swing.JPanel;
 import Main.Controller.Manager.AssetManager;
 import Main.Controller.Manager.GameStateManager;
 import Main.Controller.Manager.KeysManager;
-
+import Main.Model.Map.Tile;
+import Main.Model.Terrain.Water;
 
 
 public class GamePanel extends JPanel implements KeyListener, Runnable {
@@ -37,6 +38,9 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
 
 	// TESTING WALKING ANIMATIONS
 	int x = 0;
+
+	// Testing terrain images
+//	private Tile mTile = new Tile(new Water(), 5);
 
 	public GamePanel() {
 		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT *SCALE));
@@ -111,11 +115,11 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
 		g2.drawImage(imageToRender, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);
 
 //		Uncomment this to test the walking animations
-		g2.clearRect(0,0,WIDTH,HEIGHT);
-		g2.drawImage(AssetManager.playerWalkDown[x],10,10,null);
-		g2.drawImage(AssetManager.playerWalkRight[x],10,70,null);
-		g2.drawImage(AssetManager.playerWalkDown[x],10,130,null);
-		g2.drawImage(AssetManager.playerWalkLeft[x],10,190,null);
+//		g2.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
+//		g2.drawImage(AssetManager.playerWalkDown[x],10,10,null);
+//		g2.drawImage(AssetManager.playerWalkRight[x],10,70,null);
+//		g2.drawImage(AssetManager.playerWalkDown[x],10,130,null);
+//		g2.drawImage(AssetManager.playerWalkLeft[x],10,190,null);
 		g2.dispose();
 	}
 	

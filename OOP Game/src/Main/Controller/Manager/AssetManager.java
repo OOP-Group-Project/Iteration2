@@ -27,7 +27,9 @@ public class AssetManager {
     public static BufferedImage[] playerWalkRight = new BufferedImage[9];
     public static BufferedImage[] playerWalkDown = new BufferedImage[9];
     public static BufferedImage[] playerWalkLeft = new BufferedImage[9];
-
+    public static BufferedImage player;
+    public static BufferedImage pet;
+    public static BufferedImage npc;
     public static BufferedImage grass;
     public static BufferedImage mountain;
     public static BufferedImage water;
@@ -42,7 +44,11 @@ public class AssetManager {
 
         SpriteSheet mSpriteSheet = new SpriteSheet(ImageLoader.loadImage("/Resources/PlayerSpriteSheet.png"));
 
-        // Initialize sprites for a player walking
+        // Load in water sprites
+        water = ImageLoader.loadImage("/Resources/Water.png");
+
+        // Load in player sprites
+        player = mSpriteSheet.crop(X_START, Y_WALK_DOWN, WIDTH, HEIGHT);
         while(currentX < X_END){
             playerWalkUp[i] = mSpriteSheet.crop(currentX, Y_WALK_UP, WIDTH, HEIGHT);
             playerWalkRight[i] = mSpriteSheet.crop(currentX, Y_WALK_RIGHT, WIDTH, HEIGHT);

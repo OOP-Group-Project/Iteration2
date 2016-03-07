@@ -5,6 +5,9 @@ import java.awt.Graphics;
 
 import Main.Controller.Manager.GameStateManager;
 import Main.Controller.Manager.KeysManager;
+import Main.Model.Map.Map;
+import Main.Model.Map.Tile;
+import Main.Model.Terrain.Water;
 import Main.View.GamePanel;
 
 public class IntroState extends GameState{
@@ -16,6 +19,9 @@ public class IntroState extends GameState{
 	private final long DURATION = 3000;
 	
 	private long start;
+
+//	private Tile mTile = new Tile(new Water(), 1);
+	private Map map = new Map();
 	
 	
 	public IntroState(GameStateManager gsm) {
@@ -38,8 +44,11 @@ public class IntroState extends GameState{
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(new Color(0,0,(int)(Math.random()*256)));
+//		g.setColor(new Color(0,0,(int)(Math.random()*256)));
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
+//		mTile.render(g,0,0);
+		map.render(g);
+
 	}
 
 	@Override
