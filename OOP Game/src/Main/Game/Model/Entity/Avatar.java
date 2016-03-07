@@ -1,6 +1,6 @@
 package Main.Game.Model.Entity;
 
-import Main.Controller.Manager.AssetManager;
+import Main.Game.View.Graphics.GraphicsAssets;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 public class Avatar extends Entity{
 
     public Avatar(){
-        super(AssetManager.player);
+        super(GraphicsAssets.player);
     }
 
     @Override

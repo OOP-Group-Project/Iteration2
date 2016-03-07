@@ -1,6 +1,6 @@
 package Main.Game.Model.Map;
 
-import Main.Model.Terrain.Terrain;
+import Main.Game.Model.Terrain.Terrain;
 
 import java.awt.*;
 

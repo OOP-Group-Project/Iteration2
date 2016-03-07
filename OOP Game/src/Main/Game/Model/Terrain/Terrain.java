@@ -1,6 +1,6 @@
 package Main.Game.Model.Terrain;
 
-import Main.View.Graphics.ImageLoader;
+import Main.Game.View.Graphics.ImageLoader;
 
 import java.awt.image.BufferedImage;
 

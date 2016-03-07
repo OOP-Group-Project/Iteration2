@@ -1,6 +1,6 @@
 package Main.Game.Model.Terrain;
 
-import Main.Controller.Manager.AssetManager;
+import Main.Game.View.Graphics.GraphicsAssets;
 
 /**
  * Created by walkhard on 2/18/16.
@@ -8,7 +8,7 @@ import Main.Controller.Manager.AssetManager;
 public class Water extends Terrain {
 
     public Water(){
-        super(AssetManager.water);
+        super(GraphicsAssets.water);
     }
 
     @Override

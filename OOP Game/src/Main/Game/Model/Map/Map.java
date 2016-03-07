@@ -1,6 +1,6 @@
 package Main.Game.Model.Map;
 
-import Main.Model.Terrain.Water;
+import Main.Game.Model.Terrain.Water;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

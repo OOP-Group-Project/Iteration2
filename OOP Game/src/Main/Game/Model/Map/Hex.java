@@ -1,4 +1,4 @@
-package Main.Model.Map;
+package Main.Game.Model.Map;
 
 import java.awt.*;
 

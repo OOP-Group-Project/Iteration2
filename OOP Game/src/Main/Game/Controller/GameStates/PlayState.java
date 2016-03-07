@@ -2,7 +2,7 @@ package Main.Game.Controller.GameStates;
 
 import java.awt.Graphics;
 
-import Main.Controller.Manager.GameStateManager;
+import Main.Game.Controller.Manager.GameStateManager;
 
 public class PlayState extends GameState{
 

@@ -1,9 +1,8 @@
 package Main.Game.Model.Entity;
 
-import Main.Controller.Manager.AssetManager;
-import Main.Model.Inventory.Inventory;
-import Main.Model.Occupation.Occupation;
-import Main.Model.Stats.Stats;
+import Main.Game.Model.Inventory.Inventory;
+import Main.Game.Model.Occupation.Occupation;
+import Main.Game.Model.Stats.Stats;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

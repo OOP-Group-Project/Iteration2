@@ -1,6 +1,6 @@
 package Main.Game.Model.Entity;
 
-import Main.Controller.Manager.AssetManager;
+import Main.Game.View.Graphics.GraphicsAssets;
 
 import java.awt.*;
 
@@ -11,7 +11,7 @@ public class Pet extends Entity {
 
 
     public Pet(){
-        super(AssetManager.pet);
+        super(GraphicsAssets.pet);
     }
 
     @Override
