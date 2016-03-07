@@ -14,11 +14,14 @@ public class Game implements Runnable {
 
     private Thread thread;
     private boolean gameIsRunning;
-    private final int FPS = 30;
+    private final int FPS = 60;
     private final int targetTime = 1000 / FPS;
 
     public Game() {
+        // Create all the controllers ( which contain the gameStates).
         controller = new Controller();
+
+        // Create the view
         view = new View(controller, "The Unwanted..... Maybe");
     }
 
@@ -40,7 +43,6 @@ public class Game implements Runnable {
 
             elapsed = System.nanoTime() - start;
             wait = targetTime - elapsed / 1000000;
-            System.out.println(Long.toString(wait));
             // Wait for 1/60 seconds to elapse and then repeat.
             if (wait > 0) {
                 try {

@@ -20,13 +20,15 @@ public class View extends JPanel {
     private JFrame frame;
     private Controller controller;
     private GraphicsAssets graphicsAssets;
+
+    // This structure represents a mapping between teh current state of the game and what to render.
     private EnumMap<GameStateEnum, RendererObject> renderers;
 
-    // FOR RENDERING
+    // The buffered image is a "canvas" that we render to and the Graphics object is what we use to draw on the canvas
     private BufferedImage bufferedImage;
     private Graphics g;
 
-    // SCREEN DIMENSIONS
+    // Screen dimensions are variable with how large the screen is at any one time.  Use the getters to reference them.
     private int pxWidth = 600;
     private int pxHeight = 400;
 
@@ -51,28 +53,30 @@ public class View extends JPanel {
         frame.setSize(new Dimension(pxWidth, pxHeight));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
-
         frame.addKeyListener(controller.getKeyListener());
-
 
         graphicsAssets = new GraphicsAssets();
         graphicsAssets.init();
 
-
-        initializeRenderers();
+        initializeStateRenderers();
     }
 
-    private void initializeRenderers() {
+
+    // Each renderer is an object that stores how it should render a specific object to the game screen.
+    // The state renderers have individual object rednerers that are relevant to them (i.e., the playStateRenderer has an EntityRenderer and MapRenderer so that it can call both of their render methods)
+    private void initializeStateRenderers() {
         renderers = new EnumMap<>(GameStateEnum.class);
         renderers.put(GameStateEnum.PlayState, new PlayStateRenderer(this));
     }
 
+
+    // This function updates the pixel dimensions of the screen during the view object's update method
     private void updateBounds() {
         pxWidth = this.getWidth();
         pxHeight = this.getHeight();
     }
 
+    // This renders the View (which is the JPanel), which in turn calls the render method of the state that we are currently in.
     public void render() {
         // If we've changed the size of the window, update the pxWidth and pxHeight variables.
         updateBounds();
@@ -89,7 +93,7 @@ public class View extends JPanel {
         // Render the current state
         renderers.get(currentState).render(g);
 
-        // Get rid of everything.
+        // Clear the graphics buffer.
         g.dispose();
     }
 
