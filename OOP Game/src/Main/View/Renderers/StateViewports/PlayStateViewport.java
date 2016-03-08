@@ -100,6 +100,7 @@ public class PlayStateViewport extends StateViewport {
 
         // Then render them
         ObjectRenderer.mapRenderer.render(graphics, world, mapStartX, mapEndX, mapStartY, mapEndY);
+
         for(Entity inViewEntity : inViewEntities) {
             // Get the offset amount
             Point offset = inViewEntityPxOffset.get(inViewEntity);

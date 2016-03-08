@@ -6,6 +6,8 @@ package Main.Controller.Manager;
  */
 
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.EnumMap;
 
 import Main.Controller.GameStates.State;
@@ -47,8 +49,8 @@ public class GameStateManager {
 		return currentState;
 	}
 	
-	public void update(){	
-		gameStates.get(currentState).update();
+	public void update(KeyEvent k){
+		gameStates.get(currentState).update(k);
 	}
 
 }

@@ -20,7 +20,7 @@ import java.util.EnumMap;
  * Created by mason on 3/6/16.
  */
 public class Viewport extends JFrame implements Runnable {
-
+    public static Viewport viewport;
     private Controller controller;
     private Map world;
     private Avatar player;
@@ -40,6 +40,7 @@ public class Viewport extends JFrame implements Runnable {
     private int pxHeight = 400;
 
     public Viewport(Avatar player, Map world, Controller controller, String gameTitle) {
+        viewport = this;
         this.player = player;
         this.world = world;
         this.controller = controller;
@@ -51,17 +52,15 @@ public class Viewport extends JFrame implements Runnable {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(true);
         setLocationRelativeTo(null);
+        setVisible(true);
 
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(pxWidth, pxHeight));
-        canvas.setFocusable(true);
+        canvas.setFocusable(false);
 
         this.add(canvas);
         this.pack();
 
-        this.requestFocus();
-        this.setVisible(true);
-        this.addKeyListener(controller.getKeyListener());
 
         //******************************
         // Initialize the graphics

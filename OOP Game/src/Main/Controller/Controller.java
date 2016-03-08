@@ -5,6 +5,7 @@ import Main.Controller.Manager.GameStateManager;
 import Main.Controller.Manager.KeyManager;
 import Main.Model.Map.Map;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
@@ -30,8 +31,8 @@ public class Controller implements Runnable{
         return keyboardManager;
     }
 
-    public void update() {
-        gameStateManager.update();
+    public void update(KeyEvent k) {
+        gameStateManager.update(k);
     }
 
     public StateEnum getCurrentState() {
@@ -56,7 +57,7 @@ public class Controller implements Runnable{
 
             if( delta >= 1 ) {
                 //DO STUFF
-                update();
+                update(keyboardManager.getKeyPressedState());
 
                 //
                 ticks++;

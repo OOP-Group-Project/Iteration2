@@ -29,6 +29,7 @@ public class Game {
 
         // Create the viewport to see into the world!
         viewport = new Viewport(player, world, controller, "Testing....");
+        Viewport.viewport.addKeyListener(controller.getKeyListener());
     }
 
 

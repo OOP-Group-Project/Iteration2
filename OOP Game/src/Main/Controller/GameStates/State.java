@@ -3,6 +3,8 @@ package Main.Controller.GameStates;
 import Main.Controller.Manager.GameStateManager;
 import Main.Model.Map.Map;
 
+import java.awt.event.KeyEvent;
+
 public abstract class State {
 	
 	protected GameStateManager gsm;
@@ -13,7 +15,6 @@ public abstract class State {
 		this.world = world;
 	}
 	
-	public abstract void update();
-	public abstract void handleInput();
-	
+	public abstract void update(KeyEvent key);
+
 }

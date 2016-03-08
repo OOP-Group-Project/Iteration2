@@ -3,6 +3,8 @@ package Main.Controller.GameStates;
 import Main.Controller.Manager.GameStateManager;
 import Main.Model.Map.Map;
 
+import java.awt.event.KeyEvent;
+
 public class PlayState extends State {
 
 	public PlayState(GameStateManager gsm, Map world) {
@@ -11,14 +13,11 @@ public class PlayState extends State {
 
 
 	@Override
-	public void update() {
-		
-	}
+	public void update(KeyEvent k) {
+		if(k != null) {
+			System.out.print(k.getKeyChar());
+		}
 
-
-	@Override
-	public void handleInput() {
-		
 	}
 
 }

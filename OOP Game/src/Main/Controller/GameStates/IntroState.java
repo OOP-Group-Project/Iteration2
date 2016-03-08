@@ -3,6 +3,8 @@ package Main.Controller.GameStates;
 import Main.Controller.Manager.GameStateManager;
 import Main.Model.Map.Map;
 
+import java.awt.event.KeyEvent;
+
 public class IntroState extends State {
 	
 	final String title = "The Unwanted";
@@ -20,16 +22,11 @@ public class IntroState extends State {
 
 
 	@Override
-	public void update() {
-		handleInput();
+	public void update(KeyEvent k) {
+
 
 	}
 
 
-	@Override
-	public void handleInput() {
-//		if(KeyManager.isDown(KeyManager.ENTER))
-//			gsm.setState(GameStateManager.START_MENU);
-	}
 
 }

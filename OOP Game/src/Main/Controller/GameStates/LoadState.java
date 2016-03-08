@@ -5,6 +5,8 @@ import Main.Model.DirectionEnum;
 import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
 
+import java.awt.event.KeyEvent;
+
 /**
  * Created by mason on 3/7/16.
  */
@@ -24,17 +26,12 @@ public class LoadState extends State {
         world.addEntity(player, 0,0, DirectionEnum.Down);
     }
 
-    @Override
-    public void handleInput() {
-
-    }
-
     public Avatar getPlayer() {
         return player;
     }
 
     @Override
-    public void update() {
+    public void update(KeyEvent k) {
         loadTestGame();
         gsm.setState(StateEnum.PlayState);
     }
