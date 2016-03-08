@@ -376,7 +376,7 @@ public class Stats {
         max_har = OCCUPATION_STAT_MOD.get("har") * BASE_STAT_MOD * level;
     }
 
-    // TODO: determine formula to calculate secondary stats
+    //
     private void calculateSecondaryStats() {
         int SCALE_MOD = 10;
         max_hp = (max_har * SCALE_MOD) / BASE_STAT_MOD;  //hardiness and level
