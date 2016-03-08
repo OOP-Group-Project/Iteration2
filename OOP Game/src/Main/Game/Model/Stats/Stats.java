@@ -31,9 +31,6 @@ public class Stats {
     // basic modifiers
     private Map<String, Double> OCCUPATION_STAT_MOD = new HashMap<>();
     private int BASE_STAT_MOD = 3;
-    private double MOV_MOD = 0.025;
-    private int EXP_MOD = 100;
-    private double EXP_PCT = 0.75;
 
     /*
 
@@ -128,7 +125,10 @@ public class Stats {
     // setters
     private void setCurExperience(){cur_exp = 0;}
     private void setCurMovement(){cur_mov = max_mov;}
-    private void setMaxMovement(){max_mov = (MOV_MOD * level) + 1;}
+    private void setMaxMovement(){
+        double MOV_MOD = 0.025;
+        max_mov = (MOV_MOD * level) + 1;
+    }
     /*
 
         Mutators are designed to take values as percents or actual values. This is a bit of future-
@@ -247,6 +247,8 @@ public class Stats {
             max_arm -= max_arm * amt;
     }
     private void changeMaxExperience() {
+        int EXP_MOD = 100;
+        double EXP_PCT = 0.75;
         max_exp = (int)(EXP_PCT * (level * EXP_MOD));
     }
 
@@ -368,15 +370,20 @@ public class Stats {
 
     //
     private void calculatePrimaryStats() {
-        max_str = OCCUPATION_STAT_MOD.get("str") * BASE_STAT_MOD * maxStrength();
-        max_agi = OCCUPATION_STAT_MOD.get("agi") * BASE_STAT_MOD * maxAgility();
-        max_int = OCCUPATION_STAT_MOD.get("int") * BASE_STAT_MOD * maxIntellect();
-        max_har = OCCUPATION_STAT_MOD.get("har") * BASE_STAT_MOD * maxHardiness();
+        max_str = OCCUPATION_STAT_MOD.get("str") * BASE_STAT_MOD * level;
+        max_agi = OCCUPATION_STAT_MOD.get("agi") * BASE_STAT_MOD * level;
+        max_int = OCCUPATION_STAT_MOD.get("int") * BASE_STAT_MOD * level;
+        max_har = OCCUPATION_STAT_MOD.get("har") * BASE_STAT_MOD * level;
     }
 
     // TODO: determine formula to calculate secondary stats
     private void calculateSecondaryStats() {
-
+        int SCALE_MOD = 10;
+        max_hp = (max_har * SCALE_MOD) / BASE_STAT_MOD;  //hardiness and level
+        max_mp = (max_int * SCALE_MOD) / BASE_STAT_MOD;  //intellect and level
+        max_dmg = (max_str * SCALE_MOD) / BASE_STAT_MOD; //strength and level
+        max_def = (max_agi * SCALE_MOD) / BASE_STAT_MOD; //agility and level
+        max_arm = (((max_har + max_agi) / 2) * SCALE_MOD) / BASE_STAT_MOD; //hardiness and agility
     }
 
     // mutators
