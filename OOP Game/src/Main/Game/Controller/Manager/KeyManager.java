@@ -26,7 +26,9 @@ public class KeyManager implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent key) {
 
-		// TODO: Make the keyEvent if statement below configurable.  (Probably use a EnumMap with the key as the key that's pressed and the value as an ActionEnum for what action to take (i.e. pause, move up, move down, etc.)
+		// TODO: Make the keyEvent if statement below configurable.
+		// (Probably use a EnumMap with the key as the key that's pressed and the
+		// value as an ActionEnum for what action to take (i.e. pause, move up, move down, etc.)
 		if(key.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			// if we press escape, what do we do ???
 

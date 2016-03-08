@@ -10,6 +10,7 @@ import java.util.EnumMap;
 
 import Main.Game.Controller.GameStates.*;
 import Main.Game.Controller.GameStates.GameStateEnum;
+import Main.Game.View.View;
 
 
 public class GameStateManager {
@@ -35,7 +36,10 @@ public class GameStateManager {
 	}
 	
 	public void setState(GameStateEnum state){
+//		View.removeKeyListener(state);
 		currentState = (state);
+//		View.addKeyListener(state);
+
 	}
 
 	public GameStateEnum getCurrentState() {
