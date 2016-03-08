@@ -1,4 +1,4 @@
-package Main.Game.Model.Entity;
+package Main.Game.Model;
 
 /**
  * Created by mason on 3/7/16.

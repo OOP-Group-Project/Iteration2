@@ -1,5 +1,8 @@
 package Main.Game.Model.Map;
 
+import Main.Game.Model.DirectionEnum;
+import Main.Game.Model.Entity.Entity;
+import Main.Game.Model.Items.Item;
 import Main.Game.Model.Terrain.Water;
 
 import java.awt.*;
@@ -19,13 +22,10 @@ public class Map {
 
 	private int width;
 	private int height;
-	
-	public Map(){
-		loadTiles();
-	}
+
 	
 	//should be able to read from a path and set up the color for the tiles
-	public void loadTiles(){
+	public void createTestMap(){
         for(int i = 0; i < width; i++){
             for (int j = 0; j < width; j++){
                 tiles[i][j] = new Tile(new Water(),0,i,j);
@@ -37,6 +37,15 @@ public class Map {
 	public void loadMap(String path){
 		
 	}
+
+	public void addEntity(Entity e, int xLocation, int yLocation, DirectionEnum direction) {
+		tiles[xLocation][yLocation].addEntity(e);
+	}
+
+	public void addItem(Item i, int xLocation, int yLocation) {
+		tiles[xLocation][yLocation].addItem(i);
+	}
+
 
 	public void render(Graphics g){
 		for(int y = 0; y < height; y++){

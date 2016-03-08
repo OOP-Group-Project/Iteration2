@@ -3,6 +3,7 @@ package Main.Game.Controller;
 import Main.Game.Controller.GameStates.GameStateEnum;
 import Main.Game.Controller.Manager.GameStateManager;
 import Main.Game.Controller.Manager.KeyManager;
+import Main.Game.Model.Map.Map;
 
 import java.awt.event.KeyListener;
 
@@ -14,9 +15,10 @@ public class Controller {
     KeyManager keyboardManager;
     GameStateManager gameStateManager;
 
-    public Controller() {
+    public Controller(Map world) {
+        // Create all the controllers
         keyboardManager = new KeyManager();
-        gameStateManager = new GameStateManager();
+        gameStateManager = new GameStateManager(world);
     }
 
     public KeyListener getKeyListener() {

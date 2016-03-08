@@ -1,5 +1,6 @@
 package Main.Game.Model.Entity;
 
+import Main.Game.Model.DirectionEnum;
 import Main.Game.View.Graphics.GraphicsAssets;
 
 import java.awt.*;
@@ -21,7 +22,7 @@ public class Npc extends Entity {
     }
 
     @Override
-    public void move() {
+    public void move(DirectionEnum direction) {
 
     }
 

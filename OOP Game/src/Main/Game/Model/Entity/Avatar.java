@@ -1,5 +1,6 @@
 package Main.Game.Model.Entity;
 
+import Main.Game.Model.DirectionEnum;
 import Main.Game.View.Graphics.GraphicsAssets;
 
 import java.awt.*;
@@ -12,11 +13,24 @@ public class Avatar extends Entity{
 
     public Avatar(){
         super(GraphicsAssets.player);
+        this.type = EntityTypeEnum.Avatar;
+    }
+
+    public Avatar(int xLocation, int yLocation) {
+        super(GraphicsAssets.player);
+        this.type = EntityTypeEnum.Avatar;
+        this.xLocation = xLocation;
+        this.yLocation = yLocation;
     }
 
     @Override
-    public void move() {
+    public void move(DirectionEnum direction) {
 
+    }
+
+    public void respawn(int xLocation, int yLocation) {
+        this.xLocation = xLocation;
+        this.yLocation = yLocation;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package Main.Game;
 
 import Main.Game.Controller.Controller;
+import Main.Game.Model.Entity.Avatar;
+import Main.Game.Model.Map.Map;
 import Main.Game.View.View;
 
 
@@ -11,6 +13,8 @@ public class Game implements Runnable {
 
     private View view;
     private Controller controller;
+    private Map world;
+    private Avatar player;
 
     private Thread thread;
     private boolean gameIsRunning;
@@ -18,11 +22,17 @@ public class Game implements Runnable {
     private final int targetTime = 1000 / FPS;
 
     public Game() {
+
+        player = new Avatar();
+
+        // Create the map first, we'll load everything into it later
+        world = new Map();
+
         // Create all the controllers ( which contain the gameStates).
-        controller = new Controller();
+        controller = new Controller(world);
 
         // Create the view
-        view = new View(controller, "The Unwanted..... Maybe");
+        view = new View(world, controller, "The Unwanted..... Maybe");
     }
 
     // Run handles executing the render and update methods for everything at a precise rate of 60FPS
@@ -55,13 +65,29 @@ public class Game implements Runnable {
         }
     }
 
+    public synchronized void startView() {
+        view.start();
+    }
 
-    // Get the thread that we're running on going.
-    public void init() {
+    public synchronized void start() {
+        if (gameIsRunning) {
+            return;
+        }
         gameIsRunning = true;
-        if (thread == null) {
-            thread = new Thread(this);
-            thread.start();
+        thread = new Thread(this);
+        thread.start();
+    }
+
+
+    public synchronized void stop() {
+        if( !gameIsRunning ) {
+            return;
+        }
+        gameIsRunning = false;
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

@@ -1,6 +1,7 @@
 package Main.Game.Controller.GameStates;
 
 import Main.Game.Controller.Manager.GameStateManager;
+import Main.Game.Model.Map.Map;
 
 public class IntroState extends GameState{
 	
@@ -13,8 +14,8 @@ public class IntroState extends GameState{
 	private long start;
 	
 	
-	public IntroState(GameStateManager gsm) {
-		super(gsm);
+	public IntroState(GameStateManager gsm, Map world) {
+		super(gsm, world);
 	}
 
 

@@ -7,8 +7,8 @@ public class Main {
     public static void main(String[] args) {
 
         Game iteration2Game = new Game();
-        iteration2Game.init();
-        iteration2Game.run();
+        iteration2Game.start();
+        iteration2Game.startView();
 
     }
 }

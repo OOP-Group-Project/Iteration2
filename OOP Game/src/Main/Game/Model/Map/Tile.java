@@ -1,14 +1,19 @@
 package Main.Game.Model.Map;
 
+import Main.Game.Model.Entity.Entity;
+import Main.Game.Model.Items.Item;
 import Main.Game.Model.Terrain.Terrain;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Tile {
 
 	public static final int TILE_SIDE = 32;
 
 	private Terrain mTerrain;
+	private Entity entity;
+	private ArrayList<Item> items;
 	private int id;
 	private int x;
 	private int y;
@@ -30,6 +35,14 @@ public class Tile {
 		this.id = id;
 		this.x = x;
 		this.y = y;
+	}
+
+	public void addEntity(Entity e) {
+		this.entity = e;
+	}
+
+	public void addItem(Item item) {
+		this.items.add(item);
 	}
 
 	public void render(Graphics g, int x, int y){
