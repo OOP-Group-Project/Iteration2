@@ -33,6 +33,10 @@ public abstract class Entity {
         return new Point(xLocation, yLocation);
     }
 
+    public EntityTypeEnum getType() {
+        return type;
+    }
+
     public BufferedImage getImage(){
         return image;
     }

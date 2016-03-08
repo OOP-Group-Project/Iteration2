@@ -29,7 +29,7 @@ public class Viewport extends JFrame implements Runnable {
     private EnumMap<StateEnum, StateViewport> stateViewports;
     private ObjectRenderer objectRenderer;
     private GraphicsAssets graphicsAssets;
-    
+
     // The buffered image is a "canvas" that we render to and the Graphics object is what we use to draw on the canvas
     private Canvas canvas;
     private Graphics g;
