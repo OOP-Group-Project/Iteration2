@@ -69,10 +69,6 @@ public class Viewport extends JFrame implements Runnable {
         graphicsAssets = new GraphicsAssets();
         graphicsAssets.init();
 
-        //******************************
-        // Initialize the stateViewports
-        //******************************
-        initializeRenderers();
     }
 
 
@@ -84,7 +80,7 @@ public class Viewport extends JFrame implements Runnable {
 
         // Then initialize the state renderers
         stateViewports = new EnumMap<>(StateEnum.class);
-        stateViewports.put(StateEnum.PlayState, new PlayStateViewport(this, player, world));
+        stateViewports.put(StateEnum.PlayState, new PlayStateViewport(graphicsAssets, this, player, world));
         stateViewports.put(StateEnum.LoadState, new LoadStateViewport(this));
     }
 
@@ -143,6 +139,11 @@ public class Viewport extends JFrame implements Runnable {
     }
 
     public synchronized void start() {
+        //******************************
+        // Initialize the stateViewports
+        //******************************
+        initializeRenderers();
+
         new Thread(this).start();
     }
 

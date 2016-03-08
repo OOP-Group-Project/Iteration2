@@ -35,6 +35,7 @@ public class LoadState extends State {
 
     @Override
     public void update() {
+        loadTestGame();
         gsm.setState(StateEnum.PlayState);
     }
 }

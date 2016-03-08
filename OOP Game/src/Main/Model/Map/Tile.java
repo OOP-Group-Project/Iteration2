@@ -13,7 +13,7 @@ public class Tile {
 	public static final int TILE_SIDE = 32;
 
 	private TerrainTypeEnum terrainType;
-	private Entity entity;
+	private Entity entity = null;
 	private ArrayList<Item> items;
 	private int x;
 	private int y;
@@ -53,5 +53,9 @@ public class Tile {
 
 	public int getY() {
 		return y;
+	}
+
+	public Entity getEntity() {
+		return entity;
 	}
 }

@@ -5,6 +5,7 @@ import Main.Model.Map.Map;
 import Main.View.Graphics.GraphicsAssets;
 import Main.View.Renderers.ObjectRenderer;
 import Main.View.Viewport;
+import com.sun.corba.se.impl.orbutil.graph.Graph;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -68,13 +69,14 @@ public class PlayStateViewport extends StateViewport {
     */
     private java.util.Map<Entity, Point> inViewEntityPxOffset;
     private ArrayList<Entity> inViewEntities;
+    private ArrayList<Entity> previousInViewEntities;
 
 
     public PlayStateViewport(GraphicsAssets graphicsAssets, Viewport viewport, Entity player, Map world) {
         super(viewport);
+        this.graphicsAssets = graphicsAssets;
         this.player = player;
         this.world = world;
-        this.graphicsAssets = graphicsAssets;
 
         // Start the map in the top left corner.
         mapStartX = 0;
@@ -88,8 +90,7 @@ public class PlayStateViewport extends StateViewport {
         pxOffsetY = 0;
 
         mapCameraCenter = new Point((mapStartX + mapEndX)/2, (mapStartY + mapEndY)/2);
-        pxCameraCenter = new Point(this.viewport.getPxWidth()/2, this.viewport.getPxHeight()/2);
-
+        pxCameraCenter = new Point(super.viewport.getPxWidth()/2, super.viewport.getPxHeight()/2);
         recoupleToEntity();
     }
 
@@ -123,6 +124,43 @@ public class PlayStateViewport extends StateViewport {
         mapStartY = (int)Math.max(0, (mapCameraCenter.getY() - (pxCameraCenter.getY()/GraphicsAssets.TILE_PX_HEIGHT)));
         mapEndX = (int)Math.min(world.getWidth(), (mapCameraCenter.getX() + (pxCameraCenter.getX()/GraphicsAssets.TILE_PX_WIDTH)));
         mapEndY = (int)Math.min(world.getHeight(), (mapCameraCenter.getY() + (pxCameraCenter.getY()/GraphicsAssets.TILE_PX_HEIGHT)));
+
+        // Update the entities that are currently in view
+        if(inViewEntities != null) {
+            previousInViewEntities = inViewEntities;
+        }
+
+        inViewEntities = new ArrayList<>();
+
+        for(int i = mapStartX; i < mapEndX; ++i) {
+            for(int j = mapStartY; j < mapEndY; j++) {
+                // Get the entity from the tile
+                Entity e = world.getTile(i,j).getEntity();
+
+                // If there's an entity
+                if(e != null) {
+                    // Check if it was in view before
+                    if(previousInViewEntities.contains(e)) {
+                        // If it was already in view, then keep it in view.
+                        inViewEntities.add(e);
+                        // remove the ones that are in view from the previous set, so that we have a list of entities that are no longer in view.
+                        previousInViewEntities.remove(e);
+                    } else {
+                        // If it wasn't in view, then add it.
+                        inViewEntities.add(e);
+                        inViewEntityPxOffset.put(e, new Point(e.getLocation().x, e.getLocation().y));
+                    }
+                }
+            }
+        }
+
+        if(previousInViewEntities != null && !previousInViewEntities.isEmpty()) {
+            // Any entities that are no longer in view, remove them from the pxOffset structure
+            for(Entity e : previousInViewEntities) {
+                inViewEntityPxOffset.remove(e);
+            }
+        }
+
 
         // update the pixel offset for the camera
 

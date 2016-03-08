@@ -22,6 +22,7 @@ public class Map {
     public Map(int height, int width) {
         this.height = height;
         this.width = width;
+        this.tiles = new Tile[width][height];
     }
 	
 	//should be able to read from a path and set up the color for the tiles

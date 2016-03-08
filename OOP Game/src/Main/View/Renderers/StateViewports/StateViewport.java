@@ -8,14 +8,14 @@ import java.awt.*;
  * Created by mason on 3/7/16.
  */
 public abstract class StateViewport {
-    protected Viewport view;
+    protected Viewport viewport;
 
     public StateViewport() {
-        view = null;
+        viewport = null;
     }
 
     public StateViewport(Viewport view) {
-        this.view = view;
+        this.viewport = view;
     }
 
     public abstract void render(Graphics g);
