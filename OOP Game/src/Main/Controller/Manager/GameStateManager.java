@@ -42,7 +42,7 @@ public class GameStateManager {
 	
 	public void setState(StateEnum state){
 		previousState = currentState;
-		currentState = (state);
+		currentState = state;
 	}
 
 	public StateEnum getCurrentState() {

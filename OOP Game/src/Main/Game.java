@@ -22,7 +22,7 @@ public class Game {
         player = new Avatar();
 
         // Create the map first, we'll load everything into it later
-        world = new Map(20, 20);
+        world = new Map(100, 100);
 
         // Create all the controllers ( which contain the gameStates).
         controller = new Controller(world);

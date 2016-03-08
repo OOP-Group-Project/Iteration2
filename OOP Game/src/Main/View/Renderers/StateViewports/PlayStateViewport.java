@@ -120,11 +120,16 @@ public class PlayStateViewport extends StateViewport {
             mapCameraCenter = player.getLocation();
         }
 
+        pxCameraCenter = new Point(super.viewport.getPxWidth()/2, super.viewport.getPxHeight()/2);
+
         // update the map start and end
-        mapStartX = (int)Math.max(0, (mapCameraCenter.getX() - (pxCameraCenter.getX()/GraphicsAssets.TILE_PX_WIDTH)));
-        mapStartY = (int)Math.max(0, (mapCameraCenter.getY() - (pxCameraCenter.getY()/GraphicsAssets.TILE_PX_HEIGHT)));
-        mapEndX = (int)Math.min(world.getWidth(), (mapCameraCenter.getX() + (pxCameraCenter.getX()/GraphicsAssets.TILE_PX_WIDTH)));
-        mapEndY = (int)Math.min(world.getHeight(), (mapCameraCenter.getY() + (pxCameraCenter.getY()/GraphicsAssets.TILE_PX_HEIGHT)));
+        mapStartX = (int)Math.max(0, (mapCameraCenter.x - (pxCameraCenter.x/GraphicsAssets.TILE_PX_WIDTH)));
+        mapStartY = (int)Math.max(0, (mapCameraCenter.y - (pxCameraCenter.y/GraphicsAssets.TILE_PX_HEIGHT)));
+        mapEndX = (int)Math.min(world.getWidth(), (mapCameraCenter.x + (pxCameraCenter.x/GraphicsAssets.TILE_PX_WIDTH)));
+        mapEndY = (int)Math.min(world.getHeight(), (mapCameraCenter.y + (pxCameraCenter.y/GraphicsAssets.TILE_PX_HEIGHT)));
+
+        mapCameraCenter = new Point((mapStartX + mapEndX)/2, (mapStartY + mapEndY)/2);
+
 
         // Update the entities that are currently in view
         if(inViewEntities != null) {
@@ -135,6 +140,7 @@ public class PlayStateViewport extends StateViewport {
 
         for(int i = mapStartX; i < mapEndX; ++i) {
             for(int j = mapStartY; j < mapEndY; j++) {
+
                 // Get the entity from the tile
                 Entity e = world.getTile(i,j).getEntity();
 

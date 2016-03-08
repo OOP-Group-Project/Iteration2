@@ -61,12 +61,16 @@ public class Viewport extends JFrame implements Runnable {
         this.add(canvas);
         this.pack();
 
-
         //******************************
         // Initialize the graphics
         //******************************
         graphicsAssets = new GraphicsAssets();
         graphicsAssets.init();
+
+        //******************************
+        // Initialize the stateViewports
+        //******************************
+        initializeRenderers();
 
     }
 
@@ -138,11 +142,6 @@ public class Viewport extends JFrame implements Runnable {
     }
 
     public synchronized void start() {
-        //******************************
-        // Initialize the stateViewports
-        //******************************
-        initializeRenderers();
-
         new Thread(this).start();
     }
 

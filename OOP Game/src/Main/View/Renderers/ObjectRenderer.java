@@ -32,18 +32,28 @@ public class ObjectRenderer {
     public static class mapRenderer {
         public static void render(Graphics g, Map map, int mapStartX, int mapEndX, int mapStartY, int mapEndY) {
 
-             /*
-              * TODO: Given how many tiles we want to render and the size of the window, calculate an offset so that
-              * the map is always centered in the window.
-              */
 
-
+            /*
+            * TODO: Given how many tiles we want to render and the size of the window, calculate an offset so that
+            * the map is always centered in the window.
+            */
+            int i = 0, j = 0;
             for(int y = mapStartY; y < mapEndY; y++){
                 for(int x = mapStartX; x < mapEndX; x++){
                     // TODO: Fix this so that it uses the offset.  This will not work currently!
-                    Point pxCenterPoint = new Point(view.getPxWidth()/2, view.getPxHeight()/2);
-                        tileRenderer.render(g, map.getTile(x,y), pxCenterPoint);
+                    Point pxCenterPoint;
+                    int xOffset = (view.getPxWidth() - (int)((mapEndX - mapStartX)*(0.75*graphicsAssets.TILE_PX_WIDTH)))/2;
+                    int yOffset = (view.getPxHeight() - (int)((mapEndY - mapStartY)*(graphicsAssets.TILE_PX_HEIGHT)))/2;
+                    if(x % 2 == 0) {
+                        pxCenterPoint = new Point((i * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)) + xOffset, (j * graphicsAssets.TILE_PX_HEIGHT) + yOffset);
+                    } else {
+                        pxCenterPoint = new Point((i * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)) + xOffset, (graphicsAssets.TILE_PX_HEIGHT/2 + j * graphicsAssets.TILE_PX_HEIGHT) + yOffset);
+                    }
+                    tileRenderer.render(g, map.getTile(x,y), pxCenterPoint);
+                    i++;
                 }
+                i = 0;
+                j++;
             }
         }
     }
@@ -59,11 +69,11 @@ public class ObjectRenderer {
             TerrainTypeEnum type = tile.getTerrainType();
 
             // Calculate location that the tile needs to be rendered using the pxCenterPoint
-
+            Point topLeft = new Point(pxCenterPoint.x - (graphicsAssets.TILE_PX_WIDTH/2), pxCenterPoint.y - (graphicsAssets.TILE_PX_HEIGHT/2));
 
             // Render the correct image.
             if(type == TerrainTypeEnum.Grass) {
-                //g.drawImage(graphicsAssets.grass, x, y, width, height);
+                g.drawImage(graphicsAssets.grass, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
 
             } else if(type == TerrainTypeEnum.Water) {
                 //g.drawImage(graphicsAssets.water, x, y, width, height);

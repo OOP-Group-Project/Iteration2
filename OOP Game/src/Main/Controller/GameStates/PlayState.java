@@ -11,7 +11,6 @@ public class PlayState extends State {
 		super(gsm, world);
 	}
 
-
 	@Override
 	public void update(KeyEvent k) {
 		if(k != null) {
@@ -19,5 +18,4 @@ public class PlayState extends State {
 		}
 
 	}
-
 }

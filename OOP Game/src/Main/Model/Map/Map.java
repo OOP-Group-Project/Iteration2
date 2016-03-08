@@ -19,7 +19,7 @@ public class Map {
     private int width;
     private int height;
 
-    public Map(int height, int width) {
+    public Map(int width, int height) {
         this.height = height;
         this.width = width;
         this.tiles = new Tile[width][height];
@@ -28,7 +28,7 @@ public class Map {
 	//should be able to read from a path and set up the color for the tiles
 	public void createTestMap(){
         for(int i = 0; i < width; i++){
-            for (int j = 0; j < width; j++){
+            for (int j = 0; j < height; j++){
                 tiles[i][j] = new Tile(TerrainTypeEnum.Grass,0,i,j);
             }
         }
