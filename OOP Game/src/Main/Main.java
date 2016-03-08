@@ -1,14 +1,11 @@
 package Main;
 
 
-import Main.Game.Game;
+import Main.View.Viewport;
 
 public class Main {
     public static void main(String[] args) {
-
-        Game iteration2Game = new Game();
-        iteration2Game.start();
-        iteration2Game.startView();
-
+        Game game = new Game();
+        game.start();
     }
 }
