@@ -21,17 +21,19 @@ public abstract class Entity {
 
     protected Point Location;
 
-    //create Entities at certain locations with a certain type
-    public Entity(EntityTypeEnum t, Occupation o, Point location) {
+    //create Entities at certain locations with a certain type and a buffered image
+    public Entity(BufferedImage image, EntityTypeEnum t, Occupation o, Point location) {
         this.type = t;
         Occupation = o;
         Location = location;
+        this.image = image;
     }
 
     public Entity(BufferedImage image){
         this.image = image;
     }
 
+    //moves a players known x and y (JFK)
     public void move(DirectionEnum dir) {
         switch (dir) {
             case Up:
@@ -57,6 +59,7 @@ public abstract class Entity {
 
     public abstract void render(Graphics g, int x, int y);
 
+    // gives a java class point (JFK)
     public Point getLocation() {
         return Location;
     }

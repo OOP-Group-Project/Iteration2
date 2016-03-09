@@ -44,6 +44,7 @@ public class MovementController extends Controller {
         this.canWalkOnWater = false;
     }
 
+    //checks the key and then checks the validity of the move if valid, it tells the given entity to move.
     @Override
     public void update(KeyEvent k) {
         if(k != null) {
@@ -92,6 +93,7 @@ public class MovementController extends Controller {
         }
     }
 
+    //checks the validty of the move asked by the input
     @Override
     protected boolean validateInput() {
         Point point = entity.getLocation();
