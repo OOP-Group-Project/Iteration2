@@ -50,63 +50,43 @@ public class MovementController extends Controller {
             switch (k.getKeyCode()) {
                 case KeyEvent.VK_NUMPAD8:
                     dir = DirectionEnum.Up;
-                    if (validateInput()) {
-                        entity.move(dir);
-                    }
+                    if (validateInput()) entity.move(dir);
                     break;
                 case KeyEvent.VK_UP:
                     dir = DirectionEnum.Up;
-                    if (validateInput()) {
-                        entity.move(dir);
-                    }
+                    if (validateInput()) entity.move(dir);
                     break;
                 case KeyEvent.VK_NUMPAD2:
                     dir = DirectionEnum.Down;
-                    if (validateInput()) {
-                        entity.move(dir);
-                    }
+                    if (validateInput()) entity.move(dir);
                     break;
                 case KeyEvent.VK_DOWN:
                     dir = DirectionEnum.Down;
-                    if (validateInput()) {
-                        entity.move(dir);
-                    }
+                    if (validateInput()) entity.move(dir);
                     break;
                 case KeyEvent.VK_NUMPAD9:
                     dir = DirectionEnum.UpRight;
-                    if (validateInput()) {
-                        entity.move(dir);
-                    }
+                    if (validateInput()) entity.move(dir);
                     break;
                 case KeyEvent.VK_LEFT:
                     dir = DirectionEnum.UpRight;
-                    if (validateInput()) {
-                        entity.move(dir);
-                    }
+                    if (validateInput()) entity.move(dir);
                     break;
                 case KeyEvent.VK_NUMPAD3:
                     dir = DirectionEnum.DownRight;
-                    if (validateInput()) {
-                        entity.move(dir);
-                    }
+                    if (validateInput()) entity.move(dir);
                     break;
                 case KeyEvent.VK_RIGHT:
                     dir = DirectionEnum.DownRight;
-                    if (validateInput()) {
-                        entity.move(dir);
-                    }
+                    if (validateInput()) entity.move(dir);
                     break;
                 case KeyEvent.VK_NUMPAD1:
                     dir = DirectionEnum.DownLeft;
-                    if (validateInput()) {
-                        entity.move(DirectionEnum.DownLeft);
-                    }
+                    if (validateInput()) entity.move(DirectionEnum.DownLeft);
                     break;
                 case KeyEvent.VK_NUMPAD7:
                     dir = DirectionEnum.UpLeft;
-                    if (validateInput()) {
-                        entity.move(dir);
-                    }
+                    if (validateInput()) entity.move(dir);
                     break;
             }
         }
@@ -158,27 +138,14 @@ public class MovementController extends Controller {
     //checks to see if an index is out of bounds (JFK)
     private boolean checkOutOfBounds(Point point) {
         //checks to see if the given point is off the map
-        if (point.getX() > map.getWidth() || point.getX() < 0 || point.getY() > map.getHeight() || point.getY() < 0) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return !(point.getX() > map.getWidth() || point.getX() < 0 || point.getY() > map.getHeight() || point.getY() < 0);
     }
 
     //checks to see if the tile is blocked
     private boolean checkBlocked(Point point) {
         //check blocked
         Tile tile = map.getTile(point);
-        if (tile.getTerrainType() == TerrainTypeEnum.Grass) {
-            return true;
-        }
-        else if (tile.getTerrainType() == TerrainTypeEnum.Water && canWalkOnWater) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return tile.getTerrainType() == TerrainTypeEnum.Grass || tile.getTerrainType() == TerrainTypeEnum.Water && canWalkOnWater;
     }
 
 }
