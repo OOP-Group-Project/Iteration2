@@ -19,22 +19,22 @@ public class PlayState extends State {
 	@Override
 	public void update(KeyEvent e) {
 		if(e != null) {
-            if((e.getKeyCode() == KeyEvent.VK_NUMPAD8 || e.getKeyCode() == KeyEvent.VK_UP)){
+            if((e.getKeyCode() == KeyEvent.VK_NUMPAD8 || e.getKeyCode() == KeyEvent.VK_W)){
                 player.move(DirectionEnum.Up);
             }
-            if((e.getKeyCode() == KeyEvent.VK_NUMPAD2 || e.getKeyCode() == KeyEvent.VK_DOWN)){
+            if((e.getKeyCode() == KeyEvent.VK_NUMPAD2 || e.getKeyCode() == KeyEvent.VK_S)){
                 player.move(DirectionEnum.Down);
             }
-            if(e.getKeyCode() == KeyEvent.VK_NUMPAD9){
+            if(e.getKeyCode() == KeyEvent.VK_NUMPAD9 || e.getKeyCode() == KeyEvent.VK_E){
                 player.move(DirectionEnum.UpRight);
             }
-            if(e.getKeyCode() == KeyEvent.VK_NUMPAD3){
+            if(e.getKeyCode() == KeyEvent.VK_NUMPAD3 || e.getKeyCode() == KeyEvent.VK_D){
                 player.move(DirectionEnum.DownRight);
             }
-            if(e.getKeyCode() == KeyEvent.VK_NUMPAD1){
+            if(e.getKeyCode() == KeyEvent.VK_NUMPAD1 || e.getKeyCode() == KeyEvent.VK_A){
                 player.move(DirectionEnum.DownLeft);
             }
-            if(e.getKeyCode() == KeyEvent.VK_NUMPAD7){
+            if(e.getKeyCode() == KeyEvent.VK_NUMPAD7 || e.getKeyCode() == KeyEvent.VK_Q){
                 player.move(DirectionEnum.UpLeft);
 
             }

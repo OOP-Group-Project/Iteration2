@@ -22,7 +22,7 @@ public class Game {
         player = new Avatar(0,0);
 
         // Create the map first, we'll load everything into it later
-        world = new Map(10, 10);
+        world = new Map(100, 100);
 
         // Create all the controllers ( which contain the gameStates).
         controller = new Controller(world, player);
@@ -31,7 +31,6 @@ public class Game {
         viewport = new Viewport(player, world, controller, "Testing....");
         Viewport.viewport.addKeyListener(controller.getKeyListener());
     }
-
 
     public synchronized void start() {
         controller.start();

@@ -100,29 +100,17 @@ public class PlayStateViewport extends StateViewport {
         // First update the position and offset of the map and all entities that are on screen.
         update();
 
+
         // Then render them
         ObjectRenderer.mapRenderer.render(graphics, world, mapCameraCenter, mapStartX, mapEndX, mapStartY, mapEndY);
 
         for(Entity inViewEntity : inViewEntities) {
             // Get the offset amount
-            Point pxOffset = inViewEntityPxOffset.get(inViewEntity);
-            Point pxRenderPosition;
+            Point pxRenderOffset = inViewEntityPxOffset.get(inViewEntity);
 
-            // Create the new position for the entity
-            if(inViewEntity.getLocation().x % 2 == 0) {
-                int pxX = (inViewEntity.getLocation().x * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)) + (int)((inViewEntity.getLocation().x - mapCameraCenter.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + super.viewport.getWidth()/2;
-                int pxY = (inViewEntity.getLocation().y * graphicsAssets.TILE_PX_HEIGHT) + ((inViewEntity.getLocation().y - mapCameraCenter.y)*graphicsAssets.TILE_PX_HEIGHT) + super.viewport.getHeight()/2;
-                pxRenderPosition = new Point(pxX, pxY);
-            } else {
-                int pxX = (inViewEntity.getLocation().x * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)) + ((inViewEntity.getLocation().x - mapCameraCenter.x)*graphicsAssets.TILE_PX_WIDTH) + super.viewport.getWidth()/2;
-                int pxY = (graphicsAssets.TILE_PX_HEIGHT/2 + inViewEntity.getLocation().y * graphicsAssets.TILE_PX_HEIGHT) +  ((inViewEntity.getLocation().y - mapCameraCenter.y)*graphicsAssets.TILE_PX_HEIGHT) + super.viewport.getHeight()/2;
-                pxRenderPosition = new Point(pxX, pxY);
-            }
-            pxRenderPosition.y += pxOffset.y;
-            pxRenderPosition.x += pxOffset.x;// = new Point((int)(inViewEntity.getLocation().getX()* + pxOffset.getX()), (int)(inViewEntity.getLocation().getY() + pxOffset.getY()));
 
             // Render it
-            ObjectRenderer.entityRenderer.render(graphics, inViewEntity, pxRenderPosition);
+            ObjectRenderer.entityRenderer.render(graphics, inViewEntity, mapCameraCenter, pxRenderOffset);
         }
     }
 
@@ -136,10 +124,10 @@ public class PlayStateViewport extends StateViewport {
         pxCameraCenter = new Point(super.viewport.getPxWidth()/2, super.viewport.getPxHeight()/2);
 
         // update the map start and end
-        mapStartX = (int)Math.max(0, (mapCameraCenter.x - (pxCameraCenter.x/(0.75*GraphicsAssets.TILE_PX_WIDTH))));
-        mapStartY = (int)Math.max(0, (mapCameraCenter.y - (pxCameraCenter.y/GraphicsAssets.TILE_PX_HEIGHT)));
-        mapEndX = (int)Math.min(world.getWidth(), (mapCameraCenter.x + (pxCameraCenter.x/(0.75*GraphicsAssets.TILE_PX_WIDTH))));
-        mapEndY = (int)Math.min(world.getHeight(), (mapCameraCenter.y + (pxCameraCenter.y/GraphicsAssets.TILE_PX_HEIGHT)));
+        mapStartX = (int)Math.max(0, (mapCameraCenter.x - (pxCameraCenter.x/(0.75*GraphicsAssets.TILE_PX_WIDTH))) - 1);
+        mapStartY = Math.max(0, (mapCameraCenter.y - (pxCameraCenter.y/GraphicsAssets.TILE_PX_HEIGHT)) - 1);
+        mapEndX = (int)Math.min(world.getWidth(), (mapCameraCenter.x + (pxCameraCenter.x/(0.75*GraphicsAssets.TILE_PX_WIDTH))) + 1);
+        mapEndY = Math.min(world.getHeight(), (mapCameraCenter.y + (pxCameraCenter.y/GraphicsAssets.TILE_PX_HEIGHT)) + 1);
 
         // Update the entities that are currently in view
         if(inViewEntities != null) {

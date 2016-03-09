@@ -33,9 +33,24 @@ public class Avatar extends Entity{
                     yLocation--;
                 }
                 break;
-//            case UpLeft:
-//                if(xLocation - 1)
-//                break;
+            case UpLeft:
+                if((xLocation - 1) >= 0){
+                    xLocation--;
+                }
+                break;
+            case UpRight:
+                xLocation++;
+                break;
+            case DownLeft:
+                if((xLocation - 1) >= 0) {
+                    xLocation--;
+                    yLocation++;
+                }
+                break;
+            case DownRight:
+                xLocation++;
+                yLocation++;
+                break;
         }
     }
 
