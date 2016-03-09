@@ -15,22 +15,42 @@ public abstract class Entity {
     protected int height;
 
     protected EntityTypeEnum type;
-    protected Stats mStats;
-    protected Occupation mOccupation;
-    protected Inventory mInventory;
+    protected Stats Stats;
+    protected Occupation Occupation;
+    protected Inventory Inventory;
 
-    protected int xLocation;
-    protected int yLocation;
+    protected Point Location;
 
     public Entity(BufferedImage image){
         this.image = image;
     }
 
-    public abstract void move(DirectionEnum direction);
+    public void move(DirectionEnum dir) {
+        switch (dir) {
+            case Up:
+                Location.translate(-1,0);
+                break;
+            case UpLeft:
+                Location.translate(0,-1);
+                break;
+            case UpRight:
+                Location.translate(0,1);
+                break;
+            case Down:
+                Location.translate(1,0);
+                break;
+            case DownLeft:
+                Location.translate(1,-1);
+                break;
+            case DownRight:
+                Location.translate(1,1);
+                break;
+        }
+    }
     public abstract void render(Graphics g, int x, int y);
 
     public Point getLocation() {
-        return new Point(xLocation, yLocation);
+        return Location;
     }
 
     public EntityTypeEnum getType() {

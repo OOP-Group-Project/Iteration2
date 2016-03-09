@@ -138,14 +138,24 @@ public class MovementController extends Controller {
     //checks to see if an index is out of bounds (JFK)
     private boolean checkOutOfBounds(Point point) {
         //checks to see if the given point is off the map
-        return !(point.getX() > map.getWidth() || point.getX() < 0 || point.getY() > map.getHeight() || point.getY() < 0);
+        if (!(point.getX() > map.getWidth() || point.getX() < 0 || point.getY() > map.getHeight() || point.getY() < 0))
+            return true;
+        else {
+            //print statement
+            System.out.print("Entity attempted to move out of bounds");
+            return false;
+        }
     }
 
     //checks to see if the tile is blocked
     private boolean checkBlocked(Point point) {
         //check blocked
         Tile tile = map.getTile(point);
-        return tile.getTerrainType() == TerrainTypeEnum.Grass || tile.getTerrainType() == TerrainTypeEnum.Water && canWalkOnWater;
+        if (tile.getTerrainType() == TerrainTypeEnum.Grass) return true;
+        if (tile.getTerrainType() == TerrainTypeEnum.Water) if (canWalkOnWater) return true;
+        //print statement
+        System.out.print("Entity attempted to move in a tile he couldn't!");
+        return false;
     }
 
 }
