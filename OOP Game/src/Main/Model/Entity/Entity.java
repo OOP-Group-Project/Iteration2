@@ -1,13 +1,18 @@
 package Main.Model.Entity;
 
 import Main.Model.DirectionEnum;
+import Main.Model.Equipped.Equipped;
 import Main.Model.Inventory.Inventory;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Stats.Stats;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
+/**
+ * Modified by John Kaufmann 2/9/16
+ * TODO: Implment an equipment starter pack based on your entity type.
+ * TODO: Go over this class with mason to make sure that nothing was altered wrongfully
+ */
 public abstract class Entity {
 
     protected BufferedImage image;
@@ -18,15 +23,29 @@ public abstract class Entity {
     protected Stats Stats;
     protected Occupation Occupation;
     protected Inventory Inventory;
+    protected Equipped Equipped;
 
     protected Point Location;
 
     //create Entities at certain locations with a certain type and a buffered image
     public Entity(BufferedImage image, EntityTypeEnum t, Occupation o, Point location) {
         this.type = t;
-        Occupation = o;
-        Location = location;
+        this.Occupation = o;
+        this.Location = location;
         this.image = image;
+        this.Stats = new Stats(o.map(),1);
+        this.Inventory = new Inventory();
+        //this.Equipped = new Equipped(t);
+    }
+
+    //TESTING
+    public Entity(EntityTypeEnum t, Occupation o, Point location) {
+        this.type = t;
+        this.Occupation = o;
+        this.Location = location;
+        this.Stats = new Stats(o.map(),1);
+        this.Inventory = new Inventory();
+        //this.Equipped = new Equipped(t);
     }
 
     public Entity(BufferedImage image){
@@ -57,6 +76,7 @@ public abstract class Entity {
         }
     }
 
+    //renders the entity to the screen
     public abstract void render(Graphics g, int x, int y);
 
     // gives a java class point (JFK)
@@ -64,10 +84,12 @@ public abstract class Entity {
         return Location;
     }
 
+    //returns the type of entity it is
     public EntityTypeEnum getType() {
         return type;
     }
 
+    //gets the buffered image associated with this entity
     public BufferedImage getImage(){
         return image;
     }
