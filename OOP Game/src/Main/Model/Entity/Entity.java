@@ -21,6 +21,13 @@ public abstract class Entity {
 
     protected Point Location;
 
+    //create Entities at certain locations with a certain type
+    public Entity(EntityTypeEnum t, Occupation o, Point location) {
+        this.type = t;
+        Occupation = o;
+        Location = location;
+    }
+
     public Entity(BufferedImage image){
         this.image = image;
     }
@@ -47,6 +54,7 @@ public abstract class Entity {
                 break;
         }
     }
+
     public abstract void render(Graphics g, int x, int y);
 
     public Point getLocation() {
