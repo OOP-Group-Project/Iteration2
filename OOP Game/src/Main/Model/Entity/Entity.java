@@ -6,6 +6,8 @@ import Main.Model.Inventory.Inventory;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Stats.Stats;
 
+import javax.swing.*;
+
 public abstract class Entity {
     // Aggregations
 	private Actions Actions;
@@ -31,15 +33,24 @@ public abstract class Entity {
 
     private eOrientation eOrientation;
 
-    //contstructor
-    public Entity(Actions Actions, Main.Model.Inventory.Inventory inventory, Equipped equippedItems, Main.Model.Occupation.Occupation occupation, Main.Model.Stats.Stats stats, int xPosition, int yPosition) {
-        this.Actions = Actions;
-        Inventory = inventory;
-        EquippedItems = equippedItems;
-        Occupation = occupation;
-        Stats = stats;
+    //contstructor with x and y positions
+    public Entity(Occupation occupation, int xPosition, int yPosition) {
+        this.Actions = new Actions();
+        this.Inventory = new Inventory();
+        this.Occupation = occupation;
+        this.Stats = new Stats(occupation.map(),1);
         this.xPosition = xPosition;
         this.yPosition = yPosition;
+    }
+
+    //contstructor with x and y positions initialized to 0
+    public Entity(Occupation occupation) {
+        this.Actions = new Actions();
+        this.Inventory = new Inventory();
+        this.Occupation = occupation;
+        this.Stats = new Stats(occupation.map(),1);
+        this.xPosition = 0;
+        this.yPosition = 0;
     }
 
     //getter method
@@ -123,7 +134,7 @@ public abstract class Entity {
     }
 
     // abstract method to perform an action
-    protected abstract boolean performAction();
+    protected abstract boolean performAction(Actions actions);
 
     // method to move the entity
     protected void move(eOrientation eOrientation) {
