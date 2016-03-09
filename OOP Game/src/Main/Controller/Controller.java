@@ -1,14 +1,15 @@
 package Main.Controller;
 
-import Main.Controller.GameStates.StateEnum;
-import Main.Controller.Manager.GameStateManager;
+import Main.Controller.StateControllers.StateController;
+import Main.Model.State.State;
+import Main.Model.State.StateEnum;
+import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.KeyManager;
 import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
 
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.PaintEvent;
+import java.util.EnumMap;
 
 /**
  * Created by mason on 3/6/16.
@@ -21,12 +22,13 @@ public class Controller implements Runnable{
     private final int targetTime = 1000 / FPS;
 
     KeyManager keyboardManager;
-    GameStateManager gameStateManager;
+    StateControllerManager stateControllerManager;
 
-    public Controller(Map world, Avatar entity) {
+    public Controller(EnumMap<StateEnum, State> states, Map world, Avatar entity) {
         // Create all the controllers
-        keyboardManager = new KeyManager();
-        gameStateManager = new GameStateManager(world, entity);
+
+        stateControllerManager = new StateControllerManager(states, world, entity);
+        keyboardManager = new KeyManager(stateControllerManager, stateControllerManager.getGameStateControllers());
         // AIManager = new AIManager()
         // Construct all the entity controllers
         // NPCController pncc = new NPCController(aim)
@@ -37,12 +39,12 @@ public class Controller implements Runnable{
         return keyboardManager;
     }
 
-    public void update(KeyEvent k) {
-        gameStateManager.update(k);
+    public void update() {
+        stateControllerManager.update();
     }
 
     public StateEnum getCurrentState() {
-        return gameStateManager.getCurrentState();
+        return stateControllerManager.getCurrentState();
     }
 
     // Run handles executing the render and update methods for everything at a precise rate of 60FPS
@@ -63,7 +65,7 @@ public class Controller implements Runnable{
 
             if( delta >= 1 ) {
                 //DO STUFF
-                update(keyboardManager.getKeyPressedState());
+                update();
 
                 ticks++;
                 delta--;

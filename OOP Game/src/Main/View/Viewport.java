@@ -1,7 +1,7 @@
 package Main.View;
 
 import Main.Controller.Controller;
-import Main.Controller.GameStates.StateEnum;
+import Main.Model.State.StateEnum;
 import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
 import Main.View.Graphics.GraphicsAssets;

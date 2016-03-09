@@ -24,33 +24,64 @@ public class Avatar extends Entity{
 
     @Override
     public void move(DirectionEnum direction) {
-        switch(direction) {
-            case Down:
-                yLocation++;
-                break;
-            case Up:
-                if((yLocation - 1) >= 0) {
-                    yLocation--;
-                }
-                break;
-            case UpLeft:
-                if((xLocation - 1) >= 0){
-                    xLocation--;
-                }
-                break;
-            case UpRight:
-                xLocation++;
-                break;
-            case DownLeft:
-                if((xLocation - 1) >= 0) {
-                    xLocation--;
+        if(xLocation % 2 != 0) {
+            switch(direction) {
+                case Down:
                     yLocation++;
-                }
-                break;
-            case DownRight:
-                xLocation++;
-                yLocation++;
-                break;
+                    break;
+                case Up:
+                    if((yLocation - 1) >= 0) {
+                        yLocation--;
+                    }
+                    break;
+                case UpLeft:
+                    if((xLocation - 1) >= 0){
+                        xLocation--;
+                    }
+                    break;
+                case UpRight:
+                    xLocation++;
+                    break;
+                case DownLeft:
+                    if((xLocation - 1) >= 0) {
+                        xLocation--;
+                        yLocation++;
+                    }
+                    break;
+                case DownRight:
+                    xLocation++;
+                    yLocation++;
+                    break;
+            }
+        } else {
+            switch(direction) {
+                case Down:
+                    yLocation++;
+                    break;
+                case Up:
+                    if ((yLocation - 1) >= 0) {
+                        yLocation--;
+                    }
+                    break;
+                case DownLeft:
+                    if ((xLocation - 1) >= 0) {
+                        xLocation--;
+                    }
+                    break;
+                case DownRight:
+                    xLocation++;
+                    break;
+                case UpLeft:
+                    if ((xLocation - 1) >= 0) {
+                        xLocation--;
+                        yLocation++;
+                    }
+                    break;
+                case UpRight:
+                    xLocation++;
+                    yLocation++;
+                    break;
+            }
         }
     }
 

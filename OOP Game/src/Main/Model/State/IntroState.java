@@ -1,6 +1,6 @@
-package Main.Controller.GameStates;
+package Main.Model.State;
 
-import Main.Controller.Manager.GameStateManager;
+import Main.Controller.Manager.StateControllerManager;
 import Main.Model.Map.Map;
 
 import java.awt.event.KeyEvent;
@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 public class IntroState extends State {
 	
 	final String title = "The Unwanted";
-	
+	private Map world;
 	
 	//time to switch states
 	private final long DURATION = 3000;
@@ -16,17 +16,9 @@ public class IntroState extends State {
 	private long start;
 	
 	
-	public IntroState(GameStateManager gsm, Map world) {
-		super(gsm, world);
+	public IntroState(Map world) {
+		this.world = world;
 	}
-
-
-	@Override
-	public void update(KeyEvent k) {
-
-
-	}
-
 
 
 }

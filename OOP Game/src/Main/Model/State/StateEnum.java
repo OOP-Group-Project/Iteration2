@@ -1,4 +1,4 @@
-package Main.Controller.GameStates;
+package Main.Model.State;
 
 /**
  * Created by mason on 3/5/16.
