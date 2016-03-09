@@ -19,10 +19,10 @@ public class Game {
     public Game() {
 
         // Create a dummy character first
-        player = new Avatar(4,4);
+        player = new Avatar(0,0);
 
         // Create the map first, we'll load everything into it later
-        world = new Map(7, 7);
+        world = new Map(10, 10);
 
         // Create all the controllers ( which contain the gameStates).
         controller = new Controller(world, player);

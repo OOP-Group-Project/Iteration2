@@ -33,8 +33,9 @@ public class Avatar extends Entity{
                     yLocation--;
                 }
                 break;
-            case UpLeft:
-                break;
+//            case UpLeft:
+//                if(xLocation - 1)
+//                break;
         }
     }
 

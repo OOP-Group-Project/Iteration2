@@ -8,6 +8,7 @@ import Main.Model.Map.Map;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.PaintEvent;
 
 /**
  * Created by mason on 3/6/16.
@@ -26,6 +27,10 @@ public class Controller implements Runnable{
         // Create all the controllers
         keyboardManager = new KeyManager();
         gameStateManager = new GameStateManager(world, entity);
+        // AIManager = new AIManager()
+        // Construct all the entity controllers
+        // NPCController pncc = new NPCController(aim)
+
     }
 
     public KeyListener getKeyListener() {
@@ -60,7 +65,6 @@ public class Controller implements Runnable{
                 //DO STUFF
                 update(keyboardManager.getKeyPressedState());
 
-                //
                 ticks++;
                 delta--;
             }

@@ -9,6 +9,7 @@ import com.sun.corba.se.impl.orbutil.graph.Graph;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by mason on 3/6/16.
@@ -67,7 +68,7 @@ public class PlayStateViewport extends StateViewport {
      * The two variables below represent the pixel offset of any entity that is in view, and another object
      * to store all the entities in view.
     */
-    private java.util.Map<Entity, Point> inViewEntityPxOffset;
+    private HashMap<Entity, Point> inViewEntityPxOffset;
     private ArrayList<Entity> inViewEntities;
     private ArrayList<Entity> previousInViewEntities;
 
@@ -92,6 +93,7 @@ public class PlayStateViewport extends StateViewport {
         mapCameraCenter = new Point((mapStartX + mapEndX)/2, (mapStartY + mapEndY)/2);
         pxCameraCenter = new Point(super.viewport.getPxWidth()/2, super.viewport.getPxHeight()/2);
         recoupleToEntity();
+        inViewEntityPxOffset = new HashMap<>();
     }
 
     public void render(Graphics graphics) {
@@ -104,9 +106,20 @@ public class PlayStateViewport extends StateViewport {
         for(Entity inViewEntity : inViewEntities) {
             // Get the offset amount
             Point pxOffset = inViewEntityPxOffset.get(inViewEntity);
+            Point pxRenderPosition;
 
             // Create the new position for the entity
-            Point pxRenderPosition = new Point((int)(inViewEntity.getLocation().getX()* + pxOffset.getX()), (int)(inViewEntity.getLocation().getY() + pxOffset.getY()));
+            if(inViewEntity.getLocation().x % 2 == 0) {
+                int pxX = (inViewEntity.getLocation().x * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)) + (int)((inViewEntity.getLocation().x - mapCameraCenter.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + super.viewport.getWidth()/2;
+                int pxY = (inViewEntity.getLocation().y * graphicsAssets.TILE_PX_HEIGHT) + ((inViewEntity.getLocation().y - mapCameraCenter.y)*graphicsAssets.TILE_PX_HEIGHT) + super.viewport.getHeight()/2;
+                pxRenderPosition = new Point(pxX, pxY);
+            } else {
+                int pxX = (inViewEntity.getLocation().x * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)) + ((inViewEntity.getLocation().x - mapCameraCenter.x)*graphicsAssets.TILE_PX_WIDTH) + super.viewport.getWidth()/2;
+                int pxY = (graphicsAssets.TILE_PX_HEIGHT/2 + inViewEntity.getLocation().y * graphicsAssets.TILE_PX_HEIGHT) +  ((inViewEntity.getLocation().y - mapCameraCenter.y)*graphicsAssets.TILE_PX_HEIGHT) + super.viewport.getHeight()/2;
+                pxRenderPosition = new Point(pxX, pxY);
+            }
+            pxRenderPosition.y += pxOffset.y;
+            pxRenderPosition.x += pxOffset.x;// = new Point((int)(inViewEntity.getLocation().getX()* + pxOffset.getX()), (int)(inViewEntity.getLocation().getY() + pxOffset.getY()));
 
             // Render it
             ObjectRenderer.entityRenderer.render(graphics, inViewEntity, pxRenderPosition);
@@ -144,7 +157,7 @@ public class PlayStateViewport extends StateViewport {
                 // If there's an entity
                 if(e != null) {
                     // Check if it was in view before
-                    if(previousInViewEntities.contains(e)) {
+                    if(previousInViewEntities != null && previousInViewEntities.contains(e)) {
                         // If it was already in view, then keep it in view.
                         inViewEntities.add(e);
                         // remove the ones that are in view from the previous set, so that we have a list of entities that are no longer in view.
