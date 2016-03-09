@@ -390,10 +390,10 @@ public class Stats {
     public void livesDown(int amt){changeCurLives(amt);}
     public void livesUp(int amt){changeCurLives(amt);}
     //
-    public void healthUp(){}
-    public void healthDown(){}
-    public void manaUp(){}
-    public void manaDown(){}
+    public void healthUp(double amt){cur_hp += amt;}
+    public void healthDown(double amt){cur_hp -= amt;}
+    public void manaUp(double amt){cur_mp += amt;}
+    public void manaDown(double amt){cur_mp -= amt;}
     //
     public void experienceUp(int amt) {changeCurExperience(amt);}
     public void levelUp() {
