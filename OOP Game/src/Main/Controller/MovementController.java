@@ -119,93 +119,39 @@ public class MovementController extends Controller {
             case Up:
                 //move point
                 point.translate(-1,0);
-                //check out of bounds
-                if (checkOutOfBounds(point)) {
-                    return false;
-                }
-                //check blocked
-                else if (checkBlocked(point)) {
-                    return false;
-                }
-                else {
-                    return true;
-                }
-                break;
+                //check out of bounds and check blocked
+                if (checkOutOfBounds(point) || checkBlocked(point)) return false;
+                return true;
             case UpLeft:
                 //move point
                 point.translate(0,-1);
-                //check out of bounds
-                if (checkOutOfBounds(point)) {
-                    return false;
-                }
-                //check blocked
-                else if (checkBlocked(point)) {
-                    return false;
-                }
-                else {
-                    return true;
-                }
-                break;
+                //check out of bounds and check blocked
+                if (checkOutOfBounds(point) || checkBlocked(point)) return false;
+                return true;
             case UpRight:
                 //move point
                 point.translate(0,1);
-                //check out of bounds
-                if (checkOutOfBounds(point)) {
-                    return false;
-                }
-                //check blocked
-                else if (checkBlocked(point)) {
-                    return false;
-                }
-                else {
-                    return true;
-                }
-                break;
+                //check out of bounds and check blocked
+                if (checkOutOfBounds(point) || checkBlocked(point)) return false;
+                return true;
             case Down:
                 //move point
                 point.translate(1,0);
-                //check out of bounds
-                if (checkOutOfBounds(point)) {
-                    return false;
-                }
-                //check blocked
-                else if (checkBlocked(point)) {
-                    return false;
-                }
-                else {
-                    return true;
-                }
-                break;
+                //check out of bounds and check blocked
+                if (checkOutOfBounds(point) || checkBlocked(point)) return false;
+                return true;
             case DownLeft:
                 //move point
                 point.translate(1,-1);
-                //check out of bounds
-                if (checkOutOfBounds(point)) {
-                    return false;
-                }
-                //check blocked
-                else if (checkBlocked(point)) {
-                    return false;
-                }
-                else {
-                    return true;
-                }
-                break;
+                //check out of bounds and check blocked
+                if (checkOutOfBounds(point) || checkBlocked(point)) return false;
+                return true;
             case DownRight:
                 //move point
                 point.translate(1,1);
-                //check out of bounds
-                if (checkOutOfBounds(point)) {
-                    return false;
-                }
-                //check blocked
-                else if (checkBlocked(point)) {
-                    return false;
-                }
-                else {
-                    return true;
-                }
-                break;
+                //check out of bounds and check blocked
+                if (checkOutOfBounds(point) || checkBlocked(point)) return false;
+                return true;
         }
     }
 
