@@ -23,11 +23,9 @@ public abstract class Entity {
     enum eOrientation {
         N,
         NE,
-        E,
         SE,
         S,
         SW,
-        W,
         NW
     }
 
