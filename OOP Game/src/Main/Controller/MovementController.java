@@ -2,6 +2,7 @@ package Main.Controller;
 
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.Avatar;
+import Main.Model.Entity.Mount;
 import Main.Model.Entity.Npc;
 import Main.Model.Entity.Pet;
 import Main.Model.Map.Map;
@@ -20,16 +21,27 @@ public class MovementController extends Controller {
     private Map map;
     private boolean canWalkOnWater;
 
+    public MovementController(Map world, Mount entity, boolean canWalkOnWater) {
+        super(world, entity);
+        this.canWalkOnWater = canWalkOnWater;
+    }
+
     public MovementController(Map world, Avatar entity) {
         super(world, entity);
+        map = world;
+        this.canWalkOnWater = false;
     }
 
     public MovementController(Map world, Npc entity) {
         super(world, entity);
+        map = world;
+        this.canWalkOnWater = false;
     }
 
     public MovementController(Map world, Pet entity) {
         super(world, entity);
+        map = world;
+        this.canWalkOnWater = false;
     }
 
     @Override
@@ -103,15 +115,123 @@ public class MovementController extends Controller {
     @Override
     protected boolean validateInput() {
         Point point = entity.getLocation();
-        Tile tile;
         switch (dir) {
-            case DirectionEnum.:
-                tile = map.getTile(point.move(x,y));
-                if (tile.getTerrainType() == TerrainTypeEnum.Grass) {
+            case Up:
+                //move point
+                point.translate(-1,0);
+                //check out of bounds
+                if (checkOutOfBounds(point)) {
+                    return false;
+                }
+                //check blocked
+                else if (checkBlocked(point)) {
+                    return false;
+                }
+                else {
                     return true;
                 }
-                else { return false; }
                 break;
+            case UpLeft:
+                //move point
+                point.translate(0,-1);
+                //check out of bounds
+                if (checkOutOfBounds(point)) {
+                    return false;
+                }
+                //check blocked
+                else if (checkBlocked(point)) {
+                    return false;
+                }
+                else {
+                    return true;
+                }
+                break;
+            case UpRight:
+                //move point
+                point.translate(0,1);
+                //check out of bounds
+                if (checkOutOfBounds(point)) {
+                    return false;
+                }
+                //check blocked
+                else if (checkBlocked(point)) {
+                    return false;
+                }
+                else {
+                    return true;
+                }
+                break;
+            case Down:
+                //move point
+                point.translate(1,0);
+                //check out of bounds
+                if (checkOutOfBounds(point)) {
+                    return false;
+                }
+                //check blocked
+                else if (checkBlocked(point)) {
+                    return false;
+                }
+                else {
+                    return true;
+                }
+                break;
+            case DownLeft:
+                //move point
+                point.translate(1,-1);
+                //check out of bounds
+                if (checkOutOfBounds(point)) {
+                    return false;
+                }
+                //check blocked
+                else if (checkBlocked(point)) {
+                    return false;
+                }
+                else {
+                    return true;
+                }
+                break;
+            case DownRight:
+                //move point
+                point.translate(1,1);
+                //check out of bounds
+                if (checkOutOfBounds(point)) {
+                    return false;
+                }
+                //check blocked
+                else if (checkBlocked(point)) {
+                    return false;
+                }
+                else {
+                    return true;
+                }
+                break;
+        }
+    }
+
+    //checks to see if an index is out of bounds (JFK)
+    private boolean checkOutOfBounds(Point point) {
+        //checks to see if the given point is off the map
+        if (point.getX() > map.getWidth() || point.getX() < 0 || point.getY() > map.getHeight() || point.getY() < 0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    //checks to see if the tile is blocked
+    private boolean checkBlocked(Point point) {
+        //check blocked
+        Tile tile = map.getTile(point);
+        if (tile.getTerrainType() == TerrainTypeEnum.Grass) {
+            return true;
+        }
+        else if (tile.getTerrainType() == TerrainTypeEnum.Water && canWalkOnWater) {
+            return true;
+        }
+        else {
+            return false;
         }
     }
 

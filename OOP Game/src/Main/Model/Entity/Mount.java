@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
  * Created by johnkaufmann on 3/9/16.
  * TODO:
  */
-public class Vehicle extends Entity {
-    public Vehicle(BufferedImage image) {
+public class Mount extends Entity {
+    public Mount(BufferedImage image) {
         super(image);
     }
 

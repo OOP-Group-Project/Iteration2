@@ -3,10 +3,7 @@ package Main.Controller;
 import Main.Controller.GameStates.StateEnum;
 import Main.Controller.Manager.GameStateManager;
 import Main.Controller.Manager.KeyManager;
-import Main.Model.Entity.Avatar;
-import Main.Model.Entity.Entity;
-import Main.Model.Entity.Npc;
-import Main.Model.Entity.Pet;
+import Main.Model.Entity.*;
 import Main.Model.Map.Map;
 
 import java.awt.event.KeyEvent;
@@ -38,7 +35,7 @@ public class Controller /* implements Runnable */{  //(commented out by john kau
         this.entity = entity;
     }
 
-    // NPC's and Pet's should not need a gamestate?? (JFK)
+    // NPC's and Pet's and Mounts should not need a gamestate?? (JFK)
     public Controller(Map world, Npc entity) {
         // Create all the controllers
         keyboardManager = new KeyManager();
@@ -46,6 +43,12 @@ public class Controller /* implements Runnable */{  //(commented out by john kau
     }
 
     public Controller(Map world, Pet entity) {
+        // Create all the controllers
+        keyboardManager = new KeyManager();
+        this.entity = entity;
+    }
+
+    public Controller(Map world, Mount entity) {
         // Create all the controllers
         keyboardManager = new KeyManager();
         this.entity = entity;
