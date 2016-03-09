@@ -1,5 +1,6 @@
 package Main.Game.Model.Occupation;
 
+
 /**
  * Created by walkhard on 3/7/16.
  */
