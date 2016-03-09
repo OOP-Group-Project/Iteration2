@@ -139,7 +139,7 @@ public class PlayStateViewport extends StateViewport {
             for(int j = mapStartY; j < mapEndY; j++) {
 
                 // Get the entity from the tile
-                Entity e = world.getTile(i,j).getEntity();
+                Entity e = world.getTile(new Point(i,j)).getEntity();
 
                 // If there's an entity
                 if(e != null) {

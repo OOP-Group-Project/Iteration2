@@ -1,31 +1,39 @@
 package Main;
 
 import Main.Controller.Controller;
+import Main.Controller.Manager.GameStateManager;
+import Main.Controller.Manager.KeyManager;
 import Main.Controller.MovementController;
 import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
 import Main.Model.Occupation.Occupation;
+import Main.View.Graphics.GraphicsAssets;
 import Main.View.Viewport;
-import Main.Controller.Manager.KeyManager;
+import Main.Controller.Manager.Keys;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
 /**
  * Created by mason on 3/6/16.
  */
-public class Game implements Runnable{
+public class Game implements Runnable, KeyListener{
 
     private Viewport viewport;
     private MovementController controller;
     private Map world;
     private Avatar player;
     private boolean gameIsRunning;
-    private KeyManager keyboardManager;
+    private Keys keyboardManager;
+    private Occupation occupation;
+    private Thread thread;
 
     public Game() {
-        keyboardManager = new KeyManager();
-
+        keyboardManager = new Keys();
+        GraphicsAssets ga = new GraphicsAssets();
         // Create a dummy character first
-//        player = new Avatar();
+        player = new Avatar(ga.player);
 
         // Create the map first, we'll load everything into it later
         world = new Map(7, 7);
@@ -53,6 +61,7 @@ public class Game implements Runnable{
         long lastTime = System.nanoTime();
         long timer = 0;
         int ticks = 0;
+        Keys.update();
 
         while (gameIsRunning) {
             now = System.nanoTime();
@@ -62,7 +71,7 @@ public class Game implements Runnable{
 
             if( delta >= 1 ) {
                 //DO STUFF
-                controller.update(keyboardManager.getKeyPressedState());
+                if (Keys.isPressed(Keys.LEFT)) System.out.print("Got the key press!");
 
                 //
                 ticks++;
@@ -88,7 +97,7 @@ public class Game implements Runnable{
         thread.start();
     }
 
-    (commented out by john kaufmann
+    //stops the game running (JFK)
     public synchronized void stop() {
         if( !gameIsRunning ) {
             return;
@@ -101,4 +110,12 @@ public class Game implements Runnable{
         }
     }
 
+    // key event
+    public void keyTyped(KeyEvent key) {}
+    public void keyPressed(KeyEvent key) {
+        Keys.keySet(key.getKeyCode(), true);
+    }
+    public void keyReleased(KeyEvent key) {
+        Keys.keySet(key.getKeyCode(), false);
+    }
 }

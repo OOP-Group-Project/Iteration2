@@ -48,6 +48,7 @@ public class MovementController extends Controller {
     @Override
     public void update(KeyEvent k) {
         if(k != null) {
+            System.out.print("WE Moving");
             switch (k.getKeyCode()) {
                 case KeyEvent.VK_NUMPAD8:
                     dir = DirectionEnum.Up;
@@ -134,6 +135,9 @@ public class MovementController extends Controller {
                 //check out of bounds and check blocked
                 if (checkOutOfBounds(point) || checkBlocked(point)) return false;
                 return true;
+            default:
+                System.out.print("Something went wrong with our move validation!");
+                return false;
         }
     }
 

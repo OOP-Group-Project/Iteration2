@@ -46,7 +46,7 @@ public class ObjectRenderer {
                     } else {
                         pxCenterPoint = new Point((i * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)), (graphicsAssets.TILE_PX_HEIGHT/2 + j * graphicsAssets.TILE_PX_HEIGHT));
                     }
-                    tileRenderer.render(g, map.getTile(x,y), pxCenterPoint);
+                    tileRenderer.render(g, map.getTile(new Point(x,y)), pxCenterPoint);
                     i++;
                 }
                 i = 0;
