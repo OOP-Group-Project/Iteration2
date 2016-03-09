@@ -3,6 +3,7 @@ package Main.Controller;
 import Main.Controller.GameStates.StateEnum;
 import Main.Controller.Manager.GameStateManager;
 import Main.Controller.Manager.KeyManager;
+import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
 
 import java.awt.event.KeyEvent;
@@ -21,10 +22,10 @@ public class Controller implements Runnable{
     KeyManager keyboardManager;
     GameStateManager gameStateManager;
 
-    public Controller(Map world) {
+    public Controller(Map world, Avatar entity) {
         // Create all the controllers
         keyboardManager = new KeyManager();
-        gameStateManager = new GameStateManager(world);
+        gameStateManager = new GameStateManager(world, entity);
     }
 
     public KeyListener getKeyListener() {

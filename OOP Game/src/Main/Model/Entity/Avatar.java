@@ -24,7 +24,18 @@ public class Avatar extends Entity{
 
     @Override
     public void move(DirectionEnum direction) {
-
+        switch(direction) {
+            case Down:
+                yLocation++;
+                break;
+            case Up:
+                if((yLocation - 1) >= 0) {
+                    yLocation--;
+                }
+                break;
+            case UpLeft:
+                break;
+        }
     }
 
     public void respawn(int xLocation, int yLocation) {
