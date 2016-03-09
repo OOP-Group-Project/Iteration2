@@ -14,8 +14,9 @@ public class LoadState extends State {
 
     private Avatar player;
 
-    public LoadState(GameStateManager gsm, Map world) {
+    public LoadState(GameStateManager gsm, Map world, Avatar player) {
         super(gsm, world);
+        this.player = player;
     }
 
     public void loadTestGame() {
@@ -23,7 +24,8 @@ public class LoadState extends State {
         world.createTestMap();
 
 
-        world.addEntity(player, 0,0, DirectionEnum.Down);
+        world.addEntity(player, player.getLocation().x, player.getLocation().y, DirectionEnum.Down);
+
     }
 
     public Avatar getPlayer() {

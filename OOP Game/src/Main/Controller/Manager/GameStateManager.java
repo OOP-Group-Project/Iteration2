@@ -14,6 +14,7 @@ import Main.Controller.GameStates.State;
 import Main.Controller.GameStates.StateEnum;
 import Main.Controller.GameStates.LoadState;
 import Main.Controller.GameStates.PlayState;
+import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
 
 
@@ -23,21 +24,21 @@ public class GameStateManager {
 	private StateEnum currentState;
 	private StateEnum previousState;
 
-	public GameStateManager(Map world){
+	public GameStateManager(Map world, Avatar player){
 		// Create the map for The gamestate types to gamestate objects
 		gameStates = new EnumMap<>(StateEnum.class);
 
 		// create all the state objects
-		initializeStates(world);
+		initializeStates(world, player);
 
 		// set our first state
 		previousState = StateEnum.LoadState;
 		setState(StateEnum.LoadState);
 	}
 
-	private void initializeStates(Map world) {
-		gameStates.put(StateEnum.LoadState, new LoadState(this, world));
-		gameStates.put(StateEnum.PlayState, new PlayState(this, world));
+	private void initializeStates(Map world, Avatar player) {
+		gameStates.put(StateEnum.LoadState, new LoadState(this, world, player));
+		gameStates.put(StateEnum.PlayState, new PlayState(this, world, player));
 	}
 	
 	public void setState(StateEnum state){

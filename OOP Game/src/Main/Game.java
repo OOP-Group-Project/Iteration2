@@ -19,13 +19,13 @@ public class Game {
     public Game() {
 
         // Create a dummy character first
-        player = new Avatar();
+        player = new Avatar(4,4);
 
         // Create the map first, we'll load everything into it later
-        world = new Map(100, 100);
+        world = new Map(7, 7);
 
         // Create all the controllers ( which contain the gameStates).
-        controller = new Controller(world);
+        controller = new Controller(world, player);
 
         // Create the viewport to see into the world!
         viewport = new Viewport(player, world, controller, "Testing....");
