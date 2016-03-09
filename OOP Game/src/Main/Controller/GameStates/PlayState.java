@@ -36,7 +36,6 @@ public class PlayState extends State {
             }
             if(e.getKeyCode() == KeyEvent.VK_NUMPAD7){
                 player.move(DirectionEnum.UpLeft);
-
             }
 		}
 

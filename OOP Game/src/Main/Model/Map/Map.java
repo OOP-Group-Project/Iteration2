@@ -24,7 +24,7 @@ public class Map {
         this.width = width;
         this.tiles = new Tile[width][height];
     }
-	
+
 	//should be able to read from a path and set up the color for the tiles
 	public void createTestMap(){
         for(int i = 0; i < width; i++){
@@ -33,10 +33,10 @@ public class Map {
             }
         }
 	}
-	
+
 	//should be able to read from a path and set up the map
 	public void loadMap(String path){
-		
+
 	}
 
 	public void addEntity(Entity e, int xLocation, int yLocation, DirectionEnum direction) {
@@ -56,7 +56,7 @@ public class Map {
 		return width;
 	}
 
-	public Tile getTile(int x, int y) {
-		return tiles[x][y];
-	}
+	public Tile getTile(Point point) {
+		return tiles[point.x][point.y];
+	} // Editted to use the point object (JFK)
 }
