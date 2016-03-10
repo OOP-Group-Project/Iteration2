@@ -23,6 +23,8 @@ public abstract class AreaEffect {
         mEffect = new Effect(modifier , duration, name);
     }
 
+
+    // Getters
     public Effect getEffect(){
         return mEffect;
     }

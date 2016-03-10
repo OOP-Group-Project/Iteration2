@@ -21,7 +21,7 @@ public class GraphicsAssets {
     private static final int Y_WALK_DOWN = 655;
     private static final int Y_WALK_LEFT = 719;
 
-    // Arrays that hold the 4 walking directions of the player (others to be added)
+    // BufferedImages hold all of the images
     public static BufferedImage[] playerWalkUp = new BufferedImage[9];
     public static BufferedImage[] playerWalkRight = new BufferedImage[9];
     public static BufferedImage[] playerWalkDown = new BufferedImage[9];
