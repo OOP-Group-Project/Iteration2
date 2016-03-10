@@ -10,6 +10,7 @@ import Main.Model.Stats.StatsStructure;
 
 public abstract class AreaEffect {
 
+    protected AreaEffectEnum type;
     protected StatsStructure modifier;
     protected Effect mEffect;
 

@@ -16,5 +16,6 @@ public class InstantDeath extends AreaEffect{
     // that can be applied to the player using player.applyEffect(effect);
     public InstantDeath(){
         super(StatsEnum.LIFE, value, duration, name);
+        this.type = AreaEffectEnum.Death;
     }
 }

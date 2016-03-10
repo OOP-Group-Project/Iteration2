@@ -14,5 +14,6 @@ public class LevelUp extends AreaEffect {
 
     public LevelUp(){
         super(StatsEnum.LEVEL, value, duration, name);
+        this.type = AreaEffectEnum.LevelUp;
     }
 }

@@ -14,6 +14,7 @@ public class HealDamage extends AreaEffect {
 
     public HealDamage(){
         super(StatsEnum.LIFE, value, duration, name);
+        this.type = AreaEffectEnum.Heal;
     }
 
 }

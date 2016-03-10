@@ -14,5 +14,6 @@ public class TakeDamage extends AreaEffect {
 
     public TakeDamage(){
         super(StatsEnum.LIFE, value, duration, name);
+        this.type = AreaEffectEnum.Damage;
     }
 }
