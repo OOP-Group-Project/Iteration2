@@ -31,4 +31,9 @@ public class Pet extends Entity {
 
     }
 
+    @Override
+    public void tick(){
+
+    }
+
 }

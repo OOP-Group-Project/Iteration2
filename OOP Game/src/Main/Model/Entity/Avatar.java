@@ -98,6 +98,11 @@ public class Avatar extends Entity{
         mStats.applyEffect(effect);
     }
 
+    @Override
+    public void tick(){
+        getStats().tick();
+    }
+
     public void respawn(int xLocation, int yLocation) {
         this.xLocation = xLocation;
         this.yLocation = yLocation;

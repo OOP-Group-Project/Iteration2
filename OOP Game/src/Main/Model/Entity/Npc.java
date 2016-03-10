@@ -36,4 +36,9 @@ public class Npc extends Entity {
     public BufferedImage getImage() {
         return null;
     }
+
+    @Override
+    public void tick(){
+
+    }
 }

@@ -30,11 +30,16 @@ public abstract class Entity {
 
     public abstract void move(DirectionEnum direction);
     public abstract void render(Graphics g, int x, int y);
+    public abstract void tick();
 
     public abstract void applyEffect(Effect effect);
 
     public Point getLocation() {
         return new Point(xLocation, yLocation);
+    }
+
+    public Stats getStats(){
+        return mStats;
     }
 
     public EntityTypeEnum getType() {
