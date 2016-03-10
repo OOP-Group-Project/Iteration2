@@ -1,13 +1,8 @@
 package Main.Model.Map;
 
-import Main.Model.DirectionEnum;
 import Main.Model.Entity.Entity;
 import Main.Model.Items.Item;
 import Main.Model.Terrain.TerrainTypeEnum;
-import Main.Model.Terrain.Water;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 
 public class Map {

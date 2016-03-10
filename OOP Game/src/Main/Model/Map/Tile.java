@@ -2,10 +2,8 @@ package Main.Model.Map;
 
 import Main.Model.Entity.Entity;
 import Main.Model.Items.Item;
-import Main.Model.Terrain.Terrain;
 import Main.Model.Terrain.TerrainTypeEnum;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Tile {
