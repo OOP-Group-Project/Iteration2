@@ -20,9 +20,6 @@ public class Game {
 
     private Viewport viewport;
     private Controller controller;
-    private Map world;
-    private Avatar player;
-    private EnumMap<StateEnum, State> states;
 
     public Game() {
         /********************
@@ -38,10 +35,8 @@ public class Game {
         /************************
          * Create the View
          ************************/
-        // Create the viewport to see into the world!
-        viewport = new Viewport(model, controller, "Testing....");
-        Viewport.viewport.addKeyListener(controller.getKeyListener());
-        viewport.setFocusable(true);
+        viewport = new Viewport(model, controller, "....The New World....");
+
     }
 
     public synchronized void start() {

@@ -77,6 +77,8 @@ public class Viewport extends JFrame implements Runnable {
         // Initialize the stateViewports
         //******************************
         initializeRenderers(model.getStates());
+        Viewport.viewport.addKeyListener(controller.getKeyListener());
+        viewport.setFocusable(true);
 
     }
 
