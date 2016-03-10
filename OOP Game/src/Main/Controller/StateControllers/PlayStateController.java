@@ -1,12 +1,10 @@
 package Main.Controller.StateControllers;
 
 import Main.Controller.Manager.StateControllerManager;
+import Main.Controller.Manager.UserActionEnum;
 import Main.Model.DirectionEnum;
-import Main.Model.Entity.Entity;
 import Main.Model.State.PlayState;
-import Main.Model.State.State;
 
-import java.awt.event.KeyEvent;
 
 /**
  * Created by mason on 3/9/16.
@@ -23,30 +21,30 @@ public class PlayStateController extends StateController {
 
     @Override
     public void update() {
-
+        
     }
 
     @Override
-    public void handleInput(KeyEvent e) {
-        if(e != null) {
-            if((e.getKeyCode() == KeyEvent.VK_NUMPAD8 || e.getKeyCode() == KeyEvent.VK_W)){
+    public void handleAction(UserActionEnum action) {
+        switch(action) {
+            case Up:
                 playState.getPlayer().move(DirectionEnum.Up);
-            }
-            if((e.getKeyCode() == KeyEvent.VK_NUMPAD2 || e.getKeyCode() == KeyEvent.VK_S)){
-                playState.getPlayer().move(DirectionEnum.Down);
-            }
-            if(e.getKeyCode() == KeyEvent.VK_NUMPAD9 || e.getKeyCode() == KeyEvent.VK_E){
+                break;
+            case UpRight:
                 playState.getPlayer().move(DirectionEnum.UpRight);
-            }
-            if(e.getKeyCode() == KeyEvent.VK_NUMPAD3 || e.getKeyCode() == KeyEvent.VK_D){
-                playState.getPlayer().move(DirectionEnum.DownRight);
-            }
-            if(e.getKeyCode() == KeyEvent.VK_NUMPAD1 || e.getKeyCode() == KeyEvent.VK_A){
-                playState.getPlayer().move(DirectionEnum.DownLeft);
-            }
-            if(e.getKeyCode() == KeyEvent.VK_NUMPAD7 || e.getKeyCode() == KeyEvent.VK_Q){
+                break;
+            case UpLeft:
                 playState.getPlayer().move(DirectionEnum.UpLeft);
-            }
+                break;
+            case Down:
+                playState.getPlayer().move(DirectionEnum.Down);
+                break;
+            case DownLeft:
+                playState.getPlayer().move(DirectionEnum.DownLeft);
+                break;
+            case DownRight:
+                playState.getPlayer().move(DirectionEnum.DownRight);
+                break;
         }
     }
 }

@@ -1,6 +1,8 @@
 package Main.Controller;
 
+import Main.Controller.ObjectControllers.EntityController;
 import Main.Controller.StateControllers.StateController;
+import Main.Model.Model;
 import Main.Model.State.State;
 import Main.Model.State.StateEnum;
 import Main.Controller.Manager.StateControllerManager;
@@ -20,14 +22,15 @@ public class Controller implements Runnable{
     private boolean gameIsRunning;
     private final int FPS = 60;
     private final int targetTime = 1000 / FPS;
+    private EntityController[] NonPlayerEntities;
 
     KeyManager keyboardManager;
     StateControllerManager stateControllerManager;
 
-    public Controller(EnumMap<StateEnum, State> states, Map world, Avatar entity) {
+    public Controller(Model model) {
         // Create all the controllers
 
-        stateControllerManager = new StateControllerManager(states, world, entity);
+        stateControllerManager = new StateControllerManager(model.getStates(), model.getWorld(), model.getPlayer());
         keyboardManager = new KeyManager(stateControllerManager, stateControllerManager.getGameStateControllers());
         // AIManager = new AIManager()
         // Construct all the entity controllers

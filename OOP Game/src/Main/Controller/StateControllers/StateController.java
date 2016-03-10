@@ -1,5 +1,6 @@
 package Main.Controller.StateControllers;
 
+import Main.Controller.Manager.UserActionEnum;
 import Main.Model.State.State;
 import Main.Model.State.StateEnum;
 
@@ -10,7 +11,7 @@ import java.awt.event.KeyEvent;
  */
 public abstract class StateController {
 
-    public abstract void handleInput(KeyEvent key);
+    public abstract void handleAction(UserActionEnum action);
 
     public abstract void update();
 

@@ -1,6 +1,7 @@
 package Main.View;
 
 import Main.Controller.Controller;
+import Main.Model.Model;
 import Main.Model.State.StateEnum;
 import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
@@ -39,10 +40,10 @@ public class Viewport extends JFrame implements Runnable {
     private int pxWidth = 600;
     private int pxHeight = 400;
 
-    public Viewport(Avatar player, Map world, Controller controller, String gameTitle) {
+    public Viewport(Model model, Controller controller, String gameTitle) {
         viewport = this;
-        this.player = player;
-        this.world = world;
+        this.player = model.getPlayer();
+        this.world = model.getWorld();
         this.controller = controller;
 
         //******************************

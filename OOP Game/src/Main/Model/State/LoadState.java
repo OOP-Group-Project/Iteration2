@@ -4,6 +4,7 @@ import Main.Controller.Manager.StateControllerManager;
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
+import Main.Model.Model;
 
 import java.awt.event.KeyEvent;
 
@@ -12,23 +13,31 @@ import java.awt.event.KeyEvent;
  */
 public class LoadState extends State {
 
-    private Avatar player;
-    private Map world;
+    Model model;
 
-    public LoadState(Map world, Avatar player) {
-        this.player = player;
-        this.world = world;
+    public LoadState(Model model) {
+        this.model = model;
     }
 
     public void loadTestGame() {
         // create test map for now.
-        world.createTestMap();
-        world.addEntity(player, player.getLocation().x, player.getLocation().y, DirectionEnum.Down);
-
+        model.getWorld().createTestMap();
+        model.getWorld().addEntity(model.getPlayer(), model.getPlayer().getLocation().x, model.getPlayer().getLocation().y, DirectionEnum.Down);
     }
 
     public Avatar getPlayer() {
-        return player;
+        return model.getPlayer();
+    }
+
+    public void loadNewGame() {
+        // Look for the new game file
+
+        // load it
+       // model.load();
+    }
+
+    public void loadExistingGame() {
+
     }
 
 }

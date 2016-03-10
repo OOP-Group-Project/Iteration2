@@ -3,6 +3,7 @@ package Main;
 import Main.Controller.Controller;
 import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
+import Main.Model.Model;
 import Main.Model.State.LoadState;
 import Main.Model.State.PlayState;
 import Main.Model.State.State;
@@ -24,23 +25,21 @@ public class Game {
     private EnumMap<StateEnum, State> states;
 
     public Game() {
+        /********************
+         * Create the Model
+         ********************/
+        Model model = new Model();
 
-        // Create a dummy character first
-        player = new Avatar(0,0);
+        /*************************
+         * Create the Controller (and all associated controllers)
+         *************************/
+        controller = new Controller(model);
 
-        // Create the map first, we'll load everything into it later
-        world = new Map(100, 100);
-
-        // Create all the states
-        states = new EnumMap<>(StateEnum.class);
-        states.put(StateEnum.LoadState, new LoadState(world, player));
-        states.put(StateEnum.PlayState, new PlayState(world, player));
-
-        // Create all the controllers ( which contain the gameStates).
-        controller = new Controller(states, world, player);
-
+        /************************
+         * Create the View
+         ************************/
         // Create the viewport to see into the world!
-        viewport = new Viewport(player, world, controller, "Testing....");
+        viewport = new Viewport(model, controller, "Testing....");
         Viewport.viewport.addKeyListener(controller.getKeyListener());
         viewport.setFocusable(true);
     }

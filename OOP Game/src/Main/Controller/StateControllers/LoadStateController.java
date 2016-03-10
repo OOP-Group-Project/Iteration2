@@ -1,6 +1,7 @@
 package Main.Controller.StateControllers;
 
 import Main.Controller.Manager.StateControllerManager;
+import Main.Controller.Manager.UserActionEnum;
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
@@ -27,7 +28,7 @@ public class LoadStateController extends StateController {
     }
 
     @Override
-    public void handleInput(KeyEvent key) {
+    public void handleAction(UserActionEnum action) {
 
     }
 
