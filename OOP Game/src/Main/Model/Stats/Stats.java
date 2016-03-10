@@ -139,6 +139,10 @@ public class Stats {
 
     */
 
+    public void applyEffect(Effect effects){
+
+    }
+
     // mutators (maximum)
     private void changeMaxLives(int amt) {
         if(amt > 0)

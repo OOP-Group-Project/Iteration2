@@ -3,6 +3,7 @@ package Main.Model.Entity;
 import Main.Model.DirectionEnum;
 import Main.Model.Inventory.Inventory;
 import Main.Model.Occupation.Occupation;
+import Main.Model.Stats.Effect;
 import Main.Model.Stats.Stats;
 
 import java.awt.*;
@@ -19,6 +20,7 @@ public abstract class Entity {
     protected Occupation mOccupation;
     protected Inventory mInventory;
 
+
     protected int xLocation;
     protected int yLocation;
 
@@ -28,6 +30,8 @@ public abstract class Entity {
 
     public abstract void move(DirectionEnum direction);
     public abstract void render(Graphics g, int x, int y);
+
+    public abstract void applyEffect(Effect effect);
 
     public Point getLocation() {
         return new Point(xLocation, yLocation);

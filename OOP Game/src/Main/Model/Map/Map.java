@@ -1,5 +1,6 @@
 package Main.Model.Map;
 
+import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.Entity;
 import Main.Model.Items.Item;
@@ -29,7 +30,7 @@ public class Map {
 	public void createTestMap(){
         for(int i = 0; i < width; i++){
             for (int j = 0; j < height; j++){
-                tiles[i][j] = new Tile(TerrainTypeEnum.Grass,0,i,j);
+                tiles[i][j] = new Tile(TerrainTypeEnum.Grass,false,0,i,j);
             }
         }
 	}
@@ -45,6 +46,10 @@ public class Map {
 
 	public void addItem(Item i, int xLocation, int yLocation) {
 		tiles[xLocation][yLocation].addItem(i);
+	}
+
+	public void addAreaEffect(AreaEffect areaEffect, int xLocation, int yLocation){
+		tiles[xLocation][yLocation].addAreaEffect(areaEffect);
 	}
 
 

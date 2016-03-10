@@ -1,6 +1,7 @@
 package Main.Model.Entity;
 
 import Main.Model.DirectionEnum;
+import Main.Model.Stats.Effect;
 import Main.View.Graphics.GraphicsAssets;
 
 import java.awt.*;
@@ -38,6 +39,18 @@ public class Avatar extends Entity{
         }
     }
 
+    @Override
+    public void render(Graphics g, int x, int y) {
+        g.drawImage(this.getImage(), x, y,null);
+    }
+
+
+    // Use this method when there's anything that will modify the stats
+    @Override
+    public void applyEffect(Effect effect){
+        mStats.applyEffect(effect);
+    }
+
     public void respawn(int xLocation, int yLocation) {
         this.xLocation = xLocation;
         this.yLocation = yLocation;
@@ -45,8 +58,5 @@ public class Avatar extends Entity{
 
 
 
-    @Override
-    public void render(Graphics g, int x, int y) {
-        g.drawImage(this.getImage(), x, y,null);
-    }
+
 }

@@ -1,7 +1,9 @@
 package Main.Model.Map;
 
+import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.Entity.Entity;
 import Main.Model.Items.Item;
+import Main.Model.Stats.Effect;
 import Main.Model.Terrain.Terrain;
 import Main.Model.Terrain.TerrainTypeEnum;
 
@@ -15,13 +17,10 @@ public class Tile {
 	private TerrainTypeEnum terrainType;
 	private Entity entity = null;
 	private ArrayList<Item> items;
+    private boolean hasAreaEffect;
+    private AreaEffect mAreaEffect;
 	private int x;
 	private int y;
-	
-	//TYPE OF TILES  (The type of tile is a class)
-//	public static final int GRASS =0;
-//	public static final int MOUNTAIN = 1;
-//	public static final int WATER = 2;
 
 
 	// Default constructor
@@ -29,8 +28,9 @@ public class Tile {
 		this.terrainType = TerrainTypeEnum.Grass;
 	}
 	
-	public Tile(TerrainTypeEnum terrainType, int id, int x, int y){
+	public Tile(TerrainTypeEnum terrainType, boolean hasAreaEffect,int id, int x, int y){
 		this.terrainType = terrainType;
+        this.hasAreaEffect = hasAreaEffect;
 		this.x = x;
 		this.y = y;
 	}
@@ -43,9 +43,18 @@ public class Tile {
 		this.items.add(item);
 	}
 
+    public void addAreaEffect(AreaEffect areaEffect){
+        this.mAreaEffect = areaEffect;
+        hasAreaEffect = true;
+    }
+
 	public TerrainTypeEnum getTerrainType() {
 		return terrainType;
 	}
+
+    public Effect getEffect(){
+        return mAreaEffect.getEffect();
+    }
 
 	public int getX() {
 		return x;
