@@ -33,7 +33,7 @@ public class Model {
         states = new EnumMap<>(StateEnum.class);
         states.put(StateEnum.LoadState, new LoadState(this));
         states.put(StateEnum.PlayState, new PlayState(world, player));
-        states.put(StateEnum.PauseState, new PauseState(world, player));
+        states.put(StateEnum.PauseState, new PauseState());
     }
 
     public Avatar getPlayer() {

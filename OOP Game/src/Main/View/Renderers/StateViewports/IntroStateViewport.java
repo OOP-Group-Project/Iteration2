@@ -9,8 +9,10 @@ import java.awt.*;
  */
 public class IntroStateViewport extends StateViewport {
 
+    Viewport viewport;
+
     public IntroStateViewport(Viewport view) {
-        super(view);
+        this.viewport = view;
     }
 
     @Override

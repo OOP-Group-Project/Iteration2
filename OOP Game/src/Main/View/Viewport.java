@@ -2,6 +2,9 @@ package Main.View;
 
 import Main.Controller.Controller;
 import Main.Model.Model;
+import Main.Model.State.PauseState;
+import Main.Model.State.PlayState;
+import Main.Model.State.State;
 import Main.Model.State.StateEnum;
 import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
@@ -26,6 +29,7 @@ public class Viewport extends JFrame implements Runnable {
     private Controller controller;
     private Map world;
     private Avatar player;
+
 
     // This structure represents a mapping between teh current state of the game and what to render.
     private EnumMap<StateEnum, StateViewport> stateViewports;
@@ -72,22 +76,22 @@ public class Viewport extends JFrame implements Runnable {
         //******************************
         // Initialize the stateViewports
         //******************************
-        initializeRenderers();
+        initializeRenderers(model.getStates());
 
     }
 
 
     // Each renderer is an object that stores how it should render a specific object to the game screen.
     // The state stateViewports can use individual object rednerers that are relevant to them (i.e., the playStateRenderer has an EntityRenderer and MapRenderer so that it can call both of their render methods)
-    private void initializeRenderers() {
+    private void initializeRenderers(EnumMap<StateEnum, State> states) {
         // Start by initializing the object renderers
         objectRenderer = new ObjectRenderer(this, graphicsAssets);
 
         // Then initialize the state renderers
         stateViewports = new EnumMap<>(StateEnum.class);
-        stateViewports.put(StateEnum.PlayState, new PlayStateViewport(this, graphicsAssets, player, world));
+        stateViewports.put(StateEnum.PlayState, new PlayStateViewport(this, graphicsAssets, (PlayState)states.get(StateEnum.PlayState)));
         stateViewports.put(StateEnum.LoadState, new LoadStateViewport(this));
-        stateViewports.put(StateEnum.PauseState, new PauseStateViewport(this, graphicsAssets, player, world));
+        stateViewports.put(StateEnum.PauseState, new PauseStateViewport(this, (PauseState)states.get(StateEnum.PauseState), (PlayStateViewport)stateViewports.get(StateEnum.PlayState)));
     }
 
 
