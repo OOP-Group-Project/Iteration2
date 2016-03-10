@@ -95,35 +95,35 @@ public class Stats {
     private double cur_arm;
 
     // accessors (maximum)
-    public double maxStrength() {return max_str;}
-    public double maxAgility() {return max_agi;}
-    public double maxIntellect() {return max_int;}
-    public double maxHardiness() {return max_har;}
-    public double maxMovement() {return max_mov;}
-    public double maxLife() {return max_hp;}
-    public double maxMana() {return max_mp;}
-    public double maxOffense() {return max_dmg;}
-    public double maxDefense() {return max_def;}
-    public double maxArmor() {return max_arm;}
-    public int maxExperience() {return max_exp;}
-    public int maxLives() {return max_lives;}
+    public double getMaxStrength() {return max_str;}
+    public double getMaxAgility() {return max_agi;}
+    public double getMaxIntellect() {return max_int;}
+    public double getMaxHardiness() {return max_har;}
+    public double getMaxMovement() {return max_mov;}
+    public double getMaxLife() {return max_hp;}
+    public double getMaxMana() {return max_mp;}
+    public double getMaxOffense() {return max_dmg;}
+    public double getMaxDefense() {return max_def;}
+    public double getMaxArmor() {return max_arm;}
+    public int getMaxExperience() {return max_exp;}
+    public int getMaxLives() {return max_lives;}
 
     //
     public int level() {return level;}
 
     // accessors (current)
-    public double curStrength() {return cur_str;}
-    public double curAgility() {return cur_agi;}
-    public double curIntellect() {return cur_int;}
-    public double curHardiness() {return cur_har;}
-    public double curMovement() {return cur_mov;}
-    public double curLife() {return cur_hp;}
-    public double curMana() {return cur_mp;}
-    public double curOffense() {return cur_dmg;}
-    public double curDefense() {return cur_def;}
-    public double curArmor() {return cur_arm;}
-    public int curExperience() {return cur_exp;}
-    public int curLives() {return cur_lives;}
+    public double getCurStrength() {return cur_str;}
+    public double getCurAgility() {return cur_agi;}
+    public double getCurIntellect() {return cur_int;}
+    public double getCurHardiness() {return cur_har;}
+    public double getCurMovement() {return cur_mov;}
+    public double getCurLife() {return cur_hp;}
+    public double getCurMana() {return cur_mp;}
+    public double getCurOffense() {return cur_dmg;}
+    public double getCurDefense() {return cur_def;}
+    public double getCurArmor() {return cur_arm;}
+    public int getCurExperience() {return cur_exp;}
+    public int getCurLives() {return cur_lives;}
 
     // setters
     private void setCurExperience(){cur_exp = 0;}
@@ -372,10 +372,10 @@ public class Stats {
 
     //
     private void calculatePrimaryStats() {
-        max_str = OCCUPATION_STAT_MOD.get("str") * BASE_STAT_MOD * maxStrength();
-        max_agi = OCCUPATION_STAT_MOD.get("agi") * BASE_STAT_MOD * maxAgility();
-        max_int = OCCUPATION_STAT_MOD.get("int") * BASE_STAT_MOD * maxIntellect();
-        max_har = OCCUPATION_STAT_MOD.get("har") * BASE_STAT_MOD * maxHardiness();
+        max_str = OCCUPATION_STAT_MOD.get("str") * BASE_STAT_MOD * getMaxStrength();
+        max_agi = OCCUPATION_STAT_MOD.get("agi") * BASE_STAT_MOD * getMaxAgility();
+        max_int = OCCUPATION_STAT_MOD.get("int") * BASE_STAT_MOD * getMaxIntellect();
+        max_har = OCCUPATION_STAT_MOD.get("har") * BASE_STAT_MOD * getMaxHardiness();
     }
 
     // TODO: determine formula to calculate secondary stats
@@ -439,19 +439,19 @@ public class Stats {
         // primary stats
         System.out.println("Primary Stats:");
         System.out.println("Level: " + level());
-        System.out.println("Lives: " + curLives() + "/" + maxLives());
-        System.out.println("Experience: " + curExperience() + "/" + maxExperience());
-        System.out.println("Strength: " + curStrength() + "/" + maxStrength());
-        System.out.println("Agility: " + curAgility() + "/" + maxAgility());
-        System.out.println("Intellect: " + curIntellect() + "/" + maxIntellect());
-        System.out.println("Hardiness: " + curHardiness() + "/" + maxHardiness());
-        System.out.println("Movement: " + curMovement() + "/" + maxMovement());
+        System.out.println("Lives: " + getCurLives() + "/" + getMaxLives());
+        System.out.println("Experience: " + getCurExperience() + "/" + getMaxExperience());
+        System.out.println("Strength: " + getCurStrength() + "/" + getMaxStrength());
+        System.out.println("Agility: " + getCurAgility() + "/" + getMaxAgility());
+        System.out.println("Intellect: " + getCurIntellect() + "/" + getMaxIntellect());
+        System.out.println("Hardiness: " + getCurHardiness() + "/" + getMaxHardiness());
+        System.out.println("Movement: " + getCurMovement() + "/" + getMaxMovement());
         // secondary stats
         System.out.println("Secondary Stats:");
-        System.out.println("Life: " + curLife() + "/" + maxLife());
-        System.out.println("Mana: " + curMana() + "/" + maxMana());
-        System.out.println("Offense: " + curOffense() + "/" + maxOffense());
-        System.out.println("Defense: " + curDefense() + "/" + maxDefense());
-        System.out.println("Armor: " + curArmor() + "/" + maxArmor());
+        System.out.println("Life: " + getCurLife() + "/" + getMaxLife());
+        System.out.println("Mana: " + getCurMana() + "/" + getMaxMana());
+        System.out.println("Offense: " + getCurOffense() + "/" + getMaxOffense());
+        System.out.println("Defense: " + getCurDefense() + "/" + getMaxDefense());
+        System.out.println("Armor: " + getCurArmor() + "/" + getMaxArmor());
     }
 }
