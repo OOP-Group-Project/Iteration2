@@ -27,4 +27,8 @@ public abstract class AreaEffect {
         return mEffect;
     }
 
+    public AreaEffectEnum getType(){
+        return type;
+    }
+
 }

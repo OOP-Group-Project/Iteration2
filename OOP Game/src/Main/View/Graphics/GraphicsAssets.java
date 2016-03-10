@@ -33,6 +33,7 @@ public class GraphicsAssets {
     public static BufferedImage mountain;
     public static BufferedImage water;
     public static BufferedImage portal;
+    public static BufferedImage greenPlus;
     public static BufferedImage goldStar;
     public static BufferedImage redCross;
     public static BufferedImage skullCrossBones;
