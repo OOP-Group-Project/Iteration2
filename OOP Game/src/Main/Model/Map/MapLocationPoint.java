@@ -7,6 +7,7 @@ import java.awt.*;
 /**
  * Created by mason on 3/10/16.
  */
+
 public class MapLocationPoint extends Point {
 
     public MapLocationPoint(int x, int y) {
