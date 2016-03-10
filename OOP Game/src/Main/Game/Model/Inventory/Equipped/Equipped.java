@@ -1,7 +1,7 @@
 package Main.Game.Model.Inventory.Equipped;
 
 /**
- * Created by Peter Camejo on 2/18/16.
+ * Created by Peter Camejo on 3/7/16.
  *
  * Association class between the Entity player and the Items s/he has equipped.
  *
