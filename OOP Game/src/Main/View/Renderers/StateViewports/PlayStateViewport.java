@@ -2,6 +2,7 @@ package Main.View.Renderers.StateViewports;
 
 import Main.Model.Entity.Entity;
 import Main.Model.Map.Map;
+import Main.Model.State.PlayState;
 import Main.View.Graphics.GraphicsAssets;
 import Main.View.Renderers.ObjectRenderer;
 import Main.View.Viewport;
@@ -24,8 +25,7 @@ import java.util.HashMap;
 public class PlayStateViewport extends StateViewport {
     private GraphicsAssets graphicsAssets;
     private Viewport viewport;
-    private Entity player;
-    private Map world;
+    private PlayState playState;
 
     /*
      * In order to render the map and animate moving along tiles, we will render select portions of the map that fit into
@@ -73,26 +73,24 @@ public class PlayStateViewport extends StateViewport {
     private ArrayList<Entity> previousInViewEntities;
 
 
-    public PlayStateViewport(Viewport viewport, GraphicsAssets graphicsAssets, Entity player, Map world) {
-        super(viewport);
+    public PlayStateViewport(Viewport viewport, GraphicsAssets graphicsAssets, PlayState playState) {
+        this.viewport = viewport;
         this.graphicsAssets = graphicsAssets;
-        this.player = player;
-        this.world = world;
+        this.playState = playState;
 
         // Start the map in the top left corner.
         mapStartX = 0;
         mapStartY = 0;
 
         // The end of what we expect to render of the map should either be limited by the size of the map or the size of the viewport (i.e. the window)
-        mapEndX = Math.min(world.getWidth(), (int)Math.ceil(viewport.getPxWidth()/graphicsAssets.TILE_PX_WIDTH));
-        mapEndY = Math.min(world.getHeight(), (int)Math.ceil(viewport.getPxHeight()/graphicsAssets.TILE_PX_HEIGHT));
+        mapEndX = Math.min(playState.getWorld().getWidth(), (int)Math.ceil(viewport.getPxWidth()/graphicsAssets.TILE_PX_WIDTH));
+        mapEndY = Math.min(playState.getWorld().getHeight(), (int)Math.ceil(viewport.getPxHeight()/graphicsAssets.TILE_PX_HEIGHT));
 
         pxOffsetX = 0;
         pxOffsetY = 0;
 
         mapCameraCenter = new Point((mapStartX + mapEndX)/2, (mapStartY + mapEndY)/2);
-        pxCameraCenter = new Point(super.viewport.getPxWidth()/2, super.viewport.getPxHeight()/2);
-        recoupleToEntity();
+        pxCameraCenter = new Point(viewport.getPxWidth()/2, viewport.getPxHeight()/2);
         inViewEntityPxOffset = new HashMap<>();
     }
 
@@ -102,7 +100,7 @@ public class PlayStateViewport extends StateViewport {
 
 
         // Then render them
-        ObjectRenderer.mapRenderer.render(graphics, world, mapCameraCenter, mapStartX, mapEndX, mapStartY, mapEndY);
+        ObjectRenderer.mapRenderer.render(graphics, playState.getWorld(), mapCameraCenter, mapStartX, mapEndX, mapStartY, mapEndY);
 
         for(Entity inViewEntity : inViewEntities) {
             // Get the offset amount
@@ -115,19 +113,15 @@ public class PlayStateViewport extends StateViewport {
     }
 
     public void update() {
-        // If we're not decoupled from the entity
-        if(!decoupledFromEntity) {
-            // Update the portion of the map that's in view to center on the player
-            mapCameraCenter = player.getLocation();
-        }
-
-        pxCameraCenter = new Point(super.viewport.getPxWidth()/2, super.viewport.getPxHeight()/2);
+        // Update the camera center
+        mapCameraCenter = playState.getCenterPoint();
+        pxCameraCenter = new Point(viewport.getPxWidth()/2, viewport.getPxHeight()/2);
 
         // update the map start and end
         mapStartX = (int)Math.max(0, (mapCameraCenter.x - (pxCameraCenter.x/(0.75*GraphicsAssets.TILE_PX_WIDTH))) - 1);
         mapStartY = Math.max(0, (mapCameraCenter.y - (pxCameraCenter.y/GraphicsAssets.TILE_PX_HEIGHT)) - 1);
-        mapEndX = (int)Math.min(world.getWidth(), (mapCameraCenter.x + (pxCameraCenter.x/(0.75*GraphicsAssets.TILE_PX_WIDTH))) + 1);
-        mapEndY = Math.min(world.getHeight(), (mapCameraCenter.y + (pxCameraCenter.y/GraphicsAssets.TILE_PX_HEIGHT)) + 1);
+        mapEndX = (int)Math.min(playState.getWorld().getWidth(), (mapCameraCenter.x + (pxCameraCenter.x/(0.75*GraphicsAssets.TILE_PX_WIDTH))) + 1);
+        mapEndY = Math.min(playState.getWorld().getHeight(), (mapCameraCenter.y + (pxCameraCenter.y/GraphicsAssets.TILE_PX_HEIGHT)) + 1);
 
         // Update the entities that are currently in view
         if(inViewEntities != null) {
@@ -140,7 +134,7 @@ public class PlayStateViewport extends StateViewport {
             for(int j = mapStartY; j < mapEndY; j++) {
 
                 // Get the entity from the tile
-                Entity e = world.getTile(i,j).getEntity();
+                Entity e = playState.getWorld().getTile(i,j).getEntity();
 
                 // If there's an entity
                 if(e != null) {
@@ -172,12 +166,5 @@ public class PlayStateViewport extends StateViewport {
         // update the pixel offsets for the entities
     }
 
-    public void decoupleFromEntity() {
-        decoupledFromEntity = true;
-    }
-
-    public void recoupleToEntity() {
-        decoupledFromEntity = false;
-    }
 
 }

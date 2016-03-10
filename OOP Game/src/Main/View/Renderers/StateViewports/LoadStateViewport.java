@@ -9,8 +9,10 @@ import java.awt.*;
  */
 public class LoadStateViewport extends StateViewport {
 
+    private Viewport viewport;
+
     public LoadStateViewport(Viewport view) {
-        super(view);
+        this.viewport = view;
     }
 
     @Override

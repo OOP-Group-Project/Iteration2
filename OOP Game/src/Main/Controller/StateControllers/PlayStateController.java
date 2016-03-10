@@ -30,25 +30,43 @@ public class PlayStateController extends StateController {
     public void handleAction(UserActionEnum action) {
         switch(action) {
             case Up:
-                playState.getPlayer().move(DirectionEnum.Up);
+                playState.movePlayer(DirectionEnum.Up);
                 break;
             case UpRight:
-                playState.getPlayer().move(DirectionEnum.UpRight);
+                playState.movePlayer(DirectionEnum.UpRight);
                 break;
             case UpLeft:
-                playState.getPlayer().move(DirectionEnum.UpLeft);
+                playState.movePlayer(DirectionEnum.UpLeft);
                 break;
             case Down:
-                playState.getPlayer().move(DirectionEnum.Down);
+                playState.movePlayer(DirectionEnum.Down);
                 break;
             case DownLeft:
-                playState.getPlayer().move(DirectionEnum.DownLeft);
+                playState.movePlayer(DirectionEnum.DownLeft);
                 break;
             case DownRight:
-                playState.getPlayer().move(DirectionEnum.DownRight);
+                playState.movePlayer(DirectionEnum.DownRight);
                 break;
             case Pause:
                 stateControllerManager.setState(StateEnum.PauseState);
+                break;
+            case ViewUp:
+                playState.moveCenterPoint(DirectionEnum.Up);
+                break;
+            case ViewUpLeft:
+                playState.moveCenterPoint(DirectionEnum.UpLeft);
+                break;
+            case ViewUpRight:
+                playState.moveCenterPoint(DirectionEnum.UpRight);
+                break;
+            case ViewDown:
+                playState.moveCenterPoint(DirectionEnum.Down);
+                break;
+            case ViewDownLeft:
+                playState.moveCenterPoint(DirectionEnum.DownLeft);
+                break;
+            case ViewDownRight:
+                playState.moveCenterPoint(DirectionEnum.DownRight);
                 break;
         }
     }
