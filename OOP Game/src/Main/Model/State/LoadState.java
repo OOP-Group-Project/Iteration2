@@ -1,6 +1,6 @@
-package Main.Controller.GameStates;
+package Main.Model.State;
 
-import Main.Controller.Manager.GameStateManager;
+import Main.Controller.Manager.StateControllerManager;
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
@@ -13,17 +13,16 @@ import java.awt.event.KeyEvent;
 public class LoadState extends State {
 
     private Avatar player;
+    private Map world;
 
-    public LoadState(GameStateManager gsm, Map world, Avatar player) {
-        super(gsm, world);
+    public LoadState(Map world, Avatar player) {
         this.player = player;
+        this.world = world;
     }
 
     public void loadTestGame() {
         // create test map for now.
         world.createTestMap();
-
-
         world.addEntity(player, player.getLocation().x, player.getLocation().y, DirectionEnum.Down);
 
     }
@@ -32,9 +31,4 @@ public class LoadState extends State {
         return player;
     }
 
-    @Override
-    public void update(KeyEvent k) {
-        loadTestGame();
-        gsm.setState(StateEnum.PlayState);
-    }
 }

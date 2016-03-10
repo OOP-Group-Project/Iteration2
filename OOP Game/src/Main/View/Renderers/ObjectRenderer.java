@@ -37,14 +37,19 @@ public class ObjectRenderer {
             * the map is always centered in the window.
             */
             int i = 0, j = 0;
+
             for(int y = mapStartY; y < mapEndY; y++){
                 for(int x = mapStartX; x < mapEndX; x++){
                     // TODO: Fix this so that it uses the offset.  This will not work currently!
                     Point pxCenterPoint;
                     if(x % 2 == 0) {
-                        pxCenterPoint = new Point((i * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)), (j * graphicsAssets.TILE_PX_HEIGHT));
+                        int pxX = /*(i * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)) +*/ (int)((i - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
+                        int pxY = /*(j * graphicsAssets.TILE_PX_HEIGHT) + */((j - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
+                        pxCenterPoint = new Point(pxX, pxY);
                     } else {
-                        pxCenterPoint = new Point((i * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)), (graphicsAssets.TILE_PX_HEIGHT/2 + j * graphicsAssets.TILE_PX_HEIGHT));
+                        int pxX = /*(i * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)) + */(int)((i - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
+                        int pxY = graphicsAssets.TILE_PX_HEIGHT/2/*( + j * graphicsAssets.TILE_PX_HEIGHT)*/ +  ((j - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
+                        pxCenterPoint = new Point(pxX, pxY);
                     }
                     tileRenderer.render(g, map.getTile(x,y), pxCenterPoint);
                     i++;
@@ -83,19 +88,38 @@ public class ObjectRenderer {
 
         }
     }
-    
-//    public static class itemRenderer {
-//        public static void render(Graphics g, Item item, Point pxCenterPoint) {
+
+    public static class itemRenderer {
+        public static void render(Graphics g, Item item, Point pxCenterPoint) {
 //            ItemTypeEnum type = item.getType();
 //
 //            switch(type) {
-//
-//            }
-//        }
-//    }
+
+            //}
+        }
+    }
 
     public static class entityRenderer {
-        public static void render(Graphics g, Entity entity, Point pxCenterPoint) {
+        public static void render(Graphics g, Entity entity, Point mapCenterPoint, Point pxRenderOffset) {
+            /*
+            * TODO: Given how many tiles we want to render and the size of the window, calculate an offset so that
+            * the map is always centered in the window.
+            */
+
+            Point pxCenterPoint;
+            if(entity.getLocation().x % 2 == 0) {
+                int pxX = /*(i * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)) +*/ (int)((entity.getLocation().x - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
+                int pxY = /*(j * graphicsAssets.TILE_PX_HEIGHT) + */((entity.getLocation().y - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
+                pxCenterPoint = new Point(pxX, pxY);
+            } else {
+                int pxX = /*(i * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)) + */(int)((entity.getLocation().x - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
+                int pxY = graphicsAssets.TILE_PX_HEIGHT/2/*( + j * graphicsAssets.TILE_PX_HEIGHT)*/ +  ((entity.getLocation().y - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
+                pxCenterPoint = new Point(pxX, pxY);
+            }
+
+            pxCenterPoint.x += pxRenderOffset.x;
+            pxCenterPoint.y += pxRenderOffset.y;
+
             // Calculate the top left corner from the center point
             // Render the correct image
             EntityTypeEnum type = entity.getType();
