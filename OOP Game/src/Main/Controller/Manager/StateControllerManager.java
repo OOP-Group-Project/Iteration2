@@ -10,12 +10,10 @@ import java.awt.event.KeyEvent;
 import java.util.EnumMap;
 
 import Main.Controller.StateControllers.LoadStateController;
+import Main.Controller.StateControllers.PauseStateController;
 import Main.Controller.StateControllers.PlayStateController;
 import Main.Controller.StateControllers.StateController;
-import Main.Model.State.State;
-import Main.Model.State.StateEnum;
-import Main.Model.State.LoadState;
-import Main.Model.State.PlayState;
+import Main.Model.State.*;
 import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
 
@@ -41,6 +39,7 @@ public class StateControllerManager {
 	private void initializeStates(EnumMap<StateEnum, State> states, Map world, Avatar player) {
 		gameStateControllers.put(StateEnum.LoadState, new LoadStateController(this, (LoadState)states.get(StateEnum.LoadState), player, world));
 		gameStateControllers.put(StateEnum.PlayState, new PlayStateController(this, (PlayState)states.get(StateEnum.PlayState)));
+		gameStateControllers.put(StateEnum.PauseState, new PauseStateController(this, (PauseState)states.get(StateEnum.PauseState)));
 	}
 	
 	public void setState(StateEnum state){
@@ -54,6 +53,10 @@ public class StateControllerManager {
 
 	public StateEnum getCurrentState() {
 		return currentState;
+	}
+
+	public StateEnum getPreviousState() {
+		return previousState;
 	}
 	
 	public void update(){

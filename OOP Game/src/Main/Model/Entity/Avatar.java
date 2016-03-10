@@ -25,65 +25,83 @@ public class Avatar extends Entity{
 
     @Override
     public void move(DirectionEnum direction) {
-        if(xLocation % 2 != 0) {
+        System.out.print("Before\t X: " + Integer.toString(xLocation) + " Y: " + Integer.toString(yLocation));
+        if(xLocation % 2 == 0) {
+            System.out.println(" Even");
             switch(direction) {
                 case Down:
+                    System.out.println("Even Down");
                     yLocation++;
                     break;
                 case Up:
+                    System.out.println("Even Up");
                     if((yLocation - 1) >= 0) {
                         yLocation--;
                     }
                     break;
                 case UpLeft:
-                    if((xLocation - 1) >= 0){
+                    System.out.println("Even UpLeft");
+                    if((xLocation - 1) >= 0 && (yLocation - 1) >= 0){
                         xLocation--;
+                        yLocation--;
                     }
                     break;
                 case UpRight:
-                    xLocation++;
+                    System.out.println("Even Upright");
+                    if((yLocation - 1) >= 0) {
+                        xLocation++;
+                        yLocation--;
+                    }
                     break;
                 case DownLeft:
+                    System.out.println("Even DownLeft");
                     if((xLocation - 1) >= 0) {
                         xLocation--;
-                        yLocation++;
                     }
                     break;
                 case DownRight:
+                    System.out.println("Even DownRight");
                     xLocation++;
-                    yLocation++;
                     break;
             }
         } else {
+            System.out.println(" Odd");
             switch(direction) {
                 case Down:
+                    System.out.println("Odd Down");
                     yLocation++;
                     break;
                 case Up:
+                    System.out.println("Odd Up");
                     if ((yLocation - 1) >= 0) {
                         yLocation--;
                     }
                     break;
                 case DownLeft:
-                    if ((xLocation - 1) >= 0) {
-                        xLocation--;
-                    }
-                    break;
-                case DownRight:
-                    xLocation++;
-                    break;
-                case UpLeft:
+                    System.out.println("Odd DownLeft");
                     if ((xLocation - 1) >= 0) {
                         xLocation--;
                         yLocation++;
                     }
                     break;
-                case UpRight:
+                case DownRight:
+                    System.out.println("Odd DownRight");
                     xLocation++;
                     yLocation++;
                     break;
+                case UpLeft:
+                    System.out.println("Odd UpLeft");
+                    if ((xLocation - 1) >= 0) {
+                        xLocation--;
+                    }
+                    break;
+                case UpRight:
+                    System.out.println("Odd Upright");
+                    xLocation++;
+                    break;
             }
         }
+        System.out.println("After\t X: " + Integer.toString(xLocation) + " Y: " + Integer.toString(yLocation) + '\n');
     }
 
     @Override

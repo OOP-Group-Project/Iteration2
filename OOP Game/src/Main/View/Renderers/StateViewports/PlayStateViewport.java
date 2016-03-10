@@ -73,7 +73,7 @@ public class PlayStateViewport extends StateViewport {
     private ArrayList<Entity> previousInViewEntities;
 
 
-    public PlayStateViewport(GraphicsAssets graphicsAssets, Viewport viewport, Entity player, Map world) {
+    public PlayStateViewport(Viewport viewport, GraphicsAssets graphicsAssets, Entity player, Map world) {
         super(viewport);
         this.graphicsAssets = graphicsAssets;
         this.player = player;

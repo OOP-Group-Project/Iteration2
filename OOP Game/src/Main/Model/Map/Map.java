@@ -1,14 +1,9 @@
 package Main.Model.Map;
 
 import Main.Model.AreaEffect.AreaEffect;
-import Main.Model.DirectionEnum;
 import Main.Model.Entity.Entity;
 import Main.Model.Items.Item;
 import Main.Model.Terrain.TerrainTypeEnum;
-import Main.Model.Terrain.Water;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 
 public class Map {
@@ -40,8 +35,16 @@ public class Map {
 		
 	}
 
-	public void addEntity(Entity e, int xLocation, int yLocation, DirectionEnum direction) {
+	public Entity getEntity(int xLocation, int yLocation) {
+		return tiles[xLocation][yLocation].getEntity();
+	}
+
+	public void addEntity(Entity e, int xLocation, int yLocation) {
 		tiles[xLocation][yLocation].addEntity(e);
+	}
+
+	public void removeEntity(Entity e, int xLocation, int yLocation) {
+		tiles[xLocation][yLocation].removeEntity();
 	}
 
 	public void addItem(Item i, int xLocation, int yLocation) {

@@ -4,10 +4,9 @@ import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.Entity.Entity;
 import Main.Model.Items.Item;
 import Main.Model.Stats.Effect;
-import Main.Model.Terrain.Terrain;
+
 import Main.Model.Terrain.TerrainTypeEnum;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Tile {
@@ -37,6 +36,13 @@ public class Tile {
 
 	public void addEntity(Entity e) {
 		this.entity = e;
+	}
+
+	public Entity removeEntity() {
+		Entity entityToRemove;
+		entityToRemove = this.entity;
+		this.entity = null;
+		return entityToRemove;
 	}
 
 	public void addItem(Item item) {

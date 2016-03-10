@@ -1,12 +1,14 @@
 package Main.View;
 
 import Main.Controller.Controller;
+import Main.Model.Model;
 import Main.Model.State.StateEnum;
 import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
 import Main.View.Graphics.GraphicsAssets;
 import Main.View.Renderers.ObjectRenderer;
 import Main.View.Renderers.StateViewports.LoadStateViewport;
+import Main.View.Renderers.StateViewports.PauseStateViewport;
 import Main.View.Renderers.StateViewports.PlayStateViewport;
 import Main.View.Renderers.StateViewports.StateViewport;
 
@@ -39,10 +41,10 @@ public class Viewport extends JFrame implements Runnable {
     private int pxWidth = 600;
     private int pxHeight = 400;
 
-    public Viewport(Avatar player, Map world, Controller controller, String gameTitle) {
+    public Viewport(Model model, Controller controller, String gameTitle) {
         viewport = this;
-        this.player = player;
-        this.world = world;
+        this.player = model.getPlayer();
+        this.world = model.getWorld();
         this.controller = controller;
 
         //******************************
@@ -83,8 +85,9 @@ public class Viewport extends JFrame implements Runnable {
 
         // Then initialize the state renderers
         stateViewports = new EnumMap<>(StateEnum.class);
-        stateViewports.put(StateEnum.PlayState, new PlayStateViewport(graphicsAssets, this, player, world));
+        stateViewports.put(StateEnum.PlayState, new PlayStateViewport(this, graphicsAssets, player, world));
         stateViewports.put(StateEnum.LoadState, new LoadStateViewport(this));
+        stateViewports.put(StateEnum.PauseState, new PauseStateViewport(this, graphicsAssets, player, world));
     }
 
 
