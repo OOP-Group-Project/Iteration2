@@ -35,7 +35,7 @@ public class LoadStateController extends StateController {
     @Override
     public void update() {
         world.createTestMap();
-        world.addEntity(player, player.getLocation().x, player.getLocation().y, DirectionEnum.Down);
+        world.addEntity(player, player.getLocation().x, player.getLocation().y);
         stateManager.setState(StateEnum.PlayState);
     }
 }

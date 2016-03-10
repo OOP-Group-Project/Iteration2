@@ -22,23 +22,7 @@ public class KeyManager implements KeyListener{
 		this.stateControllerManager = stateControllerManager;
 		keyboardActionMapping = new HashMap<>();
 
-		keyboardActionMapping.put(KeyEvent.VK_W, UserActionEnum.Up);
-		keyboardActionMapping.put(KeyEvent.VK_Q, UserActionEnum.UpLeft);
-		keyboardActionMapping.put(KeyEvent.VK_E, UserActionEnum.UpRight);
-		keyboardActionMapping.put(KeyEvent.VK_A, UserActionEnum.Left);
-		keyboardActionMapping.put(KeyEvent.VK_D, UserActionEnum.Right);
-		keyboardActionMapping.put(KeyEvent.VK_X, UserActionEnum.Down);
-		keyboardActionMapping.put(KeyEvent.VK_Z, UserActionEnum.DownLeft);
-		keyboardActionMapping.put(KeyEvent.VK_C, UserActionEnum.DownRight);
-		keyboardActionMapping.put(KeyEvent.VK_NUMPAD8, UserActionEnum.Up);
-		keyboardActionMapping.put(KeyEvent.VK_NUMPAD7, UserActionEnum.UpLeft);
-		keyboardActionMapping.put(KeyEvent.VK_NUMPAD9, UserActionEnum.UpRight);
-		keyboardActionMapping.put(KeyEvent.VK_NUMPAD4, UserActionEnum.Left);
-		keyboardActionMapping.put(KeyEvent.VK_NUMPAD6, UserActionEnum.Right);
-		keyboardActionMapping.put(KeyEvent.VK_NUMPAD2, UserActionEnum.Down);
-		keyboardActionMapping.put(KeyEvent.VK_NUMPAD1, UserActionEnum.DownLeft);
-		keyboardActionMapping.put(KeyEvent.VK_NUMPAD3, UserActionEnum.DownRight);
-		keyboardActionMapping.put(KeyEvent.VK_ESCAPE, UserActionEnum.Pause);
+		setDefaultKeyActions();
 	}
 
 	// When we receive a key press event, we should parse what to do with the key and pass it off to the appropriate controller.
@@ -61,6 +45,25 @@ public class KeyManager implements KeyListener{
 	public void keyTyped(KeyEvent arg0) {}
 
 
-
+	public void setDefaultKeyActions() {
+		keyboardActionMapping.clear();
+		keyboardActionMapping.put(KeyEvent.VK_W, UserActionEnum.Up);
+		keyboardActionMapping.put(KeyEvent.VK_Q, UserActionEnum.UpLeft);
+		keyboardActionMapping.put(KeyEvent.VK_E, UserActionEnum.UpRight);
+		keyboardActionMapping.put(KeyEvent.VK_A, UserActionEnum.Left);
+		keyboardActionMapping.put(KeyEvent.VK_D, UserActionEnum.Right);
+		keyboardActionMapping.put(KeyEvent.VK_X, UserActionEnum.Down);
+		keyboardActionMapping.put(KeyEvent.VK_Z, UserActionEnum.DownLeft);
+		keyboardActionMapping.put(KeyEvent.VK_C, UserActionEnum.DownRight);
+		keyboardActionMapping.put(KeyEvent.VK_NUMPAD8, UserActionEnum.Up);
+		keyboardActionMapping.put(KeyEvent.VK_NUMPAD7, UserActionEnum.UpLeft);
+		keyboardActionMapping.put(KeyEvent.VK_NUMPAD9, UserActionEnum.UpRight);
+		keyboardActionMapping.put(KeyEvent.VK_NUMPAD4, UserActionEnum.Left);
+		keyboardActionMapping.put(KeyEvent.VK_NUMPAD6, UserActionEnum.Right);
+		keyboardActionMapping.put(KeyEvent.VK_NUMPAD2, UserActionEnum.Down);
+		keyboardActionMapping.put(KeyEvent.VK_NUMPAD1, UserActionEnum.DownLeft);
+		keyboardActionMapping.put(KeyEvent.VK_NUMPAD3, UserActionEnum.DownRight);
+		keyboardActionMapping.put(KeyEvent.VK_ESCAPE, UserActionEnum.Pause);
+	}
 
 }

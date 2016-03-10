@@ -32,23 +32,18 @@ public class ObjectRenderer {
      */
     public static class mapRenderer {
         public static void render(Graphics g, Map map, Point mapCenterPoint, int mapStartX, int mapEndX, int mapStartY, int mapEndY) {
-            /*
-            * TODO: Given how many tiles we want to render and the size of the window, calculate an offset so that
-            * the map is always centered in the window.
-            */
             int i = 0, j = 0;
 
             for(int y = mapStartY; y < mapEndY; y++){
                 for(int x = mapStartX; x < mapEndX; x++){
-                    // TODO: Fix this so that it uses the offset.  This will not work currently!
                     Point pxCenterPoint;
                     if(x % 2 == 0) {
-                        int pxX = /*(i * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)) +*/ (int)((i - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
-                        int pxY = /*(j * graphicsAssets.TILE_PX_HEIGHT) + */((j - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
+                        int pxX = (int)((i - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
+                        int pxY = ((j - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
                         pxCenterPoint = new Point(pxX, pxY);
                     } else {
-                        int pxX = /*(i * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)) + */(int)((i - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
-                        int pxY = graphicsAssets.TILE_PX_HEIGHT/2/*( + j * graphicsAssets.TILE_PX_HEIGHT)*/ +  ((j - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
+                        int pxX = (int)((i - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
+                        int pxY = graphicsAssets.TILE_PX_HEIGHT/2 + ((j - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
                         pxCenterPoint = new Point(pxX, pxY);
                     }
                     tileRenderer.render(g, map.getTile(x,y), pxCenterPoint);
@@ -56,6 +51,34 @@ public class ObjectRenderer {
                 }
                 i = 0;
                 j++;
+            }
+        }
+    }
+
+    public static class entityRenderer {
+        public static void render(Graphics g, Entity entity, Point mapCenterPoint, Point pxRenderOffset) {
+            Point pxCenterPoint;
+            if(entity.getLocation().x % 2 == 0) {
+                int pxX = (int)((entity.getLocation().x - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
+                int pxY = ((entity.getLocation().y - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
+                pxCenterPoint = new Point(pxX, pxY);
+            } else {
+                int pxX = (int)((entity.getLocation().x - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
+                int pxY = graphicsAssets.TILE_PX_HEIGHT/2 + ((entity.getLocation().y - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
+                pxCenterPoint = new Point(pxX, pxY);
+            }
+
+            pxCenterPoint.x += pxRenderOffset.x;
+            pxCenterPoint.y += pxRenderOffset.y;
+
+            // Calculate the top left corner from the center point
+            // Render the correct image
+            EntityTypeEnum type = entity.getType();
+            if(type == EntityTypeEnum.Avatar) {
+                // Check occupation
+                g.setColor(new Color(0,0,0));
+                g.fillOval(pxCenterPoint.x - 25, pxCenterPoint.y - 25, 50, 50);
+                // render the correct image for the avatar's occupation.
             }
         }
     }
@@ -99,36 +122,4 @@ public class ObjectRenderer {
         }
     }
 
-    public static class entityRenderer {
-        public static void render(Graphics g, Entity entity, Point mapCenterPoint, Point pxRenderOffset) {
-            /*
-            * TODO: Given how many tiles we want to render and the size of the window, calculate an offset so that
-            * the map is always centered in the window.
-            */
-
-            Point pxCenterPoint;
-            if(entity.getLocation().x % 2 == 0) {
-                int pxX = /*(i * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)) +*/ (int)((entity.getLocation().x - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
-                int pxY = /*(j * graphicsAssets.TILE_PX_HEIGHT) + */((entity.getLocation().y - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
-                pxCenterPoint = new Point(pxX, pxY);
-            } else {
-                int pxX = /*(i * (int)(0.75*graphicsAssets.TILE_PX_WIDTH)) + */(int)((entity.getLocation().x - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
-                int pxY = graphicsAssets.TILE_PX_HEIGHT/2/*( + j * graphicsAssets.TILE_PX_HEIGHT)*/ +  ((entity.getLocation().y - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
-                pxCenterPoint = new Point(pxX, pxY);
-            }
-
-            pxCenterPoint.x += pxRenderOffset.x;
-            pxCenterPoint.y += pxRenderOffset.y;
-
-            // Calculate the top left corner from the center point
-            // Render the correct image
-            EntityTypeEnum type = entity.getType();
-            if(type == EntityTypeEnum.Avatar) {
-                // Check occupation
-                g.setColor(new Color(0,0,0));
-                g.fillOval(pxCenterPoint.x - 25, pxCenterPoint.y - 25, 50, 50);
-                // render the correct image for the avatar's occupation.
-            }
-        }
-    }
 }

@@ -39,6 +39,13 @@ public class Tile {
 		this.entity = e;
 	}
 
+	public Entity removeEntity() {
+		Entity entityToRemove;
+		entityToRemove = this.entity;
+		this.entity = null;
+		return entityToRemove;
+	}
+
 	public void addItem(Item item) {
 		this.items.add(item);
 	}

@@ -3,7 +3,9 @@ package Main.Controller.StateControllers;
 import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.UserActionEnum;
 import Main.Model.DirectionEnum;
+import Main.Model.Entity.Entity;
 import Main.Model.State.PlayState;
+import Main.Model.State.StateEnum;
 
 
 /**
@@ -44,6 +46,9 @@ public class PlayStateController extends StateController {
                 break;
             case DownRight:
                 playState.getPlayer().move(DirectionEnum.DownRight);
+                break;
+            case Pause:
+                stateControllerManager.setState(StateEnum.PauseState);
                 break;
         }
     }

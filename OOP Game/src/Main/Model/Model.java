@@ -3,10 +3,7 @@ package Main.Model;
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
 import Main.Model.Map.Map;
-import Main.Model.State.LoadState;
-import Main.Model.State.PlayState;
-import Main.Model.State.State;
-import Main.Model.State.StateEnum;
+import Main.Model.State.*;
 
 import java.util.EnumMap;
 
@@ -20,7 +17,6 @@ public class Model {
     private EnumMap<StateEnum, State> states;
 
     public Model() {
-
         /********************
          * Testing code: Creating player and world
          ********************/
@@ -31,13 +27,13 @@ public class Model {
         // Create the map first, we'll load everything into it later
         world = new Map(100, 100);
 
-
         /***********************
          * Create all the state objects
          ***********************/
         states = new EnumMap<>(StateEnum.class);
         states.put(StateEnum.LoadState, new LoadState(this));
         states.put(StateEnum.PlayState, new PlayState(world, player));
+        states.put(StateEnum.PauseState, new PauseState(world, player));
     }
 
     public Avatar getPlayer() {

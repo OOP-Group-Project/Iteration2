@@ -39,8 +39,16 @@ public class Map {
 		
 	}
 
-	public void addEntity(Entity e, int xLocation, int yLocation, DirectionEnum direction) {
+	public Entity getEntity(int xLocation, int yLocation) {
+		return tiles[xLocation][yLocation].getEntity();
+	}
+
+	public void addEntity(Entity e, int xLocation, int yLocation) {
 		tiles[xLocation][yLocation].addEntity(e);
+	}
+
+	public void removeEntity(Entity e, int xLocation, int yLocation) {
+		tiles[xLocation][yLocation].removeEntity();
 	}
 
 	public void addItem(Item i, int xLocation, int yLocation) {
