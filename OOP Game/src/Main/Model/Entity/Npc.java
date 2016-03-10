@@ -1,6 +1,7 @@
 package Main.Model.Entity;
 
 import Main.Model.DirectionEnum;
+import Main.Model.Stats.Effect;
 import Main.View.Graphics.GraphicsAssets;
 
 import java.awt.*;
@@ -18,6 +19,11 @@ public class Npc extends Entity {
 
     @Override
     public void render(Graphics g, int x, int y) {
+
+    }
+
+    @Override
+    public void applyEffect(Effect effect) {
 
     }
 
