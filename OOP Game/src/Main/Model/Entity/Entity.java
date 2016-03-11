@@ -14,50 +14,25 @@ import java.awt.image.BufferedImage;
  * TODO: Go over this class with mason to make sure that nothing was altered wrongfully
  */
 public abstract class Entity {
-
-    protected BufferedImage image;
-    protected int width;
-    protected int height;
-
     protected EntityTypeEnum type;
-    protected Stats Stats;
-    protected Occupation Occupation;
-    protected Inventory Inventory;
-
-    protected Point Location;
-
-    //create Entities at certain locations with a certain type and a buffered image
-    public Entity(BufferedImage image, EntityTypeEnum t, Occupation o, Point location) {
-        this.type = t;
-        this.Occupation = o;
-        this.Location = location;
-        this.image = image;
-        this.Stats = new Stats(o.map(),1);
-        this.Inventory = new Inventory();
-    }
-
-    //TESTING
-    public Entity(EntityTypeEnum t, Occupation o, Point location) {
-        this.type = t;
-        this.Occupation = o;
-        this.Location = location;
-        this.Stats = new Stats(o.map(),1);
-        this.Inventory = new Inventory();
-    }
+    protected Stats stats;
+    protected Occupation occupation;
+    protected Inventory inventory;
     protected MapLocationPoint location;
 
-    public Entity(BufferedImage image){
-        this.image = image;
+    //create Entities at certain locations with a certain type
+    public Entity(EntityTypeEnum entityType, Occupation occupation, MapLocationPoint location) {
+        this.type = entityType;
+        this.occupation = occupation;
+        this.location = location;
+        this.stats = new Stats(occupation.map(),1);
+        this.inventory = new Inventory();
     }
 
     //moves a players known x and y (JFK)
     public void move(DirectionEnum dir) {
         location.move(dir);
     }
-
-    //renders the entity to the screen
-    public abstract void render(Graphics g, int x, int y);
-
 
     public MapLocationPoint getLocation() {
         return location;
@@ -66,11 +41,6 @@ public abstract class Entity {
     //returns the type of entity it is
     public EntityTypeEnum getType() {
         return type;
-    }
-
-    //gets the buffered image associated with this entity
-    public BufferedImage getImage(){
-        return image;
     }
 
     // Entities now know how to adjust their Stats()
@@ -87,18 +57,18 @@ public abstract class Entity {
         offense = "off"
      */
     //
-    public void modifyStats(String stat_to_modify, double amt) {mStats.modifyStats(stat_to_modify, amt);}
+    public void modifyStats(String stat_to_modify, double amt) {stats.modifyStats(stat_to_modify, amt);}
 
     // used to temporarily modify stats
-    public void buff(String stat_to_buff, double amt){mStats.buff(stat_to_buff, amt);}
+    public void buff(String stat_to_buff, double amt){stats.buff(stat_to_buff, amt);}
 
     // reverts change caused by buff()
-    public void revert(){mStats.revert();}
+    public void revert(){stats.revert();}
 
     //
-    public void modifyLives(int amt){mStats.modifyLives(amt);}
+    public void modifyLives(int amt){stats.modifyLives(amt);}
     //
-    public void modifyExperience(int amt){mStats.modifyExperience(amt);}
+    public void modifyExperience(int amt){stats.modifyExperience(amt);}
     //
-    public void levelUp(){mStats.levelUp();}
+    public void levelUp(){stats.levelUp();}
 }

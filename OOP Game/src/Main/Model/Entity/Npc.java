@@ -1,6 +1,8 @@
 package Main.Model.Entity;
 
 import Main.Model.DirectionEnum;
+import Main.Model.Map.MapLocationPoint;
+import Main.Model.Occupation.Occupation;
 import Main.View.Graphics.GraphicsAssets;
 
 import java.awt.*;
@@ -11,23 +13,9 @@ import java.awt.image.BufferedImage;
  */
 public class Npc extends Entity {
 
-
-    public Npc(){
-        super(GraphicsAssets.player);
+    public Npc(EntityTypeEnum entityType, Occupation occupation, MapLocationPoint location){
+        super(entityType, occupation, location);
     }
 
-    @Override
-    public void render(Graphics g, int x, int y) {
 
-    }
-
-    @Override
-    public void move(DirectionEnum direction) {
-
-    }
-
-    @Override
-    public BufferedImage getImage() {
-        return null;
-    }
 }

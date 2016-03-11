@@ -23,7 +23,6 @@ public class PauseStateViewport extends StateViewport {
         this.viewport = viewport;
         this.playStateViewport = playStateViewport;
         this.pauseState = pauseState;
-
     }
 
     public void render(Graphics graphics) {
