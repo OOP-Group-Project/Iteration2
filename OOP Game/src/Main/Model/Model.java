@@ -30,7 +30,7 @@ public class Model {
         player = new Avatar(new MapLocationPoint(0,0));
 
         // Create the map first, we'll loadMap everything into it later
-        world = new MapIO().loadMap("map.txt");
+        world = new MapIO().loadMap();
 
         /***********************
          * Create all the state objects
@@ -42,7 +42,7 @@ public class Model {
         
         //INVENTORY & STATS  need to be pass to player and InventoryState
         states.put(StateEnum.InventoryState, new InventoryState());
-
+        new MapIO().saveMap(world, "map.txt");
     }
 
     public Avatar getPlayer() {

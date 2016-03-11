@@ -12,7 +12,7 @@ public class io {
     }
 
     public ArrayList<String> readFile(String fileName) {
-        ArrayList<String> FileData = new ArrayList<>();
+        ArrayList<String> fileData = new ArrayList<>();
 
         // This will reference one line at a time
         String line = null;
@@ -26,7 +26,7 @@ public class io {
 
 
             while ((line = bufferedReader.readLine()) != null) {
-                FileData.add(line);
+                fileData.add(line);
             }
 
             // Always close files.
@@ -36,7 +36,9 @@ public class io {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        return FileData;
+        String[] test = fileData.toString().split(",");
+        for (String linet : test) System.out.println(linet);
+        return fileData;
     }
 
     public void writeFile(ArrayList<String> data, String fileName) {

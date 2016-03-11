@@ -2,13 +2,8 @@ package Main.Model.io;
 
 import Main.Model.Map.Map;
 import Main.Model.Map.Tile;
-import Main.Model.Model;
 import Main.Model.Terrain.TerrainTypeEnum;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -100,16 +95,18 @@ public class MapIO {
         //format object
         for (int i = 0; i < height; i++) {
             String line = "";
+            String delimeter = ",";
             for (int j = 0; j < width; j++) {
+                if (j+1 == width) delimeter = "";
                 switch (map.getTile(i,j).getTerrainType()) {
                     case Grass:
-                        line += "1,";
+                        line += "01" + delimeter;
                         break;
                     case Mountain:
-                        line += "10,";
+                        line += "10" + delimeter;
                         break;
                     case Water:
-                        line += "20,";
+                        line += "20" + delimeter;
                         break;
                 }
             }
