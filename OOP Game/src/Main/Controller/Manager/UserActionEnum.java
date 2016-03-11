@@ -26,5 +26,13 @@ public enum UserActionEnum {
     Attack1,
     Attack2,
     Attack3,
-    Talk;
+    Talk,
+
+    //views
+    ViewUp,
+    ViewDown,
+    ViewUpRight,
+    ViewUpLeft,
+    ViewDownLeft,
+    ViewDownRight;
 }

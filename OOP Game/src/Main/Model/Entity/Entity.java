@@ -2,6 +2,7 @@ package Main.Model.Entity;
 
 import Main.Model.DirectionEnum;
 import Main.Model.Inventory.Inventory;
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Stats.Stats;
 
@@ -43,6 +44,7 @@ public abstract class Entity {
         this.Stats = new Stats(o.map(),1);
         this.Inventory = new Inventory();
     }
+    protected MapLocationPoint location;
 
     public Entity(BufferedImage image){
         this.image = image;
@@ -50,34 +52,15 @@ public abstract class Entity {
 
     //moves a players known x and y (JFK)
     public void move(DirectionEnum dir) {
-        switch (dir) {
-            case Up:
-                Location.translate(0,-1);
-                break;
-            case UpLeft:
-                Location.translate(-1,0);
-                break;
-            case UpRight:
-                Location.translate(1,0);
-                break;
-            case Down:
-                Location.translate(0,1);
-                break;
-            case DownLeft:
-                Location.translate(-1,1);
-                break;
-            case DownRight:
-                Location.translate(1,1);
-                break;
-        }
+        location.move(dir);
     }
 
     //renders the entity to the screen
     public abstract void render(Graphics g, int x, int y);
 
-    // gives a java class point (JFK)
-    public Point getLocation() {
-        return Location;
+
+    public MapLocationPoint getLocation() {
+        return location;
     }
 
     //returns the type of entity it is

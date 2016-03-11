@@ -64,6 +64,12 @@ public class KeyManager implements KeyListener{
 		keyboardActionMapping.put(KeyEvent.VK_NUMPAD1, UserActionEnum.DownLeft);
 		keyboardActionMapping.put(KeyEvent.VK_NUMPAD3, UserActionEnum.DownRight);
 		keyboardActionMapping.put(KeyEvent.VK_ESCAPE, UserActionEnum.Pause);
+		keyboardActionMapping.put(KeyEvent.VK_T, UserActionEnum.ViewUp);
+		keyboardActionMapping.put(KeyEvent.VK_R, UserActionEnum.ViewUpLeft);
+		keyboardActionMapping.put(KeyEvent.VK_Y, UserActionEnum.ViewUpRight);
+		keyboardActionMapping.put(KeyEvent.VK_G, UserActionEnum.ViewDown);
+		keyboardActionMapping.put(KeyEvent.VK_F, UserActionEnum.ViewDownLeft);
+		keyboardActionMapping.put(KeyEvent.VK_H, UserActionEnum.ViewDownRight);
 	}
 
 }

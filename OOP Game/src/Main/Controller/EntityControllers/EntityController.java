@@ -23,22 +23,18 @@ public class EntityController {
     }
 
     private boolean isAction(UserActionEnum U) {
-        if (U.ordinal() < 8) {
-            System.out.print("Found an action!");
+        if (U.ordinal() > 7 && U.ordinal() < 10) {
+            System.out.println("Found an action!");
             return true;
         }
         else return false;
     }
 
     private boolean isMovement(UserActionEnum U) {
-        if (U.ordinal() > 7 && U.ordinal() < 10) {
-            System.out.print("Found a movment!");
+        if (U.ordinal() < 8) {
+            System.out.println("Found a movment!");
             return true;
         }
         else return false;
-    }
-
-    public void update() {
-
     }
 }

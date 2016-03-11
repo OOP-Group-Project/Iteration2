@@ -2,6 +2,7 @@ package Main.Model.Entity;
 
 import Main.Model.DirectionEnum;
 import Main.Model.Occupation.Occupation;
+import Main.Model.Map.MapLocationPoint;
 import Main.View.Graphics.GraphicsAssets;
 
 import java.awt.*;
@@ -25,13 +26,17 @@ public class Avatar extends Entity{
     public Avatar(int xLocation, int yLocation) {
         super(GraphicsAssets.player);
         this.type = EntityTypeEnum.Avatar;
-        this.Location = new Point(xLocation,yLocation);
+
+        this.location = new MapLocationPoint(xLocation, yLocation);
     }
 
     @Override
-    public void move(DirectionEnum dir) {
-        System.out.print("OKAY");
-        super.move(dir);
+    public void move(DirectionEnum direction) {
+        location.move(direction);
+    }
+
+    public void respawn(int xLocation, int yLocation) {
+        this.location = new MapLocationPoint(xLocation, yLocation);
     }
 
     @Override
