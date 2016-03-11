@@ -1,7 +1,8 @@
 package Main.Model.Entity;
 
-import Main.Model.DirectionEnum;
-import Main.Model.Stats.Effect;
+
+import Main.Model.Map.MapLocationPoint;
+import Main.Model.Occupation.Occupation;
 import Main.View.Graphics.GraphicsAssets;
 
 import java.awt.*;
@@ -10,30 +11,7 @@ import java.awt.*;
  * Created by walkhard on 2/18/16.
  */
 public class Pet extends Entity {
-
-
-    public Pet(){
-        super(GraphicsAssets.pet);
+    public Pet(EntityTypeEnum entityType, Occupation occupation, MapLocationPoint location){
+        super(entityType, occupation, location);
     }
-
-    @Override
-    public void move(DirectionEnum direction) {
-
-    }
-
-    @Override
-    public void render(Graphics g, int x, int y) {
-
-    }
-
-    @Override
-    public void applyEffect(Effect effect) {
-
-    }
-
-    @Override
-    public void tick(){
-
-    }
-
 }

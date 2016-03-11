@@ -2,10 +2,14 @@ package Main.Model;
 
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
+import Main.Model.Inventory.Inventory;
 import Main.Model.Map.Map;
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.State.*;
+import Main.Model.Stats.Stats;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 
 /**
  * Created by mason on 3/9/16.
@@ -22,7 +26,7 @@ public class Model {
          ********************/
 
         // Create a dummy character first
-        player = new Avatar(0,0);
+        player = new Avatar(new MapLocationPoint(0,0));
 
         // Create the map first, we'll load everything into it later
         world = new Map(100, 100);
@@ -34,6 +38,9 @@ public class Model {
         states.put(StateEnum.LoadState, new LoadState(this));
         states.put(StateEnum.PlayState, new PlayState(world, player));
         states.put(StateEnum.PauseState, new PauseState());
+        
+        //INVENTORY & STATS  need to be pass to player and InventoryState
+        states.put(StateEnum.InventoryState, new InventoryState());
     }
 
     public Avatar getPlayer() {

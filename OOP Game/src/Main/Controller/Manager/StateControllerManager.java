@@ -9,6 +9,7 @@ package Main.Controller.Manager;
 import java.awt.event.KeyEvent;
 import java.util.EnumMap;
 
+import Main.Controller.StateControllers.InventoryStateController;
 import Main.Controller.StateControllers.LoadStateController;
 import Main.Controller.StateControllers.PauseStateController;
 import Main.Controller.StateControllers.PlayStateController;
@@ -40,6 +41,9 @@ public class StateControllerManager {
 		gameStateControllers.put(StateEnum.LoadState, new LoadStateController(this, (LoadState)states.get(StateEnum.LoadState), player, world));
 		gameStateControllers.put(StateEnum.PlayState, new PlayStateController(this, (PlayState)states.get(StateEnum.PlayState)));
 		gameStateControllers.put(StateEnum.PauseState, new PauseStateController(this, (PauseState)states.get(StateEnum.PauseState)));
+		
+		//guessing
+		gameStateControllers.put(StateEnum.InventoryState,new InventoryStateController(this, (InventoryState)states.get(StateEnum.InventoryState)));
 	}
 	
 	public void setState(StateEnum state){
