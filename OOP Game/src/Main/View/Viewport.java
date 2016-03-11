@@ -2,6 +2,7 @@ package Main.View;
 
 import Main.Controller.Controller;
 import Main.Model.Model;
+import Main.Model.State.InventoryState;
 import Main.Model.State.PauseState;
 import Main.Model.State.PlayState;
 import Main.Model.State.State;
@@ -10,6 +11,7 @@ import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
 import Main.View.Graphics.GraphicsAssets;
 import Main.View.Renderers.ObjectRenderer;
+import Main.View.Renderers.StateViewports.InventoryStateViewport;
 import Main.View.Renderers.StateViewports.LoadStateViewport;
 import Main.View.Renderers.StateViewports.PauseStateViewport;
 import Main.View.Renderers.StateViewports.PlayStateViewport;
@@ -93,6 +95,8 @@ public class Viewport extends JFrame implements Runnable {
         stateViewports.put(StateEnum.PlayState, new PlayStateViewport(this, graphicsAssets, (PlayState)states.get(StateEnum.PlayState)));
         stateViewports.put(StateEnum.LoadState, new LoadStateViewport(this));
         stateViewports.put(StateEnum.PauseState, new PauseStateViewport(this, (PauseState)states.get(StateEnum.PauseState), (PlayStateViewport)stateViewports.get(StateEnum.PlayState)));
+       
+        stateViewports.put(StateEnum.InventoryState,new InventoryStateViewport(this,(PlayStateViewport)stateViewports.get(StateEnum.PlayState),(InventoryState)states.get(StateEnum.InventoryState)));
     }
 
 
