@@ -1,6 +1,6 @@
 package Main.Controller;
 
-import Main.Controller.ObjectControllers.EntityController;
+import Main.Controller.EntityControllers.EntityController;
 import Main.Controller.StateControllers.StateController;
 import Main.Model.Model;
 import Main.Model.State.State;
