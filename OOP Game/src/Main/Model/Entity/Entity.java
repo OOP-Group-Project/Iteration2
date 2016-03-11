@@ -41,4 +41,32 @@ public abstract class Entity {
         return image;
     }
 
+    // Entities now know how to adjust their Stats()
+    /*
+        strength = "str"
+        agility = "agi"
+        intellect = "int"
+        hardiness = "har"
+        movement = "mov"
+        health = "hp"
+        mana = "mp"
+        armor = "arm"
+        defense = "def"
+        offense = "off"
+     */
+    //
+    public void modifyStats(String stat_to_modify, double amt) {mStats.modify(stat_to_modify, amt);}
+
+    // used to temporarily modify stats
+    public void buff(String stat_to_buff, double amt){mStats.buff(stat_to_buff, amt);}
+
+    // reverts change caused by buff()
+    public void revert(){mStats.revert();}
+
+    //
+    public void modifyLives(int amt){mStats.modifyLives(amt);}
+    //
+    public void modifyExperience(int amt){mStats.modifyExperience(amt);}
+    //
+    public void levelUp(){mStats.levelUp();}
 }
