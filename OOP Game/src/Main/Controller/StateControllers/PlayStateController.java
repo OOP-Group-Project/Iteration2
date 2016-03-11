@@ -1,5 +1,6 @@
 package Main.Controller.StateControllers;
 
+import Main.Controller.EntityControllers.EntityController;
 import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.UserActionEnum;
 import Main.Model.DirectionEnum;
@@ -15,10 +16,12 @@ public class PlayStateController extends StateController {
 
     private StateControllerManager stateControllerManager;
     private PlayState playState;
+    private EntityController ec;
 
     public PlayStateController(StateControllerManager stateControllerManager, PlayState playState) {
         this.stateControllerManager = stateControllerManager;
         this.playState = playState;
+        this.ec = new EntityController(playState.getWorld(), playState.getPlayer());
     }
 
     @Override
@@ -28,24 +31,15 @@ public class PlayStateController extends StateController {
 
     @Override
     public void handleAction(UserActionEnum action) {
+        ec.handleInput(action);
         switch(action) {
             case Up:
-                playState.movePlayer(DirectionEnum.Up);
-                break;
             case UpRight:
-                playState.movePlayer(DirectionEnum.UpRight);
-                break;
             case UpLeft:
-                playState.movePlayer(DirectionEnum.UpLeft);
-                break;
             case Down:
-                playState.movePlayer(DirectionEnum.Down);
-                break;
             case DownLeft:
-                playState.movePlayer(DirectionEnum.DownLeft);
-                break;
             case DownRight:
-                playState.movePlayer(DirectionEnum.DownRight);
+                playState.centerToAvatar();
                 break;
             case Pause:
                 stateControllerManager.setState(StateEnum.PauseState);
