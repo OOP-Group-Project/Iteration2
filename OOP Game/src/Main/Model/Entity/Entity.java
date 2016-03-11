@@ -87,18 +87,18 @@ public abstract class Entity {
         offense = "off"
      */
     //
-    public void modifyStats(String stat_to_modify, double amt) {mStats.modifyStats(stat_to_modify, amt);}
+    public void modifyStats(String stat_to_modify, double amt) {Stats.modifyStats(stat_to_modify, amt);}
 
     // used to temporarily modify stats
-    public void buff(String stat_to_buff, double amt){mStats.buff(stat_to_buff, amt);}
+    public void buff(String stat_to_buff, double amt){Stats.buff(stat_to_buff, amt);}
 
     // reverts change caused by buff()
-    public void revert(){mStats.revert();}
+    public void revert(){Stats.revert();}
 
     //
-    public void modifyLives(int amt){mStats.modifyLives(amt);}
+    public void modifyLives(int amt){Stats.modifyLives(amt);}
     //
-    public void modifyExperience(int amt){mStats.modifyExperience(amt);}
+    public void modifyExperience(int amt){Stats.modifyExperience(amt);}
     //
-    public void levelUp(){mStats.levelUp();}
+    public void levelUp(){Stats.levelUp();}
 }
