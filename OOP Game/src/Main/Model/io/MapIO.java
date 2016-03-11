@@ -78,11 +78,7 @@ public class MapIO {
         return tiles;
     }
 
-    //given a map it will serialize and write a data file for that map
-    public void saveMap(Map map) {
-        saveMap(map, "map.txt");
-    }
-
+    //given a map and a filename it will write the file out in a io readable format
     public void saveMap(Map map, String fileName) {
         //initialize variables
         int height = map.getHeight();
@@ -116,4 +112,10 @@ public class MapIO {
         //serialize data
         io.writeFile(data, fileName);
     }
+
+    //given a map it will serialize and write a data file for that map
+    public void saveMap(Map map) {
+        saveMap(map, "map.txt");
+    }
+
 }
