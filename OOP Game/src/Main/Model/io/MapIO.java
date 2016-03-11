@@ -23,16 +23,13 @@ public class MapIO {
     }
 
     //method will instantiate a loadMap controller and return a model
-    public Map loadMap(Map map) {
+    public Map loadMap(Map map, String fileName) {
         /***************
          * Read a map
          **************/
 
-        // The name of the file to open.
-        String FileName = "map";
-
         ArrayList<String> FileData;
-        FileData = io.readFile(FileName);
+        FileData = io.readFile(fileName);
 
         //get the map dimensions
         String[] size = FileData.get(0).split(",",2);
@@ -57,7 +54,17 @@ public class MapIO {
         return map;
     }
 
-    //use this method to just generate the map from the data, no existing map needed!
+    //load map given an existing map
+    public Map loadMap(Map map) {
+        return loadMap(map, "map");
+    }
+
+    //given a file name load a map with all other generic properties
+    public Map loadMap(String fileName) {
+        return loadMap(new Map(0,0), fileName);
+    }
+
+    //load generic map
     public Map loadMap() {
         return loadMap(new Map(0,0));
     }
