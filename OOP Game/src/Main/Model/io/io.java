@@ -1,9 +1,6 @@
 package Main.Model.io;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +11,7 @@ public class io {
     public io() {
     }
 
-    public ArrayList<String> readFile(String FileName) {
+    public ArrayList<String> readFile(String fileName) {
         ArrayList<String> FileData = new ArrayList<>();
 
         // This will reference one line at a time
@@ -22,7 +19,7 @@ public class io {
 
         try {
             // FileReader reads text files in the default encoding.
-            FileReader fileReader = new FileReader(FileName);
+            FileReader fileReader = new FileReader(fileName);
 
             // Always wrap FileReader in BufferedReader.
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -41,7 +38,27 @@ public class io {
         }
         return FileData;
     }
-    public void writeFile() {
 
+    public void writeFile(ArrayList<String> data, String fileName) {
+        try {
+            // Assume default encoding.
+            FileWriter fileWriter =
+                    new FileWriter(fileName);
+
+            // Always wrap FileWriter in BufferedWriter.
+            BufferedWriter bufferedWriter =
+                    new BufferedWriter(fileWriter);
+
+            for (String line : data) {
+                bufferedWriter.write(line);
+                bufferedWriter.newLine();
+            }
+
+            // Always close files.
+            bufferedWriter.close();
+        }
+        catch(IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
