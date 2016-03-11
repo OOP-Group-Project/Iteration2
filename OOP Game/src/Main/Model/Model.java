@@ -3,6 +3,7 @@ package Main.Model;
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
 import Main.Model.Map.Map;
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.State.*;
 
 import java.util.EnumMap;
@@ -22,7 +23,7 @@ public class Model {
          ********************/
 
         // Create a dummy character first
-        player = new Avatar(0,0);
+        player = new Avatar(new MapLocationPoint(0,0));
 
         // Create the map first, we'll load everything into it later
         world = new Map(100, 100);

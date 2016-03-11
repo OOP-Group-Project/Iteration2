@@ -82,7 +82,6 @@ public class Viewport extends JFrame implements Runnable {
 
     }
 
-
     // Each renderer is an object that stores how it should render a specific object to the game screen.
     // The state stateViewports can use individual object rednerers that are relevant to them (i.e., the playStateRenderer has an EntityRenderer and MapRenderer so that it can call both of their render methods)
     private void initializeRenderers(EnumMap<StateEnum, State> states) {

@@ -3,6 +3,7 @@ package Main.Model.Entity;
 import Main.Model.DirectionEnum;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Map.MapLocationPoint;
+import Main.Model.Occupation.Smasher;
 import Main.View.Graphics.GraphicsAssets;
 
 import java.awt.*;
@@ -14,33 +15,16 @@ import java.awt.*;
  */
 public class Avatar extends Entity{
 
-    public Avatar(Occupation o, Point location) {
+    public Avatar(MapLocationPoint location) {
+        super(EntityTypeEnum.Avatar, new Smasher(), location);
+    }
+
+    public Avatar(Occupation o, MapLocationPoint location) {
         super(EntityTypeEnum.Avatar, o, location);
-    }
-
-    public Avatar(){
-        super(GraphicsAssets.player);
-        this.type = EntityTypeEnum.Avatar;
-    }
-
-    public Avatar(int xLocation, int yLocation) {
-        super(GraphicsAssets.player);
-        this.type = EntityTypeEnum.Avatar;
-
-        this.location = new MapLocationPoint(xLocation, yLocation);
-    }
-
-    @Override
-    public void move(DirectionEnum direction) {
-        location.move(direction);
     }
 
     public void respawn(int xLocation, int yLocation) {
         this.location = new MapLocationPoint(xLocation, yLocation);
     }
 
-    @Override
-    public void render(Graphics g, int x, int y) {
-        g.drawImage(this.getImage(), x, y,null);
-    }
 }

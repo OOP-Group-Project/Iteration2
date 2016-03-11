@@ -5,13 +5,13 @@ import Main.Model.Entity.*;
 /**
  * Created by Peter Camejo on 3/10/2016.
  */
-public class Requirements {
+public class Requirement {
     /*** Member Variables ***/
     private int requiredLevel;
     private TakeAble requiredItem;
 
     /*** Constructors ***/
-    public Requirements(int requiredLevel , TakeAble requiredItem){
+    public Requirement(int requiredLevel , TakeAble requiredItem){
         this.requiredLevel = requiredLevel;
         this.requiredItem = requiredItem;
     }
@@ -36,4 +36,4 @@ public class Requirements {
         return false;
     }
 
-} //end Requirements
+} //end Requirement

@@ -98,14 +98,12 @@ public class PlayStateViewport extends StateViewport {
         // First update the position and offset of the map and all entities that are on screen.
         update();
 
-
         // Then render them
         ObjectRenderer.mapRenderer.render(graphics, playState.getWorld(), mapCameraCenter, mapStartX, mapEndX, mapStartY, mapEndY);
 
         for(Entity inViewEntity : inViewEntities) {
             // Get the offset amount
             Point pxRenderOffset = inViewEntityPxOffset.get(inViewEntity);
-
 
             // Render it
             ObjectRenderer.entityRenderer.render(graphics, inViewEntity, mapCameraCenter, pxRenderOffset);
