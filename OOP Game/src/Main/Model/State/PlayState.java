@@ -38,14 +38,4 @@ public class PlayState extends State {
         this.centerPoint = (MapLocationPoint)player.getLocation().clone();
     }
 
-    public void setCenterPoint(MapLocationPoint newPoint) {
-        this.centerPoint = newPoint;
-    }
-
-    public void movePlayer(DirectionEnum direction) {
-        player.move(direction);
-        centerPoint.x = player.getLocation().x;
-        centerPoint.y = player.getLocation().y;
-    }
-
 }
