@@ -51,6 +51,9 @@ public class GraphicsAssets {
         water = ImageLoader.loadImage("/Resources/water.png");
         grass = ImageLoader.loadImage("/Resources/grass.png");
         mountain = ImageLoader.loadImage("/Resources/mountain.png");
+        redCross = ImageLoader.loadImage("/Resources/redCross.png");
+        greenPlus = ImageLoader.loadImage("/Resources/greenPlus.png");
+        goldStar = ImageLoader.loadImage("/Resources/goldStar.png");
 
         // Load in player sprites
         player = mSpriteSheet.crop(X_START, Y_WALK_DOWN, WIDTH, HEIGHT);

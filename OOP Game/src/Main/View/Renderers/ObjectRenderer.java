@@ -2,6 +2,8 @@ package Main.View.Renderers;
 
 import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.AreaEffect.AreaEffectEnum;
+import Main.Model.AreaEffect.HealDamage;
+import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Entity.Entity;
 import Main.Model.Entity.EntityTypeEnum;
 import Main.Model.Items.Item;
@@ -102,6 +104,9 @@ public class ObjectRenderer {
             if(type == TerrainTypeEnum.Grass) {
                 g.drawImage(graphicsAssets.grass, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
 
+                // Render HealDamage AreaEffect
+                areaEffectRenderer.render(g, new TakeDamage(),topLeft);
+
             } else if(type == TerrainTypeEnum.Water) {
                 //g.drawImage(graphicsAssets.water, x, y, width, height);
 
@@ -127,6 +132,7 @@ public class ObjectRenderer {
     public static class areaEffectRenderer{
         public static void render(Graphics g, AreaEffect areaEffect, Point pxTopLeftPoint){
             AreaEffectEnum type = areaEffect.getType();
+//            System.out.println("type: " + areaEffect.getType());
 
             switch(type){
                 case Heal:
