@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 /**
  * Created by johnkaufmann on 3/11/16.
- * TODO:
+ * INSTRUCTIONS: Call new MapIO().load(parameters) to load a previous game's map
+ * and new MapIO().save(map) to save the current game's map.
  */
 public class MapIO {
 

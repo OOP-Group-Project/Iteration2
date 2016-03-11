@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 /**
  * Created by johnkaufmann on 3/11/16.
- * TODO:
+ * INSTRUCTIONS: Given a file name it will break that file up based on its comma seperated values (CSV)
+ * and store it into an array list that may be altered in a specific IO controller.
  */
 public class io {
     public io() {
