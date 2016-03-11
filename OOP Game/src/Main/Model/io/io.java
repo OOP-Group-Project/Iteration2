@@ -1,71 +1,47 @@
 package Main.Model.io;
 
-import Main.Model.Model;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
- * Created by johnkaufmann on 3/10/16.
+ * Created by johnkaufmann on 3/11/16.
  * TODO:
  */
 public class io {
-    Model model;
     public io() {
-
     }
 
-    public io(Model model) {
-        this.model = model;
-    }
-
-    //method will instantiate a load controller and return a model
-    public Model load() {
-        //read a file
-        String mapFileName = "map.txt";
-        String avatarFileName = "map.txt";
+    public ArrayList<String> readFile(String FileName) {
+        ArrayList<String> FileData = new ArrayList<>();
 
         // This will reference one line at a time
         String line = null;
 
         try {
             // FileReader reads text files in the default encoding.
-            FileReader mapFileReader = new FileReader(mapFileName);
-            FileReader avatarFileReader = new FileReader(avatarFileName);
+            FileReader fileReader = new FileReader(FileName);
 
             // Always wrap FileReader in BufferedReader.
-            BufferedReader mapBufferedReader = new BufferedReader(mapFileReader);
-            BufferedReader avatarBufferedReader = new BufferedReader(avatarFileReader);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            while((line = mapBufferedReader.readLine()) != null) {
-                System.out.println(line);
+
+            while ((line = bufferedReader.readLine()) != null) {
+                FileData.add(line);
             }
 
             // Always close files.
-            mapBufferedReader.close();
-            avatarBufferedReader.close();
-        }
-        catch(FileNotFoundException ex) {
-            System.out.println("Unable to open file '" + fileName + "'");
-        }
-        catch(IOException ex) {
+            bufferedReader.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("Unable to open file");
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
-
-        //set the map
-
-        //set the avatar
-
-        //TODO: implement the load entity array
-
-        return model;
+        return FileData;
     }
+    public void writeFile() {
 
-    //method will save a given model
-    public boolean save(Model model) {
-
-        return false;
     }
 }

@@ -4,6 +4,8 @@ import Main.Model.Entity.Entity;
 import Main.Model.Items.Item;
 import Main.Model.Terrain.TerrainTypeEnum;
 
+import java.util.ArrayList;
+
 
 public class Map {
 	//MAP DIMENSIONS
@@ -28,10 +30,17 @@ public class Map {
             }
         }
 	}
-	
-	//should be able to read from a path and set up the map
-	public void loadMap(String path){
-		
+
+	public void setTiles(Tile[][] tiles) {
+		this.tiles = tiles;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
 	}
 
 	public Entity getEntity(int xLocation, int yLocation) {

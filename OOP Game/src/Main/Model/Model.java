@@ -4,6 +4,8 @@ import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
 import Main.Model.Map.Map;
 import Main.Model.State.*;
+import Main.Model.io.IOController;
+import Main.Model.io.MapIO;
 
 import java.util.EnumMap;
 
@@ -24,8 +26,8 @@ public class Model {
         // Create a dummy character first
         player = new Avatar(0,0);
 
-        // Create the map first, we'll load everything into it later
-        world = new Map(100, 100);
+        // Create the map first, we'll loadMap everything into it later
+        world = new MapIO().loadMap();
 
         /***********************
          * Create all the state objects
