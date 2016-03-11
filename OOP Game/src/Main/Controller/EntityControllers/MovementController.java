@@ -120,7 +120,7 @@ public class MovementController {
     //checks to see if an index is out of bounds (JFK)
     private boolean checkOutOfBounds(MapLocationPoint endPoint) {
         //checks to see if the given endPoint is off the map
-        if ((endPoint.x < map.getWidth() && endPoint.x < map.getHeight()) && (endPoint.y < map.getWidth() && endPoint.y < map.getHeight()))
+        if ((endPoint.x < map.getWidth() && endPoint.x >= 0) && (endPoint.y >= 0 && endPoint.y < map.getHeight()))
             return true;
         else {
             //print statement

@@ -15,8 +15,8 @@ public class Map {
     private int height;
 
     public Map(int width, int height) {
-        this.height = 5;
-        this.width = 5;
+        this.height = height;
+        this.width = width;
         this.tiles = new Tile[width][height];
     }
 	

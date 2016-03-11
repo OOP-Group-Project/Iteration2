@@ -31,49 +31,38 @@ public class PlayStateController extends StateController {
 
     @Override
     public void handleAction(UserActionEnum action) {
-//        switch(action) {
-//            case Up:
-//                playState.movePlayer(DirectionEnum.Up);
-//                break;
-//            case UpRight:
-//                playState.movePlayer(DirectionEnum.UpRight);
-//                break;
-//            case UpLeft:
-//                playState.movePlayer(DirectionEnum.UpLeft);
-//                break;
-//            case Down:
-//                playState.movePlayer(DirectionEnum.Down);
-//                break;
-//            case DownLeft:
-//                playState.movePlayer(DirectionEnum.DownLeft);
-//                break;
-//            case DownRight:
-//                playState.movePlayer(DirectionEnum.DownRight);
-//                break;
-//            case Pause:
-//                stateControllerManager.setState(StateEnum.PauseState);
-//                break;
-//            case ViewUp:
-//                playState.moveCenterPoint(DirectionEnum.Up);
-//                break;
-//            case ViewUpLeft:
-//                playState.moveCenterPoint(DirectionEnum.UpLeft);
-//                break;
-//            case ViewUpRight:
-//                playState.moveCenterPoint(DirectionEnum.UpRight);
-//                break;
-//            case ViewDown:
-//                playState.moveCenterPoint(DirectionEnum.Down);
-//                break;
-//            case ViewDownLeft:
-//                playState.moveCenterPoint(DirectionEnum.DownLeft);
-//                break;
-//            case ViewDownRight:
-//                playState.moveCenterPoint(DirectionEnum.DownRight);
-//                break;
-//        }
         ec.handleInput(action);
-
+        switch(action) {
+            case Up:
+            case UpRight:
+            case UpLeft:
+            case Down:
+            case DownLeft:
+            case DownRight:
+                playState.centerToAvatar();
+                break;
+            case Pause:
+                stateControllerManager.setState(StateEnum.PauseState);
+                break;
+            case ViewUp:
+                playState.moveCenterPoint(DirectionEnum.Up);
+                break;
+            case ViewUpLeft:
+                playState.moveCenterPoint(DirectionEnum.UpLeft);
+                break;
+            case ViewUpRight:
+                playState.moveCenterPoint(DirectionEnum.UpRight);
+                break;
+            case ViewDown:
+                playState.moveCenterPoint(DirectionEnum.Down);
+                break;
+            case ViewDownLeft:
+                playState.moveCenterPoint(DirectionEnum.DownLeft);
+                break;
+            case ViewDownRight:
+                playState.moveCenterPoint(DirectionEnum.DownRight);
+                break;
+        }
     }
 }
 
