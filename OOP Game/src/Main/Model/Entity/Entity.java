@@ -4,11 +4,8 @@ import Main.Model.DirectionEnum;
 import Main.Model.Inventory.Inventory;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
-import Main.Model.Stats.Effect;
 import Main.Model.Stats.Stats;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
 /**
  * Modified by John Kaufmann 2/9/16
  * TODO: Implment an equipment starter pack based on your entity type.

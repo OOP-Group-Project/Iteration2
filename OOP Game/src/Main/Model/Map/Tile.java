@@ -3,7 +3,6 @@ package Main.Model.Map;
 import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.Entity.Entity;
 import Main.Model.Items.Item;
-import Main.Model.Stats.Effect;
 
 import Main.Model.Terrain.TerrainTypeEnum;
 
@@ -57,10 +56,6 @@ public class Tile {
 	public TerrainTypeEnum getTerrainType() {
 		return terrainType;
 	}
-
-    public Effect getEffect(){
-        return mAreaEffect.getEffect();
-    }
 
 	public int getX() {
 		return x;

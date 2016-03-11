@@ -1,9 +1,5 @@
 package Main.Model.AreaEffect;
 
-import Main.Model.Stats.Effect;
-import Main.Model.Stats.StatsEnum;
-import Main.Model.Stats.StatsStructure;
-
 /**
  * Created by Michael on 3/9/16.
  */

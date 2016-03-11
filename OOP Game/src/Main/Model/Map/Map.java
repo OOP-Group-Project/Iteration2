@@ -40,14 +40,6 @@ public class Map {
 		tiles[xLocation][yLocation].addItem(i);
 	}
 
-<<<<<<< HEAD
-	public void addAreaEffect(AreaEffect areaEffect, int xLocation, int yLocation){
-		tiles[xLocation][yLocation].addAreaEffect(areaEffect);
-	}
-
-
-=======
->>>>>>> master
 	public int getHeight() {
 		return height;
 	}
