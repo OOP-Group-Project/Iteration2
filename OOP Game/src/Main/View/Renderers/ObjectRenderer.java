@@ -147,6 +147,8 @@ public class ObjectRenderer {
                 case Death:
                     g.drawImage(graphicsAssets.skullCrossBones,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
                     break;
+                case Portal:
+                    g.drawImage(graphicsAssets.portal, pxTopLeftPoint.x,pxTopLeftPoint.y,null);
             }
         }
     }
