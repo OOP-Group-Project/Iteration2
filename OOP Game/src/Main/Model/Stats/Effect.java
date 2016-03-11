@@ -3,7 +3,7 @@ package Main.Model.Stats;
 /**
  * Created by Michael on 3/9/16.
  */
-public class Effect {
+public abstract class Effect {
 
     private StatsStructure modifier;
     private long duration;
