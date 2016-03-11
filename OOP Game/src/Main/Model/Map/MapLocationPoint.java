@@ -28,26 +28,18 @@ public class MapLocationPoint extends Point {
                     temp.y++;
                     break;
                 case Up:
-                    if((temp.y - 1) >= 0) {
-                        temp.y--;
-                    }
+                    temp.y--;
                     break;
                 case UpLeft:
-                    if((temp.x - 1) >= 0 && (temp.y - 1) >= 0){
-                        temp.x--;
-                        temp.y--;
-                    }
+                    temp.x--;
+                    temp.y--;
                     break;
                 case UpRight:
-                    if((temp.y - 1) >= 0) {
-                        temp.x++;
-                        temp.y--;
-                    }
+                    temp.x++;
+                    temp.y--;
                     break;
                 case DownLeft:
-                    if((temp.x - 1) >= 0) {
-                        temp.x--;
-                    }
+                    temp.x--;
                     break;
                 case DownRight:
                     temp.x++;
@@ -59,24 +51,18 @@ public class MapLocationPoint extends Point {
                     temp.y++;
                     break;
                 case Up:
-                    if ((temp.y - 1) >= 0) {
-                        temp.y--;
-                    }
+                    temp.y--;
                     break;
                 case DownLeft:
-                    if ((temp.x - 1) >= 0) {
-                        temp.x--;
-                        temp.y++;
-                    }
+                    temp.x--;
+                    temp.y++;
                     break;
                 case DownRight:
                     temp.x++;
                     temp.y++;
                     break;
                 case UpLeft:
-                    if ((temp.x - 1) >= 0) {
-                        temp.x--;
-                    }
+                    temp.x--;
                     break;
                 case UpRight:
                     temp.x++;

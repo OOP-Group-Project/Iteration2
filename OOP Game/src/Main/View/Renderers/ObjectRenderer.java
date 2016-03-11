@@ -32,25 +32,20 @@ public class ObjectRenderer {
      */
     public static class mapRenderer {
         public static void render(Graphics g, Map map, Point mapCenterPoint, int mapStartX, int mapEndX, int mapStartY, int mapEndY) {
-            int i = 0, j = 0;
-
             for(int y = mapStartY; y < mapEndY; y++){
                 for(int x = mapStartX; x < mapEndX; x++){
                     Point pxCenterPoint;
-                    if(x % 2 == 0) {
-                        int pxX = (int)((i - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
-                        int pxY = ((j - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
+                    if(x % 2 != 0) {
+                        int pxX = (int)((x - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
+                        int pxY = ((mapCenterPoint.x % 2 == 0)? graphicsAssets.TILE_PX_HEIGHT/2 : 0) + ((y - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
                         pxCenterPoint = new Point(pxX, pxY);
                     } else {
-                        int pxX = (int)((i - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
-                        int pxY = graphicsAssets.TILE_PX_HEIGHT/2 + ((j - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
+                        int pxX = (int)((x - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
+                        int pxY = ((mapCenterPoint.x % 2 != 0)? -1 * graphicsAssets.TILE_PX_HEIGHT/2 : 0) + ((y - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
                         pxCenterPoint = new Point(pxX, pxY);
                     }
                     tileRenderer.render(g, map.getTile(x,y), pxCenterPoint);
-                    i++;
                 }
-                i = 0;
-                j++;
             }
         }
     }
@@ -58,13 +53,13 @@ public class ObjectRenderer {
     public static class entityRenderer {
         public static void render(Graphics g, Entity entity, Point mapCenterPoint, Point pxRenderOffset) {
             Point pxCenterPoint;
-            if(entity.getLocation().x % 2 == 0) {
+            if(entity.getLocation().x % 2 != 0) {
                 int pxX = (int)((entity.getLocation().x - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
-                int pxY = ((entity.getLocation().y - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
+                int pxY = ((mapCenterPoint.x % 2 == 0)? graphicsAssets.TILE_PX_HEIGHT/2 : 0) + ((entity.getLocation().y - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
                 pxCenterPoint = new Point(pxX, pxY);
             } else {
                 int pxX = (int)((entity.getLocation().x - mapCenterPoint.x)*(0.75*graphicsAssets.TILE_PX_WIDTH)) + view.getWidth()/2;
-                int pxY = graphicsAssets.TILE_PX_HEIGHT/2 + ((entity.getLocation().y - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
+                int pxY = ((mapCenterPoint.x % 2 != 0)? -1*graphicsAssets.TILE_PX_HEIGHT/2 : 0) + ((entity.getLocation().y - mapCenterPoint.y)*graphicsAssets.TILE_PX_HEIGHT) + view.getHeight()/2;
                 pxCenterPoint = new Point(pxX, pxY);
             }
 

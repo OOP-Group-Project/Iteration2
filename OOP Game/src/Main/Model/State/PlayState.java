@@ -34,10 +34,8 @@ public class PlayState extends State {
         centerPoint.move(direction);
     }
 
-    public void movePlayer(DirectionEnum direction) {
-        player.move(direction);
-        centerPoint.x = player.getLocation().x;
-        centerPoint.y = player.getLocation().y;
+    public void centerToAvatar() {
+        this.centerPoint = (MapLocationPoint)player.getLocation().clone();
     }
 
 }

@@ -10,5 +10,8 @@ import java.util.HashMap;
 public abstract class Occupation {
     //
     protected Map<String, Double> modify = new HashMap<>();
+
     public Map map(){return modify;}
+
+
 }
