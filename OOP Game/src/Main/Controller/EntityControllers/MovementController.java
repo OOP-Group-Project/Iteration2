@@ -32,7 +32,7 @@ public class MovementController {
         MapLocationPoint endPoint = entity.getLocation();
         Tile startTile = map.getTile(currentPoint.x, currentPoint.y);
 
-        System.out.println("Movement controller being used with direction: " + u);
+        //System.out.println("Movement controller being used with direction: " + u);
         switch (u) {
             case Up:
                 //move endPoint
