@@ -55,7 +55,7 @@ public abstract class Entity {
         offense = "off"
      */
     //
-    public void modifyStats(String stat_to_modify, double amt) {mStats.modify(stat_to_modify, amt);}
+    public void modifyStats(String stat_to_modify, double amt) {mStats.modifyStats(stat_to_modify, amt);}
 
     // used to temporarily modify stats
     public void buff(String stat_to_buff, double amt){mStats.buff(stat_to_buff, amt);}

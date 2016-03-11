@@ -503,7 +503,7 @@ public class Stats {
     }
 
     // mutators
-    public void modify(String stat_to_modify, Double amt) {
+    public void modifyStats(String stat_to_modify, Double amt) {
         switch(stat_to_modify) {
             case "str": changeCurStrength(amt);
                         break;
