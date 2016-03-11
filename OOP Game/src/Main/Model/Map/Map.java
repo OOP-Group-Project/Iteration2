@@ -10,9 +10,6 @@ import java.util.ArrayList;
 public class Map {
 	//MAP DIMENSIONS
 	private Tile[][] tiles;
-	private int numRows;
-	private int numCols;
-
     private int width;
     private int height;
 
@@ -43,22 +40,13 @@ public class Map {
 		this.height = height;
 	}
 
-	public Entity getEntity(int xLocation, int yLocation) {
-		return tiles[xLocation][yLocation].getEntity();
-	}
-
 	public void addEntity(Entity e, int xLocation, int yLocation) {
 		tiles[xLocation][yLocation].addEntity(e);
-	}
-
-	public void removeEntity(Entity e, int xLocation, int yLocation) {
-		tiles[xLocation][yLocation].removeEntity();
 	}
 
 	public void addItem(Item i, int xLocation, int yLocation) {
 		tiles[xLocation][yLocation].addItem(i);
 	}
-
 
 	public int getHeight() {
 		return height;

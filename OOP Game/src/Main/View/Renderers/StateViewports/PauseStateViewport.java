@@ -6,7 +6,6 @@ import Main.Model.State.PauseState;
 import Main.Model.State.PlayState;
 import Main.View.Graphics.GraphicsAssets;
 import Main.View.Viewport;
-import com.sun.corba.se.impl.orbutil.graph.Graph;
 
 import java.awt.*;
 
@@ -23,7 +22,6 @@ public class PauseStateViewport extends StateViewport {
         this.viewport = viewport;
         this.playStateViewport = playStateViewport;
         this.pauseState = pauseState;
-
     }
 
     public void render(Graphics graphics) {
