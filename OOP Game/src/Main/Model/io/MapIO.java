@@ -10,6 +10,8 @@ import java.util.ArrayList;
  * Created by johnkaufmann on 3/11/16.
  * INSTRUCTIONS: Call new MapIO().load(parameters) to load a previous game's map
  * and new MapIO().save(map) to save the current game's map.
+ *
+ * USE CASE: Check Model to see an example of it instantiating the world
  */
 public class MapIO {
 
