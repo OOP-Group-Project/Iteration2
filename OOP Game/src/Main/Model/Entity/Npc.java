@@ -14,16 +14,16 @@ import java.awt.image.BufferedImage;
  */
 public class Npc extends Entity {
 
-    public Npc(EntityTypeEnum entityType, Occupation occupation, MapLocationPoint location){
-        super(entityType, occupation, location);
+    public Npc(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location){
+        super(entityType, entitySpiel, occupation, location);
     }
 
     public Npc(MapLocationPoint location) {
-        super(EntityTypeEnum.NPC, new Smasher(), location);
+        super(EntityTypeEnum.NPC, EntitySpeechEnum.TRASH, new Smasher(), location);
     }
 
     public Npc(Occupation o, MapLocationPoint location) {
-        super(EntityTypeEnum.NPC, o, location);
+        super(EntityTypeEnum.NPC, EntitySpeechEnum.TRASH, o, location);
     }
 
     public void respawn(int xLocation, int yLocation) {

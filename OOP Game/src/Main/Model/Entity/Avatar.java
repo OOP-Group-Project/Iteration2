@@ -16,11 +16,11 @@ import java.awt.*;
 public class Avatar extends Entity{
 
     public Avatar(MapLocationPoint location) {
-        super(EntityTypeEnum.Avatar, new Smasher(), location);
+        super(EntityTypeEnum.Avatar, EntitySpeechEnum.PLAYER, new Smasher(), location);
     }
 
     public Avatar(Occupation o, MapLocationPoint location) {
-        super(EntityTypeEnum.Avatar, o, location);
+        super(EntityTypeEnum.Avatar, EntitySpeechEnum.PLAYER, o, location);
     }
 
     public void respawn(int xLocation, int yLocation) {
