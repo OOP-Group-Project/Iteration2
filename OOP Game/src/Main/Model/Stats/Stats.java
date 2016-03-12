@@ -55,6 +55,7 @@ public class Stats {
     private double max_int;    //intellect
     private double max_har;    //hardiness
     private double max_mov;    //movement
+    private double max_act;
     private int max_exp;       //experience required to reach next level
     private int max_lives;     //number of lives available
 
@@ -64,6 +65,7 @@ public class Stats {
     private double cur_int;
     private double cur_har;
     private double cur_mov;
+    private double cur_act;
     private int cur_exp;
     private int cur_lives;
 
@@ -73,6 +75,7 @@ public class Stats {
     private double temp_int;
     private double temp_har;
     private double temp_mov;
+    private double temp_act;
 
     /*
 
@@ -112,35 +115,37 @@ public class Stats {
     private double temp_arm;
 
     // accessors (maximum)
-    public double getMaxStrength() {return max_str;}
-    public double getMaxAgility() {return max_agi;}
-    public double getMaxIntellect() {return max_int;}
-    public double getMaxHardiness() {return max_har;}
-    public double getMaxMovement() {return max_mov;}
-    public double getMaxLife() {return max_hp;}
-    public double getMaxMana() {return max_mp;}
-    public double getMaxOffense() {return max_off;}
-    public double getMaxDefense() {return max_def;}
-    public double getMaxArmor() {return max_arm;}
-    public int getMaxExperience() {return max_exp;}
-    public int getMaxLives() {return max_lives;}
+    public double maxStrength() {return max_str;}
+    public double maxAgility() {return max_agi;}
+    public double maxIntellect() {return max_int;}
+    public double maxHardiness() {return max_har;}
+    public double maxMovement() {return max_mov;}
+    public double maxAction() {return max_act;}
+    public double maxLife() {return max_hp;}
+    public double maxMana() {return max_mp;}
+    public double maxOffense() {return max_off;}
+    public double maxDefense() {return max_def;}
+    public double maxArmor() {return max_arm;}
+    public int maxExperience() {return max_exp;}
+    public int maxLives() {return max_lives;}
 
     //
     public int level() {return level;}
 
     // accessors (current)
-    public double getCurStrength() {return cur_str;}
-    public double getCurAgility() {return cur_agi;}
-    public double getCurIntellect() {return cur_int;}
-    public double getCurHardiness() {return cur_har;}
-    public double getCurMovement() {return cur_mov;}
-    public double getCurLife() {return cur_hp;}
-    public double getCurMana() {return cur_mp;}
-    public double getCurOffense() {return cur_off;}
-    public double getCurDefense() {return cur_def;}
-    public double getCurArmor() {return cur_arm;}
-    public int getCurExperience() {return cur_exp;}
-    public int getCurLives() {return cur_lives;}
+    public double curStrength() {return cur_str;}
+    public double curAgility() {return cur_agi;}
+    public double curIntellect() {return cur_int;}
+    public double curHardiness() {return cur_har;}
+    public double curMovement() {return cur_mov;}
+    public double curAction() {return cur_act;}
+    public double curLife() {return cur_hp;}
+    public double curMana() {return cur_mp;}
+    public double curOffense() {return cur_off;}
+    public double curDefense() {return cur_def;}
+    public double curArmor() {return cur_arm;}
+    public int curExperience() {return cur_exp;}
+    public int curLives() {return cur_lives;}
 
     // setters
     private void setCurExperience(){cur_exp = 0;}
@@ -160,6 +165,7 @@ public class Stats {
         cur_def = max_def;
         cur_mov = max_mov;
         cur_arm = max_arm;
+        cur_act = max_act;
     }
     //
     private void setTemp() {
@@ -173,6 +179,7 @@ public class Stats {
         temp_def = max_def;
         temp_mov = max_mov;
         temp_arm = max_arm;
+        temp_act = max_act;
     }
     /*
 
@@ -226,6 +233,13 @@ public class Stats {
             max_mov += amt;
         else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             max_mov += max_mov * amt;
+    }
+    private void changeMaxAction(double amt) {
+        // change stat
+        if(abs(amt) > 0.99)
+            max_act += amt;
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
+            max_act += max_act * amt;
     }
     private void changeMaxLife(double amt) {
         // change stat
@@ -341,6 +355,18 @@ public class Stats {
         else if(cur_mov < 0)
             cur_mov = 0;
     }
+    private void changeCurAction(double amt) {
+        // change stat
+        if(abs(amt) > 0.99)
+            cur_act += amt;
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
+            cur_act += cur_act * amt;
+        // make sure the change makes sense
+        if (cur_act > max_act)
+            cur_act = max_act;
+        else if(cur_act < 0)
+            cur_act = 0;
+    }
     private void changeCurLife(double amt) {
 
         // change stat
@@ -452,6 +478,8 @@ public class Stats {
                         break;
             case "mov": changeCurMovement(amt);
                         break;
+            case "act": changeCurAction(amt);
+                        break;
         }
         calculateSecondaryStats();
     }
@@ -517,6 +545,9 @@ public class Stats {
             case "mov": changeMaxMovement(amt);
                         changeCurMovement(amt);
                         break;
+            case "act": changeMaxAction(amt);
+                        changeCurAction(amt);
+                        break;
         }
         calculateSecondaryStats();
     }
@@ -534,6 +565,7 @@ public class Stats {
         max_def = temp_def;
         max_mov = temp_mov;
         max_arm = temp_arm;
+        max_act = temp_act;
     }
 
     // print
@@ -542,21 +574,20 @@ public class Stats {
         System.out.println("---------------------------------");
         System.out.println("Primary Stats:");
         System.out.println("Level: " + level());
-        System.out.println("Lives: " + getCurLives() + "/" + getMaxLives());
-        System.out.println("Experience: " + getCurExperience() + "/" + getMaxExperience());
-        System.out.println("Strength: " + getCurStrength() + "/" + getMaxStrength());
-        System.out.println("Agility: " + getCurAgility() + "/" + getMaxAgility());
-        System.out.println("Intellect: " + getCurIntellect() + "/" + getMaxIntellect());
-        System.out.println("Hardiness: " + getCurHardiness() + "/" + getMaxHardiness());
-        System.out.println("Movement: " + getCurMovement() + "/" + getMaxMovement());
+        System.out.println("Lives: " + curLives() + "/" + maxLives());
+        System.out.println("Experience: " + curExperience() + "/" + maxExperience());
+        System.out.println("Strength: " + curStrength() + "/" + maxStrength());
+        System.out.println("Agility: " + curAgility() + "/" + maxAgility());
+        System.out.println("Intellect: " + curIntellect() + "/" + maxIntellect());
+        System.out.println("Hardiness: " + curHardiness() + "/" + maxHardiness());
+        System.out.println("Movement: " + curMovement() + "/" + maxMovement());
+        System.out.println("Action: " + curAction() + "/" + maxAction());
         // secondary stats
         System.out.println("Secondary Stats:");
-        System.out.println("Life: " + getCurLife() + "/" + getMaxLife());
-        System.out.println("Mana: " + getCurMana() + "/" + getMaxMana());
-        System.out.println("Offense: " + getCurOffense() + "/" + getMaxOffense());
-        System.out.println("Defense: " + getCurDefense() + "/" + getMaxDefense());
-        System.out.println("Armor: " + getCurArmor() + "/" + getMaxArmor());
+        System.out.println("Life: " + curLife() + "/" + maxLife());
+        System.out.println("Mana: " + curMana() + "/" + maxMana());
+        System.out.println("Offense: " + curOffense() + "/" + maxOffense());
+        System.out.println("Defense: " + curDefense() + "/" + maxDefense());
+        System.out.println("Armor: " + curArmor() + "/" + maxArmor());
     }
-
-
 }

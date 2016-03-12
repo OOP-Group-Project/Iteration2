@@ -22,8 +22,6 @@ public class InventoryStateController extends StateController{
 	public InventoryStateController(StateControllerManager stateManager, InventoryState inventoryState) {
 		stateControllerManager = stateManager;
 		this.inventoryState = inventoryState;
-		
-	
 	}
 
 	@Override
