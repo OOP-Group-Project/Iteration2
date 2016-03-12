@@ -179,13 +179,6 @@ public class Stats {
 
     */
 
-    public void applyEffect(Effect effects){
-
-    }
-
-    public void tick(){
-
-    }
 
     // mutators (maximum)
     private void changeMaxLives(int amt) {
