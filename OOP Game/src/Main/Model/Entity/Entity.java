@@ -75,4 +75,6 @@ public abstract class Entity {
     public void modifyExperience(int amt){stats.modifyExperience(amt);}
     //
     public void levelUp(){stats.levelUp();}
+    //
+    public Inventory getInventory(){ return this.inventory;}
 }
