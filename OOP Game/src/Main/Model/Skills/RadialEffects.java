@@ -1,6 +1,7 @@
 package Main.Model.Skills;
 
 import java.awt.*;
+//TODO; implement this with a formula
 
 /**
  * Created by AndyZhu on 7/3/2016.
