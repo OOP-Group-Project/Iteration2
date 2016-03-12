@@ -41,7 +41,7 @@ public class Model {
         nonPlayerEntities.add(skeleton);
 
         // Create the map first, we'll loadMap everything into it later
-        world = new MapIO().loadMap("map");
+        world = new MapIO().loadMap("map.txt");
 
         // Test adding an area effect.
         world.getTile(1,7).addAreaEffect(new TakeDamage());
@@ -60,7 +60,7 @@ public class Model {
         
         states.put(StateEnum.StartMenuState, new StartMenuState());
 
-        new MapIO().saveMap(world, "map");
+        new MapIO().saveMap(world, "map.txt");
 
     }
 

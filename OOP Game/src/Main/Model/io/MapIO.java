@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class MapIO {
 
-    io io;
+    private io io;
     public MapIO() {
         this.io = new io();
     }
@@ -54,7 +54,7 @@ public class MapIO {
 
     //load map given an existing map
     public Map loadMap(Map map) {
-        return loadMap(map, "map");
+        return loadMap(map, "map.txt");
     }
 
     //given a file name load a map with all other generic properties
@@ -122,7 +122,7 @@ public class MapIO {
 
     //given a map it will serialize and write a data file for that map
     public void saveMap(Map map) {
-        saveMap(map, "map");
+        saveMap(map, "map.txt");
     }
 
 }
