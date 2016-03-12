@@ -79,6 +79,13 @@ public class ObjectRenderer {
                 g.fillOval(pxCenterPoint.x - 25, pxCenterPoint.y - 25, 50, 50);
                 // render the correct image for the avatar's occupation.
             }
+
+            // Calculate location that the tile needs to be rendered using the pxCenterPoint
+            Point topLeft = new Point(pxCenterPoint.x - (graphicsAssets.TILE_PX_WIDTH/2), pxCenterPoint.y - (graphicsAssets.TILE_PX_HEIGHT/2));
+
+            if (type == EntityTypeEnum.NPC){
+                g.drawImage(GraphicsAssets.skeletonWalk,topLeft.x,topLeft.y ,graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT,null);
+            }
         }
     }
 
@@ -98,7 +105,6 @@ public class ObjectRenderer {
             // Render the correct image.
             if(type == TerrainTypeEnum.Grass) {
                 g.drawImage(graphicsAssets.grass, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
-
             } else if(type == TerrainTypeEnum.Water) {
                 g.drawImage(graphicsAssets.water, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
 
