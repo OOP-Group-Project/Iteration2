@@ -20,12 +20,11 @@ public class EquippedWeapon{
 
     /*** Methods ***/
     public void equipWeapon(Weapon newWeapon){
-        Weapon temp = newWeapon;
-        if(temp.isTwoHanded() == true){
-            mainHand = temp;
-            offHand = temp;
+        if(newWeapon.isTwoHanded() == true){
+            mainHand = newWeapon;
+            offHand = newWeapon;
         }else{
-            mainHand = temp;
+            mainHand = newWeapon;
             offHand = null;
         }
     }

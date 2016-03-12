@@ -26,26 +26,24 @@ public class EquippedArmor{
 
     /*** Methods ***/
     public void equipArmor(Armor newArmor) {
-        Armor temp =newArmor; //new Armor(newArmor);
-
-        switch (temp.getArmorType()) {
+        switch (newArmor.getArmorType()) {
             case HEAD:
-                head = temp;
+                head = newArmor;
                 break;
             case CHEST:
-                chest = temp;
+                chest = newArmor;
                 break;
             case LEGS:
-                legs = temp;
+                legs = newArmor;
                 break;
             case GLOVES:
-                gloves = temp;
+                gloves = newArmor;
                 break;
             case BOOTS:
-                boots = temp;
+                boots = newArmor;
                 break;
             case TRINKET:
-                trinket = temp;
+                trinket = newArmor;
                 break;
             default:
                 break;

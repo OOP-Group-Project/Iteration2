@@ -57,7 +57,6 @@ public class Model {
         //INVENTORY & STATS  need to be pass to player and InventoryState
         states.put(StateEnum.InventoryState, new InventoryState());
 
-        
         states.put(StateEnum.StartMenuState, new StartMenuState());
 
         new MapIO().saveMap(world, "map.txt");

@@ -30,6 +30,7 @@ public class Equipment {
     }
 
     public Takable unEquip(ArmorTypeEnum armorType){
+
         return armor.unequipArmor(armorType);
     }
 
