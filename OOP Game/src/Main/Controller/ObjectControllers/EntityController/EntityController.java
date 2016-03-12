@@ -1,8 +1,10 @@
-package Main.Controller.EntityControllers;
+package Main.Controller.ObjectControllers.EntityController;
 
 import Main.Controller.Manager.UserActionEnum;
 import Main.Model.Entity.Entity;
 import Main.Model.Map.Map;
+
+import javax.swing.*;
 
 /**
  * Created by johnkaufmann on 3/10/16.
@@ -36,5 +38,10 @@ public class EntityController {
             return true;
         }
         else return false;
+    }
+
+    public void update() {
+        MovementController.tick();
+        ActionController.tick();
     }
 }

@@ -16,6 +16,7 @@ import Main.Controller.StateControllers.PauseStateController;
 import Main.Controller.StateControllers.PlayStateController;
 import Main.Controller.StateControllers.StateController;
 import Main.Model.Entity.Entity;
+import Main.Model.Model;
 import Main.Model.State.*;
 import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
@@ -27,12 +28,12 @@ public class StateControllerManager {
 	private StateEnum currentState;
 	private StateEnum previousState;
 
-	public StateControllerManager( EnumMap<StateEnum, State> states, Map world, Avatar player,ArrayList<Entity> nonPlayerEntities ){
+	public StateControllerManager(Model model){
 		// Create the map for The gamestate types to gamestate objects
 		gameStateControllers = new EnumMap<>(StateEnum.class);
 
 		// create all the state objects
-		initializeStates(states, world, player, nonPlayerEntities);
+		initializeStates(model.getStates(), model.getWorld(), model.getPlayer(), model.getNonPlayerEntities());
 
 		// set our first state
 		previousState = StateEnum.LoadState;
