@@ -2,37 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc4e356e-0980-4dd6-8822-53217ceeab44" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Main/Controller/EntityControllers/ActionController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Main/Controller/EntityControllers/EntityController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Main/Controller/EntityControllers/MovementController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Main/Model/Map/MapLocationPoint.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Main/Model/Requirements.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Main/Controller/ObjectControllers/ActionController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Main/Controller/ObjectControllers/EntityController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Main/Controller/ObjectControllers/MovementController.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Controller/Controller.java" afterPath="$PROJECT_DIR$/src/Main/Controller/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Controller/Manager/KeyManager.java" afterPath="$PROJECT_DIR$/src/Main/Controller/Manager/KeyManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Controller/Manager/UserActionEnum.java" afterPath="$PROJECT_DIR$/src/Main/Controller/Manager/UserActionEnum.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Controller/StateControllers/PlayStateController.java" afterPath="$PROJECT_DIR$/src/Main/Controller/StateControllers/PlayStateController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Game.java" afterPath="$PROJECT_DIR$/src/Main/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Model/Entity/Avatar.java" afterPath="$PROJECT_DIR$/src/Main/Model/Entity/Avatar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Model/Entity/Entity.java" afterPath="$PROJECT_DIR$/src/Main/Model/Entity/Entity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Model/Inventory/Inventory.java" afterPath="$PROJECT_DIR$/src/Main/Model/Inventory/Inventory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Model/Items/Weapon.java" afterPath="$PROJECT_DIR$/src/Main/Model/Items/Weapon.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Model/Items/WeaponTypeEnum.java" afterPath="$PROJECT_DIR$/src/Main/Model/Items/WeaponTypeEnum.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Model/Model.java" afterPath="$PROJECT_DIR$/src/Main/Model/Model.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Model/State/PauseState.java" afterPath="$PROJECT_DIR$/src/Main/Model/State/PauseState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Model/State/PlayState.java" afterPath="$PROJECT_DIR$/src/Main/Model/State/PlayState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Model/State/StateEnum.java" afterPath="$PROJECT_DIR$/src/Main/Model/State/StateEnum.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Model/Stats/Stats.java" afterPath="$PROJECT_DIR$/src/Main/Model/Stats/Stats.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/View/Renderers/ObjectRenderer.java" afterPath="$PROJECT_DIR$/src/Main/View/Renderers/ObjectRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/View/Renderers/StateViewports/IntroStateViewport.java" afterPath="$PROJECT_DIR$/src/Main/View/Renderers/StateViewports/IntroStateViewport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/View/Renderers/StateViewports/LoadStateViewport.java" afterPath="$PROJECT_DIR$/src/Main/View/Renderers/StateViewports/LoadStateViewport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/View/Renderers/StateViewports/PauseStateViewport.java" afterPath="$PROJECT_DIR$/src/Main/View/Renderers/StateViewports/PauseStateViewport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/View/Renderers/StateViewports/PlayStateViewport.java" afterPath="$PROJECT_DIR$/src/Main/View/Renderers/StateViewports/PlayStateViewport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/View/Renderers/StateViewports/StateViewport.java" afterPath="$PROJECT_DIR$/src/Main/View/Renderers/StateViewports/StateViewport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/View/Viewport.java" afterPath="$PROJECT_DIR$/src/Main/View/Viewport.java" />
     </list>
     <ignored path="OOP Game.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,6 +15,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/OOP Game$Main.coverage" NAME="Main Coverage Results" MODIFIED="1457804314891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Main.*</FILTER>
+    </SUITE>
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -54,52 +29,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Stats.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Stats.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main/Model/Stats/Stats.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="601" column="0" selection-start-line="601" selection-start-column="0" selection-end-line="601" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Avatar.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main/Model/Entity/Avatar.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+            <state vertical-scroll-proportion="-5.885246">
+              <caret line="192" column="27" selection-start-line="192" selection-start-column="27" selection-end-line="192" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#478#479#0" expanded="true" />
-                <element signature="e#535#536#0" expanded="true" />
-                <element signature="e#914#915#0" expanded="true" />
-                <element signature="e#954#955#0" expanded="true" />
-                <element signature="e#1011#1012#0" expanded="true" />
-                <element signature="e#1085#1086#0" expanded="true" />
-                <element signature="e#1151#1152#0" expanded="true" />
-                <element signature="e#1206#1207#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Entity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Main/Model/Entity/Entity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5808383">
-              <caret line="59" column="58" selection-start-line="59" selection-start-column="58" selection-end-line="59" selection-end-column="58" />
-              <folding>
-                <element signature="e#1507#1508#0" expanded="true" />
-                <element signature="e#1541#1542#0" expanded="true" />
-                <element signature="e#1626#1627#0" expanded="true" />
-                <element signature="e#1660#1661#0" expanded="true" />
-                <element signature="e#1804#1805#0" expanded="true" />
-                <element signature="e#1835#1836#0" expanded="true" />
-                <element signature="e#1914#1915#0" expanded="true" />
-                <element signature="e#1941#1942#0" expanded="true" />
-                <element signature="e#2037#2038#0" expanded="true" />
-                <element signature="e#2065#2066#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -160,9 +96,9 @@
         <option value="$PROJECT_DIR$/src/Controller/GameStates/StartMenuState.java" />
         <option value="$PROJECT_DIR$/src/Main/GamePanel.java" />
         <option value="$PROJECT_DIR$/src/Main/Game/Model/Inventory/Equipped/Equipped.java" />
-        <option value="$PROJECT_DIR$/src/Main/Model/Stats/Stats.java" />
         <option value="$PROJECT_DIR$/src/Main/Model/Entity/Avatar.java" />
         <option value="$PROJECT_DIR$/src/Main/Model/Entity/Entity.java" />
+        <option value="$PROJECT_DIR$/src/Main/Model/Stats/Stats.java" />
       </list>
     </option>
   </component>
@@ -174,9 +110,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1680" />
-    <option name="height" value="963" />
+    <option name="x" value="-1" />
+    <option name="y" value="27" />
+    <option name="width" value="1922" />
+    <option name="height" value="1054" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -203,9 +140,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -235,10 +171,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -330,12 +262,61 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Entity" />
+              <option name="myItemId" value="State" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OOP Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OOP Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="out" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="production" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OOP Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OOP Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OOP Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="out" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="production" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OOP Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -565,6 +546,36 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Specs2RunConfiguration" factoryName="Specs2">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -621,6 +632,21 @@
       <listeners />
       <method />
     </configuration>
+    <configuration default="true" type="uTestRunConfiguration" factoryName="utest">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
+      <method />
+    </configuration>
     <list size="1">
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
     </list>
@@ -649,31 +675,32 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="963" extended-state="6" />
+    <frame x="-1" y="27" width="1922" height="1054" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39404353" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26086956" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22057264" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15811966" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1578125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997879" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26086956" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997879" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -689,7 +716,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -701,27 +728,29 @@
     <entry file="file://$PROJECT_DIR$/src/Main/Model/Stats/Stats.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <caret line="601" column="0" selection-start-line="601" selection-start-column="0" selection-end-line="601" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Model/Entity/Avatar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding>
+            <element signature="e#513#514#0" expanded="true" />
+            <element signature="e#582#583#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/Model/Entity/Entity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
-          <folding>
-            <element signature="e#1507#1508#0" expanded="true" />
-            <element signature="e#1541#1542#0" expanded="true" />
-            <element signature="e#1626#1627#0" expanded="true" />
-            <element signature="e#1660#1661#0" expanded="true" />
-            <element signature="e#1804#1805#0" expanded="true" />
-            <element signature="e#1835#1836#0" expanded="true" />
-            <element signature="e#1914#1915#0" expanded="true" />
-            <element signature="e#1941#1942#0" expanded="true" />
-            <element signature="e#2037#2038#0" expanded="true" />
-            <element signature="e#2065#2066#0" expanded="true" />
-          </folding>
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -729,7 +758,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Model/Entity/Entity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Model/Stats/Stats.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -737,18 +786,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding>
-            <element signature="e#1507#1508#0" expanded="true" />
-            <element signature="e#1541#1542#0" expanded="true" />
-            <element signature="e#1626#1627#0" expanded="true" />
-            <element signature="e#1660#1661#0" expanded="true" />
-            <element signature="e#1804#1805#0" expanded="true" />
-            <element signature="e#1835#1836#0" expanded="true" />
-            <element signature="e#1914#1915#0" expanded="true" />
-            <element signature="e#1941#1942#0" expanded="true" />
-            <element signature="e#2037#2038#0" expanded="true" />
-            <element signature="e#2065#2066#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -776,47 +814,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/Model/Stats/Stats.java">
+    <entry file="file://$PROJECT_DIR$/out/production/OOP Game/Main/Main.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="601" column="0" selection-start-line="601" selection-start-column="0" selection-end-line="601" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/Model/Entity/Avatar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#478#479#0" expanded="true" />
-            <element signature="e#535#536#0" expanded="true" />
-            <element signature="e#914#915#0" expanded="true" />
-            <element signature="e#954#955#0" expanded="true" />
-            <element signature="e#1011#1012#0" expanded="true" />
-            <element signature="e#1085#1086#0" expanded="true" />
-            <element signature="e#1151#1152#0" expanded="true" />
-            <element signature="e#1206#1207#0" expanded="true" />
+            <element signature="e#0#294#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/Model/Entity/Entity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5808383">
-          <caret line="59" column="58" selection-start-line="59" selection-start-column="58" selection-end-line="59" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.85650223">
+          <caret line="59" column="39" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Model/Entity/Avatar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29596412">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
           <folding>
-            <element signature="e#1507#1508#0" expanded="true" />
-            <element signature="e#1541#1542#0" expanded="true" />
-            <element signature="e#1626#1627#0" expanded="true" />
-            <element signature="e#1660#1661#0" expanded="true" />
-            <element signature="e#1804#1805#0" expanded="true" />
-            <element signature="e#1835#1836#0" expanded="true" />
-            <element signature="e#1914#1915#0" expanded="true" />
-            <element signature="e#1941#1942#0" expanded="true" />
-            <element signature="e#2037#2038#0" expanded="true" />
-            <element signature="e#2065#2066#0" expanded="true" />
+            <element signature="e#513#514#0" expanded="true" />
+            <element signature="e#582#583#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Model/Stats/Stats.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.885246">
+          <caret line="192" column="27" selection-start-line="192" selection-start-column="27" selection-end-line="192" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

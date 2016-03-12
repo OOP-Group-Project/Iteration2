@@ -1,6 +1,7 @@
 package Main.Model.Stats;
 import java.util.HashMap;
 import java.util.Map;
+import static java.lang.Math.abs;
 
 /**
  * Created by walkhard on 2/18/16.
@@ -189,113 +190,73 @@ public class Stats {
     }
     private void changeMaxStrength(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             max_str += amt;
-        else if(amt < -0.99)
-            max_str -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             max_str += max_str * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            max_str -= max_str * amt;
     }
     private void changeMaxAgility(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             max_agi += amt;
-        else if(amt < -0.99)
-            max_agi -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             max_agi += max_agi * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            max_agi -= max_agi * amt;
     }
     private void changeMaxIntellect(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             max_int += amt;
-        else if(amt < -0.99)
-            max_int -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             max_int += max_int * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            max_int -= max_int * amt;
     }
     private void changeMaxHardiness(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             max_har += amt;
-        else if(amt < -0.99)
-            max_har -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
-            max_har += max_har * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            max_har -= max_har * amt;
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
+            max_int += max_int * amt;
     }
     private void changeMaxMovement(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             max_mov += amt;
-        else if(amt < -0.99)
-            max_mov -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             max_mov += max_mov * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            max_mov -= max_mov * amt;
     }
     private void changeMaxLife(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             max_hp += amt;
-        else if(amt < -0.99)
-            max_hp -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             max_hp += max_hp * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            max_hp -= max_hp * amt;
     }
     private void changeMaxMana(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             max_mp += amt;
-        else if(amt < -0.99)
-            max_mp -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             max_mp += max_mp * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            max_mp -= max_mp * amt;
     }
     private void changeMaxOffense(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             max_off += amt;
-        else if(amt < -0.99)
-            max_off -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             max_off += max_off * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            max_off -= max_off * amt;
     }
     private void changeMaxDefense(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             max_def += amt;
-        else if(amt < -0.99)
-            max_def -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             max_def += max_def * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            max_def -= max_def * amt;
     }
     private void changeMaxArmor(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             max_arm += amt;
-        else if(amt < -0.99)
-            max_arm -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             max_arm += max_arm * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            max_arm -= max_arm * amt;
     }
     private void changeMaxExperience() {
         int EXP_MOD = 100;
@@ -318,14 +279,10 @@ public class Stats {
     }
     private void changeCurStrength(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             cur_str += amt;
-        else if(amt < -0.99)
-            cur_str -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             cur_str += cur_str * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            cur_str -= cur_str * amt;
         // make sure the change makes sense
         if (cur_str > max_str)
             cur_str = max_str;
@@ -334,14 +291,10 @@ public class Stats {
     }
     private void changeCurAgility(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             cur_agi += amt;
-        else if(amt < -0.99)
-            cur_agi -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             cur_agi += cur_agi * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            cur_agi -= cur_agi * amt;
         // make sure the change makes sense
         if (cur_agi > max_agi)
             cur_agi = max_agi;
@@ -350,14 +303,10 @@ public class Stats {
     }
     private void changeCurIntellect(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             cur_int += amt;
-        else if(amt < -0.99)
-            cur_int -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             cur_int += cur_int * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            cur_int -= cur_int * amt;
         // make sure the change makes sense
         if (cur_int > max_int)
             cur_int = max_int;
@@ -366,14 +315,10 @@ public class Stats {
     }
     private void changeCurHardiness(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             cur_har += amt;
-        else if(amt < -0.99)
-            cur_har -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             cur_har += cur_har * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            cur_har -= cur_har * amt;
         // make sure the change makes sense
         if (cur_har > max_har)
             cur_har = max_har;
@@ -382,14 +327,10 @@ public class Stats {
     }
     private void changeCurMovement(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             cur_mov += amt;
-        else if(amt < -0.99)
-            cur_mov -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             cur_mov += cur_mov * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            cur_mov -= cur_mov * amt;
         // make sure the change makes sense
         if (cur_mov > max_mov)
             cur_mov = max_mov;
@@ -398,14 +339,10 @@ public class Stats {
     }
     private void changeCurLife(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             cur_hp += amt;
-        else if(amt < -0.99)
-            cur_hp -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             cur_hp += cur_hp * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            cur_hp -= cur_hp * amt;
         // make sure the change makes sense
         if (cur_hp > max_hp)
             cur_hp = max_hp;
@@ -414,14 +351,10 @@ public class Stats {
     }
     private void changeCurMana(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             cur_mp += amt;
-        else if(amt < -0.99)
-            cur_mp -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             cur_mp += cur_mp * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            cur_mp -= cur_mp * amt;
         // make sure the change makes sense
         if (cur_mp > max_mp)
             cur_mp = max_mp;
@@ -430,14 +363,10 @@ public class Stats {
     }
     private void changeCurOffense(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             cur_off += amt;
-        else if(amt < -0.99)
-            cur_off -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             cur_off += cur_off * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            cur_off -= cur_off * amt;
         // make sure the change makes sense
         if (cur_off > max_arm)
             cur_arm = max_arm;
@@ -446,14 +375,10 @@ public class Stats {
     }
     private void changeCurDefense(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             cur_def += amt;
-        else if(amt < -0.99)
-            cur_def -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
-            cur_def += cur_def * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            cur_def -= cur_def * amt;
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
+            max_int += max_int * amt;
         // make sure the change makes sense
         if (cur_def > max_def)
             cur_def = max_def;
@@ -462,14 +387,10 @@ public class Stats {
     }
     private void changeCurArmor(double amt) {
         // change stat
-        if(amt > 0.99)
+        if(abs(amt) > 0.99)
             cur_arm += amt;
-        else if(amt < -0.99)
-            cur_arm -= amt;
-        else if(amt >= 0.0 && amt < 1.00)
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             cur_arm += cur_arm * amt;
-        else if(amt > -1.00 && amt <= 0.00)
-            cur_arm -= cur_arm * amt;
         // make sure the change makes sense
         if (cur_arm > max_arm)
             cur_arm = max_arm;
