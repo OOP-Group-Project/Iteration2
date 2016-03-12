@@ -8,39 +8,58 @@ import Main.Model.Items.Weapon;
  */
 public class EquippedWeapon{
     /*** Member Variables ***/
-    private Weapon weapon;
+    private Weapon mainHand;
+    private Weapon offHand;
 
     /*** Constructors ***/
     //Instantiate with no starting weapon)
     public EquippedWeapon(){
-        weapon = null;
+        mainHand = null;
+        offHand = null;
     }
 
     /*** Methods ***/
     public void equipWeapon(Weapon newWeapon){
+<<<<<<< HEAD:OOP Game/src/Main/Model/Equipment/EquippedWeapon.java
         Weapon temp = newWeapon;//new Weapon(newWeapon);
         this.weapon = temp;
+=======
+        Weapon temp = new Weapon(newWeapon);
+        if(temp.isTwoHanded() == true){
+            mainHand = temp;
+            offHand = temp;
+        }else{
+            mainHand = temp;
+            offHand = null;
+        }
+>>>>>>> master:OOP Game/src/Main/Model/Inventory/Equipment/EquippedWeapon.java
     }
 
     public Weapon unequipWeapon() {
-        if (this.weapon == null) {
+        if (this.mainHand == null) {
             return null;
         }
 
+<<<<<<< HEAD:OOP Game/src/Main/Model/Equipment/EquippedWeapon.java
         Weapon temp = this.weapon;//new Weapon(this.weapon);
         this.weapon = null;
+=======
+        Weapon temp = new Weapon(this.mainHand);
+        this.mainHand = null;
+        this.offHand  = null;
+>>>>>>> master:OOP Game/src/Main/Model/Inventory/Equipment/EquippedWeapon.java
         return temp;
     }
 
     public boolean isEquipped(){
-        if(this.weapon == null) {
+        if(this.mainHand == null) {
             return false;
         }
         return true;
     }
 
     public Weapon getWeapon(){
-        return this.weapon;
+        return this.mainHand;
     }
 
 } //end EquippedWeapon

@@ -45,6 +45,18 @@ public class Inventory {
         return items[index].amount;
     }
 
+    /* Made by Alex (Peter) : Gets an Item if it is in the Inventory. Otherwise returns null */
+    /*
+    public TakeAble getItem(TakeAble item){
+        for(int i = 0; i < MAX_INVENTORY; i++){
+            if(items[i].getId() == item.getId()){
+                 return items[i];
+            }else{
+                return null;
+            }
+        }
+    }
+*/
 
     //return true if you can put the item in the Inventory
     public boolean addItem(Takable newItem) {

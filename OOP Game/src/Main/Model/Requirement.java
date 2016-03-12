@@ -3,9 +3,13 @@ package Main.Model;
 import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Items.Takable;
 import Main.Model.Entity.*;
+<<<<<<< HEAD
 import Main.Model.Occupation.Occupation;
 import Main.Model.Occupation.OccupationTypeEnum;
 
+=======
+import Main.Model.Items.*;
+>>>>>>> master
 /**
  * Created by Peter Camejo on 3/10/2016.
  */
@@ -51,24 +55,29 @@ public class Requirement {
 
     /*** Methods ***/
     public boolean meetsLevel(Entity entity) {
-        /*
-        if(entity.getLevel() >= this.requiredLevel){
+        int entityLevel = entity.getStats().level();
+
+        if(entityLevel >= this.requiredLevel){
              return true;
         }
+<<<<<<< HEAD
         */
 
         if(requiredLevel == 0) {
             return true;
         }
 
+=======
+>>>>>>> master
         return false;
     }
-
+/*
     public boolean hasItem(Entity entity){
-        /*
-        if(entity.hasItem(requiredItem)){
+        Item testItem = entity.getInventory().getItem(requiredItem);
+        if(testItem.getId() == requiredItem.getId()){
             return true;
         }
+<<<<<<< HEAD
          */
 
         if(requiredItem == null) {
@@ -134,4 +143,10 @@ public class Requirement {
      */
 
 
+=======
+
+        return false;
+    }
+*/
+>>>>>>> master
 } //end Requirement
