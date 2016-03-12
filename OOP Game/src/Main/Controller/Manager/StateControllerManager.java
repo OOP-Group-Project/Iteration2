@@ -14,6 +14,7 @@ import Main.Controller.StateControllers.InventoryStateController;
 import Main.Controller.StateControllers.LoadStateController;
 import Main.Controller.StateControllers.PauseStateController;
 import Main.Controller.StateControllers.PlayStateController;
+import Main.Controller.StateControllers.StartMenuStateController;
 import Main.Controller.StateControllers.StateController;
 import Main.Model.Entity.Entity;
 import Main.Model.State.*;
@@ -35,8 +36,8 @@ public class StateControllerManager {
 		initializeStates(states, world, player, nonPlayerEntities);
 
 		// set our first state
-		previousState = StateEnum.LoadState;
-		setState(StateEnum.LoadState);
+		previousState = StateEnum.StartMenuState;
+		setState(StateEnum.StartMenuState);
 	}
 
 	private void initializeStates(EnumMap<StateEnum, State> states, Map world, Avatar player, ArrayList<Entity> nonPlayerEntities) {
@@ -46,6 +47,7 @@ public class StateControllerManager {
 		
 		//guessing
 		gameStateControllers.put(StateEnum.InventoryState,new InventoryStateController(this, (InventoryState)states.get(StateEnum.InventoryState)));
+		gameStateControllers.put(StateEnum.StartMenuState, new StartMenuStateController(this,(StartMenuState)states.get(StateEnum.StartMenuState)));
 	}
 	
 	public void setState(StateEnum state){
