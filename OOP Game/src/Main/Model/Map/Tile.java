@@ -27,10 +27,8 @@ public class Tile {
 		this.terrainType = TerrainTypeEnum.Grass;
 	}
 	
-	public Tile(TerrainTypeEnum terrainType, int id, int x, int y){
+	public Tile(TerrainTypeEnum terrainType, int id){
 		this.terrainType = terrainType;
-		this.x = x;
-		this.y = y;
 	}
 
 	public void addEntity(Entity e) {

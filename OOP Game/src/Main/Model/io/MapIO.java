@@ -69,13 +69,14 @@ public class MapIO {
 
     //should be able to read from a path and set up the map
     private Tile[][] loadTiles(ArrayList<String> data, Tile[][] tiles){
-        for(int i = 0; i < data.size(); i++){
-            String[] line = data.get(i).split(",");
-            for (int j = 0; j < line.length; j++){
-                int dataValue = Integer.valueOf(line[j]);
-                if (dataValue < 10) tiles[i][j] = new Tile(TerrainTypeEnum.Grass,0,i,j);
-                else if (dataValue < 20) tiles[i][j] = new Tile(TerrainTypeEnum.Mountain,0,i,j);
-                else tiles[i][j] = new Tile(TerrainTypeEnum.Water,0,i,j);
+        for(int j = 0; j < data.size(); j++){
+            String[] line = data.get(j).split(",");
+            for (int i = 0; i < line.length; i++){
+                int dataValue = Integer.valueOf(line[i]);
+                if(dataValue == 0) tiles[i][j] = new Tile(TerrainTypeEnum.None, 0);
+                else if (dataValue < 10 && dataValue > 0) tiles[i][j] = new Tile(TerrainTypeEnum.Grass,0);
+                else if (dataValue < 20 && dataValue > 0) tiles[i][j] = new Tile(TerrainTypeEnum.Mountain,0);
+                else tiles[i][j] = new Tile(TerrainTypeEnum.Water,0);
             }
         }
         return tiles;
@@ -92,11 +93,11 @@ public class MapIO {
         data.add(Integer.toString(width)+","+Integer.toString(height));
 
         //format object
-        for (int i = 0; i < height; i++) {
+        for (int j = 0; j < height; j++) {
             String line = "";
             String delimeter = ",";
-            for (int j = 0; j < width; j++) {
-                if (j+1 == width) delimeter = "";
+            for (int i = 0; i < width; i++) {
+                if (i+1 == width) delimeter = "";
                 switch (map.getTile(i,j).getTerrainType()) {
                     case Grass:
                         line += "01" + delimeter;
@@ -106,6 +107,9 @@ public class MapIO {
                         break;
                     case Water:
                         line += "20" + delimeter;
+                        break;
+                    case None:
+                        line += "00" + delimeter;
                         break;
                 }
             }
@@ -118,7 +122,7 @@ public class MapIO {
 
     //given a map it will serialize and write a data file for that map
     public void saveMap(Map map) {
-        saveMap(map, "map.txt");
+        saveMap(map, "map");
     }
 
 }

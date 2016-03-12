@@ -23,7 +23,7 @@ public class Map {
 	public void createTestMap(){
         for(int i = 0; i < width; i++){
             for (int j = 0; j < height; j++){
-                tiles[i][j] = new Tile(TerrainTypeEnum.Grass,0,i,j);
+                tiles[i][j] = new Tile(TerrainTypeEnum.Grass,0);
             }
         }
 	}
