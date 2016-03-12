@@ -1,0 +1,17 @@
+package Main.Model.Entity;
+
+import Main.Model.DirectionEnum;
+import Main.Model.Map.MapLocationPoint;
+import Main.Model.Occupation.Occupation;
+import Main.View.Graphics.GraphicsAssets;
+
+import java.awt.*;
+
+/**
+ * Created by walkhard on 2/18/16.
+ */
+public class Pet extends Entity {
+    public Pet(EntityTypeEnum entityType, Occupation occupation, MapLocationPoint location){
+        super(entityType, occupation, location);
+    }
+}
