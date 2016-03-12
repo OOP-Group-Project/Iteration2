@@ -11,7 +11,7 @@ import sun.misc.*;
  * When use, just dequeue everything in the queue.
  * TODO: do we need to further extend it to include the distance of a single point to the origin?
  */
-public class RadialEffects implements InfluenceArea {
+public class RadialEffect implements InfluenceArea {
 
     public Queue<MapLocationPoint> getAffectedArea(int x, int y, int radius) {
 
