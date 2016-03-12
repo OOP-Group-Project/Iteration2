@@ -179,10 +179,6 @@ public class Stats {
 
     */
 
-    public void applyEffect(Effect effects){
-
-    }
-
     public void tick(){
 
     }

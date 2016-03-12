@@ -2,12 +2,14 @@ package Main.Model;
 
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
+import Main.Model.Entity.Npc;
 import Main.Model.Inventory.Inventory;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.State.*;
 import Main.Model.Stats.Stats;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
 
@@ -16,7 +18,9 @@ import java.util.HashMap;
  */
 public class Model {
     private Avatar player;
-    private Entity nonPlayerEntities[];
+    private Npc skeleton;
+    private ArrayList<Entity> nonPlayerEntities = new ArrayList<Entity>();
+//    private Entity nonPlayerEntities[];
     private Map world;
     private EnumMap<StateEnum, State> states;
 
@@ -27,6 +31,12 @@ public class Model {
 
         // Create a dummy character first
         player = new Avatar(new MapLocationPoint(0,0));
+
+        // Create a dummy NPC
+        skeleton = new Npc(new MapLocationPoint(5,5));
+
+        // add skeleton
+        nonPlayerEntities.add(skeleton);
 
         // Create the map first, we'll load everything into it later
         world = new Map(100, 100);
@@ -63,7 +73,7 @@ public class Model {
         return "";
     }
 
-    public Entity[] getNonPlayerEntities() {
+    public ArrayList<Entity> getNonPlayerEntities() {
         return nonPlayerEntities;
     }
 
