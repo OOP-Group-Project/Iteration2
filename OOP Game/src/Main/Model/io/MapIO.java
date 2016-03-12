@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 /**
  * Created by johnkaufmann on 3/11/16.
- * INSTRUCTIONS: Call new MapIO().load(parameters) to load a previous game's map.txt
- * and new MapIO().save(map.txt) to save the current game's map.txt.
+ * INSTRUCTIONS: Call new MapIO().load(parameters) to load a previous game's map
+ * and new MapIO().save(map) to save the current game's map.
  *
  * USE CASE: Check Model to see an example of it instantiating the world
  */
@@ -23,24 +23,24 @@ public class MapIO {
     //method will instantiate a loadMap controller and return a model
     public Map loadMap(Map map, String fileName) {
         /***************
-         * Read a map.txt
+         * Read a map
          **************/
 
         ArrayList<String> FileData;
         FileData = io.readFile(fileName);
 
-        //get the map.txt dimensions
+        //get the map dimensions
         String[] size = FileData.get(0).split(",",2);
         int width = Integer.valueOf(size[0]);
         int height = Integer.valueOf(size[1]);
 
-        //remove the first line of the map.txt file data for passing to construct map.txt
+        //remove the first line of the map file data for passing to construct map
         FileData.remove(0);
 
         //intiailize tiles array
         Tile[][] mapTiles = loadTiles(FileData, new Tile[width][height]);
 
-        //set the up the new map.txt
+        //set the up the new map
         map.setHeight(height);
         map.setWidth(width);
         map.setTiles(mapTiles);
@@ -52,22 +52,22 @@ public class MapIO {
         return map;
     }
 
-    //load map.txt given an existing map.txt
+    //load map given an existing map
     public Map loadMap(Map map) {
-        return loadMap(map, "map.txt");
+        return loadMap(map, "map");
     }
 
-    //given a file name load a map.txt with all other generic properties
+    //given a file name load a map with all other generic properties
     public Map loadMap(String fileName) {
         return loadMap(new Map(0,0), fileName);
     }
 
-    //load generic map.txt
+    //load generic map
     public Map loadMap() {
         return loadMap(new Map(0,0));
     }
 
-    //should be able to read from a path and set up the map.txt
+    //should be able to read from a path and set up the map
     private Tile[][] loadTiles(ArrayList<String> data, Tile[][] tiles){
         for(int j = 0; j < data.size(); j++){
             String[] line = data.get(j).split(",");
@@ -82,7 +82,7 @@ public class MapIO {
         return tiles;
     }
 
-    //given a map.txt and a filename it will write the file out in a io readable format
+    //given a map and a filename it will write the file out in a io readable format
     public void saveMap(Map map, String fileName) {
         //initialize variables
         int height = map.getHeight();
@@ -120,9 +120,9 @@ public class MapIO {
         io.writeFile(data, fileName);
     }
 
-    //given a map.txt it will serialize and write a data file for that map.txt
+    //given a map it will serialize and write a data file for that map
     public void saveMap(Map map) {
-        saveMap(map, "map.txt");
+        saveMap(map, "map");
     }
 
 }

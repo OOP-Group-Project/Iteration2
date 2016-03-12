@@ -31,8 +31,8 @@ public class ObjectRenderer {
     }
 
     /*
-     * The map.txt renderer class provides a render method that will render a portion of the map.txt, given start and end points in
-     * map.txt coordinates.  It will center the rendered map.txt on screen no matter how large the map.txt or how large the rendering window.
+     * The map renderer class provides a render method that will render a portion of the map, given start and end points in
+     * map coordinates.  It will center the rendered map on screen no matter how large the map or how large the rendering window.
      */
     public static class mapRenderer {
         public static void render(Graphics g, Map map, Point mapCenterPoint, int mapStartX, int mapEndX, int mapStartY, int mapEndY) {

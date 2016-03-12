@@ -119,7 +119,7 @@ public class MovementController {
 
     //checks to see if an index is out of bounds (JFK)
     private boolean checkOutOfBounds(MapLocationPoint endPoint) {
-        //checks to see if the given endPoint is off the map.txt
+        //checks to see if the given endPoint is off the map
         if ((endPoint.x < map.getWidth() && endPoint.x >= 0) && (endPoint.y >= 0 && endPoint.y < map.getHeight()))
             return true;
         else {
@@ -146,7 +146,7 @@ public class MovementController {
 
     //check the next tile and then depending on what it is activate the effect. (UNCOMMENT WHEN YOU NEED EFFECT)
     /*private void activateTileEffect(MapLocationPoint endPoint) {
-        Tile tile = map.txt.getTile(endPoint.x, endPoint.y);
+        Tile tile = map.getTile(endPoint.x, endPoint.y);
         //check that there is an effect
         if (tile.getEffect().equals(null)) return;
         tile.getEffect().applyEffect(entity);

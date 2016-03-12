@@ -20,7 +20,7 @@ public class LoadState extends State {
     }
 
     public void loadTestGame() {
-        // create test map.txt for now.
+        // create test map for now.
         model.getWorld().createTestMap();
         model.getWorld().addEntity(model.getPlayer(), model.getPlayer().getLocation().x, model.getPlayer().getLocation().y);
     }
