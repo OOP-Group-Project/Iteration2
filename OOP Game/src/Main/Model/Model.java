@@ -40,7 +40,7 @@ public class Model {
         nonPlayerEntities.add(skeleton);
 
         // Create the map first, we'll loadMap everything into it later
-        world = new MapIO().loadMap("map.txt");
+        world = new MapIO().loadMap("map");
 
         // Test adding an area effect.
         world.getTile(1,7).addAreaEffect(new TakeDamage());

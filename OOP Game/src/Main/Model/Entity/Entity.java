@@ -5,6 +5,7 @@ import Main.Model.Inventory.Inventory;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Stats.Stats;
+import Main.Model.Stats.StatsModifier;
 
 /**
  * Modified by John Kaufmann 2/9/16
@@ -54,8 +55,13 @@ public abstract class Entity {
         defense = "def"
         offense = "off"
      */
-    //
+
+    public Stats getStats() { return stats; }
+    //TODO: question by Andy: do we want to keep eveything here? Would it be better if we getStats and call on Stats?
     public void modifyStats(String stat_to_modify, double amt) {stats.modifyStats(stat_to_modify, amt);}
+
+    public void modifyState(StatsModifier sm) {stats.modifyStats(sm);}
+
 
     // used to temporarily modify stats
     public void buff(String stat_to_buff, double amt){stats.buff(stat_to_buff, amt);}

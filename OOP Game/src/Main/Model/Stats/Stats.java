@@ -1,10 +1,14 @@
 package Main.Model.Stats;
+import Main.Model.Occupation.Occupation;
+
 import java.util.HashMap;
 import java.util.Map;
 import static java.lang.Math.abs;
 
 /**
  * Created by walkhard on 2/18/16.
+ * Modified by Andy on 3/11/16
+ *      Add Builder
  */
 
 public class Stats {
@@ -21,6 +25,7 @@ public class Stats {
         setCur();
     }
 
+    //TODO:there is currently no difference among the stats of different occupations.
     /*
 
         Modifiers are used to calculate stats without having to remember how much of a stat is required at each level.
@@ -33,7 +38,6 @@ public class Stats {
     // basic modifiers
     private Map<String, Double> OCCUPATION_STAT_MOD = new HashMap<>();
     private int BASE_STAT_MOD = 3;
-
     /*
 
         Stats are broken down into max(imum) stats and cur(rent) stats. Current stats are the current level of the stat.
@@ -364,6 +368,7 @@ public class Stats {
             cur_act = 0;
     }
     private void changeCurLife(double amt) {
+
         // change stat
         if(abs(amt) > 0.99)
             cur_hp += amt;
@@ -478,6 +483,23 @@ public class Stats {
         }
         calculateSecondaryStats();
     }
+    //added by Andy
+    public void modifyStats(StatsModifier sm) {
+        changeCurStrength(sm.getStrengthModifier());
+        changeCurAgility(sm.getAgilityModifier());
+        changeCurIntellect(sm.getIntellectModifier());
+        changeCurHardiness(sm.getHardinessModifier());
+        changeCurExperience(sm.getExperienceModifier());
+        changeCurLives(sm.getLivesLeftModifier());
+        changeCurMovement(sm.getMovementModifier());
+
+        calculateSecondaryStats();
+        changeCurLife(sm.getLifeModifier());
+        changeCurMana(sm.getManaModifier());
+        changeCurOffense(sm.getOffensiveModifier());
+        changeCurDefense(sm.getDefenseModifier());
+        changeCurArmor(sm.getArmorModifier());
+    }
     //
     public void modifyLives(int amt){changeCurLives(amt);}
     //
@@ -549,6 +571,7 @@ public class Stats {
     // print
     public void printStats() {
         // primary stats
+        System.out.println("---------------------------------");
         System.out.println("Primary Stats:");
         System.out.println("Level: " + level());
         System.out.println("Lives: " + curLives() + "/" + maxLives());
