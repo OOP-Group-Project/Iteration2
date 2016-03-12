@@ -2,10 +2,7 @@ package Main.Controller.EntityControllers;
 
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.Entity;
-import Main.Model.Map.Heuristic;
-import Main.Model.Map.Map;
-import Main.Model.Map.Path;
-import Main.Model.Map.PathFinder;
+import Main.Model.Map.*;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -29,7 +26,7 @@ public class PathingController {
         this.player = player;
         this.NPC = NPC;
         this.heuristic = heuristic;
-        pathFinder = new PathFinder(map,50,heuristic);
+        pathFinder = new PathFinder(map,5000,heuristic);
     }
 
     public void update(){
@@ -39,13 +36,14 @@ public class PathingController {
             System.out.println("current position: " + NPC.getLocation().x  + " ," + NPC.getLocation().y + "nextPoint : " + path.getPoint(0));
             for(int i = 0; i < path.getLength() - 1; i++){
                 System.out.println("NPC location " + NPC.getLocation());
-//                try{
-//                    Thread.sleep(500);
-//                } catch (Exception e){
-//
-//                }
+                try{
+                    Thread.sleep(300);
+                }catch (Exception e){
 
+                }
+                map.getTile(NPC.getLocation().x,NPC.getLocation().y).removeEntity();
                 NPC.move(path.getPoint(i));
+                map.getTile(path.getPoint(i).x,path.getPoint(i).y).addEntity(NPC);
             }
         }
     }

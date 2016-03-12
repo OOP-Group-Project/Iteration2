@@ -64,15 +64,15 @@ public class Map {
 	}
 
 	public boolean isWalkable(int x, int y){
-		return tiles[x][y].isWalkable();
+        return tiles[x][y].isWalkable();
 	}
 
 	public float getCost(int sx, int sy, int tx, int ty){
 		return 1;
 	}
 
-	public void pathFinderVisited(int x, int y) {
-		visited[x][y] = true;
-	}
+    public void pathFinderVisited(int x, int y) {
+        visited[x][y] = true;
+    }
 
 }

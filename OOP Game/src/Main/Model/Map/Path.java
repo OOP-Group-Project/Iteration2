@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by Michael on 3/12/16.
  */
 public class Path {
-    private ArrayList<MapLocationPoint> points = new ArrayList<MapLocationPoint>();
+    private ArrayList<MapLocationPoint> points = new ArrayList<>();
 
     public Path() {
 

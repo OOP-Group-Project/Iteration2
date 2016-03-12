@@ -43,7 +43,7 @@ public class Model {
         world = new MapIO().loadMap("map");
 
         // Test adding an area effect.
-        world.getTile(1,7).addAreaEffect(new TakeDamage());
+//        world.getTile(1,7).addAreaEffect(new TakeDamage());
 
         /***********************
          * Create all the state objects
