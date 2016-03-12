@@ -1,6 +1,6 @@
-package Main.Game.Model.Skills;
+package Main.Model.Skills;
 
-import Main.Game.Model.Entity.Entity;
+import Main.Model.Entity.Entity;
 
 /**
  * Created by AndyZhu on 7/3/2016.
