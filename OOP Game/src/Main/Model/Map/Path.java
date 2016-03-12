@@ -6,132 +6,38 @@ import java.util.ArrayList;
  * Created by Michael on 3/12/16.
  */
 public class Path {
-    /** The list of steps building up this path */
-    private ArrayList steps = new ArrayList();
+    private ArrayList<MapLocationPoint> points = new ArrayList<MapLocationPoint>();
 
-    /**
-     * Create an empty path
-     */
     public Path() {
 
     }
-
-    /**
-     * Get the length of the path, i.e. the number of steps
-     *
-     * @return The number of steps in this path
-     */
     public int getLength() {
-        return steps.size();
+        return points.size();
     }
 
-    /**
-     * Get the step at a given index in the path
-     *
-     * @param index The index of the step to retrieve. Note this should
-     * be >= 0 and < getLength();
-     * @return The step information, the position on the map.
-     */
-    public Step getStep(int index) {
-        return (Step) steps.get(index);
+    public MapLocationPoint getPoint(int index) {
+        return points.get(index);
     }
 
-    /**
-     * Get the x coordinate for the step at the given index
-     *
-     * @param index The index of the step whose x coordinate should be retrieved
-     * @return The x coordinate at the step
-     */
     public int getX(int index) {
-        return getStep(index).x;
+        return points.get(index).x;
     }
 
-    /**
-     * Get the y coordinate for the step at the given index
-     *
-     * @param index The index of the step whose y coordinate should be retrieved
-     * @return The y coordinate at the step
-     */
     public int getY(int index) {
-        return getStep(index).y;
+        return points.get(index).y;
     }
 
-    /**
-     * Append a step to the path.
-     *
-     * @param x The x coordinate of the new step
-     * @param y The y coordinate of the new step
-     */
     public void appendStep(int x, int y) {
-        steps.add(new Step(x,y));
+        points.add(new MapLocationPoint(x,y));
     }
 
-    /**
-     * Prepend a step to the path.
-     *
-     * @param x The x coordinate of the new step
-     * @param y The y coordinate of the new step
-     */
     public void prependStep(int x, int y) {
-        steps.add(0, new Step(x, y));
+        points.add(0, new MapLocationPoint(x, y));
     }
 
-    /**
-     * Check if this path contains the given step
-     *
-     * @param x The x coordinate of the step to check for
-     * @param y The y coordinate of the step to check for
-     * @return True if the path contains the given step
-     */
     public boolean contains(int x, int y) {
-        return steps.contains(new Step(x,y));
+        return points.contains(new MapLocationPoint(x,y));
     }
 
-
-    public class Step {
-        /** The x coordinate at the given step */
-        private int x;
-        /** The y coordinate at the given step */
-        private int y;
-
-
-        public Step(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        /**
-         * Get the y coordinate of the new step
-         *
-         * @return The y coodindate of the new step
-         */
-        public int getY() {
-            return y;
-        }
-
-        /**
-         * @see Object#hashCode()
-         */
-        public int hashCode() {
-            return x*y;
-        }
-
-        /**
-         * @see Object#equals(Object)
-         */
-        public boolean equals(Object other) {
-            if (other instanceof Step) {
-                Step o = (Step) other;
-
-                return (o.x == x) && (o.y == y);
-            }
-
-            return false;
-        }
-    }
 }
 

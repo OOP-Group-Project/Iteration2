@@ -33,7 +33,7 @@ public class Model {
         player = new Avatar(new MapLocationPoint(0,0));
 
         // Create a dummy NPC
-        skeleton = new Npc(new MapLocationPoint(5,5));
+        skeleton = new Npc(new MapLocationPoint(2,2));
 
         // add skeleton
         nonPlayerEntities.add(skeleton);
@@ -46,7 +46,7 @@ public class Model {
          ***********************/
         states = new EnumMap<>(StateEnum.class);
         states.put(StateEnum.LoadState, new LoadState(this));
-        states.put(StateEnum.PlayState, new PlayState(world, player));
+        states.put(StateEnum.PlayState, new PlayState(world, player,skeleton));
         states.put(StateEnum.PauseState, new PauseState());
         
         //INVENTORY & STATS  need to be pass to player and InventoryState

@@ -16,6 +16,7 @@ public class Tile {
 	private Entity entity = null;
 	private ArrayList<Item> items;
     private boolean hasAreaEffect;
+	private boolean hasEntity;
     private AreaEffect mAreaEffect;
 	private int x;
 	private int y;
