@@ -28,7 +28,7 @@ public class StateControllerManager {
 	private StateEnum previousState;
 
 	public StateControllerManager( EnumMap<StateEnum, State> states, Map world, Avatar player,ArrayList<Entity> nonPlayerEntities ){
-		// Create the map for The gamestate types to gamestate objects
+		// Create the map.txt for The gamestate types to gamestate objects
 		gameStateControllers = new EnumMap<>(StateEnum.class);
 
 		// create all the state objects

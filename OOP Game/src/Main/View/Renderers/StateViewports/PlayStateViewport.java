@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 
 /*
- * This class handles rendering the map, items, entities, etc.  If it is necessary to draw any of these elements
+ * This class handles rendering the map.txt, items, entities, etc.  If it is necessary to draw any of these elements
  * beneath another viewport (i.e., the pause state or inventory state having the playStateViewport below the menu,
  * then this class will be extended and the render method should be overridden.
  */
@@ -27,21 +27,21 @@ public class PlayStateViewport extends StateViewport {
     private PlayState playState;
 
     /*
-     * In order to render the map and animate moving along tiles, we will render select portions of the map that fit into
+     * In order to render the map.txt and animate moving along tiles, we will render select portions of the map.txt that fit into
      * the rendering space, that is, the window.
      *
      * The tiles that are part of this section are the mapXStart, mapXEnd,
      * mapYStart, and mapYEnd values.  They are updated by the update method in this class, and will always contain
-     * the bounds of what is being rendered in the map, plus a little more to make sure we are always rendering all of the screen.
+     * the bounds of what is being rendered in the map.txt, plus a little more to make sure we are always rendering all of the screen.
      *
-     * The variable mapCameraCenter contains the center point of what's being rendered in the map
-     * in map units, and pxCameraCenter contains the center point in pixel units.
+     * The variable mapCameraCenter contains the center point of what's being rendered in the map.txt
+     * in map.txt units, and pxCameraCenter contains the center point in pixel units.
      *
      * The variables pxOffsetX and pxOffsetY are an offset that will allow us to animate the transition between one center
      * point to another.
      */
 
-    // Use these values to know what tiles in the map are being drawn at any one point.
+    // Use these values to know what tiles in the map.txt are being drawn at any one point.
     private int mapStartX;
     private int mapEndX;
     private int mapStartY;
@@ -50,7 +50,7 @@ public class PlayStateViewport extends StateViewport {
     private Point mapCameraCenter;
     private Point pxCameraCenter;
 
-    // The camera has a pixel offset that allows it to decouple its location from the portion of the map that's being rendered
+    // The camera has a pixel offset that allows it to decouple its location from the portion of the map.txt that's being rendered
     private int pxOffsetX;
     private int pxOffsetY;
 
@@ -59,7 +59,7 @@ public class PlayStateViewport extends StateViewport {
     /*
      * In order to be able to animate/tween entities from one location to another independently (i.e., multiple entities
      * on screen moving around), each entity will have a location that they know about themselves.  When the move,
-     * that location will be updated to the new map location.  However, the render will not re-render the entity in that new
+     * that location will be updated to the new map.txt location.  However, the render will not re-render the entity in that new
      * location, since that would cause a sudden jump (not animated/smooth).  Instead, a pixel offset will be stored below
      * that will cause the entity to remain rendered in their old position until the pixel offset is reduced to 0 from their
      * new location.
@@ -77,11 +77,11 @@ public class PlayStateViewport extends StateViewport {
         this.graphicsAssets = graphicsAssets;
         this.playState = playState;
 
-        // Start the map in the top left corner.
+        // Start the map.txt in the top left corner.
         mapStartX = 0;
         mapStartY = 0;
 
-        // The end of what we expect to render of the map should either be limited by the size of the map or the size of the viewport (i.e. the window)
+        // The end of what we expect to render of the map.txt should either be limited by the size of the map.txt or the size of the viewport (i.e. the window)
         mapEndX = Math.min(playState.getWorld().getWidth(), (int)Math.ceil(viewport.getPxWidth()/graphicsAssets.TILE_PX_WIDTH));
         mapEndY = Math.min(playState.getWorld().getHeight(), (int)Math.ceil(viewport.getPxHeight()/graphicsAssets.TILE_PX_HEIGHT));
 
@@ -94,7 +94,7 @@ public class PlayStateViewport extends StateViewport {
     }
 
     public void render(Graphics graphics) {
-        // First update the position and offset of the map and all entities that are on screen.
+        // First update the position and offset of the map.txt and all entities that are on screen.
         update();
 
         graphics.setColor(new Color(0,0,0));
@@ -116,7 +116,7 @@ public class PlayStateViewport extends StateViewport {
         mapCameraCenter = playState.getCenterPoint();
         pxCameraCenter = new Point(viewport.getPxWidth()/2, viewport.getPxHeight()/2);
 
-        // update the map start and end
+        // update the map.txt start and end
         mapStartX = (int)Math.max(0, (mapCameraCenter.x - (pxCameraCenter.x/(0.75*GraphicsAssets.TILE_PX_WIDTH))) - 2);
         mapStartY = Math.max(0, (mapCameraCenter.y - (pxCameraCenter.y/GraphicsAssets.TILE_PX_HEIGHT)) - 2);
         mapEndX = (int)Math.min(playState.getWorld().getWidth(), (mapCameraCenter.x + (pxCameraCenter.x/(0.75*GraphicsAssets.TILE_PX_WIDTH))) + 2);
