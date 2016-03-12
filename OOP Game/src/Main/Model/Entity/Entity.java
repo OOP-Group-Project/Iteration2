@@ -2,6 +2,7 @@ package Main.Model.Entity;
 
 import Main.Model.DirectionEnum;
 import Main.Model.Inventory.Inventory;
+import Main.Model.Items.Takable;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Stats.Stats;
@@ -58,6 +59,11 @@ public abstract class Entity {
         defense = "def"
         offense = "off"
      */
+    //
+    public void modifyStats(StatsModifier statsModifier) {
+
+    }
+
 
     public Stats getStats() { return stats; }
     //TODO: question by Andy: do we want to keep eveything here? Would it be better if we getStats and call on Stats?
@@ -90,5 +96,9 @@ public abstract class Entity {
 
     //
     public Inventory getInventory(){ return this.inventory;}
+
+    public boolean hasItem(Takable item) {
+        return inventory.hasItem(item);
+    }
 
 }
