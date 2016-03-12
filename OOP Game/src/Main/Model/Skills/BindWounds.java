@@ -2,6 +2,7 @@ package Main.Model.Skills;
 
 import Main.Model.Entity.Entity;
 import Main.Model.Stats.Stats;
+import Main.Model.Stats.StatsModifier;
 
 import java.util.Random;
 
@@ -15,18 +16,26 @@ public class BindWounds extends BaseSkills {
         super(entity, 10.0, 10.0);
     }
 
-
-
     public void activate() {
-        if(enoughMana()) {
+        if (!this.successfulPerfoemance()) {
+            System.out.println("performance of BindWounds failed");
+            return;
+        }
+        else if (!enoughMana()) {
+            System.out.println("Not enough mana");
+            return;
+        }
+        else {
             Random rand = new Random();
             int randomNum = rand.nextInt(100);
             Stats stats = entity.getStats();
-            if (level * 20 > randomNum) {
-                double amountToHeal = level * 3 + 4;
-                entity.modifyStats("hp", amountToHeal);
-            }
+            double amountToHeal = level * 3 + 4;
+            StatsModifier sm = new StatsModifier();
+            sm = sm.builder().lifeModifier(amountToHeal).build();
+            stats.modifyStats(sm);
             enforceManaCost();
         }
     }
+
+
 }
