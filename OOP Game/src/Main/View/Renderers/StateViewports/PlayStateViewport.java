@@ -97,6 +97,8 @@ public class PlayStateViewport extends StateViewport {
         // First update the position and offset of the map and all entities that are on screen.
         update();
 
+        graphics.setColor(new Color(0,0,0));
+        graphics.fillRect(0,0, viewport.getPxWidth(), viewport.getPxHeight());
         // Then render them
         ObjectRenderer.mapRenderer.render(graphics, playState.getWorld(), mapCameraCenter, mapStartX, mapEndX, mapStartY, mapEndY);
 

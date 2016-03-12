@@ -1,5 +1,9 @@
 package Main.View.Renderers;
 
+import Main.Model.AreaEffect.AreaEffect;
+import Main.Model.AreaEffect.AreaEffectEnum;
+import Main.Model.AreaEffect.HealDamage;
+import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Entity.Entity;
 import Main.Model.Entity.EntityTypeEnum;
 import Main.Model.Items.Item;
@@ -75,6 +79,13 @@ public class ObjectRenderer {
                 g.fillOval(pxCenterPoint.x - 25, pxCenterPoint.y - 25, 50, 50);
                 // render the correct image for the avatar's occupation.
             }
+
+            // Calculate location that the tile needs to be rendered using the pxCenterPoint
+            Point topLeft = new Point(pxCenterPoint.x - (graphicsAssets.TILE_PX_WIDTH/2), pxCenterPoint.y - (graphicsAssets.TILE_PX_HEIGHT/2));
+
+            if (type == EntityTypeEnum.NPC){
+                g.drawImage(GraphicsAssets.skeletonWalk,topLeft.x,topLeft.y ,graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT,null);
+            }
         }
     }
 
@@ -94,16 +105,18 @@ public class ObjectRenderer {
             // Render the correct image.
             if(type == TerrainTypeEnum.Grass) {
                 g.drawImage(graphicsAssets.grass, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
-
             } else if(type == TerrainTypeEnum.Water) {
-                //g.drawImage(graphicsAssets.water, x, y, width, height);
+                g.drawImage(graphicsAssets.water, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
 
             } else if(type == TerrainTypeEnum.Mountain) {
-                //g.drawImage(graphicsAssets.mountain, x, y, width, height);
+                g.drawImage(graphicsAssets.mountain, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
             }
 
-            // Render everything else (Item, area statsModifiers, etc.) except entities.
-
+            // Render everything else (Items, area effects, etc.) except entities.
+            if(tile.hasAreaEffect()) {
+                // Render HealDamage AreaEffect
+                areaEffectRenderer.render(g, tile.getAreaEffect(), topLeft);
+            }
         }
     }
 
@@ -114,6 +127,30 @@ public class ObjectRenderer {
 //            switch(type) {
 
             //}
+        }
+    }
+
+    public static class areaEffectRenderer{
+        public static void render(Graphics g, AreaEffect areaEffect, Point pxTopLeftPoint){
+            AreaEffectEnum type = areaEffect.getType();
+//            System.out.println("type: " + areaEffect.getType());
+
+            switch(type){
+                case Heal:
+                      g.drawImage(graphicsAssets.greenPlus,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
+                      break;
+                case Damage:
+                    g.drawImage(graphicsAssets.redCross,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
+                    break;
+                case LevelUp:
+                    g.drawImage(graphicsAssets.goldStar,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
+                    break;
+                case Death:
+                    g.drawImage(graphicsAssets.skullCrossBones,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
+                    break;
+                case Portal:
+                    g.drawImage(graphicsAssets.portal, pxTopLeftPoint.x,pxTopLeftPoint.y,null);
+            }
         }
     }
 

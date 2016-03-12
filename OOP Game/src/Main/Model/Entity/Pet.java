@@ -1,6 +1,6 @@
 package Main.Model.Entity;
 
-import Main.Model.DirectionEnum;
+
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
 import Main.View.Graphics.GraphicsAssets;

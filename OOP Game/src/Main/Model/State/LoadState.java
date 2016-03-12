@@ -32,8 +32,8 @@ public class LoadState extends State {
     public void loadNewGame() {
         // Look for the new game file
 
-        // load it
-       // model.load();
+        // loadMap it
+       // model.loadMap();
     }
 
     public void loadExistingGame() {
