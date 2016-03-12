@@ -87,4 +87,8 @@ public abstract class Entity {
     // Entities now have the ability to "speak"
     //
     public String speak(){return spiel.spiel();}
+
+    //
+    public Inventory getInventory(){ return this.inventory;}
+
 }
