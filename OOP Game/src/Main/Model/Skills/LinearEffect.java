@@ -13,7 +13,7 @@ public class LinearEffect implements InfluenceArea {
 
         Queue<MapLocationPoint> locationPointQueue = new Queue<>();
 
-        for (int i = 0; i < length; i++) {
+        for (int i = 1; i <= length; i++) {
             tempPoint = tempPoint.getAdjacent(direction);
             locationPointQueue.enqueue(tempPoint);
         }
