@@ -1,21 +1,39 @@
 package Main.Model.Skills;
 
+import Main.Model.Entity.Entity;
+import Main.Model.Stats.Stats;
+
 /**
- * Created by walkhard on 2/18/16.
+ * Created by Matthew on 3/12/16.
  */
 public abstract class Skills {
 
+    protected Entity entity;
     protected int level;
     protected double coolDownPeriod;
-    public abstract int activate();
+    protected double manaCost;
 
-    public Skills(double coolDownPeriod) {
+    public Skills(Entity entity, double coolDownPeriod, double manaCost) {
         level = 0;
+        this.entity = entity;
         this.coolDownPeriod = coolDownPeriod;
+        this.manaCost = manaCost;
     }
 
     public void increaseLevel() {
         ++level;
+    }
+
+    protected void enforceManaCost() {
+        entity.modifyStats("mp", -manaCost);
+    }
+
+    protected boolean enoughMana() {
+        Stats stats = entity.getStats();
+        if(stats.curMana() >= manaCost) {
+            return true;
+        }
+        return false;
     }
 
     public int getLevel() {
@@ -24,6 +42,10 @@ public abstract class Skills {
 
     public double getCoolDownPeriod() {
         return coolDownPeriod;
+    }
+
+    public double getManaCost() {
+        return manaCost;
     }
 
 

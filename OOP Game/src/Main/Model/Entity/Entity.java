@@ -69,4 +69,6 @@ public abstract class Entity {
     public void modifyExperience(int amt){stats.modifyExperience(amt);}
     //
     public void levelUp(){stats.levelUp();}
+
+    public Stats getStats() {return stats;}
 }

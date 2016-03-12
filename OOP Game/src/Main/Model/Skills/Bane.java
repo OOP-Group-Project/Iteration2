@@ -6,30 +6,27 @@ import Main.Model.Stats.Stats;
 import java.util.Random;
 
 /**
- * Created by Matthew on 3/11/2016.
+ * Created by Matthew on 3/12/2016.
  */
-public class BindWounds extends Skills {
+public class Bane extends Skills{
 
 
-    public BindWounds(Entity entity) {
-        //sets cooldown period to 10 seconds and mana cost to 10
-        super(entity, 10.0, 10.0);
+    public Bane(Entity entity) {
+        //2.0 cooldown and 5.0 mana cost
+        super(entity, 2.0, 5.0);
     }
 
-
-
-    public void activate() {
+    public void activate(Entity npc) {
         if(enoughMana()) {
             Random rand = new Random();
             int randomNum = rand.nextInt(100);
             Stats stats = entity.getStats();
             if (level * 20 > randomNum) {
-                double amountToHeal = level * 3 + 4;
-                entity.modifyStats("hp", amountToHeal);
+                double currentInt = stats.curIntellect();
+                double damageToDeal = level * (currentInt / 3);
+                npc.modifyStats("hp", -damageToDeal);
             }
             enforceManaCost();
         }
     }
-
-
 }
