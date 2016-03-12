@@ -1,5 +1,6 @@
 package Main.Model.Map;
 
+import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.Entity.Entity;
 import Main.Model.Items.Item;
 import Main.Model.Terrain.TerrainTypeEnum;

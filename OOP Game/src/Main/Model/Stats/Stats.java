@@ -179,6 +179,7 @@ public class Stats {
 
     */
 
+
     // mutators (maximum)
     private void changeMaxLives(int amt) {
         if(amt > 0)

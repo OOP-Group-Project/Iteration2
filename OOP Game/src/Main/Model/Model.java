@@ -1,5 +1,6 @@
 package Main.Model;
 
+import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
 import Main.Model.Inventory.Inventory;
@@ -31,6 +32,9 @@ public class Model {
 
         // Create the map first, we'll loadMap everything into it later
         world = new MapIO().loadMap("map.txt");
+
+        // Test adding an area effect.
+        world.getTile(1,7).addAreaEffect(new TakeDamage());
 
         /***********************
          * Create all the state objects

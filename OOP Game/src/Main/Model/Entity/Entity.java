@@ -36,6 +36,7 @@ public abstract class Entity {
     }
 
     //returns the type of entity it is
+
     public EntityTypeEnum getType() {
         return type;
     }

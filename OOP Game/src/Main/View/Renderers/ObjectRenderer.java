@@ -1,5 +1,9 @@
 package Main.View.Renderers;
 
+import Main.Model.AreaEffect.AreaEffect;
+import Main.Model.AreaEffect.AreaEffectEnum;
+import Main.Model.AreaEffect.HealDamage;
+import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Entity.Entity;
 import Main.Model.Entity.EntityTypeEnum;
 import Main.Model.Items.Item;
@@ -103,7 +107,10 @@ public class ObjectRenderer {
             }
 
             // Render everything else (Items, area effects, etc.) except entities.
-
+            if(tile.hasAreaEffect()) {
+                // Render HealDamage AreaEffect
+                areaEffectRenderer.render(g, tile.getAreaEffect(), topLeft);
+            }
         }
     }
 
@@ -114,6 +121,30 @@ public class ObjectRenderer {
 //            switch(type) {
 
             //}
+        }
+    }
+
+    public static class areaEffectRenderer{
+        public static void render(Graphics g, AreaEffect areaEffect, Point pxTopLeftPoint){
+            AreaEffectEnum type = areaEffect.getType();
+//            System.out.println("type: " + areaEffect.getType());
+
+            switch(type){
+                case Heal:
+                      g.drawImage(graphicsAssets.greenPlus,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
+                      break;
+                case Damage:
+                    g.drawImage(graphicsAssets.redCross,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
+                    break;
+                case LevelUp:
+                    g.drawImage(graphicsAssets.goldStar,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
+                    break;
+                case Death:
+                    g.drawImage(graphicsAssets.skullCrossBones,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
+                    break;
+                case Portal:
+                    g.drawImage(graphicsAssets.portal, pxTopLeftPoint.x,pxTopLeftPoint.y,null);
+            }
         }
     }
 

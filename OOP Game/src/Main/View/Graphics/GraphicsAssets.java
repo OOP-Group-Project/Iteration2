@@ -21,7 +21,7 @@ public class GraphicsAssets {
     private static final int Y_WALK_DOWN = 655;
     private static final int Y_WALK_LEFT = 719;
 
-    // Arrays that hold the 4 walking directions of the player (others to be added)
+    // BufferedImages hold all of the images
     public static BufferedImage[] playerWalkUp = new BufferedImage[9];
     public static BufferedImage[] playerWalkRight = new BufferedImage[9];
     public static BufferedImage[] playerWalkDown = new BufferedImage[9];
@@ -33,6 +33,7 @@ public class GraphicsAssets {
     public static BufferedImage mountain;
     public static BufferedImage water;
     public static BufferedImage portal;
+    public static BufferedImage greenPlus;
     public static BufferedImage goldStar;
     public static BufferedImage redCross;
     public static BufferedImage skullCrossBones;
@@ -50,6 +51,9 @@ public class GraphicsAssets {
         water = ImageLoader.loadImage("/Resources/water.png");
         grass = ImageLoader.loadImage("/Resources/grass.png");
         mountain = ImageLoader.loadImage("/Resources/mountain.png");
+        redCross = ImageLoader.loadImage("/Resources/redCross.png");
+        greenPlus = ImageLoader.loadImage("/Resources/greenPlus.png");
+        goldStar = ImageLoader.loadImage("/Resources/goldStar.png");
 
         // Load in player sprites
         player = mSpriteSheet.crop(X_START, Y_WALK_DOWN, WIDTH, HEIGHT);

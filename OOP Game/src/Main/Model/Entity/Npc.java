@@ -1,6 +1,6 @@
 package Main.Model.Entity;
 
-import Main.Model.DirectionEnum;
+
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
 import Main.View.Graphics.GraphicsAssets;
@@ -16,6 +16,4 @@ public class Npc extends Entity {
     public Npc(EntityTypeEnum entityType, Occupation occupation, MapLocationPoint location){
         super(entityType, occupation, location);
     }
-
-
 }
