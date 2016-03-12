@@ -7,6 +7,6 @@ import Main.Model.Entity.Entity;
  */
 public class RangedWeapon extends SneakSkills {
     public RangedWeapon (Entity entity) {
-        super(entity);
+        super(entity,0,0);
     }
 }

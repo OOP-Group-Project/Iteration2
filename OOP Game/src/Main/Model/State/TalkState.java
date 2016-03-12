@@ -14,7 +14,7 @@ public class TalkState {
     private Point option_selected;
 
     //
-    private init() {
+    private void init() {
         option_selected = new Point(0,0);
     }
 }

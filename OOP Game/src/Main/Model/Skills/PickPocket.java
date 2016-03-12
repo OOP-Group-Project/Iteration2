@@ -7,6 +7,6 @@ import Main.Model.Entity.Entity;
  */
 public class PickPocket extends SneakSkills {
     public PickPocket (Entity entity) {
-        super(entity);
+        super(entity,0,0);
     }
 }
