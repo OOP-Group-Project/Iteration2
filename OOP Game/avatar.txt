@@ -1,0 +1,9 @@
+Type:Avatar
+Name:John
+Occupation:Smasher
+Level:3
+Inventory:5
+Takeable1:1
+Takable2:1
+Takable3:3
+Location:(0,0)

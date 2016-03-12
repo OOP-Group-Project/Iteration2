@@ -37,7 +37,6 @@ public abstract class Entity {
     }
 
     //returns the type of entity it is
-
     public EntityTypeEnum getType() {
         return type;
     }
@@ -60,8 +59,7 @@ public abstract class Entity {
     //TODO: question by Andy: do we want to keep eveything here? Would it be better if we getStats and call on Stats?
     public void modifyStats(String stat_to_modify, double amt) {stats.modifyStats(stat_to_modify, amt);}
 
-    public void modifyState(StatsModifier sm) {stats.modifyStats(sm);}
-
+    public void modifyStats(StatsModifier sm) {stats.modifyStats(sm);}
 
     // used to temporarily modify stats
     public void buff(String stat_to_buff, double amt){stats.buff(stat_to_buff, amt);}
@@ -75,4 +73,8 @@ public abstract class Entity {
     public void modifyExperience(int amt){stats.modifyExperience(amt);}
     //
     public void levelUp(){stats.levelUp();}
+
+    public Occupation getOccupation() {
+        return occupation;
+    }
 }

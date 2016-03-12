@@ -9,6 +9,7 @@ import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.State.*;
 import Main.Model.Stats.Stats;
+import Main.Model.io.AvatarIO;
 import Main.Model.io.MapIO;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class Model {
          ********************/
 
         // Create a dummy character first
-        player = new Avatar(new MapLocationPoint(0,0));
+        player = new AvatarIO().loadAvatar();
 
         // Create a dummy NPC
         skeleton = new Npc(new MapLocationPoint(2,11));
@@ -55,7 +56,6 @@ public class Model {
         
         //INVENTORY & STATS  need to be pass to player and InventoryState
         states.put(StateEnum.InventoryState, new InventoryState());
-        new MapIO().saveMap(world, "map");
     }
 
     public Avatar getPlayer() {

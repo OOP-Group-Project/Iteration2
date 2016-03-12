@@ -10,4 +10,9 @@ public class Sneak extends Occupation {
         modify.put("int", 1.0);
         modify.put("har", 1.1);
     }
+
+    @Override
+    public String toString() {
+        return "Sneak";
+    }
 }
