@@ -51,6 +51,7 @@ public class Stats {
     private double max_int;    //intellect
     private double max_har;    //hardiness
     private double max_mov;    //movement
+    private double max_act;
     private int max_exp;       //experience required to reach next level
     private int max_lives;     //number of lives available
 
@@ -60,6 +61,7 @@ public class Stats {
     private double cur_int;
     private double cur_har;
     private double cur_mov;
+    private double cur_act;
     private int cur_exp;
     private int cur_lives;
 
@@ -69,6 +71,7 @@ public class Stats {
     private double temp_int;
     private double temp_har;
     private double temp_mov;
+    private double temp_act;
 
     /*
 
@@ -113,6 +116,7 @@ public class Stats {
     public double maxIntellect() {return max_int;}
     public double maxHardiness() {return max_har;}
     public double maxMovement() {return max_mov;}
+    public double maxAction() {return max_act;}
     public double maxLife() {return max_hp;}
     public double maxMana() {return max_mp;}
     public double maxOffense() {return max_off;}
@@ -130,6 +134,7 @@ public class Stats {
     public double curIntellect() {return cur_int;}
     public double curHardiness() {return cur_har;}
     public double curMovement() {return cur_mov;}
+    public double curAction() {return cur_act;}
     public double curLife() {return cur_hp;}
     public double curMana() {return cur_mp;}
     public double curOffense() {return cur_off;}
@@ -156,6 +161,7 @@ public class Stats {
         cur_def = max_def;
         cur_mov = max_mov;
         cur_arm = max_arm;
+        cur_act = max_act;
     }
     //
     private void setTemp() {
@@ -169,6 +175,7 @@ public class Stats {
         temp_def = max_def;
         temp_mov = max_mov;
         temp_arm = max_arm;
+        temp_act = max_act;
     }
     /*
 
@@ -222,6 +229,13 @@ public class Stats {
             max_mov += amt;
         else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             max_mov += max_mov * amt;
+    }
+    private void changeMaxAction(double amt) {
+        // change stat
+        if(abs(amt) > 0.99)
+            max_act += amt;
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
+            max_act += max_act * amt;
     }
     private void changeMaxLife(double amt) {
         // change stat
@@ -337,6 +351,18 @@ public class Stats {
         else if(cur_mov < 0)
             cur_mov = 0;
     }
+    private void changeCurAction(double amt) {
+        // change stat
+        if(abs(amt) > 0.99)
+            cur_act += amt;
+        else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
+            cur_act += cur_act * amt;
+        // make sure the change makes sense
+        if (cur_act > max_act)
+            cur_act = max_act;
+        else if(cur_act < 0)
+            cur_act = 0;
+    }
     private void changeCurLife(double amt) {
         // change stat
         if(abs(amt) > 0.99)
@@ -447,6 +473,8 @@ public class Stats {
                         break;
             case "mov": changeCurMovement(amt);
                         break;
+            case "act": changeCurAction(amt);
+                        break;
         }
         calculateSecondaryStats();
     }
@@ -495,6 +523,9 @@ public class Stats {
             case "mov": changeMaxMovement(amt);
                         changeCurMovement(amt);
                         break;
+            case "act": changeMaxAction(amt);
+                        changeCurAction(amt);
+                        break;
         }
         calculateSecondaryStats();
     }
@@ -512,6 +543,7 @@ public class Stats {
         max_def = temp_def;
         max_mov = temp_mov;
         max_arm = temp_arm;
+        max_act = temp_act;
     }
 
     // print
@@ -526,6 +558,7 @@ public class Stats {
         System.out.println("Intellect: " + curIntellect() + "/" + maxIntellect());
         System.out.println("Hardiness: " + curHardiness() + "/" + maxHardiness());
         System.out.println("Movement: " + curMovement() + "/" + maxMovement());
+        System.out.println("Action: " + curAction() + "/" + maxAction());
         // secondary stats
         System.out.println("Secondary Stats:");
         System.out.println("Life: " + curLife() + "/" + maxLife());
