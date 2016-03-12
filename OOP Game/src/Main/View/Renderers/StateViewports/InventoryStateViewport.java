@@ -17,10 +17,6 @@ import Main.View.Viewport;
 public class InventoryStateViewport extends StateViewport{
     private final String FONT_USE = "Calibri (Body)";
     
-    //SCREEN DIMENSION
-    private final int WIDTH = 700;
-    private final int HEIGHT = 700;
-    
     //INVENTORY TITLE
     private final int TITLE_START_X = (int) (WIDTH * 0.1);
     private final int TITLE_START_Y = (int) (HEIGHT * 0.05);
@@ -58,7 +54,7 @@ public class InventoryStateViewport extends StateViewport{
     private Font font;
     private Font smallFont;
     private Font largeFont;
-    private final Font titleFont = new Font("Calibri (Body)", Font.BOLD, (int)(TITLE_WIDTH*0.1));
+    private final Font titleFont = new Font("Calibri (Body)", Font.BOLD, (int)(TITLE_HEIGHT*0.5));
 	
 	
 	
