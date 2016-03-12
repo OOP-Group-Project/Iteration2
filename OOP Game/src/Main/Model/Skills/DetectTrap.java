@@ -7,7 +7,7 @@ import Main.Model.Entity.Entity;
  */
 public class DetectTrap extends SneakSkills {
     public DetectTrap (Entity entity) {
-        super(entity);
+        super(entity,0,0);
     }
 
 }

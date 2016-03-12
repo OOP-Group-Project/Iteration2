@@ -7,6 +7,6 @@ import Main.Model.Entity.Entity;
  */
 public class Creep extends SneakSkills {
     public Creep (Entity entity) {
-        super(entity);
+        super(entity,0,0);
     }
 }
