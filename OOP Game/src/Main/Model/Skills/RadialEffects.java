@@ -7,8 +7,9 @@ import sun.misc.*;
 /**
  * Created by AndyZhu on 7/3/2016.
  *
- * Hey visitor, for radial effects, I store the coordinates of affected tiles to an array of Point.
- * Note that: if you call Point.getX(); what you get is actually Y coordinate instead of X. same to Point.getY();
+ * Hey visitor, for radial effects, I store the MapLocationPoint(s) of affected tiles to a Queue
+ * When use, just dequeue everything in the queue.
+ * TODO: do we need to further extend it to include the distance of a single point to the origin?
  */
 public class RadialEffects implements InfluenceArea {
 
@@ -25,9 +26,10 @@ public class RadialEffects implements InfluenceArea {
 
             //loop from Up (j = 0) -> UpRight 1 -> DownRight 2 -> Down 3 -> DownLeft 4 -> UpLeft 5
             for (int j = 0; j < 6; j++) {
-
+                //switch statement decides the direction
                 switch (j) {
                     case 0:
+                        //these loops actually add the location of affected tiles to the queue
                         for (int k = 0; k < i; k++) {
                             tempPoint = tempPoint.getAdjacent(DirectionEnum.DownRight);
                             //TODO: add constraints for the other boundaries
