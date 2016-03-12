@@ -15,7 +15,7 @@ public class AngularEffects implements InfluenceArea {
 
         switch (direction) {
             case Down:
-                
+
         }
 
         return locationPointQueue;
