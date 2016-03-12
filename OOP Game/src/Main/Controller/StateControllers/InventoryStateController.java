@@ -28,6 +28,10 @@ public class InventoryStateController extends StateController{
 	public void handleAction(UserActionEnum action) {
 		
 		switch(action){
+			case Pause:
+				inventoryState.init();
+				stateControllerManager.setState(StateEnum.PlayState);
+				break;
 			case Select:
 				inventoryState.init();
 				stateControllerManager.setState(StateEnum.PlayState);
