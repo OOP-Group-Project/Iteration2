@@ -62,6 +62,9 @@ public class PlayStateController extends StateController {
             case ViewDownRight:
                 playState.moveCenterPoint(DirectionEnum.DownRight);
                 break;
+            case Select:
+            	stateControllerManager.setState(StateEnum.InventoryState);
+            	break;
         }
     }
 }

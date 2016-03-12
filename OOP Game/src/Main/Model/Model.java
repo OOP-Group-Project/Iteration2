@@ -2,16 +2,9 @@ package Main.Model;
 
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
-import Main.Model.Items.Armor;
-import Main.Model.Items.ArmorTypeEnum;
-import Main.Model.Items.ItemBuilders.ArmorBuilder;
-import Main.Model.Items.ItemBuilders.WeaponBuilder;
-import Main.Model.Items.Weapon;
-import Main.Model.Items.WeaponTypeEnum;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.State.*;
-
 import java.util.EnumMap;
 
 /**
@@ -43,6 +36,9 @@ public class Model {
         states.put(StateEnum.LoadState, new LoadState(this));
         states.put(StateEnum.PlayState, new PlayState(world, player));
         states.put(StateEnum.PauseState, new PauseState());
+        
+        //INVENTORY & STATS  need to be pass to player and InventoryState
+        states.put(StateEnum.InventoryState, new InventoryState());
     }
 
     public Avatar getPlayer() {
