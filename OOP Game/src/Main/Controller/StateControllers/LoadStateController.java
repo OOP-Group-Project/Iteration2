@@ -40,7 +40,6 @@ public class LoadStateController extends StateController {
 
     @Override
     public void update() {
-        world.createTestMap();
         world.addEntity(player, player.getLocation().x, player.getLocation().y);
         for(Entity e : nonPlayerEntities){
             world.addEntity(e,e.getLocation().x,e.getLocation().y);

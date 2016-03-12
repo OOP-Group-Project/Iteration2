@@ -1,16 +1,9 @@
 package Main;
 
 import Main.Controller.Controller;
-import Main.Model.Entity.Avatar;
-import Main.Model.Map.Map;
 import Main.Model.Model;
-import Main.Model.State.LoadState;
-import Main.Model.State.PlayState;
-import Main.Model.State.State;
-import Main.Model.State.StateEnum;
+import Main.Model.io.IOController;
 import Main.View.Viewport;
-
-import java.util.EnumMap;
 
 
 /**

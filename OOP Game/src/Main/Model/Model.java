@@ -1,5 +1,6 @@
 package Main.Model;
 
+import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
 import Main.Model.Entity.Npc;
@@ -8,6 +9,7 @@ import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.State.*;
 import Main.Model.Stats.Stats;
+import Main.Model.io.MapIO;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -20,7 +22,6 @@ public class Model {
     private Avatar player;
     private Npc skeleton;
     private ArrayList<Entity> nonPlayerEntities = new ArrayList<Entity>();
-//    private Entity nonPlayerEntities[];
     private Map world;
     private EnumMap<StateEnum, State> states;
 
@@ -33,13 +34,16 @@ public class Model {
         player = new Avatar(new MapLocationPoint(0,0));
 
         // Create a dummy NPC
-        skeleton = new Npc(new MapLocationPoint(5,5));
+        skeleton = new Npc(new MapLocationPoint(2,11));
 
         // add skeleton
         nonPlayerEntities.add(skeleton);
 
-        // Create the map first, we'll load everything into it later
-        world = new Map(100, 100);
+        // Create the map first, we'll loadMap everything into it later
+        world = new MapIO().loadMap("map.txt");
+
+        // Test adding an area effect.
+        world.getTile(1,7).addAreaEffect(new TakeDamage());
 
         /***********************
          * Create all the state objects
@@ -51,6 +55,7 @@ public class Model {
         
         //INVENTORY & STATS  need to be pass to player and InventoryState
         states.put(StateEnum.InventoryState, new InventoryState());
+        new MapIO().saveMap(world, "map");
     }
 
     public Avatar getPlayer() {

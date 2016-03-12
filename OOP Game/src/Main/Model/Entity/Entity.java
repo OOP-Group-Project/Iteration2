@@ -9,7 +9,6 @@ import Main.Model.Stats.Stats;
 /**
  * Modified by John Kaufmann 2/9/16
  * TODO: Implment an equipment starter pack based on your entity type.
- * TODO: Go over this class with mason to make sure that nothing was altered wrongfully
  */
 public abstract class Entity {
     protected EntityTypeEnum type;

@@ -105,19 +105,18 @@ public class ObjectRenderer {
             // Render the correct image.
             if(type == TerrainTypeEnum.Grass) {
                 g.drawImage(graphicsAssets.grass, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
-
-                // Render HealDamage AreaEffect
-//                areaEffectRenderer.render(g, new TakeDamage(),topLeft);
-
             } else if(type == TerrainTypeEnum.Water) {
-                //g.drawImage(graphicsAssets.water, x, y, width, height);
+                g.drawImage(graphicsAssets.water, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
 
             } else if(type == TerrainTypeEnum.Mountain) {
-                //g.drawImage(graphicsAssets.mountain, x, y, width, height);
+                g.drawImage(graphicsAssets.mountain, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
             }
 
             // Render everything else (Items, area effects, etc.) except entities.
-
+            if(tile.hasAreaEffect()) {
+                // Render HealDamage AreaEffect
+                areaEffectRenderer.render(g, tile.getAreaEffect(), topLeft);
+            }
         }
     }
 

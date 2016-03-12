@@ -179,9 +179,6 @@ public class Stats {
 
     */
 
-    public void tick(){
-
-    }
 
     // mutators (maximum)
     private void changeMaxLives(int amt) {
