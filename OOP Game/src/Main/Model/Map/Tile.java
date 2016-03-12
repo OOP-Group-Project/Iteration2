@@ -10,16 +10,10 @@ import java.util.ArrayList;
 
 public class Tile {
 
-	public static final int TILE_SIDE = 32;
-
 	private TerrainTypeEnum terrainType;
 	private Entity entity = null;
 	private ArrayList<Item> items;
-    private boolean hasAreaEffect;
-	private boolean hasEntity;
-    private AreaEffect mAreaEffect;
-	private int x;
-	private int y;
+    private AreaEffect areaEffect;
 
 
 	// Default constructor
@@ -27,11 +21,8 @@ public class Tile {
 		this.terrainType = TerrainTypeEnum.Grass;
 	}
 	
-	public Tile(TerrainTypeEnum terrainType, boolean hasAreaEffect,int id, int x, int y){
+	public Tile(TerrainTypeEnum terrainType,int id) {
 		this.terrainType = terrainType;
-        this.hasAreaEffect = hasAreaEffect;
-		this.x = x;
-		this.y = y;
 	}
 
 	public void addEntity(Entity e) {
@@ -50,20 +41,19 @@ public class Tile {
 	}
 
     public void addAreaEffect(AreaEffect areaEffect){
-        this.mAreaEffect = areaEffect;
-        hasAreaEffect = true;
+        this.areaEffect = areaEffect;
     }
+
+	public AreaEffect getAreaEffect() {
+		return areaEffect;
+	}
+
+	public boolean hasAreaEffect() {
+		return areaEffect != null;
+	}
 
 	public TerrainTypeEnum getTerrainType() {
 		return terrainType;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
 	}
 
 	public Entity getEntity() {

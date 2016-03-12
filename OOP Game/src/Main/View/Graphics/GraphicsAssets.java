@@ -83,7 +83,5 @@ public class GraphicsAssets {
             currentX += PADDING;
             i++;
         }
-
     }
-
 }
