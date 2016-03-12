@@ -13,20 +13,21 @@ import Main.Model.Stats.StatsModifier;
  */
 public abstract class Entity {
     protected EntityTypeEnum type;
+    protected EntitySpeechEnum spiel;
     protected Stats stats;
     protected Occupation occupation;
     protected Inventory inventory;
     protected MapLocationPoint location;
 
     //create Entities at certain locations with a certain type
-    public Entity(EntityTypeEnum entityType, Occupation occupation, MapLocationPoint location) {
+    public Entity(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location) {
         this.type = entityType;
+        this.spiel = entitySpiel;
         this.occupation = occupation;
         this.location = location;
         this.stats = new Stats(occupation.map(),1);
         this.inventory = new Inventory();
     }
-
     //moves a players known x and y (JFK)
     public void move(DirectionEnum dir) {
         location.move(dir);
@@ -41,6 +42,7 @@ public abstract class Entity {
         return type;
     }
 
+    // P.Smith
     // Entities now know how to adjust their Stats()
     /*
         strength = "str"
@@ -48,6 +50,7 @@ public abstract class Entity {
         intellect = "int"
         hardiness = "har"
         movement = "mov"
+        action(speed) = "act"
         health = "hp"
         mana = "mp"
         armor = "arm"
@@ -72,9 +75,22 @@ public abstract class Entity {
     //
     public void modifyExperience(int amt){stats.modifyExperience(amt);}
     //
+    public void checkExperience(){
+        if(stats.checkExperience())
+            stats.levelUp();
+    }
+    //
     public void levelUp(){stats.levelUp();}
 
     public Occupation getOccupation() {
         return occupation;
     }
+
+    // Entities now have the ability to "speak"
+    //
+    public String speak(){return spiel.spiel();}
+
+    //
+    public Inventory getInventory(){ return this.inventory;}
+
 }
