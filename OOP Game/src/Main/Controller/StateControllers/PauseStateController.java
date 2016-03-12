@@ -28,6 +28,16 @@ public class PauseStateController extends StateController {
             case Pause:
                 stateControllerManager.setState(stateControllerManager.getPreviousState());
                 break;
+            case Select:
+    			stateControllerManager.setState(pauseState.getNextState());
+    			pauseState.init();
+    			break;
+            case Up:
+    			pauseState.previusOption();
+    			break;
+    		case Down:
+    			pauseState.nextOption();
+    			
         }
     }
 }
