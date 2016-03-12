@@ -30,7 +30,7 @@ public class Controller implements Runnable{
     public Controller(Model model) {
         // Create all the controllers
 
-        stateControllerManager = new StateControllerManager(model.getStates(), model.getWorld(), model.getPlayer());
+        stateControllerManager = new StateControllerManager(model.getStates(), model.getWorld(), model.getPlayer(),model.getNonPlayerEntities());
         keyboardManager = new KeyManager(stateControllerManager, stateControllerManager.getGameStateControllers());
         // AIManager = new AIManager()
         // Construct all the entity controllers

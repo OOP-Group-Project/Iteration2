@@ -7,12 +7,9 @@ import Main.Model.Occupation.Occupation;
 import Main.Model.Stats.Stats;
 import Main.Model.Stats.StatsModifier;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
 /**
  * Modified by John Kaufmann 2/9/16
  * TODO: Implment an equipment starter pack based on your entity type.
- * TODO: Go over this class with mason to make sure that nothing was altered wrongfully
  */
 public abstract class Entity {
     protected EntityTypeEnum type;
@@ -40,6 +37,7 @@ public abstract class Entity {
     }
 
     //returns the type of entity it is
+
     public EntityTypeEnum getType() {
         return type;
     }
