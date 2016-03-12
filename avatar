@@ -1,0 +1,11 @@
+protected EntityTypeEnum type;
+    protected Stats stats;
+    protected Occupation occupation;
+    protected Inventory inventory;
+    protected MapLocationPoint location;
+Type: Avatar
+Name: John
+Stats:
+Occupation: Smasher
+Inventory: Takeable1, Takable2, Takable3
+Location: (0,0)

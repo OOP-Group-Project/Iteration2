@@ -30,7 +30,6 @@ public class MapIO {
         FileData = io.readFile(fileName);
 
         //get the map dimensions
-        if (FileData.isEmpty()) System.out.println("empty file..");
         String[] size = FileData.get(0).split(",", 2);
 
         int width = Integer.valueOf(size[0]);
