@@ -27,4 +27,5 @@ public class Avatar extends Entity{
         this.location = new MapLocationPoint(xLocation, yLocation);
     }
 
+
 }

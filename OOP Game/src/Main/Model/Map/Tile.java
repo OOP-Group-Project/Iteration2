@@ -1,25 +1,19 @@
 package Main.Model.Map;
 
+import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.Entity.Entity;
 import Main.Model.Items.Item;
+
 import Main.Model.Terrain.TerrainTypeEnum;
 
 import java.util.ArrayList;
 
 public class Tile {
 
-	public static final int TILE_SIDE = 32;
-
 	private TerrainTypeEnum terrainType;
 	private Entity entity = null;
 	private ArrayList<Item> items;
-	private int x;
-	private int y;
-	
-	//TYPE OF TILES  (The type of tile is a class)
-//	public static final int GRASS =0;
-//	public static final int MOUNTAIN = 1;
-//	public static final int WATER = 2;
+    private AreaEffect areaEffect;
 
 
 	// Default constructor
@@ -27,10 +21,8 @@ public class Tile {
 		this.terrainType = TerrainTypeEnum.Grass;
 	}
 	
-	public Tile(TerrainTypeEnum terrainType, int id, int x, int y){
+	public Tile(TerrainTypeEnum terrainType,int id) {
 		this.terrainType = terrainType;
-		this.x = x;
-		this.y = y;
 	}
 
 	public void addEntity(Entity e) {
@@ -48,16 +40,20 @@ public class Tile {
 		this.items.add(item);
 	}
 
+    public void addAreaEffect(AreaEffect areaEffect){
+        this.areaEffect = areaEffect;
+    }
+
+	public AreaEffect getAreaEffect() {
+		return areaEffect;
+	}
+
+	public boolean hasAreaEffect() {
+		return areaEffect != null;
+	}
+
 	public TerrainTypeEnum getTerrainType() {
 		return terrainType;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
 	}
 
 	public Entity getEntity() {

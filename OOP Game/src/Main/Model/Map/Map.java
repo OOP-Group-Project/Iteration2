@@ -1,8 +1,11 @@
 package Main.Model.Map;
 
+import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.Entity.Entity;
 import Main.Model.Items.Item;
 import Main.Model.Terrain.TerrainTypeEnum;
+
+import java.util.ArrayList;
 
 
 public class Map {
@@ -21,14 +24,21 @@ public class Map {
 	public void createTestMap(){
         for(int i = 0; i < width; i++){
             for (int j = 0; j < height; j++){
-                tiles[i][j] = new Tile(TerrainTypeEnum.Grass,0,i,j);
+                tiles[i][j] = new Tile(TerrainTypeEnum.Grass,0);
             }
         }
 	}
-	
-	//should be able to read from a path and set up the map
-	public void loadMap(String path){
-		
+
+	public void setTiles(Tile[][] tiles) {
+		this.tiles = tiles;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
 	}
 
 	public void addEntity(Entity e, int xLocation, int yLocation) {
