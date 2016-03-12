@@ -14,8 +14,8 @@ public class Armor extends Equippable{
     private Skill skills[];
 
     /*** Constructors ***/
-    public Armor(ArmorTypeEnum armorType, String name, StatsModifier statsModifiers[], Requirement requirements[], Skill skills[]){
-        super(ItemTypeEnum.Equippable, name, statsModifiers, requirements);
+    public Armor(ArmorTypeEnum armorType, String name, int id, StatsModifier statsModifiers[], Requirement requirements[], Skill skills[]){
+        super(ItemTypeEnum.Equippable, name, id, statsModifiers, requirements);
         //super(Equippable constructor stuff)
         this.armorType = armorType;
         this.skills = skills;

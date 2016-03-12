@@ -16,8 +16,8 @@ public class WeaponBuilder extends ItemBuilder {
     private Attack attacks[] = null;
     private Skill skills[] = null;
 
-    public WeaponBuilder(WeaponTypeEnum type, String name) {
-        super(ItemTypeEnum.Equippable, name);
+    public WeaponBuilder(WeaponTypeEnum type, String name, int id) {
+        super(ItemTypeEnum.Equippable, name, id);
         this.type = type;
     }
 
@@ -33,6 +33,6 @@ public class WeaponBuilder extends ItemBuilder {
 
     @Override
     public Item build() {
-        return new Weapon(type, name, statsModifiers, requirements, attacks, skills);
+        return new Weapon(type, name, id, statsModifiers, requirements, attacks, skills);
     }
 }

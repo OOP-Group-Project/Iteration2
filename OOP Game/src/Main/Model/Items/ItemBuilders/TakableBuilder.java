@@ -9,13 +9,13 @@ import Main.Model.Items.Takable;
  */
 public class TakableBuilder extends ItemBuilder {
 
-    public TakableBuilder(String name) {
-        super(ItemTypeEnum.Takable, name);
+    public TakableBuilder(String name, int id) {
+        super(ItemTypeEnum.Takable, name, id);
     }
 
     @Override
     public Item build() {
-        return new Takable(type, name, statsModifiers, requirements);
+        return new Takable(type, name, id, statsModifiers, requirements);
     }
 
 }

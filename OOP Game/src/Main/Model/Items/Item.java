@@ -9,12 +9,14 @@ import Main.Model.Requirement;
  */
 public abstract class Item {
     protected String name;
+    protected int id;
     protected ItemTypeEnum type;
     protected Requirement requirements[];
     protected StatsModifier statsModifiers[];
 
-    public Item(ItemTypeEnum type, String name, StatsModifier statsModifiers[], Requirement requirements[]){
+    public Item(ItemTypeEnum type, String name, int id, StatsModifier statsModifiers[], Requirement requirements[]){
         this.name = name;
+        this.id = id;
         this.type = type;
         this.requirements = requirements;
         this.statsModifiers = statsModifiers;
@@ -39,5 +41,8 @@ public abstract class Item {
         return true;
     }
 
+    public int getId() {
+        return id;
+    }
 
 }

@@ -2,6 +2,7 @@ package Main.Model.Entity;
 
 import Main.Model.DirectionEnum;
 import Main.Model.Inventory.Inventory;
+import Main.Model.Items.Takable;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Stats.Stats;
@@ -95,5 +96,9 @@ public abstract class Entity {
 
     //
     public Inventory getInventory(){ return this.inventory;}
+
+    public boolean hasItem(Takable item) {
+        return inventory.hasItem(item);
+    }
 
 }

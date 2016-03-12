@@ -1,15 +1,11 @@
 package Main.Model;
 
-import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Items.Takable;
 import Main.Model.Entity.*;
-<<<<<<< HEAD
 import Main.Model.Occupation.Occupation;
 import Main.Model.Occupation.OccupationTypeEnum;
 
-=======
 import Main.Model.Items.*;
->>>>>>> master
 /**
  * Created by Peter Camejo on 3/10/2016.
  */
@@ -60,25 +56,17 @@ public class Requirement {
         if(entityLevel >= this.requiredLevel){
              return true;
         }
-<<<<<<< HEAD
-        */
 
         if(requiredLevel == 0) {
             return true;
         }
-
-=======
->>>>>>> master
         return false;
     }
-/*
+
     public boolean hasItem(Entity entity){
-        Item testItem = entity.getInventory().getItem(requiredItem);
-        if(testItem.getId() == requiredItem.getId()){
+        if(entity.hasItem(requiredItem)){
             return true;
         }
-<<<<<<< HEAD
-         */
 
         if(requiredItem == null) {
             return true;
@@ -143,10 +131,4 @@ public class Requirement {
      */
 
 
-=======
-
-        return false;
-    }
-*/
->>>>>>> master
 } //end Requirement

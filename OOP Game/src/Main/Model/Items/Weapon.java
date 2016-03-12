@@ -19,8 +19,8 @@ public class Weapon extends Equippable {
 
     /*** Constructors ***/
     //Sets twoHanded based on weaponType
-    public Weapon(WeaponTypeEnum weaponType, String name, StatsModifier statsModifiers[], Requirement requirements[], Attack attacks[], Skill skills[]) {
-        super(ItemTypeEnum.Equippable, name, statsModifiers, requirements);
+    public Weapon(WeaponTypeEnum weaponType, String name, int id, StatsModifier statsModifiers[], Requirement requirements[], Attack attacks[], Skill skills[]) {
+        super(ItemTypeEnum.Equippable, name, id, statsModifiers, requirements);
         if (weaponType == WeaponTypeEnum.ONEHANDSWORD ||
                 weaponType == WeaponTypeEnum.SHIELD ||
                 weaponType == WeaponTypeEnum.DAGGER) {

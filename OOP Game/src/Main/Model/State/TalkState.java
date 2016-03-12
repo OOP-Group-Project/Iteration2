@@ -15,11 +15,6 @@ public class TalkState extends State{
     Entity e;
     Entity p;
 
-    //
-<<<<<<< HEAD
-    private void init() {
-        option_selected = new Point(0,0);
-=======
     private void speak(){System.out.println(p.speak());}
     //
     private void respond(){System.out.println(e.speak());}
@@ -27,6 +22,5 @@ public class TalkState extends State{
     public void talk() {
         speak();
         respond();
->>>>>>> master
     }
 }

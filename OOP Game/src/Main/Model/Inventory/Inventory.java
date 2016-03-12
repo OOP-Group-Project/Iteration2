@@ -45,6 +45,10 @@ public class Inventory {
         return items[index].amount;
     }
 
+    public boolean hasItem(Takable item) {
+        return false;
+    }
+
     /* Made by Alex (Peter) : Gets an Item if it is in the Inventory. Otherwise returns null */
     /*
     public TakeAble getItem(TakeAble item){

@@ -20,11 +20,7 @@ public class EquippedWeapon{
 
     /*** Methods ***/
     public void equipWeapon(Weapon newWeapon){
-<<<<<<< HEAD:OOP Game/src/Main/Model/Equipment/EquippedWeapon.java
-        Weapon temp = newWeapon;//new Weapon(newWeapon);
-        this.weapon = temp;
-=======
-        Weapon temp = new Weapon(newWeapon);
+        Weapon temp = newWeapon;
         if(temp.isTwoHanded() == true){
             mainHand = temp;
             offHand = temp;
@@ -32,7 +28,6 @@ public class EquippedWeapon{
             mainHand = temp;
             offHand = null;
         }
->>>>>>> master:OOP Game/src/Main/Model/Inventory/Equipment/EquippedWeapon.java
     }
 
     public Weapon unequipWeapon() {
@@ -40,14 +35,9 @@ public class EquippedWeapon{
             return null;
         }
 
-<<<<<<< HEAD:OOP Game/src/Main/Model/Equipment/EquippedWeapon.java
-        Weapon temp = this.weapon;//new Weapon(this.weapon);
-        this.weapon = null;
-=======
-        Weapon temp = new Weapon(this.mainHand);
+        Weapon temp = this.mainHand;
         this.mainHand = null;
         this.offHand  = null;
->>>>>>> master:OOP Game/src/Main/Model/Inventory/Equipment/EquippedWeapon.java
         return temp;
     }
 

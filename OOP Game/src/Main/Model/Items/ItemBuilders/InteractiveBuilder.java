@@ -9,12 +9,12 @@ import Main.Model.Items.ItemTypeEnum;
  */
 public class InteractiveBuilder extends ItemBuilder {
 
-    public InteractiveBuilder(String name) {
-        super(ItemTypeEnum.Interactive, name);
+    public InteractiveBuilder(String name, int id) {
+        super(ItemTypeEnum.Interactive, name, id);
     }
 
     @Override
     public Item build() {
-        return new Interactive(name, statsModifiers, requirements);
+        return new Interactive(name, id, statsModifiers, requirements);
     }
 }
