@@ -73,6 +73,7 @@ public class RadialEffects implements InfluenceArea {
                         }
                         break;
                     default:
+                        System.out.println("Something is wrong with your Hexagon-search");
                         break;
                 }
             }
