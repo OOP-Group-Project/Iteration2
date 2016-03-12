@@ -25,10 +25,12 @@ public class Equipment {
 
     /*** Member Variables ***/
 
-    public TakeAble unEquip(WeaponTypeEnum equippedWeapon){
+    // Call when you want to unequip weapon
+    public TakeAble unEquip(){
         return weapon.unequipWeapon();
     }
 
+    //Pass an armor type to unequip armor;
     public TakeAble unEquip(ArmorTypeEnum armorType){
         return armor.unequipArmor(armorType);
     }

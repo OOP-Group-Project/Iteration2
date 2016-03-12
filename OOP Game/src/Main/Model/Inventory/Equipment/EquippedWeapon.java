@@ -20,12 +20,11 @@ public class EquippedWeapon{
 
     /*** Methods ***/
     public void equipWeapon(Weapon newWeapon){
-        Weapon temp = new Weapon(newWeapon);
-        if(temp.isTwoHanded() == true){
-            mainHand = temp;
-            offHand = temp;
+        if(newWeapon.isTwoHanded() == true){
+            mainHand = newWeapon;
+            offHand = newWeapon;
         }else{
-            mainHand = temp;
+            mainHand = newWeapon;
             offHand = null;
         }
     }
@@ -35,7 +34,7 @@ public class EquippedWeapon{
             return null;
         }
 
-        Weapon temp = new Weapon(this.mainHand);
+        Weapon temp = this.mainHand;
         this.mainHand = null;
         this.offHand  = null;
         return temp;
