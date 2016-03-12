@@ -1,7 +1,8 @@
 package Main.Model.Skills;
 
-import java.awt.*;
-//TODO; implement this with a formula
+import Main.Model.DirectionEnum;
+import Main.Model.Map.MapLocationPoint;
+import sun.misc.*;
 
 /**
  * Created by AndyZhu on 7/3/2016.
@@ -9,116 +10,71 @@ import java.awt.*;
  * Hey visitor, for radial effects, I store the coordinates of affected tiles to an array of Point.
  * Note that: if you call Point.getX(); what you get is actually Y coordinate instead of X. same to Point.getY();
  */
-public class RadialEffects implements InfluenceArea{
+public class RadialEffects implements InfluenceArea {
 
-    public Point[] getAffectedTilesRadius1 (int y, int x) {
-        if (x % 2 == 1) {
-            Point[] affectedTiles = {
-                    new Point(y - 1, x),
-                    new Point(y, x - 1),
-                    new Point(y, x + 1),
-                    new Point(y + 1, x - 1),
-                    new Point(y + 1, x),
-                    new Point(y + 1, x + 1)
-            };
-            return affectedTiles;
-        }
-        else {
-            Point[] affectedTiles = {
-                    new Point(y - 1, x),
-                    new Point(y - 1, x - 1),
-                    new Point(y - 1, x + 1),
-                    new Point(y, x - 1),
-                    new Point(y, x + 1),
-                    new Point(y + 1, x)
-            };
-            return affectedTiles;
-        }
-    }
+    public Queue<MapLocationPoint> getAffectedArea(int x, int y, int radius) {
 
-    public Point[] getAffectedTilesRadius2 (int y, int x) {
-        if (x % 2 == 1) {
-            Point[] affectedTiles = {
-                    new Point(y - 2, x),
-                    new Point(y - 1, x - 2),
-                    new Point(y - 1, x - 1),
-                    new Point(y - 1, x + 1),
-                    new Point(y - 1, x + 2),
-                    new Point(y, x - 2),
-                    new Point(y, x + 2),
-                    new Point(y + 1, x - 2),
-                    new Point(y + 1, x + 2),
-                    new Point(y + 2, x - 1),
-                    new Point(y + 2, x),
-                    new Point(y + 2, x + 1)
-            };
-            return affectedTiles;
-        }
-        else {
-            Point[] affectedTiles = {
-                    new Point(y - 2, x),
-                    new Point(y + 2, x),
-                    new Point(y - 1, x - 2),
-                    new Point(y, x - 2),
-                    new Point(y + 1, x - 2),
-                    new Point(y - 2, x - 1),
-                    new Point(y + 1, x - 1),
-                    new Point(y - 2, x + 1),
-                    new Point(y + 1, x + 1),
-                    new Point(y - 1, x + 2),
-                    new Point(y, x + 2),
-                    new Point(y + 1, x + 2),
-            };
-            return affectedTiles;
-        }
-    }
+        MapLocationPoint tempPoint;
+        MapLocationPoint upPoint;
+        Queue<MapLocationPoint> locationPointQueue = new Queue<>();
 
-    public Point[] getAffectedTilesRadius3 (int y, int x) {
-        if (x % 2 == 1) {
-            Point[] affectedTiles = {
-                    new Point(y - 3, x),
-                    new Point(y - 2, x - 2),
-                    new Point(y - 2, x - 1),
-                    new Point(y - 2, x + 1),
-                    new Point(y - 2, x + 2),
-                    new Point(y - 1, x - 3),
-                    new Point(y - 1, x + 3),
-                    new Point(y, x - 3),
-                    new Point(y, x + 3),
-                    new Point(y + 1, x - 3),
-                    new Point(y + 1, x + 3),
-                    new Point(y + 2, x - 3),
-                    new Point(y + 2, x - 2),
-                    new Point(y + 2, x + 2),
-                    new Point(y + 2, x + 3),
-                    new Point(y + 3, x - 1),
-                    new Point(y + 3, x),
-                    new Point(y + 3, x + 1)
-            };
-            return affectedTiles;
+        //loop from (radius = 1) to (radius = radius).
+        for (int i = 1; i <= radius; i++) {
+            upPoint = new MapLocationPoint(x, y - i);
+            tempPoint = upPoint;
+
+            //loop from Up (j = 0) -> UpRight 1 -> DownRight 2 -> Down 3 -> DownLeft 4 -> UpLeft 5
+            for (int j = 0; j < 6; j++) {
+
+                switch (j) {
+                    case 0:
+                        for (int k = 0; k < i; k++) {
+                            tempPoint = tempPoint.getAdjacent(DirectionEnum.DownRight);
+                            //TODO: add constraints for the other boundaries
+                            if (tempPoint.getX()>=0 && tempPoint.getY() >= 0)
+                                locationPointQueue.enqueue(tempPoint);
+                        }
+                        break;
+                    case 1:
+                        for (int k = 0; k < i; k++) {
+                            tempPoint = tempPoint.getAdjacent(DirectionEnum.Down);
+                            if (tempPoint.getX()>=0 && tempPoint.getY() >= 0)
+                                locationPointQueue.enqueue(tempPoint);
+                        }
+                        break;
+                    case 2:
+                        for (int k = 0; k < i; k++) {
+                            tempPoint = tempPoint.getAdjacent(DirectionEnum.DownLeft);
+                            if (tempPoint.getX()>=0 && tempPoint.getY() >= 0)
+                                locationPointQueue.enqueue(tempPoint);
+                        }
+                        break;
+                    case 3:
+                        for (int k = 0; k < i; k++) {
+                            tempPoint = tempPoint.getAdjacent(DirectionEnum.UpLeft);
+                            if (tempPoint.getX()>=0 && tempPoint.getY() >= 0)
+                                locationPointQueue.enqueue(tempPoint);
+                        }
+                        break;
+                    case 4:
+                        for (int k = 0; k < i; k++) {
+                            tempPoint = tempPoint.getAdjacent(DirectionEnum.Up);
+                            if (tempPoint.getX()>=0 && tempPoint.getY() >= 0)
+                                locationPointQueue.enqueue(tempPoint);
+                        }
+                        break;
+                    case 5:
+                        for (int k = 0; k < i; k++) {
+                            tempPoint = tempPoint.getAdjacent(DirectionEnum.UpRight);
+                            if (tempPoint.getX()>=0 && tempPoint.getY() >= 0)
+                                locationPointQueue.enqueue(tempPoint);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
-        else {
-            Point[] affectedTiles = {
-                    new Point(y - 3, x),
-                    new Point(y - 2, x - 2),
-                    new Point(y - 3, x - 1),
-                    new Point(y - 3, x + 1),
-                    new Point(y - 2, x + 2),
-                    new Point(y - 2, x - 3),
-                    new Point(y - 2, x + 3),
-                    new Point(y - 1, x - 3),
-                    new Point(y - 1, x + 3),
-                    new Point(y, x - 3),
-                    new Point(y, x + 3),
-                    new Point(y + 1, x - 3),
-                    new Point(y + 2, x - 2),
-                    new Point(y + 2, x + 2),
-                    new Point(y + 1, x + 3),
-                    new Point(y + 2, x - 1),
-                    new Point(y + 3, x),
-                    new Point(y + 2, x + 1)
-            };
-            return affectedTiles;
-        }
+        return locationPointQueue;
     }
 }
