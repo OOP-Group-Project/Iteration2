@@ -18,8 +18,8 @@ public class Stats {
         OCCUPATION_STAT_MOD.putAll(occupation_modifier);
         calculatePrimaryStats();
         calculateSecondaryStats();
+        setMaxExperience();
         setCurExperience();
-        changeMaxExperience();
         setMaxMovement();
         setTemp();
         setCur();
@@ -148,6 +148,7 @@ public class Stats {
     public int curLives() {return cur_lives;}
 
     // setters
+    private void setMaxExperience(){max_exp = (level()^2 * 100) / 2;}
     private void setCurExperience(){cur_exp = 0;}
     private void setMaxMovement(){
         double MOV_MOD = 0.025;
@@ -275,11 +276,6 @@ public class Stats {
             max_arm += amt;
         else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
             max_arm += max_arm * amt;
-    }
-    private void changeMaxExperience() {
-        int EXP_MOD = 100;
-        double EXP_PCT = 0.75;
-        max_exp = (int)(EXP_PCT * (level * EXP_MOD));
     }
 
     // mutators (current)
@@ -505,10 +501,19 @@ public class Stats {
     //
     public void modifyExperience(int amt) {changeCurExperience(amt);}
     //
+    public boolean checkExperience(){
+        boolean check = false;
+        if(curExperience() >= maxExperience())
+            check = true;
+        return check;
+    }
+    //
     public void levelUp() {
         changeLevel(1);
         calculatePrimaryStats();
         calculateSecondaryStats();
+        setCurExperience();
+        setMaxExperience();
         setTemp();
         setCur();
     }
