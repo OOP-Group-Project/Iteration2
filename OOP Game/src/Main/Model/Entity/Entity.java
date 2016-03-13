@@ -67,7 +67,7 @@ public abstract class Entity {
     //TODO: question by Andy: do we want to keep eveything here? Would it be better if we getStats and call on Stats?
     public void modifyStats(String stat_to_modify, double amt) {stats.modifyStats(stat_to_modify, amt);}
 
-    public void modifyStats(StatsModifier sm) {stats.modifyStats(sm);}
+//    public void modifyStats(StatsModifier sm) {stats.modifyStats(sm);}
 
     // used to temporarily modify stats
     public void buff(String stat_to_buff, double amt){stats.buff(stat_to_buff, amt);}

@@ -3,18 +3,10 @@ package Main.Model;
 import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
-<<<<<<< HEAD
 import Main.Model.Entity.Npc;
-=======
-
->>>>>>> master
 import Main.Model.Map.Map;
 import Main.Model.State.*;
-<<<<<<< HEAD
 import Main.Model.io.EntityIO;
-=======
-import Main.Model.Entity.Npc;
->>>>>>> master
 import Main.Model.io.MapIO;
 
 import java.util.ArrayList;
