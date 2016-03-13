@@ -10,7 +10,6 @@ import java.awt.*;
 
 public class PlayState extends State {
     private Avatar player;
-    private Npc npc;
     private Map world;
     private MapLocationPoint centerPoint;
 
@@ -24,9 +23,6 @@ public class PlayState extends State {
         return player;
     }
 
-    public Npc getNPC(){
-        return npc;
-    }
 
     public MapLocationPoint getCenterPoint() {
         return centerPoint;
