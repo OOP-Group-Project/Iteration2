@@ -3,11 +3,10 @@ package Main.Model;
 import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
-
-import Main.Model.Map.Map;
-import Main.Model.Map.MapLocationPoint;
-import Main.Model.State.*;
 import Main.Model.Entity.Npc;
+import Main.Model.Map.Map;
+import Main.Model.State.*;
+import Main.Model.io.EntityIO;
 import Main.Model.io.MapIO;
 
 import java.util.ArrayList;
@@ -30,15 +29,10 @@ public class Model {
          * The references to these will be propagated through all the states as needed, so these are important.
          ********************/
 
+        nonPlayerEntities = new EntityIO().loadEntities("Entities.txt");
+
         // Create a dummy character first
-        player = new Avatar(new MapLocationPoint(0,0));
-
-
-        // Create a dummy NPC
-        skeleton = new Npc(new MapLocationPoint(2,11));
-
-        // add skeleton
-        nonPlayerEntities.add(skeleton);
+        player = (Avatar) nonPlayerEntities.get(0);
 
         // Create the map first, we'll loadMap everything into it later
         world = new MapIO().loadMap("map.txt");
@@ -57,11 +51,9 @@ public class Model {
         //INVENTORY & STATS  need to be pass to player and InventoryState
         states.put(StateEnum.InventoryState, new InventoryState());
 
-        
         states.put(StateEnum.StartMenuState, new StartMenuState());
 
         new MapIO().saveMap(world, "map.txt");
-
     }
 
     public Avatar getPlayer() {

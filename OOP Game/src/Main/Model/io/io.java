@@ -38,12 +38,11 @@ public class io {
             // Always close files.
             bufferedReader.close();
         } catch (FileNotFoundException ex) {
-            System.out.println("Unable to open file");
+            System.out.println("Unable to open file a saved file.. it wasn't found!");
+            System.exit(2);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        String[] test = fileData.toString().split(",");
-        for (String linet : test) System.out.println(linet);
         return fileData;
     }
 

@@ -10,4 +10,9 @@ public class Smasher extends Occupation {
         modify.put("int", 1.0);
         modify.put("har", 1.5);
     }
+
+    @Override
+    public String toString() {
+        return "Smasher";
+    }
 }
