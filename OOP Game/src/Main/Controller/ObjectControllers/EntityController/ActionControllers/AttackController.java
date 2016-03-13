@@ -41,76 +41,76 @@ public class AttackController extends TimedObjectController{
         applyEffect(point);
     }
 
+//    public void performAngularAttack(int effectedRadius) {
+//        point = entity.getLocation();
+//        orientation = entity.getOrientation();
+//        sun.misc.Queue<MapLocationPoint> q = new AngularEffect().getAffectedArea(point.x, point.y, effectedRadius, orientation);
+//        while (!q.isEmpty()) {
+//            try {
+//                applyEffect(q.dequeue());
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+
     public void performAngularAttack(int effectedRadius) {
-        point = entity.getLocation();
         orientation = entity.getOrientation();
-        sun.misc.Queue<MapLocationPoint> q = new AngularEffect().getAffectedArea(point.x, point.y, effectedRadius, orientation);
-        while (!q.isEmpty()) {
-            try {
-                applyEffect(q.dequeue());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        point = entity.getLocation().getAdjacent(orientation);
+        DirectionEnum[] expansions = findExpansion();
+        for (int i = 1; i < effectedRadius; i++) {
+            //apply effect to the point you moved to then expand out
+            applyEffect(point);
+
+            //set up for expansion on both sides
+            MapLocationPoint leftSide = point;
+            MapLocationPoint rightSide = point;
+
+            //if even then expand out i/2 in both directions
+            //if odd expand out i/2 (truncated) in both directions
+            for (int j = 0; j < i/2; j++) {
+                leftSide = leftSide.getAdjacent(expansions[0]);
+                rightSide = rightSide.getAdjacent(expansions[1]);
+                applyEffect(leftSide);
+                applyEffect(rightSide);
             }
+
+            //move to the next radius
+            point = point.getAdjacent(orientation);
         }
     }
 
-//    public void performAngularAttack(int effectedRadius) {
-//        orientation = entity.getOrientation();
-//        point = entity.getLocation().getAdjacent(orientation);
-//        DirectionEnum[] expansions = findExpansion();
-//        for (int i = 1; i < effectedRadius; i++) {
-//            //apply effect to the point you moved to then expand out
-//            applyEffect(point);
-//
-//            //set up for expansion on both sides
-//            MapLocationPoint leftSide = point;
-//            MapLocationPoint rightSide = point;
-//
-//            //if even then expand out i/2 in both directions
-//            //if odd expand out i/2 (truncated) in both directions
-//            for (int j = 0; j < i/2; j++) {
-//                leftSide = leftSide.getAdjacent(expansions[0]);
-//                rightSide = rightSide.getAdjacent(expansions[1]);
-//                applyEffect(leftSide);
-//                applyEffect(rightSide);
-//            }
-//
-//            //move to the next radius
-//            point = point.getAdjacent(orientation);
-//        }
-//    }
-//
-//    private DirectionEnum[] findExpansion() {
-//        orientation = entity.getOrientation();
-//        DirectionEnum[] expansions = new DirectionEnum[2];
-//        switch (orientation) {
-//            case Up:
-//                expansions[0] = DirectionEnum.DownLeft;
-//                expansions[1] = DirectionEnum.DownRight;
-//                break;
-//            case Down:
-//                expansions[0] = DirectionEnum.UpLeft;
-//                expansions[1] = DirectionEnum.UpRight;
-//                break;
-//            case UpLeft:
-//                expansions[0] = DirectionEnum.Down;
-//                expansions[1] = DirectionEnum.UpRight;
-//                break;
-//            case DownRight:
-//                expansions[0] = DirectionEnum.Up;
-//                expansions[1] = DirectionEnum.DownLeft;
-//                break;
-//            case UpRight:
-//                expansions[0] = DirectionEnum.UpLeft;
-//                expansions[1] = DirectionEnum.Down;
-//                break;
-//            case DownLeft:
-//                expansions[0] = DirectionEnum.Up;
-//                expansions[1] = DirectionEnum.DownRight;
-//                break;
-//        }
-//        return expansions;
-//    }
+    private DirectionEnum[] findExpansion() {
+        orientation = entity.getOrientation();
+        DirectionEnum[] expansions = new DirectionEnum[2];
+        switch (orientation) {
+            case Up:
+                expansions[0] = DirectionEnum.DownLeft;
+                expansions[1] = DirectionEnum.DownRight;
+                break;
+            case Down:
+                expansions[0] = DirectionEnum.UpLeft;
+                expansions[1] = DirectionEnum.UpRight;
+                break;
+            case UpLeft:
+                expansions[0] = DirectionEnum.Down;
+                expansions[1] = DirectionEnum.UpRight;
+                break;
+            case DownRight:
+                expansions[0] = DirectionEnum.Up;
+                expansions[1] = DirectionEnum.DownLeft;
+                break;
+            case UpRight:
+                expansions[0] = DirectionEnum.UpLeft;
+                expansions[1] = DirectionEnum.Down;
+                break;
+            case DownLeft:
+                expansions[0] = DirectionEnum.Up;
+                expansions[1] = DirectionEnum.DownRight;
+                break;
+        }
+        return expansions;
+    }
 
     public void performRadiusAttack(int radius) {
         point = entity.getLocation();
