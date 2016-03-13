@@ -22,4 +22,6 @@ public abstract class Skill {
     public int getSkillLvl() { return skillLvl; }
 
     public void setSkillLvl(int lvl) { skillLvl = lvl; }
+
+    public abstract void apply();
 }

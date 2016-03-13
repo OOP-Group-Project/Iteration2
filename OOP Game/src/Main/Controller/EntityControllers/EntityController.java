@@ -1,5 +1,6 @@
 package Main.Controller.EntityControllers;
 
+import Main.Controller.EntityControllers.ActionControllers.ActionController;
 import Main.Controller.Manager.UserActionEnum;
 import Main.Model.Entity.Entity;
 import Main.Model.Map.Heuristic;
@@ -11,7 +12,7 @@ import Main.Model.Map.Map;
  */
 public class EntityController {
     private MovementController MovementController;
-    private ActionController ActionController;
+    private Main.Controller.EntityControllers.ActionControllers.ActionController ActionController;
     private PathingController pathingController;
 
     public EntityController(Map map , Entity entity, Entity enemy) {
