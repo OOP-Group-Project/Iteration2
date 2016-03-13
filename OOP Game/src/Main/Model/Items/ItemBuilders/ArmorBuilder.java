@@ -4,7 +4,6 @@ import Main.Model.Items.Armor;
 import Main.Model.Items.ArmorTypeEnum;
 import Main.Model.Items.Item;
 import Main.Model.Items.ItemTypeEnum;
-import Main.Model.Skills.Skill;
 
 /**
  * Created by mason on 3/11/16.

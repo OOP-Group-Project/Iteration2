@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * Created by Matthew on 3/12/2016.
  */
-public class RangedWeapon extends SneakSkill{
+public class RangedWeapon extends SneakSkills{
 
     public RangedWeapon(Entity entity) {
         //1 second cooldown and 2 mana cost

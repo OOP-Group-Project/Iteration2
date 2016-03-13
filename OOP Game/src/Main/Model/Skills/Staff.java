@@ -7,7 +7,7 @@ import Main.Model.Stats.StatsModifier;
 /**
  * Created by Matthew on 3/12/2016.
  */
-public class Staff extends SummonerSkill {
+public class Staff extends SummonerSkills {
 
     public Staff(Entity entity) {
         //1 second cooldown, 0 mana cost

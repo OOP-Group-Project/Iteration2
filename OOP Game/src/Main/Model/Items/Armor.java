@@ -2,7 +2,6 @@ package Main.Model.Items;
 
 import Main.Model.Stats.StatsModifier;
 import Main.Model.Requirement;
-import Main.Model.Skills.Skill;
 
 /**
  * Created by Peter Camejo on 3/9/2016.

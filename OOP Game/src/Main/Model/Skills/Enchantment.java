@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by Matthew on 3/12/2016.
  */
-public class Enchantment extends SummonerSkill{
+public class Enchantment extends SummonerSkills {
     //make npc fall asleep
 
     public Enchantment(Entity entity) {

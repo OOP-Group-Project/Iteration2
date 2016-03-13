@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * Created by Matthew on 3/12/2016.
  */
-public class TwoHandedWeapon extends SmasherSkill{
+public class TwoHandedWeapon extends SmasherSkills {
 
     public TwoHandedWeapon(Entity entity) {
         //1 second cooldown and 2 mana cost

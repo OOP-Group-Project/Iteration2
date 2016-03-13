@@ -1,14 +1,11 @@
 package Main.Model.Skills;
 
 import Main.Model.Entity.Entity;
-import Main.Model.Stats.Stats;
-
-import java.util.Random;
 
 /**
  * Created by Matthew on 3/12/2016.
  */
-public class Boon extends SummonerSkill{
+public class Boon extends SummonerSkills {
 
 
     public Boon(Entity entity) {

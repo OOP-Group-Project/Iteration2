@@ -4,12 +4,10 @@ import Main.Model.Entity.Entity;
 import Main.Model.Stats.Stats;
 import Main.Model.Stats.StatsModifier;
 
-import java.util.Random;
-
 /**
  * Created by Matthew on 3/12/2016.
  */
-public class Bane extends SummonerSkill{
+public class Bane extends SummonerSkills {
 
 
     public Bane(Entity entity) {
