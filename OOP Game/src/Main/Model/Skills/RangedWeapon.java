@@ -20,7 +20,7 @@ public class RangedWeapon extends SneakSkills{
         double totalDamage = 0;
         if (canActivate() && enoughMana() && successfulPerfoemance()){
             Stats stats = entity.getStats();
-            totalDamage = stats.curStrength() + level * 15;
+            totalDamage = stats.curAgility() + level * 10;
             enforceManaCost();
         }
         StatsModifier sm = new StatsModifier();
