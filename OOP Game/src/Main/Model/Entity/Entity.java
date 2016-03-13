@@ -18,6 +18,8 @@ public abstract class Entity {
     protected Occupation occupation;
     protected Inventory inventory;
     protected MapLocationPoint location;
+    protected boolean isMoving;
+    protected boolean isDoingAction;
 
     //create Entities at certain locations with a certain type
     public Entity(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location) {
@@ -27,6 +29,8 @@ public abstract class Entity {
         this.location = location;
         this.stats = new Stats(occupation.map(),1);
         this.inventory = new Inventory();
+        this.isMoving = false;
+        this.isDoingAction = false;
     }
     //moves a players known x and y (JFK)
     public void move(DirectionEnum dir) {
@@ -97,5 +101,21 @@ public abstract class Entity {
 
     //
     public Inventory getInventory(){ return this.inventory;}
+
+    public boolean isMoving() {
+        return isMoving;
+    }
+
+    public void setMoving(boolean isMoving) {
+        this.isMoving = isMoving;
+    }
+
+    public boolean isDoingAction() {
+        return isDoingAction;
+    }
+
+    public void setDoingAction(boolean isDoingAction) {
+        this.isDoingAction = isDoingAction;
+    }
 
 }
