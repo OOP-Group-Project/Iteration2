@@ -12,7 +12,7 @@ public class Tile {
 
 	private TerrainTypeEnum terrainType;
 	private Entity entity = null;
-	private ArrayList<Item> items;
+	private ArrayList<Item> items = new ArrayList<>();
     private AreaEffect areaEffect;
 
 
@@ -65,5 +65,13 @@ public class Tile {
 			return false;
 		}
 		else return true;
+	}
+
+	public ArrayList<String> toTileString() {
+		ArrayList<String> str = new ArrayList<>();
+		for (Item item : items) {
+			str.add(String.valueOf(item.getId()));
+		}
+		return str;
 	}
 }
