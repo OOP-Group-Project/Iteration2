@@ -10,4 +10,9 @@ public class Bargin extends BaseSkills {
     public Bargin(Entity entity) {
         super(entity);
     }
+
+    @Override
+    public void apply() {
+
+    }
 }

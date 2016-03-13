@@ -10,4 +10,9 @@ public class BindWounds extends BaseSkills {
     public BindWounds (Entity entity) {
         super(entity);
     }
+
+    @Override
+    public void apply() {
+
+    }
 }

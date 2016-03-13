@@ -9,4 +9,9 @@ public class Creep extends SneakSkill {
     public Creep (Entity entity) {
         super(entity);
     }
+
+    @Override
+    public void apply() {
+
+    }
 }

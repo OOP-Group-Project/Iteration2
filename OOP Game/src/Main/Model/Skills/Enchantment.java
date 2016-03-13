@@ -9,4 +9,9 @@ public class Enchantment extends SummonerSkill {
     public Enchantment (Entity entity) {
         super(entity);
     }
+
+    @Override
+    public void apply() {
+
+    }
 }

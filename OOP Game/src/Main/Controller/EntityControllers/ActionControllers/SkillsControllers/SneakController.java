@@ -15,7 +15,7 @@ public class SneakController {
     Entity sneak;
     Map map;
 
-    public SmasherController(Entity sneak, Map map) {
+    public SneakController(Entity sneak, Map map) {
         this.sneak = sneak;
         this.map = map;
     }
@@ -53,15 +53,15 @@ public class SneakController {
     }
 
     private boolean validateDetectTrap() {
-        MapLocationPoint point = sneak.getLocation().getAdjacent(sneak.getOrientation())
+        MapLocationPoint point = sneak.getLocation().getAdjacent(sneak.getOrientation());
         if (true) return true;
         return false;
     }
 
     //check to see if theres an entity if so apply pickpocket
     private boolean validatePickPocket() {
-        MapLocationPoint point = sneak.getLocation().getAdjacent(sneak.getOrientation())
-        if (map.getTile(point.x, point.y).getEntity()) return true;
-        return false;
+        MapLocationPoint point = sneak.getLocation().getAdjacent(sneak.getOrientation());
+//        if (map.getTile(point.x, point.y).getEntity()) return true;
+        return true;
     }
 }

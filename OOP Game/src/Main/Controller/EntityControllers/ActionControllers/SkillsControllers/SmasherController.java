@@ -2,6 +2,7 @@ package Main.Controller.EntityControllers.ActionControllers.SkillsControllers;
 
 import Main.Controller.Manager.UserActionEnum;
 import Main.Model.Entity.Entity;
+import Main.Model.Items.WeaponTypeEnum;
 import Main.Model.Map.Map;
 import Main.Model.Skills.Brawling;
 import Main.Model.Skills.OneHandedWeapon;
@@ -37,17 +38,17 @@ public class SmasherController {
     }
 
     private boolean validateBrawling() {
-        if (entity.getEquipment().getWeapon().getWeaponType().FIST) return true;
+        if (entity.getEquipment().getWeapon().getWeaponType() == WeaponTypeEnum.FIST) return true;
         return false;
     }
 
     private boolean validateTwoHanded() {
-        if (entity.getEquipment().getWeapon().getWeaponType().TWOHANDSWORD) return true;
+        if (entity.getEquipment().getWeapon().getWeaponType() == WeaponTypeEnum.TWOHANDSWORD) return true;
         return false;
     }
 
     private boolean validateOneHanded() {
-        if (entity.getEquipment().getWeapon().getWeaponType().ONEHANDSWORD) return true;
+        if (entity.getEquipment().getWeapon().getWeaponType() == WeaponTypeEnum.ONEHANDSWORD) return true;
         return false;
     }
 }

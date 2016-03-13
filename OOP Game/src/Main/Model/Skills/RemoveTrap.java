@@ -9,4 +9,9 @@ public class RemoveTrap extends SneakSkill {
     public RemoveTrap (Entity entity) {
         super(entity);
     }
+
+    @Override
+    public void apply() {
+
+    }
 }

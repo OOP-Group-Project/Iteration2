@@ -9,4 +9,9 @@ public class Brawling extends SmasherSkill {
     public Brawling (Entity entity) {
         super(entity);
     }
+
+    @Override
+    public void apply() {
+
+    }
 }
