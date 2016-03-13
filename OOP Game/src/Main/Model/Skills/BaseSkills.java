@@ -7,8 +7,8 @@ import Main.Model.Entity.Entity;
  */
 public abstract class BaseSkills extends Skill {
 
-    public BaseSkills (Entity entity) {
-        super(entity);
+    public BaseSkills (Entity entity, double cooldown, double manacost) {
+        super(entity, cooldown, manacost);
     }
 
 

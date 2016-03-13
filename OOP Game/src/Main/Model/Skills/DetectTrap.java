@@ -6,8 +6,11 @@ import Main.Model.Entity.Entity;
  * Created by AndyZhu on 7/3/2016.
  */
 public class DetectTrap extends SneakSkill {
-    public DetectTrap (Entity entity) {
-        super(entity);
+    public DetectTrap (Entity entity, double cooldown, double manacost) {
+        super(entity, cooldown, manacost);
     }
 
+    public boolean activate() {
+        return successfulPerfoemance();
+    }
 }
