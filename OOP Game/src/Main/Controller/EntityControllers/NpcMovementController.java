@@ -4,9 +4,9 @@ import Main.Model.DirectionEnum;
 import Main.Model.Entity.Entity;
 import Main.Model.Entity.EntityTypeEnum;
 import Main.Model.Map.*;
+import Main.Model.Skills.RadialEffect;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Michael on 3/12/16.
@@ -18,57 +18,102 @@ public class NpcMovementController {
     private Entity sourceEntity;
     private PathFinder pathFinder;
     private Path path;
+    private ArrayList<Entity> entityLocations;
 
     /* The pathing controller determines the path for a sourceEntity to take. Currently, it takes the sourceEntity's level and directly
      translates it to a 1:1 search radius. For example, If Pet is of level 2 then it searches a radius of 2 for enemies.
     */
-    public NpcMovementController(Map map, Entity entity ,Entity sourceEntity, Heuristic heuristic) {
+    public NpcMovementController(Map map ,Entity sourceEntity, Heuristic heuristic) {
         this.map = map;
         this.sourceEntity = sourceEntity;
-        this.target = entity.getLocation();
+        this.target = map.getPlayerLocation();
         pathFinder = new PathFinder(map, sourceEntity.getStats().getLevel(), heuristic);
     }
 
     public void update() {
         // Determines what the sourceEntity should set as its target
-//        determineTarget(sourceEntity.getType());
+        target = determineTarget(sourceEntity.getType());
 
-        // Gets the path from an sourceEntity to targetEntity
-        path = pathFinder.findPath(sourceEntity.getLocation().x, sourceEntity.getLocation().y,  target.getLocation().x, target.getLocation().y);
-        if (path != null) {
-            for (int i = 0; i < path.getLength() - 2; i++) {
-                try {
-                    Thread.sleep(1000);
-                } catch (Exception e) {
+
+        //check if the pet is by the enemy
+
+        // Check for any null cases
+        if (target != null) {
+            // Gets the path from an sourceEntity to targetEntity
+            path = pathFinder.findPath(sourceEntity.getLocation().x, sourceEntity.getLocation().y, target.getLocation().x, target.getLocation().y);
+            if (path != null) {
+                for (int i = 0; i < path.getLength() - 2; i++) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                    }
+                    moveTowardsTarget(i);
                 }
-               moveTowardsTarget(i);
             }
         }
     }
 
-    private void determineTarget(EntityTypeEnum e){
-//        MapLocationPoint targetLocation;
-
-//        System.out.println(e);
-//        if (e == EntityTypeEnum.Avatar){
-//
-//        }
-
-        if (e == EntityTypeEnum.Pet){
-            //search for enemy
-            // if in range, go
-            // else stay
-        }
+    private MapLocationPoint determineTarget(EntityTypeEnum e){
+//        System.out.println("E type: " + e);
         if (e == EntityTypeEnum.NPC){
             if (map.getPlayerLocation() != null){
-                this.target = map.getPlayerLocation();
+                target = map.getPlayerLocation();
+                return target;
+            }
+        }
+        if (e == EntityTypeEnum.Pet){
+            // Search the radius around a pet for an npc
+            searchRadius();
+
+            // There are no NPCs in radius, set Player as target
+            if(entityLocations.size() == 0){
+                target = map.getPlayerLocation();
+                return target;
+
+            // There are NPCs, find the closest NPC and attack
+            } else {
+//                System.out.println("There are mobs");
+               target = findMinimum(sourceEntity.getLocation().x, sourceEntity.getLocation().y,entityLocations);
+                return target;
+            }
+        }
+        return null;
+    }
+
+    // Search a radius equal to the aggro range for Entities
+    private void searchRadius(){
+        entityLocations = new ArrayList<>();
+        sun.misc.Queue<MapLocationPoint> q = new RadialEffect().getAffectedArea(sourceEntity.getLocation().x, sourceEntity.getLocation().y, sourceEntity.getStats().getLevel()/2);
+        while(!q.isEmpty()){
+            try{
+                MapLocationPoint temp;
+                temp = q.dequeue();
+                if (map.getTile(temp.x,temp.y).getEntity().getType() == EntityTypeEnum.NPC){
+                    entityLocations.add(map.getTile(temp.x,temp.y).getEntity());
+                }
+            } catch (Exception e){
+                //
+            }
+        }
+    }
+
+    private MapLocationPoint findMinimum(int sx,int sy,ArrayList<Entity> entityLocations){
+        // for all npcs on the map, find the shortest distance and then go attack that
+        int temp;
+        int minimum = 100;
+        int j = 0;
+
+        for(int i = 0; i < entityLocations.size(); i++){
+            MapLocationPoint point = entityLocations.get(i).getLocation();
+//            System.out.println(entityLocations.get(i).getLocation());
+            temp = (int)pathFinder.getHeuristicCost(sx, sy, point.x, point.y);
+            if (temp < minimum){
+                minimum = temp;
+                j = i;
             }
         }
 
-    }
-
-    private void findMinimum(){
-        // for all npcs on the map, find the shortest distance and then go attack that
+        return entityLocations.get(j).getLocation();
     }
 
     private void moveTowardsTarget(int i){
@@ -76,7 +121,6 @@ public class NpcMovementController {
         moveInDirection(path.getPoint(i),path.getPoint(i+1));
         map.getTile(path.getPoint(i+1).x, path.getPoint(i+1).y).addEntity(sourceEntity);
     }
-
 
     // Refactor to make more sense
 

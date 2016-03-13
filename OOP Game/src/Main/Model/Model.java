@@ -4,6 +4,7 @@ import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
 import Main.Model.Entity.Npc;
+import Main.Model.Entity.Pet;
 import Main.Model.Map.Map;
 import Main.Model.State.*;
 import Main.Model.io.EntityIO;
@@ -44,7 +45,7 @@ public class Model {
          ***********************/
         states = new EnumMap<>(StateEnum.class);
         states.put(StateEnum.LoadState, new LoadState(this));
-        states.put(StateEnum.PlayState, new PlayState(world, player,(Npc)nonPlayerEntities.get(1)));
+        states.put(StateEnum.PlayState, new PlayState(world, player,(Pet)nonPlayerEntities.get(3)));
         states.put(StateEnum.PauseState, new PauseState());
         
         //INVENTORY & STATS  need to be pass to player and InventoryState

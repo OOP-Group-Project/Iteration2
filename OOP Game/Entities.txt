@@ -2,7 +2,7 @@ Name:John
 Type:Avatar
 Occupation:Smasher
 Level:3
-Location:0,0
+Location:1,0
 ~
 Name:John
 Type:NPC
@@ -15,3 +15,9 @@ Type:NPC
 Level:10
 Occupation:Summoner
 Location:3,15
+~
+Name:Tiger
+Type:Pet
+Level:10
+Occupation:Smasher
+Location:0,0

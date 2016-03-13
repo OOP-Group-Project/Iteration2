@@ -24,7 +24,7 @@ public class PlayStateController extends StateController {
         this.stateControllerManager = stateControllerManager;
         this.playState = playState;
         this.ec = new EntityController(playState.getWorld(), playState.getPlayer());
-        this.npcController = new NpcController(playState.getWorld(), playState.getPlayer(), playState.getNPC());
+        this.npcController = new NpcController(playState.getWorld(), playState.getPlayer(), playState.getPet());
     }
 
     @Override

@@ -3,6 +3,7 @@ package Main.Model.State;
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Npc;
+import Main.Model.Entity.Pet;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
 
@@ -11,13 +12,15 @@ import java.awt.*;
 public class PlayState extends State {
     private Avatar player;
     private Npc npc;
+    private Pet pet;
     private Map world;
     private MapLocationPoint centerPoint;
 
-	public PlayState(Map world, Avatar entity, Npc npc) {
+	public PlayState(Map world, Avatar entity, Pet pet) {
         this.world = world;
         this.player = entity;
         this.npc = npc;
+        this.pet = pet;
         this.centerPoint = new MapLocationPoint(player.getLocation().x, player.getLocation().y);
 	}
 
@@ -28,6 +31,8 @@ public class PlayState extends State {
     public Npc getNPC(){
         return npc;
     }
+
+    public Pet getPet() { return pet;}
 
     public MapLocationPoint getCenterPoint() {
         return centerPoint;
