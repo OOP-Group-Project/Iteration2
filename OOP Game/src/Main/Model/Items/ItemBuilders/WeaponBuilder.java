@@ -5,7 +5,6 @@ import Main.Model.Items.Item;
 import Main.Model.Items.ItemTypeEnum;
 import Main.Model.Items.Weapon;
 import Main.Model.Items.WeaponTypeEnum;
-import Main.Model.Skills.Skill;
 
 /**
  * Created by mason on 3/11/16.

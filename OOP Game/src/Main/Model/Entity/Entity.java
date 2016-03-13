@@ -163,4 +163,9 @@ public abstract class Entity {
     public void setEquipment(Equipment equipment) {
         this.equipment = equipment;
     }
+    
+    //TODO:implement this
+    public void die() {
+        System.out.println("You are dead");
+    }
 }

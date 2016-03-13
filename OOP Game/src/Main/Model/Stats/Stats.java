@@ -1,6 +1,5 @@
 package Main.Model.Stats;
 import Main.Model.Entity.Entity;
-import Main.Model.Occupation.Occupation;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -140,7 +139,7 @@ public class Stats {
     public Entity getEntity() {return entity;}
 
     //
-    public int level() {return level;}
+    public int getLevel() {return level;}
 
     // accessors (current)
     public double curStrength() {return cur_str;}
@@ -600,7 +599,7 @@ public class Stats {
         // primary stats
         System.out.println("---------------------------------");
         System.out.println("Primary Stats:");
-        System.out.println("Level: " + level());
+        System.out.println("Level: " + getLevel());
         System.out.println("Lives: " + curLives() + "/" + maxLives());
         System.out.println("Experience: " + curExperience() + "/" + maxExperience());
         System.out.println("Strength: " + curStrength() + "/" + maxStrength());
