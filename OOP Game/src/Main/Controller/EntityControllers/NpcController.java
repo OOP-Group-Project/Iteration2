@@ -24,11 +24,12 @@ public class NpcController extends Main.Controller.ObjectControllers.EntityContr
 
     public void update(){
         npcMovementGenerator.update();
-        movementController.update();
-        actionController.update();
         UserActionEnum nextMove = npcMovementGenerator.getNextMovement();
         if(nextMove != null) {
             movementController.move(nextMove);
         }
+        movementController.update();
+        actionController.update();
+
     }
 }

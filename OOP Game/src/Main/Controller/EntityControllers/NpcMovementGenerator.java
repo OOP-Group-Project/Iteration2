@@ -26,27 +26,22 @@ public class NpcMovementGenerator {
     /* The pathing controller determines the path for a followerEntity to take. Currently, it takes the followerEntity's level and directly
      translates it to a 1:1 search radius. For example, If Pet is of level 2 then it searches a radius of 2 for enemies.
     */
+
     public NpcMovementGenerator(Map map, Entity followedEntity , Entity followerEntity, Heuristic heuristic) {
         this.map = map;
         this.followerEntity = followerEntity;
         this.followedEntityLocation = followedEntity.getLocation();
-        this.currentTargetLocation = new MapLocationPoint(followedEntityLocation.x, followedEntityLocation.y);
         this.pathFinder = new PathFinder(map, followerEntity.getStats().getLevel(), heuristic);
-        this.path = pathFinder.findPath(followerEntity.getLocation().x, followerEntity.getLocation().y,  currentTargetLocation.x, currentTargetLocation.y);
-
     }
 
     public void update() {
         // Determines what the followerEntity should set as its currentTargetLocation
-        currentTargetLocation = determineTarget(followerEntity.getType());
+        followedEntityLocation = determineTarget(followerEntity.getType());
 
         // Gets the path from an followerEntity to targetEntity
-        if((currentTargetLocation.x != followedEntityLocation.x || currentTargetLocation.y != followedEntityLocation.y)) {
-            path = pathFinder.findPath(followerEntity.getLocation().x, followerEntity.getLocation().y,  currentTargetLocation.x, currentTargetLocation.y);
-            currentPathPosition = 0;
-            currentTargetLocation.x = followedEntityLocation.x;
-            currentTargetLocation.y = followedEntityLocation.y;
-        }
+//        if((currentTargetLocation.x != followedEntityLocation.x || currentTargetLocation.y != followedEntityLocation.y)) {
+            path = pathFinder.findPath(followerEntity.getLocation().x, followerEntity.getLocation().y,  followedEntityLocation.x, followedEntityLocation.y);
+//        }
     }
 
 
@@ -63,11 +58,12 @@ public class NpcMovementGenerator {
 
             // There are no NPCs in radius, set Player as target
             if(entityLocations.size() == 0){
+                System.out.println("There are no mobs");
                 return map.getPlayerLocation();
 
                 // There are NPCs, find the closest NPC and attack
             } else {
-//                System.out.println("There are mobs");
+                System.out.println("There are mobs");
                 return findMinimum(followerEntity.getLocation().x, followerEntity.getLocation().y,entityLocations);
             }
         }
@@ -105,7 +101,7 @@ public class NpcMovementGenerator {
 
         for(int i = 0; i < entityLocations.size(); i++){
             MapLocationPoint point = entityLocations.get(i).getLocation();
-//            System.out.println(entityLocations.get(i).getLocation());
+            System.out.println(entityLocations.get(i).getLocation());
             temp = (int)pathFinder.getHeuristicCost(sx, sy, point.x, point.y);
             if (temp < minimum){
                 minimum = temp;
