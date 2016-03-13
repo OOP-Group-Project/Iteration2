@@ -617,4 +617,8 @@ public class Stats {
         System.out.println("Defense: " + curDefense() + "/" + maxDefense());
         System.out.println("Armor: " + curArmor() + "/" + maxArmor());
     }
+
+    public int getLevel() {
+        return level;
+    }
 }
