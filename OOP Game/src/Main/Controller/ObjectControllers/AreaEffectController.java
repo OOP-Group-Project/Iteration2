@@ -18,7 +18,7 @@ public class AreaEffectController extends TimedObjectController {
     public void activate(Entity entity) {
         if(timer.isExpired()) {
             timer.start();
-            System.out.println("Using Area Effect on Entity");
+            entity.modifyStats(areaEffect.getModifier());
         }
     }
 }
