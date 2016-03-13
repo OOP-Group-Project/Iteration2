@@ -2,9 +2,11 @@ package Main.Model.Entity;
 
 import Main.Model.DirectionEnum;
 import Main.Model.Inventory.Inventory;
+import Main.Model.Items.Takable;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Stats.Stats;
+import Main.Model.Stats.StatsModifier;
 
 /**
  * Modified by John Kaufmann 2/9/16
@@ -12,6 +14,7 @@ import Main.Model.Stats.Stats;
  */
 public abstract class Entity {
     protected EntityTypeEnum type;
+    protected EntitySpeechEnum spiel;
     protected Stats stats;
     protected Occupation occupation;
     protected Inventory inventory;
@@ -20,8 +23,9 @@ public abstract class Entity {
     protected boolean isDoingAction;
 
     //create Entities at certain locations with a certain type
-    public Entity(EntityTypeEnum entityType, Occupation occupation, MapLocationPoint location) {
+    public Entity(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location) {
         this.type = entityType;
+        this.spiel = entitySpiel;
         this.occupation = occupation;
         this.location = location;
         this.stats = new Stats(occupation.map(),1);
@@ -29,7 +33,6 @@ public abstract class Entity {
         this.isMoving = false;
         this.isDoingAction = false;
     }
-
     //moves a players known x and y (JFK)
     public void move(DirectionEnum dir) {
         location.move(dir);
@@ -45,6 +48,7 @@ public abstract class Entity {
         return type;
     }
 
+    // P.Smith
     // Entities now know how to adjust their Stats()
     /*
         strength = "str"
@@ -52,6 +56,7 @@ public abstract class Entity {
         intellect = "int"
         hardiness = "har"
         movement = "mov"
+        action(speed) = "act"
         health = "hp"
         mana = "mp"
         armor = "arm"
@@ -59,7 +64,17 @@ public abstract class Entity {
         offense = "off"
      */
     //
+    public void modifyStats(StatsModifier statsModifier) {
+
+    }
+
+
+    public Stats getStats() { return stats; }
+    //TODO: question by Andy: do we want to keep eveything here? Would it be better if we getStats and call on Stats?
     public void modifyStats(String stat_to_modify, double amt) {stats.modifyStats(stat_to_modify, amt);}
+
+    public void modifyState(StatsModifier sm) {stats.modifyStats(sm);}
+
 
     // used to temporarily modify stats
     public void buff(String stat_to_buff, double amt){stats.buff(stat_to_buff, amt);}
@@ -71,6 +86,11 @@ public abstract class Entity {
     public void modifyLives(int amt){stats.modifyLives(amt);}
     //
     public void modifyExperience(int amt){stats.modifyExperience(amt);}
+    //
+    public void checkExperience(){
+        if(stats.checkExperience())
+            stats.levelUp();
+    }
     //
     public void levelUp(){stats.levelUp();}
 
@@ -88,6 +108,16 @@ public abstract class Entity {
 
     public void setDoingAction(boolean isDoingAction) {
         this.isDoingAction = isDoingAction;
+    }
+    // Entities now have the ability to "speak"
+    //
+    public String speak(){return spiel.spiel();}
+
+    //
+    public Inventory getInventory(){ return this.inventory;}
+
+    public boolean hasItem(Takable item) {
+        return inventory.hasItem(item);
     }
 
 }

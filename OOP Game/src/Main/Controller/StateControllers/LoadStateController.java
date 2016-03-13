@@ -2,16 +2,12 @@ package Main.Controller.StateControllers;
 
 import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.UserActionEnum;
-import Main.Model.DirectionEnum;
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
-import Main.Model.Entity.Npc;
 import Main.Model.Map.Map;
 import Main.Model.State.LoadState;
 import Main.Model.State.StateEnum;
 
-import java.awt.event.KeyEvent;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
