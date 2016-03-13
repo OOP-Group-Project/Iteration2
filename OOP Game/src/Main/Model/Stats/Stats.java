@@ -386,8 +386,8 @@ public class Stats {
         if (cur_hp > max_hp)
             cur_hp = max_hp;
         else if(cur_hp < 0) {
-            //TODO: changed by Andy to make sence
-            this.getEntity().die();
+            //TODO: changed by Andy to make sense
+//            this.getEntity().die();
         }
     }
     private void changeCurMana(double amt) {
@@ -616,5 +616,9 @@ public class Stats {
         System.out.println("Offense: " + curOffense() + "/" + maxOffense());
         System.out.println("Defense: " + curDefense() + "/" + maxDefense());
         System.out.println("Armor: " + curArmor() + "/" + maxArmor());
+    }
+
+    public int getLevel() {
+        return level;
     }
 }
