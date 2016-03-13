@@ -60,10 +60,10 @@ public class Tile {
 		return entity;
 	}
 
-	public boolean isWalkable(){
-		if (this.terrainType != TerrainTypeEnum.Grass){
-			return true;
+	public boolean isBlocked(){
+		if (this.terrainType == TerrainTypeEnum.Grass){
+			return false;
 		}
-		else return false;
+		else return true;
 	}
 }

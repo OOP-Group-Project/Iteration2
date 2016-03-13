@@ -58,7 +58,7 @@ public class PathFinder {
     public Path findPath(int sx, int sy, int tx, int ty) {
         // easy first check, if the destination is blocked, we can't get there
 
-        if (map.isWalkable( tx, ty)) {
+        if (map.isBlocked( tx, ty)) {
             return null;
         }
 
@@ -105,7 +105,43 @@ public class PathFinder {
                     int xp = x + current.x;
                     int yp = y + current.y;
 
-                    if (isValidLocation(sx,sy,xp,yp)) {
+//                    System.out.println("current: " + current.x + " x: " + x);
+
+                    //check for even cases
+                    if (current.x % 2 == 0){
+                        // (-1, -1) case for even columns
+                        if ((current.x - xp) == -1 && (current.y - yp) == -1){
+                            continue;
+                        }
+                        // (1, -1) case for even columns
+                        if ((current.x - xp) == 1 && (current.y - yp) == -1){
+                            continue;
+                        }
+//                        if ((x == -1) && (y == -1)){
+//                            continue;
+//                        }
+//                        if ((x == 1) && (y == -1)){
+//                            continue;
+//                        }
+                    }else{
+                        // (-1, 1) case for odd columns
+                        if ((current.x - xp) == -1 && (current.y - yp) == 1){
+                            continue;
+                        }
+                        // (1, 1) case for odd columns
+                        if ((current.x - xp) == 1 && (current.y - yp) == 1){
+                            continue;
+                        }
+                        // invalid cases for odd columns
+//                        if ((x == -1) && (y == 1)){
+//                            continue;
+//                        }
+//                        if ((x == 1) && (x == 1)){
+//                            continue;
+//                        }
+                    }
+
+                    if (isValidLocation(sx, sy, xp, yp)) {
                         // the cost to get to this node is cost the current plus the movement
 
                         // cost to reach this node. Note that the heursitic value is only used
@@ -184,165 +220,98 @@ public class PathFinder {
         open.add(node);
     }
 
-    /**
-     * Check if a node is in the open list
-     *
-     * @param node The node to check for
-     * @return True if the node given is in the open list
-     */
     protected boolean inOpenList(Node node) {
         return open.contains(node);
     }
 
-    /**
-     * Remove a node from the open list
-     *
-     * @param node The node to remove from the open list
-     */
     protected void removeFromOpen(Node node) {
         open.remove(node);
     }
 
-    /**
-     * Add a node to the closed list
-     *
-     * @param node The node to add to the closed list
-     */
     protected void addToClosed(Node node) {
         closed.add(node);
     }
 
-    /**
-     * Check if the node supplied is in the closed list
-     *
-     * @param node The node to search for
-     * @return True if the node specified is in the closed list
-     */
     protected boolean inClosedList(Node node) {
         return closed.contains(node);
     }
 
-    /**
-     * Remove a node from the closed list
-     *
-     * @param node The node to remove from the closed list
-     */
+
     protected void removeFromClosed(Node node) {
         closed.remove(node);
     }
 
-    /**
-     * Check if a given location is valid for the supplied mover
-     *
-     * @param sx The starting x coordinate
-     * @param sy The starting y coordinate
-     * @param x The x coordinate of the location to check
-     * @param y The y coordinate of the location to check
-     * @return True if the location is valid for the given mover
-     */
     protected boolean isValidLocation( int sx, int sy, int x, int y) {
         boolean invalid = (x < 0) || (y < 0) || (x >= map.getWidth()) || (y >= map.getHeight());
 
+        if(sx % 2 == 0){
+            if (x == -1 && x == -1){
+                return false;
+            }
+            if (x == 1 && y == -1){
+                return false;
+            }
+        }else{
+            if (x == -1 && y == 1){
+                return false;
+            }
+            if (x == 1 && y == 1){
+                return false;
+            }
+        }
+//        if (x % 2 != 0){
+//          System.out.println("->>   sx: " + sx + " sy: " + sy);
+//            if (x == (sx + 1) && (y == sy +1)){
+//                return false;
+//            }
+//        }
+//        else {
+//
+//        }
         if ((!invalid) && ((sx != x) || (sy != y))) {
-            invalid = map.isWalkable(x, y);
+            invalid = map.isBlocked(x, y);
         }
         return !invalid;
     }
 
-    /**
-     * Get the cost to move through a given location
-     *
-     * @param sx The x coordinate of the tile whose cost is being determined
-     * @param sy The y coordiante of the tile whose cost is being determined
-     * @param tx The x coordinate of the target location
-     * @param ty The y coordinate of the target location
-     * @return The cost of movement through the given tile
-     */
     public float getMovementCost(int sx, int sy, int tx, int ty) {
         return map.getCost(sx, sy, tx, ty);
     }
 
-    /**
-     * Get the heuristic cost for the given location. This determines in which
-     * order the locations are processed.
-     *
-     * @param x The x coordinate of the tile whose cost is being determined
-     * @param y The y coordiante of the tile whose cost is being determined
-     * @param tx The x coordinate of the target location
-     * @param ty The y coordinate of the target location
-     * @return The heuristic cost assigned to the tile
-     */
     public float getHeuristicCost(int x, int y, int tx, int ty) {
         return heuristic.getCost(map, x, y, tx, ty);
     }
 
-    /**
-     * A simple sorted list
-     *
-     * @author kevin
-     */
     private class SortedList {
-        /** The list of elements */
         private ArrayList list = new ArrayList();
 
-        /**
-         * Retrieve the first element from the list
-         *
-         * @return The first element from the list
-         */
         public Object first() {
             return list.get(0);
         }
 
-        /**
-         * Empty the list
-         */
         public void clear() {
             list.clear();
         }
 
-        /**
-         * Add an element to the list - causes sorting
-         *
-         * @param o The element to add
-         */
         public void add(Object o) {
             list.add(o);
             Collections.sort(list);
         }
 
-        /**
-         * Remove an element from the list
-         *
-         * @param o The element to remove
-         */
         public void remove(Object o) {
             list.remove(o);
         }
 
-        /**
-         * Get the number of elements in the list
-         *
-         * @return The number of element in the list
-         */
         public int size() {
             return list.size();
         }
 
-        /**
-         * Check if an element is in the list
-         *
-         * @param o The element to search for
-         * @return True if the element is in the list
-         */
         public boolean contains(Object o) {
             return list.contains(o);
         }
     }
 
-    /**
-     * A single node in the search graph
-     */
+
     private class Node implements Comparable {
         /** The x coordinate of the node */
         private int x;
@@ -357,23 +326,11 @@ public class PathFinder {
         /** The search depth of this node */
         private int depth;
 
-        /**
-         * Create a new node
-         *
-         * @param x The x coordinate of the node
-         * @param y The y coordinate of the node
-         */
         public Node(int x, int y) {
             this.x = x;
             this.y = y;
         }
 
-        /**
-         * Set the parent of this node
-         *
-         * @param parent The parent node which lead us to this node
-         * @return The depth we have no reached in searching
-         */
         public int setParent(Node parent) {
             depth = parent.depth + 1;
             this.parent = parent;
@@ -381,9 +338,6 @@ public class PathFinder {
             return depth;
         }
 
-        /**
-         * @see Comparable#compareTo(Object)
-         */
         public int compareTo(Object other) {
             Node o = (Node) other;
 

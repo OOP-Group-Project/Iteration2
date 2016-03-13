@@ -63,8 +63,8 @@ public class Map {
 		return tiles[x][y];
 	}
 
-	public boolean isWalkable(int x, int y){
-        return tiles[x][y].isWalkable();
+	public boolean isBlocked(int x, int y){
+        return tiles[x][y].isBlocked();
 	}
 
 	public float getCost(int sx, int sy, int tx, int ty){

@@ -32,11 +32,10 @@ public abstract class Entity {
         location.move(dir);
     }
 
-    //moves an npc according to a path
-    public void move(MapLocationPoint location){
-        this.location.x = location.x;
-        this.location.y = location.y;
-    }
+//    public void move(MapLocationPoint playerLocation, MapLocationPoint point){
+//        location.move(location,point);
+//    }
+
 
     public MapLocationPoint getLocation() {
         return location;
