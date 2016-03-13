@@ -1,4 +1,5 @@
 package Main.Model.Stats;
+import Main.Model.Entity.Entity;
 import Main.Model.Occupation.Occupation;
 
 import java.util.HashMap;
@@ -7,14 +8,17 @@ import static java.lang.Math.abs;
 
 /**
  * Created by walkhard on 2/18/16.
- * Modified by Andy on 3/11/16
- *      Add Builder
+ *
  */
 
 public class Stats {
+
+    final double LEVEL_EXPERIENCE_EXPONENT = 1.1;
     //
-    public Stats(Map<String, Double> occupation_modifier, int lvl) {
+    public Stats(Map<String, Double> occupation_modifier, Entity entity, int lvl) {
         level = lvl;
+        skillPoints = 0;
+        this.entity = entity;
         OCCUPATION_STAT_MOD.putAll(occupation_modifier);
         calculatePrimaryStats();
         calculateSecondaryStats();
@@ -49,6 +53,9 @@ public class Stats {
 
     */
 
+    private int skillPoints;
+    private Entity entity;
+
     // primary stats (maximum)
     private double max_str;    //strength
     private double max_agi;    //agility
@@ -56,7 +63,7 @@ public class Stats {
     private double max_har;    //hardiness
     private double max_mov;    //movement
     private double max_act;
-    private int max_exp;       //experience required to reach next level
+    private double max_exp;       //experience required to reach next level
     private int max_lives;     //number of lives available
 
     // primary stats (current)
@@ -66,8 +73,9 @@ public class Stats {
     private double cur_har;
     private double cur_mov;
     private double cur_act;
-    private int cur_exp;
+    private double cur_exp;
     private int cur_lives;
+
 
     // temp primary data
     private double temp_str;
@@ -126,9 +134,10 @@ public class Stats {
     public double maxOffense() {return max_off;}
     public double maxDefense() {return max_def;}
     public double maxArmor() {return max_arm;}
-    public int maxExperience() {return max_exp;}
+    public double maxExperience() {return max_exp;}
     public int maxLives() {return max_lives;}
-    public int getLevel(){ return level;}
+    public int getSkillPoints() {return skillPoints;}
+    public Entity getEntity() {return entity;}
 
     //
     public int level() {return level;}
@@ -145,11 +154,13 @@ public class Stats {
     public double curOffense() {return cur_off;}
     public double curDefense() {return cur_def;}
     public double curArmor() {return cur_arm;}
-    public int curExperience() {return cur_exp;}
+    public double curExperience() {return cur_exp;}
     public int curLives() {return cur_lives;}
 
     // setters
-    private void setMaxExperience(){max_exp = (level()^2 * 100) / 2;}
+    private void setMaxExperience(){
+        max_exp = Math.pow(level, LEVEL_EXPERIENCE_EXPONENT) * 100;
+    }
     private void setCurExperience(){cur_exp = 0;}
     private void setMaxMovement(){
         double MOV_MOD = 0.025;
@@ -374,8 +385,10 @@ public class Stats {
         // make sure the change makes sense
         if (cur_hp > max_hp)
             cur_hp = max_hp;
-        else if(cur_hp < 0)
-            cur_hp = 0;
+        else if(cur_hp < 0) {
+            //TODO: changed by Andy to make sense
+//            this.getEntity().die();
+        }
     }
     private void changeCurMana(double amt) {
         // change stat
@@ -434,6 +447,10 @@ public class Stats {
             level -= amt;
     }
 
+    public void changeSkillPoints (int amt) {
+        skillPoints += amt;
+    }
+
     //
     private void calculatePrimaryStats() {
         max_str = OCCUPATION_STAT_MOD.get("str") * BASE_STAT_MOD * level;
@@ -444,12 +461,16 @@ public class Stats {
 
     //
     private void calculateSecondaryStats() {
-        int SCALE_MOD = 10;
-        max_hp = (max_har * SCALE_MOD) / BASE_STAT_MOD;  //hardiness and level
-        max_mp = (max_int * SCALE_MOD) / BASE_STAT_MOD;  //intellect and level
-        max_off = (max_str * SCALE_MOD) / BASE_STAT_MOD; //strength and level
-        max_def = (max_agi * SCALE_MOD) / BASE_STAT_MOD; //agility and level
-        max_arm = (((max_har + max_agi) / 2) * SCALE_MOD) / BASE_STAT_MOD; //hardiness and agility
+        final int HEALTH_POINT_SCALE_MOD = 30;
+        final int MANA_POINT_SCALE_MOD = 20;
+        final double DEFENSIVE_SCALE_MOD = 0.01;
+        final int OFFENSIVE_SCALE_MOD = 1;
+        final double ARMOR_SCALE_MOD = 0.5;
+        max_hp = max_har * HEALTH_POINT_SCALE_MOD;  //hardiness and level
+        max_mp = max_int * MANA_POINT_SCALE_MOD;  //intellect and level
+        max_off = max_str * OFFENSIVE_SCALE_MOD; //strength and level
+        max_def = max_agi * DEFENSIVE_SCALE_MOD; //agility and level
+        max_arm = ((max_har + max_agi) / 2) * ARMOR_SCALE_MOD; //hardiness and agility
     }
 
     // mutators

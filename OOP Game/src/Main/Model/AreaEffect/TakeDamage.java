@@ -1,21 +1,34 @@
 package Main.Model.AreaEffect;
 
-import Main.Model.Stats.StatsEnum;
+import Main.Model.Stats.StatsModifier;
 
 /**
  * Created by Michael on 3/9/16.
+ * Implemented by Peter Camejo 3/13/16
  */
 
 public class TakeDamage extends AreaEffect {
+    /*** Constructor ***/
+    //Applies Once
+    public TakeDamage(double damageAmount){
+        super(AreaEffectEnum.DAMAGE);
 
-//    private static final long duration = 0;
-//    private static final int value =  -1;
-//    private static final String name = "TakeDamage";
-
-    // Calls the AreaEffect constructor to create an associated effect
-    // that can be applied to the player using player.applyEffect(effect);
-    public TakeDamage(){
-        super(AreaEffectEnum.Damage);
-//        this.type = AreaEffectEnum.Damage;
+        StatsModifier sm = new StatsModifier();
+        sm = sm.builder()
+                .lifeModifier(-damageAmount)
+                .build();
+        this.modifier = sm;
     }
+
+    public TakeDamage(double damageAmount , int charge){
+        super(AreaEffectEnum.DAMAGE , charge );
+
+        StatsModifier sm = new StatsModifier();
+        sm = sm.builder()
+                .lifeModifier(-damageAmount)
+                .build();
+        this.modifier = sm;
+
+    }
+
 }

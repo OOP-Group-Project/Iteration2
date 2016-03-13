@@ -13,16 +13,14 @@ public class Tile {
 	private TerrainTypeEnum terrainType;
 	private Entity entity = null;
 	private ArrayList<Item> items = new ArrayList<>();
-    private AreaEffect areaEffect;
+    private AreaEffect areaEffect = null;
 
 
 	// Default constructor
-	public Tile(){
-		this.terrainType = TerrainTypeEnum.Grass;
-	}
 	
-	public Tile(TerrainTypeEnum terrainType,int id) {
+	public Tile(TerrainTypeEnum terrainType, int id) {
 		this.terrainType = terrainType;
+		items = new ArrayList<>();
 	}
 
 	public void addEntity(Entity e) {
@@ -52,6 +50,13 @@ public class Tile {
 		return areaEffect != null;
 	}
 
+	public boolean hasEntity() {
+		return entity != null;
+	}
+
+	public boolean hasItems() {
+		return !items.isEmpty();
+	}
 	public TerrainTypeEnum getTerrainType() {
 		return terrainType;
 	}
@@ -65,6 +70,10 @@ public class Tile {
 			return false;
 		}
 		else return true;
+	}
+
+	public void removeAreaEffect() {
+		this.areaEffect = null;
 	}
 
 	public ArrayList<String> toTileString() {

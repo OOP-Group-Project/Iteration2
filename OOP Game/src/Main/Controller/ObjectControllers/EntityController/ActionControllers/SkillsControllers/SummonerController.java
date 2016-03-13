@@ -1,4 +1,4 @@
-package Main.Controller.EntityControllers.ActionControllers.SkillsControllers;
+package Main.Controller.ObjectControllers.EntityController.ActionControllers.SkillsControllers;
 
 import Main.Controller.Manager.UserActionEnum;
 import Main.Model.Entity.Entity;

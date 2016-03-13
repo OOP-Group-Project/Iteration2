@@ -1,6 +1,7 @@
-package Main.Controller.EntityControllers.ActionControllers;
+package Main.Controller.ObjectControllers.EntityController.ActionControllers;
 
 import Main.Controller.Manager.UserActionEnum;
+import Main.Controller.ObjectControllers.TimedObjectController;
 import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.Entity;
@@ -10,13 +11,12 @@ import Main.Model.Skills.AngularEffect;
 import Main.Model.Skills.RadialEffect;
 
 import java.util.ArrayList;
-import java.util.Queue;
 
 /**
  * Created by johnkaufmann on 3/12/16.
  * TODO:
  */
-public class AttackController {
+public class AttackController extends TimedObjectController{
     private Entity entity;
     private Map map;
     private MapLocationPoint point;
@@ -132,7 +132,7 @@ public class AttackController {
     }
 
     private void applyEffect(MapLocationPoint point) {
-        map.getTile(point.x,point.y).addAreaEffect(new TakeDamage());
+        map.getTile(point.x,point.y).addAreaEffect(new TakeDamage(10.00)); //Peter: Added 10.00 for compiplation.
     }
 
     // TODO: 3/13/16 implment spells

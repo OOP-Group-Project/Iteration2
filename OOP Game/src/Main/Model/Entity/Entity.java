@@ -20,6 +20,8 @@ public abstract class Entity {
     protected Inventory inventory;
     protected Equipment equipment;
     protected MapLocationPoint location;
+    protected boolean isMoving;
+    protected boolean isDoingAction;
     protected DirectionEnum orientation;
 
     //create Entities at certain locations with a certain type
@@ -28,8 +30,10 @@ public abstract class Entity {
         this.spiel = entitySpiel;
         this.occupation = occupation;
         this.location = location;
-        this.stats = new Stats(occupation.map(),1);
+        this.stats = new Stats(occupation.map(), this, 1);
         this.inventory = new Inventory();
+        this.isMoving = false;
+        this.isDoingAction = false;
     }
     //moves a players known x and y (JFK)
     public void move(DirectionEnum dir) {
@@ -45,11 +49,18 @@ public abstract class Entity {
         return location;
     }
 
+    public void setLocation(MapLocationPoint location) {
+        this.location = location;
+    }
+
     //returns the type of entity it is
     public EntityTypeEnum getType() {
         return type;
     }
 
+    public void setType(EntityTypeEnum type) {
+        this.type = type;
+    }
     // P.Smith
     // Entities now know how to adjust their Stats()
     /*
@@ -99,18 +110,60 @@ public abstract class Entity {
         return occupation;
     }
 
+    public void setOccupation(Occupation occupation) {
+        this.occupation = occupation;
+    }
     // Entities now have the ability to "speak"
     //
     public String speak(){return spiel.spiel();}
 
+    public void setSpiel(EntitySpeechEnum spiel) {
+        this.spiel = spiel;
+    }
+
+    public EntitySpeechEnum getSpiel() {
+        return this.spiel;
+    }
+
     //
     public Inventory getInventory(){ return this.inventory;}
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public boolean isMoving() {
+        return isMoving;
+    }
+
+    public void setMoving(boolean isMoving) {
+        this.isMoving = isMoving;
+    }
+
+    public boolean isDoingAction() {
+        return isDoingAction;
+    }
+
+    public void setDoingAction(boolean isDoingAction) {
+        this.isDoingAction = isDoingAction;
+    }
 
     public DirectionEnum getOrientation() {
         return orientation;
     }
 
+    public void setOrientation(DirectionEnum dir) {
+        this.orientation = dir;
+    }
+
     public Equipment getEquipment() {
         return equipment;
     }
+
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
+    }
+
+    // TODO: 3/13/16 added die function to make andys shit work delete later
+
 }
