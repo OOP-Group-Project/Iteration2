@@ -3,6 +3,7 @@ package Main.Model.Entity;
 
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
+import Main.Model.Occupation.Smasher;
 import Main.View.Graphics.GraphicsAssets;
 
 import java.awt.*;
@@ -13,5 +14,9 @@ import java.awt.*;
 public class Pet extends Entity {
     public Pet(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location){
         super(entityType, entitySpiel, occupation, location);
+    }
+
+    public Pet(MapLocationPoint location) {
+        super(EntityTypeEnum.Pet, EntitySpeechEnum.PET, new Smasher(), location);
     }
 }

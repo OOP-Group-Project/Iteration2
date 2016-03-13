@@ -2,16 +2,11 @@ package Main.Controller.EntityControllers;
 
 import Main.Controller.Manager.UserActionEnum;
 import Main.Model.DirectionEnum;
-import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Map.Tile;
 import Main.Model.Terrain.TerrainTypeEnum;
-import Main.Model.io.AvatarIO;
-import Main.Model.io.MapIO;
-
-import java.awt.*;
 
 /**
  * Created by johnkaufmann on 3/10/16. JFK
@@ -34,8 +29,6 @@ public class MovementController {
     public void move(UserActionEnum u) {
         MapLocationPoint endPoint = entity.getLocation();
         Tile startTile = map.getTile(currentPoint.x, currentPoint.y);
-        new MapIO().saveMap(map, "map");
-        new AvatarIO().saveAvatar((Avatar)entity);
 
         //System.out.println("Movement controller being used with direction: " + u);
         switch (u) {

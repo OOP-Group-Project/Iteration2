@@ -1,12 +1,8 @@
 package Main.Model.io;
 
-import Main.Model.Entity.Avatar;
-import Main.Model.Entity.Entity;
-import Main.Model.Entity.EntityTypeEnum;
+import Main.Model.Entity.*;
 import Main.Model.Inventory.Inventory;
-import Main.Model.Items.TakeAble;
 import Main.Model.Map.MapLocationPoint;
-import Main.Model.Map.Tile;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Occupation.Smasher;
 import Main.Model.Occupation.Sneak;
@@ -14,36 +10,56 @@ import Main.Model.Occupation.Summoner;
 import Main.Model.Stats.Stats;
 
 import java.util.ArrayList;
-import java.util.logging.FileHandler;
 
 /**
  * Created by johnkaufmann on 3/12/16.
  * TODO:
  */
-public class AvatarIO {
+public class EntityIO {
 
     io io;
-    public AvatarIO() {
+    public EntityIO() {
         this.io = new io();
     }
 
     //load an avatar given the current avatar and a filename
-    public Avatar loadAvatar(Avatar avatar, String fileName) {
-        /***************
-         * Read a avatar file
-         **************/
+    public ArrayList<Entity> loadEntities(ArrayList<Entity> entity, String fileName) {
 
         ArrayList<String> FileData;
         FileData = io.readFile(fileName);
 
+        for (int i = 0; i < FileData.size(); i++) {
+            ArrayList<String> subList = new ArrayList<>();
+            for (int j = i; j < FileData.size(); j++) {
+                if (FileData.get(j).equals("~")) break;
+                subList.add(FileData.get(j));
+                i++;
+            }
+            entity.add(loadEntity(subList));
+        }
+        return entity;
+    }
 
+    //load an avatar with no object or file name given
+    public ArrayList<Entity> loadEntities(String fileName) {
+        return loadEntities(new ArrayList<Entity>(), fileName);
+    }
+
+    //load an avatar with no object or file name given
+    public ArrayList<Entity> loadEntities() {
+        return loadEntities(new ArrayList<Entity>(), "Entities.txt");
+    }
+
+    //loads a single entity given its data
+    private Entity loadEntity(ArrayList<String> FileData) {
         //set up avatar parameters
-        EntityTypeEnum type;
+        EntityTypeEnum type = EntityTypeEnum.NPC;
         Stats stats;
         Occupation occupation;
         Inventory inventory;
         MapLocationPoint location = new MapLocationPoint(0,0);
         int level = 1;
+        Entity entity;
 
         //set the avatar parameters given file data
         for (int i = 0; i < FileData.size(); i++) {
@@ -54,6 +70,7 @@ public class AvatarIO {
                     System.out.print("Loading " + data[1]);
                     break;
                 case "Type":
+                    type = setType(data[1]);
                     System.out.println(" the " + data[1] + ".");
                     break;
                 case "Occupation":
@@ -71,20 +88,37 @@ public class AvatarIO {
             }
         }
 
-        //instantiate a new avatar;
-        avatar = new Avatar(location);
+        //instantiate a new entity;
+        System.out.println(type);
+        switch (type) {
+            case Avatar:
+                entity = new Avatar(location);
+                break;
+            case NPC:
+                entity = new Npc(location);
+                break;
+            case Pet:
+                entity = new Pet(location);
+                break;
+            case Vehicle:
+                entity = new Vehicle(location);
+                break;
+            default:
+                entity = new Npc(location);
+                break;
+        }
 
         //level the entity up appropriately
         for (int i = 1; i < level; i++) {
-            avatar.levelUp();
+            entity.levelUp();
         }
 
-        return avatar;
+        return entity;
     }
 
-    //load an avatar with no object or file name given
-    public Avatar loadAvatar() {
-        return loadAvatar(new Avatar(new MapLocationPoint(0,0)), "avatar");
+    //given a string sets an entity type
+    private EntityTypeEnum setType(String s) {
+        return EntityTypeEnum.valueOf(s);
     }
 
     //given a string x,y return the map location
@@ -134,12 +168,20 @@ public class AvatarIO {
         }
     }
 
-    public void saveAvatar(Avatar avatar) {
-        ArrayList<String> fileData = new ArrayList<>();
+    public void saveEntities(ArrayList<Entity> entities, String fileName) {
+        ArrayList<String> entityStrings = new ArrayList<>();
+        for (Entity entity : entities) {
+            saveEntity(entityStrings, entity);
+            entityStrings.add("~");
+        }
+        io.writeFile(entityStrings, fileName);
+    }
+
+    private ArrayList<String> saveEntity(ArrayList<String> entityData, Entity entity) {
 
         /**
          * Name:John
-         * Type:Avatar
+         * Type:entity
          * Occupation:Smasher
          * Level:3
          * Inventory:3
@@ -149,37 +191,36 @@ public class AvatarIO {
          * Location:0,2
          */
 
-        String typeFormat = null;
-        fileData.add(getName("Name:", avatar));
-        fileData.add(getType("Type:", avatar));
-        fileData.add(getOccupation("Occupation:", avatar));
-        fileData.add(getLevel("Level:", avatar));
+        entityData.add(getName("Name:", entity));
+        entityData.add(getType("Type:", entity));
+        entityData.add(getOccupation("Occupation:", entity));
+        entityData.add(getLevel("Level:", entity));
         // TODO: 3/12/16 uncomment when we finish printing out the inventory
-//        fileData.add(getInventory("Inventory:", avatar));
-        fileData.add(getLocation("Location:", avatar));
+//        entityData.add(getInventory("Inventory:", entity));
+        entityData.add(getLocation("Location:", entity));
 
-        io.writeFile(fileData,"avatar");
+        return entityData;
     }
 
-    private String getLocation(String locationFormat, Avatar avatar) {
-        return locationFormat + String.valueOf(avatar.getLocation().x)+","+String.valueOf(avatar.getLocation().y);
+    private String getLocation(String locationFormat, Entity entity) {
+        return locationFormat + String.valueOf(entity.getLocation().x)+","+String.valueOf(entity.getLocation().y);
     }
 
     // TODO: 3/12/16 implement get inventory and shit
-    private String getInventory(String inventoryFormat, Avatar avatar) {
-        return avatar.toString();
+    private String getInventory(String inventoryFormat, Entity entity) {
+        return entity.toString();
     }
 
-    private String getLevel(String levelFormat, Avatar avatar) {
-        return levelFormat += String.valueOf(avatar.getStats().level());
+    private String getLevel(String levelFormat, Entity entity) {
+        return levelFormat += String.valueOf(entity.getStats().level());
     }
 
-    private String getOccupation(String occupationFormat, Avatar avatar) {
-        return occupationFormat + avatar.getOccupation().toString();
+    private String getOccupation(String occupationFormat, Entity entity) {
+        return occupationFormat + entity.getOccupation().toString();
     }
 
-    private String getType(String typeFormat, Avatar avatar) {
-        switch (avatar.getType()) {
+    private String getType(String typeFormat, Entity entity) {
+        switch (entity.getType()) {
             case Avatar:
                 return typeFormat + "Avatar";
             case NPC:
@@ -194,7 +235,7 @@ public class AvatarIO {
     }
 
     // TODO: 3/12/16 change this if we implement a way to see the avatars name
-    private String getName(String nameFormat, Avatar avatar) {
+    private String getName(String nameFormat, Entity entity) {
         return nameFormat + "John";
     }
 }
