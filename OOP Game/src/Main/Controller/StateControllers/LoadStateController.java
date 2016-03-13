@@ -73,9 +73,10 @@ public class LoadStateController extends StateController {
                 world.addEntity(e,e.getLocation().x,e.getLocation().y);
             }
         }
-        AreaEffect testAreaEffect = new HealDamage();
+        
+        AreaEffect testAreaEffect = new HealDamage(10, 1000);
         world.getTile(1,5).addAreaEffect(testAreaEffect);
-        objectControllerManager.addObjectController(testAreaEffect, new AreaEffectController(testAreaEffect, 1000));
+        objectControllerManager.addObjectController(testAreaEffect, new AreaEffectController(testAreaEffect, testAreaEffect.getCharge()));
 
         stateManager.setState(StateEnum.PlayState);
 
