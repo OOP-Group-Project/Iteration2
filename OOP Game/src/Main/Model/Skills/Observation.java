@@ -9,4 +9,9 @@ public class Observation extends BaseSkills {
     public Observation (Entity entity) {
         super(entity);
     }
+
+    @Override
+    public void apply() {
+
+    }
 }

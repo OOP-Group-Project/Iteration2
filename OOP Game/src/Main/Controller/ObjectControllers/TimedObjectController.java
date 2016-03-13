@@ -17,7 +17,7 @@ public abstract class TimedObjectController extends ObjectController {
         this.timer = new Timer(msDuration);
     }
 
-    public void tick() {
+    public void update() {
         timer.tick();
     }
 }

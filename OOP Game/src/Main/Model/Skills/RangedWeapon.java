@@ -9,4 +9,9 @@ public class RangedWeapon extends SneakSkill {
     public RangedWeapon (Entity entity) {
         super(entity);
     }
+
+    @Override
+    public void apply() {
+
+    }
 }

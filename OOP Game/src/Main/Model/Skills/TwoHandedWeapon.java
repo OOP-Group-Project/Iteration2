@@ -9,4 +9,9 @@ public class TwoHandedWeapon extends SmasherSkill {
     public TwoHandedWeapon (Entity entity) {
         super(entity);
     }
+
+    @Override
+    public void apply() {
+
+    }
 }

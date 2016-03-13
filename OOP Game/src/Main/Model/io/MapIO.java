@@ -58,9 +58,11 @@ public class MapIO {
         return loadMap(map, "map");
     }
 
+
+    // CANT be set to Map(0,0) or Pathfinding is null
     //given a file name load a map with all other generic properties
     public Map loadMap(String fileName) {
-        return loadMap(new Map(0,0), fileName);
+        return loadMap(new Map(20,20), fileName);
     }
 
     //load generic map

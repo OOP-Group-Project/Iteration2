@@ -9,4 +9,9 @@ public class Bane extends SummonerSkill {
     public Bane (Entity entity) {
         super(entity);
     }
+
+    @Override
+    public void apply() {
+
+    }
 }

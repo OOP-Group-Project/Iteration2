@@ -9,4 +9,9 @@ public class Boon extends SummonerSkill {
     public Boon (Entity entity) {
         super(entity);
     }
+
+    @Override
+    public void apply() {
+
+    }
 }

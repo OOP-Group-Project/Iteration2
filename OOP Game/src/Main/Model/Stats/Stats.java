@@ -128,6 +128,7 @@ public class Stats {
     public double maxArmor() {return max_arm;}
     public int maxExperience() {return max_exp;}
     public int maxLives() {return max_lives;}
+    public int getLevel(){ return level;}
 
     //
     public int level() {return level;}

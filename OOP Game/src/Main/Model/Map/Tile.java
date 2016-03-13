@@ -17,12 +17,10 @@ public class Tile {
 
 
 	// Default constructor
-	public Tile(){
-		this.terrainType = TerrainTypeEnum.Grass;
-	}
 	
-	public Tile(TerrainTypeEnum terrainType,int id) {
+	public Tile(TerrainTypeEnum terrainType, int id) {
 		this.terrainType = terrainType;
+		items = new ArrayList<>();
 	}
 
 	public void addEntity(Entity e) {
@@ -52,11 +50,25 @@ public class Tile {
 		return areaEffect != null;
 	}
 
+	public boolean hasEntity() {
+		return entity != null;
+	}
+
+	public boolean hasItems() {
+		return !items.isEmpty();
+	}
 	public TerrainTypeEnum getTerrainType() {
 		return terrainType;
 	}
 
 	public Entity getEntity() {
 		return entity;
+	}
+
+	public boolean isBlocked(){
+		if (this.terrainType == TerrainTypeEnum.Grass){
+			return false;
+		}
+		else return true;
 	}
 }

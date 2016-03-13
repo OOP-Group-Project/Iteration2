@@ -1,6 +1,7 @@
 package Main.Model.Entity;
 
 import Main.Model.DirectionEnum;
+import Main.Model.Equipment.Equipment;
 import Main.Model.Inventory.Inventory;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
@@ -17,9 +18,11 @@ public abstract class Entity {
     protected Stats stats;
     protected Occupation occupation;
     protected Inventory inventory;
+    protected Equipment equipment;
     protected MapLocationPoint location;
     protected boolean isMoving;
     protected boolean isDoingAction;
+    protected DirectionEnum orientation;
 
     //create Entities at certain locations with a certain type
     public Entity(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location) {
@@ -37,8 +40,17 @@ public abstract class Entity {
         location.move(dir);
     }
 
+//    public void move(MapLocationPoint playerLocation, MapLocationPoint point){
+//        location.move(location,point);
+//    }
+
+
     public MapLocationPoint getLocation() {
         return location;
+    }
+
+    public void setLocation(MapLocationPoint location) {
+        this.location = location;
     }
 
     //returns the type of entity it is
@@ -46,6 +58,9 @@ public abstract class Entity {
         return type;
     }
 
+    public void setType(EntityTypeEnum type) {
+        this.type = type;
+    }
     // P.Smith
     // Entities now know how to adjust their Stats()
     /*
@@ -95,12 +110,27 @@ public abstract class Entity {
         return occupation;
     }
 
+    public void setOccupation(Occupation occupation) {
+        this.occupation = occupation;
+    }
     // Entities now have the ability to "speak"
     //
     public String speak(){return spiel.spiel();}
 
+    public void setSpiel(EntitySpeechEnum spiel) {
+        this.spiel = spiel;
+    }
+
+    public EntitySpeechEnum getSpiel() {
+        return this.spiel;
+    }
+
     //
     public Inventory getInventory(){ return this.inventory;}
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
 
     public boolean isMoving() {
         return isMoving;
@@ -118,4 +148,19 @@ public abstract class Entity {
         this.isDoingAction = isDoingAction;
     }
 
+    public DirectionEnum getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(DirectionEnum dir) {
+        this.orientation = dir;
+    }
+
+    public Equipment getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
+    }
 }

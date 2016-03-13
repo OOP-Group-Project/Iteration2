@@ -10,4 +10,9 @@ public class DetectTrap extends SneakSkill {
         super(entity);
     }
 
+    @Override
+    public void apply() {
+
+    }
+
 }

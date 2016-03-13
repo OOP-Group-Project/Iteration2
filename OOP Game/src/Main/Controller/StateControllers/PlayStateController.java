@@ -1,8 +1,12 @@
 package Main.Controller.StateControllers;
 
+import Main.Controller.Manager.ObjectControllerManager;
+import Main.Controller.ObjectControllers.EntityController.AvatarController;
 import Main.Controller.ObjectControllers.EntityController.EntityController;
+import Main.Controller.ObjectControllers.EntityController.NpcController;
 import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.UserActionEnum;
+import Main.Controller.ObjectControllers.MapController;
 import Main.Model.DirectionEnum;
 import Main.Model.State.PlayState;
 import Main.Model.State.StateEnum;
@@ -14,23 +18,23 @@ import Main.Model.State.StateEnum;
 public class PlayStateController extends StateController {
 
     private StateControllerManager stateControllerManager;
+    private ObjectControllerManager objectControllerManager;
     private PlayState playState;
-    private EntityController ec;
 
-    public PlayStateController(StateControllerManager stateControllerManager, PlayState playState) {
+    public PlayStateController(StateControllerManager stateControllerManager, ObjectControllerManager objectControllerManager, PlayState playState) {
         this.stateControllerManager = stateControllerManager;
+        this.objectControllerManager = objectControllerManager;
         this.playState = playState;
-        this.ec = new EntityController(playState.getWorld(), playState.getPlayer());
     }
 
     @Override
     public void update() {
-        ec.update();
+        ((MapController)objectControllerManager.getObjectController(playState.getWorld())).update();
     }
 
     @Override
     public void handleAction(UserActionEnum action) {
-        ec.handleInput(action);
+        ((AvatarController)objectControllerManager.getObjectController(playState.getPlayer())).handleInput(action);
         switch(action) {
             case Up:
             case UpRight:

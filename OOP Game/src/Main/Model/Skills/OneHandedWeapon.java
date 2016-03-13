@@ -9,4 +9,9 @@ public class OneHandedWeapon extends SmasherSkill {
     public OneHandedWeapon (Entity entity) {
         super(entity);
     }
+
+    @Override
+    public void apply() {
+
+    }
 }

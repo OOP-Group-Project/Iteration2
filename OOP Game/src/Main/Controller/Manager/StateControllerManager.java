@@ -24,12 +24,17 @@ public class StateControllerManager {
 	private StateEnum currentState;
 	private StateEnum previousState;
 
-	public StateControllerManager(Model model){
+	public StateControllerManager(ObjectControllerManager objectControllerManager, Model model){
 		// Create the map for The gamestate types to gamestate objects
 		gameStateControllers = new EnumMap<>(StateEnum.class);
 
 		// create all the state objects
-		initializeStates(model.getStates(), model.getWorld(), model.getPlayer(), model.getNonPlayerEntities());
+		gameStateControllers.put(StateEnum.LoadState, new LoadStateController(this, objectControllerManager, (LoadState)model.getStates().get(StateEnum.LoadState), model));
+		gameStateControllers.put(StateEnum.PlayState, new PlayStateController(this, objectControllerManager, (PlayState)model.getStates().get(StateEnum.PlayState)));
+		gameStateControllers.put(StateEnum.PauseState, new PauseStateController(this, (PauseState)model.getStates().get(StateEnum.PauseState)));
+		gameStateControllers.put(StateEnum.InventoryState,new InventoryStateController(this, (InventoryState)model.getStates().get(StateEnum.InventoryState)));
+		gameStateControllers.put(StateEnum.StartMenuState, new StartMenuStateController(this,(StartMenuState)model.getStates().get(StateEnum.StartMenuState)));
+		gameStateControllers.put(StateEnum.TalkState, new TalkStateController(this, (TalkState)model.getStates().get(StateEnum.TalkState)));
 
 		// set our first state
 		previousState = StateEnum.StartMenuState;
@@ -37,15 +42,7 @@ public class StateControllerManager {
 	}
 
 	private void initializeStates(EnumMap<StateEnum, State> states, Map world, Avatar player, ArrayList<Entity> nonPlayerEntities) {
-		gameStateControllers.put(StateEnum.LoadState, new LoadStateController(this, (LoadState)states.get(StateEnum.LoadState), player,nonPlayerEntities, world));
-		gameStateControllers.put(StateEnum.PlayState, new PlayStateController(this, (PlayState)states.get(StateEnum.PlayState)));
-		gameStateControllers.put(StateEnum.PauseState, new PauseStateController(this, (PauseState)states.get(StateEnum.PauseState)));
-		
-		//guessing
-		gameStateControllers.put(StateEnum.InventoryState,new InventoryStateController(this, (InventoryState)states.get(StateEnum.InventoryState)));
-		gameStateControllers.put(StateEnum.StartMenuState, new StartMenuStateController(this,(StartMenuState)states.get(StateEnum.StartMenuState)));
-		//also guessing
-		gameStateControllers.put(StateEnum.TalkState, new TalkStateController(this, (TalkState)states.get(StateEnum.TalkState)));
+
 	}
 	
 	public void setState(StateEnum state){

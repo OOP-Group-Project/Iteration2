@@ -15,4 +15,3 @@ Type:NPC
 Level:10
 Occupation:Summoner
 Location:3,15
-

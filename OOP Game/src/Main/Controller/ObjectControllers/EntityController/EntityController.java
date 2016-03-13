@@ -1,30 +1,15 @@
 package Main.Controller.ObjectControllers.EntityController;
 
 import Main.Controller.Manager.UserActionEnum;
-import Main.Model.Entity.Entity;
-import Main.Model.Map.Map;
-
-import javax.swing.*;
+import Main.Controller.ObjectControllers.ObjectController;
 
 /**
  * Created by johnkaufmann on 3/10/16.
  * TODO:
  */
-public class EntityController {
-    private MovementController MovementController;
-    private ActionController ActionController;
+public abstract class EntityController extends ObjectController {
 
-    public EntityController(Map map , Entity entity) {
-        this.MovementController = new MovementController(map, entity);
-        this.ActionController = new ActionController(map, entity);
-    }
-
-    public void handleInput(UserActionEnum U) {
-        if (isMovement(U)) MovementController.move(U);
-        if (isAction(U)) ActionController.performAction(U);
-    }
-
-    private boolean isAction(UserActionEnum U) {
+    protected boolean isAction(UserActionEnum U) {
         if (U.ordinal() > 7 && U.ordinal() < 10) {
             //System.out.println("Found an action!");
             return true;
@@ -32,7 +17,7 @@ public class EntityController {
         else return false;
     }
 
-    private boolean isMovement(UserActionEnum U) {
+    protected boolean isMovement(UserActionEnum U) {
         if (U.ordinal() < 8) {
             //System.out.println("Found a movment!");
             return true;
@@ -40,8 +25,5 @@ public class EntityController {
         else return false;
     }
 
-    public void update() {
-        MovementController.tick();
-        ActionController.tick();
-    }
+    public abstract void update();
 }

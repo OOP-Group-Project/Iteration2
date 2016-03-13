@@ -9,4 +9,9 @@ public class Staff extends SummonerSkill {
     public Staff (Entity entity) {
         super(entity);
     }
+
+    @Override
+    public void apply() {
+
+    }
 }

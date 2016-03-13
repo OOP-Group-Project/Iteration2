@@ -2,6 +2,7 @@ package Main.Model.State;
 
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.Avatar;
+import Main.Model.Entity.Npc;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
 
@@ -9,6 +10,7 @@ import java.awt.*;
 
 public class PlayState extends State {
     private Avatar player;
+    private Npc npc;
     private Map world;
     private MapLocationPoint centerPoint;
 
@@ -20,6 +22,10 @@ public class PlayState extends State {
 
     public Avatar getPlayer() {
         return player;
+    }
+
+    public Npc getNPC(){
+        return npc;
     }
 
     public MapLocationPoint getCenterPoint() {
