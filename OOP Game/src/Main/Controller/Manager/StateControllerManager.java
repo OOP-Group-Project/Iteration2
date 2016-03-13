@@ -35,15 +35,13 @@ public class StateControllerManager {
 		gameStateControllers.put(StateEnum.InventoryState,new InventoryStateController(this, (InventoryState)model.getStates().get(StateEnum.InventoryState)));
 		gameStateControllers.put(StateEnum.StartMenuState, new StartMenuStateController(this,(StartMenuState)model.getStates().get(StateEnum.StartMenuState)));
 		gameStateControllers.put(StateEnum.TalkState, new TalkStateController(this, (TalkState)model.getStates().get(StateEnum.TalkState)));
+		gameStateControllers.put(StateEnum.StatState, new StatStateController(this,(StatState)model.getStates().get(StateEnum.StatState)));
 
 		// set our first state
 		previousState = StateEnum.StartMenuState;
 		setState(StateEnum.StartMenuState);
 	}
 
-	private void initializeStates(EnumMap<StateEnum, State> states, Map world, Avatar player, ArrayList<Entity> nonPlayerEntities) {
-
-	}
 	
 	public void setState(StateEnum state){
 		previousState = currentState;

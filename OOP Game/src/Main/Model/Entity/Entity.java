@@ -78,13 +78,17 @@ public abstract class Entity {
      */
     //
     public void modifyStats(StatsModifier statsModifier) {
-
+        stats.modifyStats(statsModifier);
     }
 
 
     public Stats getStats() { return stats; }
     //TODO: question by Andy: do we want to keep eveything here? Would it be better if we getStats and call on Stats?
     public void modifyStats(String stat_to_modify, double amt) {stats.modifyStats(stat_to_modify, amt);}
+
+    public boolean hasHealth() {
+        return stats.curLife() > 0;
+    }
 
 //    public void modifyStats(StatsModifier sm) {stats.modifyStats(sm);}
 
@@ -162,5 +166,15 @@ public abstract class Entity {
 
     public void setEquipment(Equipment equipment) {
         this.equipment = equipment;
+    }
+
+    public void respawn(MapLocationPoint location) {
+        this.location.x = location.x;
+        this.location.y = location.y;
+        StatsModifier sm = new StatsModifier();
+        sm.builder().lifeModifier(15).build();
+        this.stats.modifyStats(sm);
+        // TODO: Reset avatar's stats when respawn
+        //this.stats.reset();
     }
 }

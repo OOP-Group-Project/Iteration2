@@ -4,6 +4,7 @@ import Main.Model.DirectionEnum;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Smasher;
+import Main.Model.Stats.StatsModifier;
 import Main.View.Graphics.GraphicsAssets;
 
 import java.awt.*;
@@ -22,10 +23,5 @@ public class Avatar extends Entity{
     public Avatar(Occupation o, MapLocationPoint location) {
         super(EntityTypeEnum.Avatar, EntitySpeechEnum.PLAYER, o, location);
     }
-
-    public void respawn(int xLocation, int yLocation) {
-        this.location = new MapLocationPoint(xLocation, yLocation);
-    }
-
 
 }
