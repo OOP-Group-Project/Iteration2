@@ -17,16 +17,10 @@ public abstract class SmasherSkills extends Skills {
         super(entity, coolDownPeriod, manaCost);
     }
 
-    public StatsModifier activate(Entity enemy) {
+    public StatsModifier activate() {
         StatsModifier sm = new StatsModifier();
-        Random rand = new Random();
-        double randD = rand.nextDouble();
 
-        if (randD < enemy.getStats().curDefense()) {
-            System.out.println("Attach dodged by enemy");
-            return sm;
-        }
-        else if (allCheck()) {
+        if (allCheck()) {
             double totalDamage;
             timeWhenPerformed = System.currentTimeMillis();
             Stats stats = entity.getStats();
