@@ -17,7 +17,6 @@ import java.util.EnumMap;
  */
 public class Model {
     private Avatar player;
-    private Npc skeleton;
     private ArrayList<Entity> nonPlayerEntities = new ArrayList<Entity>();
     private Map world;
     private EnumMap<StateEnum, State> states;

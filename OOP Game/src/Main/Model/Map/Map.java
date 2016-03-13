@@ -1,11 +1,12 @@
 package Main.Model.Map;
 
 import Main.Model.AreaEffect.AreaEffect;
-import Main.Model.Entity.Entity;
+import Main.Model.Entity.*;
 import Main.Model.Items.Item;
 import Main.Model.Terrain.TerrainTypeEnum;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Map {
@@ -14,6 +15,14 @@ public class Map {
     private int width;
     private int height;
 	private boolean visited[][];
+    private MapLocationPoint playerLocation;
+//    private ArrayList<Entity> npcLocations;
+//    private Npc[] npcLocations;
+
+    // Stores locations of different entities, to be used with the NpcMovementController
+    private Avatar[] avatarLocations;
+    private Pet[] petLocations;
+    private Vehicle[] vehicleLocations;
 
     public Map(int width, int height) {
         this.height = height;
@@ -45,6 +54,7 @@ public class Map {
 
 	public void addEntity(Entity e, int xLocation, int yLocation) {
 		tiles[xLocation][yLocation].addEntity(e);
+//        addToList(e);
 	}
 
 	public void addItem(Item i, int xLocation, int yLocation) {
@@ -63,6 +73,30 @@ public class Map {
 		return tiles[x][y];
 	}
 
+//    public ArrayList<Entity> getNpcLocations(){
+//        return npcLocations;
+//    }
+
+//    public void getAvatar(){
+//        for(int i = 0; i < width; i++){
+//            for(int j = 0; j < width; j++){
+//                if (tiles[i][j].getEntity().getType() == EntityTypeEnum.Avatar){
+//                    System.out.println(tiles[i][j].getEntity().getLocation());
+////                    return tiles[i][j].getEntity().getLocation();
+//                }
+//            }
+//        }
+////        return null;
+//    }
+
+    public void setPlayerLocation(MapLocationPoint location){
+        this.playerLocation = location;
+    }
+
+    public MapLocationPoint getPlayerLocation(){
+        return playerLocation;
+    }
+
 	public boolean isBlocked(int x, int y){
         return tiles[x][y].isBlocked();
 	}
@@ -74,5 +108,20 @@ public class Map {
     public void pathFinderVisited(int x, int y) {
         visited[x][y] = true;
     }
+
+//    private void addToList(Entity e){
+//        if(e.getType() == EntityTypeEnum.NPC){
+//            npcLocations.add(e);
+//        }
+//        if(e.getType() == EntityTypeEnum.Avatar){
+//
+//        }
+//        if(e.getType() == EntityTypeEnum.Pet){
+//
+//        }
+//        if(e.getType() == EntityTypeEnum.Vehicle){
+//
+//        }
+//    }
 
 }

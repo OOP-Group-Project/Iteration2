@@ -3,17 +3,14 @@ package Main.Controller.EntityControllers;
 import Main.Controller.Manager.UserActionEnum;
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.Entity;
-import Main.Model.Map.Map;
-import Main.Model.Map.MapLocationPoint;
-import Main.Model.Map.PathFinder;
-import Main.Model.Map.Tile;
+import Main.Model.Map.*;
 import Main.Model.Terrain.TerrainTypeEnum;
 
 /**
  * Created by johnkaufmann on 3/10/16. JFK
  * TODO:
  */
-public class MovementController {
+public class PlayerMovementController {
 
     private Map map;
     private MapLocationPoint currentPoint;
@@ -21,7 +18,7 @@ public class MovementController {
     private Entity entity;
     private PathFinder pathFinder;
 
-    public MovementController(Map map, Entity entity) {
+    public PlayerMovementController(Map map, Entity entity) {
         this.map = map;
         this.entity = entity;
         this.canWalkOnWater = false;
@@ -110,6 +107,8 @@ public class MovementController {
             default:
                 System.out.println("Something went wrong with our movement in movement controller!");
         }
+        map.setPlayerLocation(entity.getLocation());
+//        System.out.println(entity.getLocation());
     }
 
     //changes the tile the entity is on
