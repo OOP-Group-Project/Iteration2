@@ -14,7 +14,7 @@ public class NpcController {
     private NpcMovementController NpcMovementController;
 
     public NpcController(Map map, Entity entity, Entity npc) {
-        this.NpcMovementController = new NpcMovementController(map, npc, new  Heuristic());
+        this.NpcMovementController = new NpcMovementController(map, entity, npc, new  Heuristic());
         this.ActionController = new ActionController(map, entity);
     }
 

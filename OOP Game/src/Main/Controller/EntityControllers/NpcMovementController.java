@@ -18,21 +18,20 @@ public class NpcMovementController {
     private Entity sourceEntity;
     private PathFinder pathFinder;
     private Path path;
-//    private ArrayList<Entity> locations;
-//    private HashMap<EntityTypeEnum, MapLocationPoint> locations;
 
     /* The pathing controller determines the path for a sourceEntity to take. Currently, it takes the sourceEntity's level and directly
      translates it to a 1:1 search radius. For example, If Pet is of level 2 then it searches a radius of 2 for enemies.
     */
-    public NpcMovementController(Map map, Entity sourceEntity, Heuristic heuristic) {
+    public NpcMovementController(Map map, Entity entity ,Entity sourceEntity, Heuristic heuristic) {
         this.map = map;
         this.sourceEntity = sourceEntity;
+        this.target = entity.getLocation();
         pathFinder = new PathFinder(map, sourceEntity.getStats().getLevel(), heuristic);
     }
 
     public void update() {
         // Determines what the sourceEntity should set as its target
-//        target = determineTarget(sourceEntity.getType());
+//        determineTarget(sourceEntity.getType());
 
         // Gets the path from an sourceEntity to targetEntity
         path = pathFinder.findPath(sourceEntity.getLocation().x, sourceEntity.getLocation().y,  target.getLocation().x, target.getLocation().y);
@@ -47,20 +46,26 @@ public class NpcMovementController {
         }
     }
 
-//    private MapLocationPoint determineTarget(EntityTypeEnum e){
+    private void determineTarget(EntityTypeEnum e){
 //        MapLocationPoint targetLocation;
+
+//        System.out.println(e);
+//        if (e == EntityTypeEnum.Avatar){
 //
-////        if (e == EntityTypeEnum.Avatar){
-////
-////        }
-//        if (e == EntityTypeEnum.NPC){
-//            targetLocation = map.getAvatar();
-//        }else{
-//            targetLocation = new MapLocationPoint(0,0);
 //        }
-//
-//        return targetLocation;
-//    }
+
+        if (e == EntityTypeEnum.Pet){
+            //search for enemy
+            // if in range, go
+            // else stay
+        }
+        if (e == EntityTypeEnum.NPC){
+            if (map.getPlayerLocation() != null){
+                this.target = map.getPlayerLocation();
+            }
+        }
+
+    }
 
     private void findMinimum(){
         // for all npcs on the map, find the shortest distance and then go attack that
@@ -87,7 +92,6 @@ public class NpcMovementController {
     }
 
     private void pointToEnum(int x1, int x2, int y1, int y2) {
-
         // For all even cases of X
         // X positions are equal, check for y
         if (x1 % 2 == 0){

@@ -66,6 +66,7 @@ public class GraphicsAssets {
         greenPlus = ImageLoader.loadImage("/Resources/greenPlus.png");
         goldStar = ImageLoader.loadImage("/Resources/goldStar.png");
         skeletonWalk = ImageLoader.loadImage("/Resources/skeletonWalk.png");
+        pet = ImageLoader.loadImage("/Resources/tigerPet.png");
 
         // Load in player sprites
         player = playerSpriteSheet.crop(X_START, Y_WALK_DOWN, WIDTH, HEIGHT);

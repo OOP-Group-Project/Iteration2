@@ -107,6 +107,8 @@ public class PlayerMovementController {
             default:
                 System.out.println("Something went wrong with our movement in movement controller!");
         }
+        map.setPlayerLocation(entity.getLocation());
+//        System.out.println(entity.getLocation());
     }
 
     //changes the tile the entity is on
