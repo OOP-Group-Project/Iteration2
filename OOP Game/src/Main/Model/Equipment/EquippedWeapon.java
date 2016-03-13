@@ -8,39 +8,47 @@ import Main.Model.Items.Weapon;
  */
 public class EquippedWeapon{
     /*** Member Variables ***/
-    private Weapon weapon;
+    private Weapon mainHand;
+    private Weapon offHand;
 
     /*** Constructors ***/
     //Instantiate with no starting weapon)
     public EquippedWeapon(){
-        weapon = null;
+        mainHand = null;
+        offHand = null;
     }
 
     /*** Methods ***/
     public void equipWeapon(Weapon newWeapon){
-        Weapon temp = newWeapon;//new Weapon(newWeapon);
-        this.weapon = temp;
+        if(newWeapon.isTwoHanded() == true){
+            mainHand = newWeapon;
+            offHand = newWeapon;
+        }else{
+            mainHand = newWeapon;
+            offHand = null;
+        }
     }
 
     public Weapon unequipWeapon() {
-        if (this.weapon == null) {
+        if (this.mainHand == null) {
             return null;
         }
 
-        Weapon temp = this.weapon;//new Weapon(this.weapon);
-        this.weapon = null;
+        Weapon temp = this.mainHand;
+        this.mainHand = null;
+        this.offHand  = null;
         return temp;
     }
 
     public boolean isEquipped(){
-        if(this.weapon == null) {
+        if(this.mainHand == null) {
             return false;
         }
         return true;
     }
 
     public Weapon getWeapon(){
-        return this.weapon;
+        return this.mainHand;
     }
 
 } //end EquippedWeapon

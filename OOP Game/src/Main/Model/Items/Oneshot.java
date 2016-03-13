@@ -9,8 +9,8 @@ import Main.Model.Requirement;
  */
 public class Oneshot extends Item {
 
-    public Oneshot(String name, StatsModifier statsModifiers[], Requirement requirements[]){
-        super(ItemTypeEnum.Oneshot, name, statsModifiers, requirements);
+    public Oneshot(String name, int id, StatsModifier statsModifiers[], Requirement requirements[]){
+        super(ItemTypeEnum.Oneshot, name, id, statsModifiers, requirements);
     }
 
     public void activate(Entity entity){

@@ -9,12 +9,12 @@ import Main.Model.Items.Obstacle;
  */
 public class ObstacleBuilder extends ItemBuilder {
 
-    public ObstacleBuilder(String name) {
-        super(ItemTypeEnum.Equippable, name);
+    public ObstacleBuilder(String name, int id) {
+        super(ItemTypeEnum.Equippable, name, id);
     }
 
     @Override
     public Item build() {
-        return new Obstacle(name, statsModifiers, requirements);
+        return new Obstacle(name, id, statsModifiers, requirements);
     }
 }

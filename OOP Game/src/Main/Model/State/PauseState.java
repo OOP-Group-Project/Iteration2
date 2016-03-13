@@ -8,7 +8,7 @@ import Main.Model.Map.Map;
  */
 public class PauseState extends State {
 	
-	private enum PauseOption{
+	public enum PauseOption{
 		Resume("Resume"){
 
 			@Override
@@ -28,7 +28,7 @@ public class PauseState extends State {
 		private PauseOption(String name){
 			this.name = name;
 		}
-		protected String getName(){
+		public String getName(){
 			return name;
 		}
 		protected abstract StateEnum activate();

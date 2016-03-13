@@ -1,10 +1,10 @@
 package Main.Model;
 
-import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Items.Takable;
 import Main.Model.Entity.*;
-import Main.Model.Occupation.Occupation;
 import Main.Model.Occupation.OccupationTypeEnum;
+
+import Main.Model.Items.*;
 
 /**
  * Created by Peter Camejo on 3/10/2016.
@@ -51,11 +51,11 @@ public class Requirement {
 
     /*** Methods ***/
     public boolean meetsLevel(Entity entity) {
-        /*
-        if(entity.getLevel() >= this.requiredLevel){
+        int entityLevel = entity.getStats().level();
+
+        if(entityLevel >= this.requiredLevel){
              return true;
         }
-        */
 
         if(requiredLevel == 0) {
             return true;
@@ -65,11 +65,12 @@ public class Requirement {
     }
 
     public boolean hasItem(Entity entity){
-        /*
-        if(entity.hasItem(requiredItem)){
+        Item testItem = entity.getInventory().getItem(requiredItem);
+        if(testItem.getId() == requiredItem.getId()){
             return true;
         }
-         */
+
+
 
         if(requiredItem == null) {
             return true;
@@ -132,6 +133,7 @@ public class Requirement {
         }
 
      */
+
 
 
 } //end Requirement

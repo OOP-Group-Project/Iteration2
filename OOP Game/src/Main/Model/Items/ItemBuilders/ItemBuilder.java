@@ -11,12 +11,14 @@ import Main.Model.Requirement;
 public abstract class ItemBuilder {
     protected ItemTypeEnum type;
     protected String name;
+    protected int id;
     protected Requirement requirements[] = null;
     protected StatsModifier statsModifiers[] = null;
 
-    public ItemBuilder(ItemTypeEnum type, String name) {
+    public ItemBuilder(ItemTypeEnum type, String name, int id) {
         this.type = type;
         this.name = name;
+        this.id = id;
     }
 
     public ItemBuilder setRequirements(Requirement requirements[]) {

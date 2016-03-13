@@ -14,8 +14,8 @@ public class ArmorBuilder extends ItemBuilder {
     private ArmorTypeEnum armorType;
     private Skill skills[] = null;
 
-    public ArmorBuilder(ArmorTypeEnum armorType, String name) {
-        super(ItemTypeEnum.Equippable, name);
+    public ArmorBuilder(ArmorTypeEnum armorType, String name, int id) {
+        super(ItemTypeEnum.Equippable, name, id);
         this.armorType = armorType;
     }
 
@@ -26,6 +26,6 @@ public class ArmorBuilder extends ItemBuilder {
 
     @Override
     public Item build() {
-        return new Armor(armorType, name, statsModifiers, requirements, skills);
+        return new Armor(armorType, name, id, statsModifiers, requirements, skills);
     }
 }

@@ -8,8 +8,8 @@ import Main.Model.Requirement;
  */
 public abstract class Equippable extends Takable {
 
-    public Equippable(ItemTypeEnum type, String name, StatsModifier statsModifiers[], Requirement requirements[]){
-        super(type, name, statsModifiers, requirements);
+    public Equippable(ItemTypeEnum type, String name, int id, StatsModifier statsModifiers[], Requirement requirements[]){
+        super(type, name, id, statsModifiers, requirements);
     }
 
 }

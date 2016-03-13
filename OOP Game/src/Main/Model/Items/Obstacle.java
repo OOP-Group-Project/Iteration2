@@ -8,7 +8,7 @@ import Main.Model.Requirement;
  */
 public class Obstacle extends Item {
 
-    public Obstacle(String name, StatsModifier statsModifiers[], Requirement requirements[]){
-        super(ItemTypeEnum.Obstactle, name, statsModifiers, requirements);
+    public Obstacle(String name, int id, StatsModifier statsModifiers[], Requirement requirements[]){
+        super(ItemTypeEnum.Obstactle, name, id, statsModifiers, requirements);
     }
 }
