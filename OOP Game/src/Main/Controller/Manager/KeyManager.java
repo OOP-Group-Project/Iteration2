@@ -73,6 +73,7 @@ public class KeyManager implements KeyListener{
 		
 		keyboardActionMapping.put(KeyEvent.VK_ENTER, UserActionEnum.Select);
 		keyboardActionMapping.put(KeyEvent.VK_K, UserActionEnum.Talk);
+		keyboardActionMapping.put(KeyEvent.VK_SHIFT, UserActionEnum.Shift);
 	}
 
 }

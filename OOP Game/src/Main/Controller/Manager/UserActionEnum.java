@@ -17,6 +17,7 @@ public enum UserActionEnum {
     //menu actions [8,9]
     Pause,
     Select,
+    Shift,
 
     //entity actions [10, 17]
     Attack,
