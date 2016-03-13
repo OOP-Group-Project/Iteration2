@@ -1,4 +1,4 @@
-package Main.Controller.EntityControllers.ActionControllers;
+package Main.Controller.ObjectControllers.EntityController.ActionControllers;
 
 import Main.Controller.Manager.UserActionEnum;
 import Main.Controller.ObjectControllers.TimedObjectController;

@@ -1,7 +1,6 @@
-package Main.Controller.EntityControllers.ActionControllers;
+package Main.Controller.ObjectControllers.EntityController.ActionControllers;
 
 import Main.Controller.Manager.UserActionEnum;
-import Main.Controller.ObjectControllers.EntityController.ActionControllers.AttackController;
 import Main.Controller.ObjectControllers.EntityController.ActionControllers.SkillsControllers.SkillsController;
 import Main.Controller.ObjectControllers.TimedObjectController;
 import Main.Model.Entity.Entity;

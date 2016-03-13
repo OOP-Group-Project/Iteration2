@@ -1,18 +1,15 @@
-package Main.Model.AreaEffect;
+package Main.Model.AreaEffect.Traps;
 
 import Main.Model.Stats.StatsModifier;
 
 /**
- * Created by Michael on 3/9/16.
- * Implemented by Peter Camejo 3/13/16
+ * Created by Peter Camejo on 3/13/2016.
  */
+public class DamageTrap extends Trap {
 
-public class TakeDamage extends AreaEffect {
     /*** Constructor ***/
-    //Applies Once
-    public TakeDamage(double damageAmount){
-        super(AreaEffectEnum.DAMAGE);
-
+    public DamageTrap(double damageAmount){
+        super(TrapTypeEnum.DAMAGE , 0);
         StatsModifier sm = new StatsModifier();
         sm = sm.builder()
                 .lifeModifier(-damageAmount)
@@ -20,15 +17,13 @@ public class TakeDamage extends AreaEffect {
         this.modifier = sm;
     }
 
-    public TakeDamage(double damageAmount , int charge){
-        super(AreaEffectEnum.DAMAGE , charge );
-
+    public DamageTrap(double damageAmount , int requiredDetectionSkill){
+        super(TrapTypeEnum.DAMAGE , requiredDetectionSkill);
         StatsModifier sm = new StatsModifier();
         sm = sm.builder()
                 .lifeModifier(-damageAmount)
                 .build();
         this.modifier = sm;
-
     }
 
 }

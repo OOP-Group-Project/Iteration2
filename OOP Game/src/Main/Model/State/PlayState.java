@@ -16,11 +16,10 @@ public class PlayState extends State {
     private Map world;
     private MapLocationPoint centerPoint;
 
-	public PlayState(Map world, Avatar entity, Pet pet) {
+
+	public PlayState(Map world, Avatar entity) {
         this.world = world;
         this.player = entity;
-        this.npc = npc;
-        this.pet = pet;
         this.centerPoint = new MapLocationPoint(player.getLocation().x, player.getLocation().y);
 	}
 

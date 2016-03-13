@@ -1,4 +1,4 @@
-package Main.Controller.EntityControllers;
+package Main.Controller.ObjectControllers.EntityController;
 
 import Main.Controller.Manager.UserActionEnum;
 import Main.Controller.ObjectControllers.ObjectController;
