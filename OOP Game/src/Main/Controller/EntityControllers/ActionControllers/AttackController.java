@@ -9,6 +9,7 @@ import Main.Model.Map.MapLocationPoint;
 import Main.Model.Skills.AngularEffect;
 import Main.Model.Skills.RadialEffect;
 
+import java.util.ArrayList;
 import java.util.Queue;
 
 /**
@@ -113,10 +114,17 @@ public class AttackController {
 
     public void performRadiusAttack(int radius) {
         point = entity.getLocation();
-        sun.misc.Queue<MapLocationPoint> q = new RadialEffect().getAffectedArea(point.x, point.y, radius);
+
+        sun.misc.Queue<ArrayList<MapLocationPoint>> q = new RadialEffect().getAffectedArea(point.x, point.y, radius);
+        int currentRadius = 1;
         while (!q.isEmpty()) {
+            //System.out.println("Radius: " + currentRadius++);
             try {
-                applyEffect(q.dequeue());
+                ArrayList<MapLocationPoint> current = q.dequeue();
+                int size = current.size();
+                for (int i = 0; i < size; i++) {
+                    //Actions
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
