@@ -30,7 +30,7 @@ public abstract class Entity {
         this.spiel = entitySpiel;
         this.occupation = occupation;
         this.location = location;
-        this.stats = new Stats(occupation.map(),1);
+        this.stats = new Stats(occupation.map(), this, 1);
         this.inventory = new Inventory();
         this.isMoving = false;
         this.isDoingAction = false;
