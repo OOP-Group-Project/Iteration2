@@ -2,10 +2,9 @@ package Main.Model;
 
 import Main.Model.Items.Takable;
 import Main.Model.Entity.*;
-import Main.Model.Occupation.Occupation;
 import Main.Model.Occupation.OccupationTypeEnum;
 
-import Main.Model.Items.*;
+
 /**
  * Created by Peter Camejo on 3/10/2016.
  */
@@ -60,6 +59,7 @@ public class Requirement {
         if(requiredLevel == 0) {
             return true;
         }
+
         return false;
     }
 
@@ -67,6 +67,7 @@ public class Requirement {
         if(entity.hasItem(requiredItem)){
             return true;
         }
+
 
         if(requiredItem == null) {
             return true;

@@ -14,6 +14,7 @@ public abstract class Item {
     protected Requirement requirements[];
     protected StatsModifier statsModifiers[];
 
+
     public Item(ItemTypeEnum type, String name, int id, StatsModifier statsModifiers[], Requirement requirements[]){
         this.name = name;
         this.id = id;

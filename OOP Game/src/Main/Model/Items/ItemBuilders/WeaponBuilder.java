@@ -13,26 +13,26 @@ import Main.Model.Skills.Skill;
 public class WeaponBuilder extends ItemBuilder {
 
     private WeaponTypeEnum type = WeaponTypeEnum.FIST;
-    private Attack attacks[] = null;
-    private Skill skills[] = null;
+    private Attack attack = null;
+//    private Skill skills[] = null;
 
     public WeaponBuilder(WeaponTypeEnum type, String name, int id) {
         super(ItemTypeEnum.Equippable, name, id);
         this.type = type;
     }
 
-    public WeaponBuilder setAttacks(Attack attacks[]) {
-        this.attacks = attacks;
+    public WeaponBuilder setAttack(Attack attack) {
+        this.attack = attack;
         return this;
     }
 
-    public WeaponBuilder setSkills(Skill skills[]) {
-        this.skills = skills;
-        return this;
-    }
+//    public WeaponBuilder setSkills(Skill skills[]) {
+//        this.skills = skills;
+//        return this;
+//    }
 
     @Override
     public Item build() {
-        return new Weapon(type, name, id, statsModifiers, requirements, attacks, skills);
+        return new Weapon(type, name, id, statsModifiers, requirements, attack);
     }
 }

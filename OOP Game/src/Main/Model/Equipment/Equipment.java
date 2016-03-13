@@ -2,8 +2,6 @@ package Main.Model.Equipment;
 
 import Main.Model.Items.*;
 
-import java.awt.*;
-
 /**
  * Created by Peter Camejo on 3/10/16.
  */
@@ -25,10 +23,13 @@ public class Equipment {
 
     /*** Member Variables ***/
 
-    public Takable unEquip(WeaponTypeEnum equippedWeapon){
+
+    // Call when you want to unequip weapon
+    public Takable unEquip(){
         return weapon.unequipWeapon();
     }
 
+    //Pass an armor type to unequip armor;
     public Takable unEquip(ArmorTypeEnum armorType){
 
         return armor.unequipArmor(armorType);

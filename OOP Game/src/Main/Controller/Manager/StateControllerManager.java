@@ -45,8 +45,6 @@ public class StateControllerManager {
 		gameStateControllers.put(StateEnum.LoadState, new LoadStateController(this, (LoadState)states.get(StateEnum.LoadState), player,nonPlayerEntities, world));
 		gameStateControllers.put(StateEnum.PlayState, new PlayStateController(this, (PlayState)states.get(StateEnum.PlayState)));
 		gameStateControllers.put(StateEnum.PauseState, new PauseStateController(this, (PauseState)states.get(StateEnum.PauseState)));
-		
-		//guessing
 		gameStateControllers.put(StateEnum.InventoryState,new InventoryStateController(this, (InventoryState)states.get(StateEnum.InventoryState)));
 		gameStateControllers.put(StateEnum.StartMenuState, new StartMenuStateController(this,(StartMenuState)states.get(StateEnum.StartMenuState)));
 	}
