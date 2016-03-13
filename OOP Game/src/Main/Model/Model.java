@@ -33,7 +33,7 @@ public class Model {
         player = (Avatar) nonPlayerEntities.get(0);
 
         // Create the map first, we'll loadMap everything into it later
-        world = new MapIO().loadMap("map");
+        world = new MapIO().loadMap("Map.txt");
 
         // Test adding an area effect.
         world.getTile(1,7).addAreaEffect(new TakeDamage());

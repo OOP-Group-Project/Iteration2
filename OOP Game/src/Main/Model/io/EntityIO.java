@@ -168,6 +168,7 @@ public class EntityIO {
         }
     }
 
+    //save entities to a text file given an array of them and a file name
     public void saveEntities(ArrayList<Entity> entities, String fileName) {
         ArrayList<String> entityStrings = new ArrayList<>();
         for (Entity entity : entities) {
@@ -177,6 +178,12 @@ public class EntityIO {
         io.writeFile(entityStrings, fileName);
     }
 
+    //save entities to a text file name Entities.txt by default
+    public void saveEntities(ArrayList<Entity> entities) {
+        saveEntities(entities, "Entities.txt");
+    }
+
+    //converts an array list of entity data to a format saveable by the io
     private ArrayList<String> saveEntity(ArrayList<String> entityData, Entity entity) {
 
         /**
@@ -202,23 +209,28 @@ public class EntityIO {
         return entityData;
     }
 
+    //gets a location of an entity given its format and that entity
     private String getLocation(String locationFormat, Entity entity) {
         return locationFormat + String.valueOf(entity.getLocation().x)+","+String.valueOf(entity.getLocation().y);
     }
 
     // TODO: 3/12/16 implement get inventory and shit
+    //gets the inventory of an entity given its format and the entity
     private String getInventory(String inventoryFormat, Entity entity) {
         return entity.toString();
     }
 
+    //formats the level of the entity to a format that can be read by io
     private String getLevel(String levelFormat, Entity entity) {
         return levelFormat += String.valueOf(entity.getStats().level());
     }
 
+    //formats the occupation of the entity to a format that can be read by io
     private String getOccupation(String occupationFormat, Entity entity) {
         return occupationFormat + entity.getOccupation().toString();
     }
 
+    //formats the type of the entity to a format that can be read by io
     private String getType(String typeFormat, Entity entity) {
         switch (entity.getType()) {
             case Avatar:
@@ -235,6 +247,7 @@ public class EntityIO {
     }
 
     // TODO: 3/12/16 change this if we implement a way to see the avatars name
+    //formats the name of the entity to a format that can be read by io
     private String getName(String nameFormat, Entity entity) {
         return nameFormat + "John";
     }
