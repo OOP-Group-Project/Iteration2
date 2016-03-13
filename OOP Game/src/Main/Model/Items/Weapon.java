@@ -1,6 +1,9 @@
 package Main.Model.Items;
 
 import Main.Model.Actions.Attack;
+import Main.Model.Stats.StatsModifier;
+import Main.Model.Requirement;
+
 /**
  * Created by Peter Camejo on 3/9/2016.
  * TODO: Update First Constructor when Equippable is implemented.
@@ -9,15 +12,13 @@ public class Weapon extends Equippable {
     /*** Member Variables ***/
     private WeaponTypeEnum weaponType;
     private boolean twoHanded;
-    private float attackSpeed;
     private Attack attack;
 
-    /*** Constructors ***/
+  /*** Constructors ***/
     //Sets twoHanded based on weaponType
-    public Weapon(/* EQuipable Parameters */ WeaponTypeEnum weaponType, float attackSpeed, Attack attack) {
+    public Weapon(WeaponTypeEnum weaponType, String name, int id, StatsModifier statsModifiers[], Requirement requirements[], Attack attack) {
+        super(ItemTypeEnum.Equippable, name, id, statsModifiers, requirements);
 
-        //super( Equipable parameters);
-        this.attackSpeed = attackSpeed;
         this.weaponType = weaponType;
         this.attack = attack;
 
@@ -31,15 +32,12 @@ public class Weapon extends Equippable {
         }
     }
 
-
     /*** Methods ***/
     public WeaponTypeEnum getWeaponType(){
         return this.weaponType;
     }
     public Attack getAttack(){return attack;}
     public void setAttack(Attack attack){this.attack = attack;}
-    public float getAttackSpeed(){ return this.attackSpeed;}
-    public void setAttackSpeed(float attackSpeed){this.attackSpeed = attackSpeed;}
     public boolean isTwoHanded(){ return this.twoHanded;}
     public void setTwoHanded(boolean isTwoHanded){
         this.twoHanded = isTwoHanded;

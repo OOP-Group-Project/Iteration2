@@ -5,13 +5,13 @@ import Main.Model.Entity.Entity;
 /**
  * Created by walkhard on 2/18/16.
  */
-public abstract class Skills {
+public abstract class Skill {
 
     protected Entity entity;
 
-    protected Skills() {}
+    protected Skill() {}
 
-    public Skills (Entity entity) {
+    public Skill (Entity entity) {
         this.entity = entity;
     }
 

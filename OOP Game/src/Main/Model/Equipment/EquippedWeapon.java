@@ -1,4 +1,4 @@
-package Main.Model.Inventory.Equipment;
+package Main.Model.Equipment;
 
 import Main.Model.Items.Weapon;
 

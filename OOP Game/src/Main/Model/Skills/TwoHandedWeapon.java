@@ -5,7 +5,7 @@ import Main.Model.Entity.Entity;
 /**
  * Created by AndyZhu on 7/3/2016.
  */
-public class TwoHandedWeapon extends SmasherSkills {
+public class TwoHandedWeapon extends SmasherSkill {
     public TwoHandedWeapon (Entity entity) {
         super(entity);
     }
