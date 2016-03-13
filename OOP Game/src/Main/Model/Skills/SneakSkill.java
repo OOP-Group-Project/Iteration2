@@ -5,8 +5,8 @@ import Main.Model.Entity.Entity;
 /**
  * Created by AndyZhu on 7/3/2016.
  */
-public abstract class SummonerSkills extends Skills {
-    public SummonerSkills (Entity entity) {
+public abstract class SneakSkill extends Skill {
+    public SneakSkill(Entity entity) {
         super(entity);
     }
 }

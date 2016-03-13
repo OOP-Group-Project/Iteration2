@@ -1,5 +1,6 @@
 package Main.Model.Stats;
 
+
 /**
  * Created by AndyZhu on 11/3/2016.
  */
@@ -148,4 +149,3 @@ public class StatsModifier {
     }
 
 }
-
