@@ -57,6 +57,11 @@ public abstract class Entity {
         defense = "def"
         offense = "off"
      */
+    //
+    public void modifyStats(StatsModifier statsModifier) {
+
+    }
+
 
     public Stats getStats() { return stats; }
     //TODO: question by Andy: do we want to keep eveything here? Would it be better if we getStats and call on Stats?

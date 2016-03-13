@@ -1,4 +1,4 @@
-package Main.Model.Inventory.Equipment;
+package Main.Model.Equipment;
 
 import Main.Model.Items.Armor;
 import Main.Model.Items.ArmorTypeEnum;
@@ -26,7 +26,7 @@ public class EquippedArmor{
 
     /*** Methods ***/
     public void equipArmor(Armor newArmor) {
-
+        Armor temp =newArmor; //new Armor(newArmor);
         switch (newArmor.getArmorType()) {
             case HEAD:
                 head = newArmor;
@@ -57,32 +57,32 @@ public class EquippedArmor{
         switch(armorType) {
             case HEAD:
                 if(head == null)break;
-                temp = new Armor(head);
+                temp = head;//new Armor(head);
                 head = null;
                 break;
             case CHEST:
                 if(chest == null)break;
-                temp = new Armor(chest);
+                temp = chest;// new Armor(chest);
                 chest = null;
                 break;
             case LEGS:
                 if(legs == null)break;
-                temp = new Armor(legs);
+                temp = legs;// new Armor(legs);
                 legs = null;
                 break;
             case GLOVES:
                 if(gloves == null)break;
-                temp = new Armor(gloves);
+                temp = gloves;//new Armor(gloves);
                 gloves = null;
                 break;
             case BOOTS:
                 if(boots == null)break;
-                temp = new Armor(boots);
+                temp = boots;//new Armor(boots);
                 boots = null;
                 break;
             case TRINKET:
                 if(trinket == null)break;
-                temp = new Armor(trinket);
+                temp = trinket;//new Armor(trinket);
                 trinket = null;
                 break;
             default:

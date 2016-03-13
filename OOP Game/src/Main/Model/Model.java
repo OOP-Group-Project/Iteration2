@@ -3,10 +3,18 @@ package Main.Model;
 import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
+<<<<<<< HEAD
 import Main.Model.Entity.Npc;
+=======
+
+>>>>>>> master
 import Main.Model.Map.Map;
 import Main.Model.State.*;
+<<<<<<< HEAD
 import Main.Model.io.EntityIO;
+=======
+import Main.Model.Entity.Npc;
+>>>>>>> master
 import Main.Model.io.MapIO;
 
 import java.util.ArrayList;
@@ -24,7 +32,9 @@ public class Model {
 
     public Model() {
         /********************
-         * Testing code: Creating player and world
+         * Create empty Player and World
+         *
+         * The references to these will be propagated through all the states as needed, so these are important.
          ********************/
 
         nonPlayerEntities = new EntityIO().loadEntities("Entities.txt");
@@ -33,7 +43,7 @@ public class Model {
         player = (Avatar) nonPlayerEntities.get(0);
 
         // Create the map first, we'll loadMap everything into it later
-        world = new MapIO().loadMap("Map.txt");
+        world = new MapIO().loadMap("map.txt");
 
         // Test adding an area effect.
         world.getTile(1,7).addAreaEffect(new TakeDamage());
@@ -51,9 +61,7 @@ public class Model {
 
         states.put(StateEnum.StartMenuState, new StartMenuState());
 
-        new MapIO().saveMap(world, "Map.txt");
-        new EntityIO().saveEntities(nonPlayerEntities, "Entities.txt");
-
+        new MapIO().saveMap(world, "map.txt");
     }
 
     public Avatar getPlayer() {
