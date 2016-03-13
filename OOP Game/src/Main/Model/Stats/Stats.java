@@ -1,6 +1,6 @@
 package Main.Model.Stats;
 import Main.Model.Entity.Entity;
-import Main.Model.Occupation.Occupation;
+import Main.Model.Map.MapLocationPoint;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -140,7 +140,7 @@ public class Stats {
     public Entity getEntity() {return entity;}
 
     //
-    public int level() {return level;}
+    public int getLevel() {return level;}
 
     // accessors (current)
     public double curStrength() {return cur_str;}
@@ -386,8 +386,13 @@ public class Stats {
         if (cur_hp > max_hp)
             cur_hp = max_hp;
         else if(cur_hp < 0) {
+<<<<<<< HEAD
+            //TODO: changed by Andy to make sence
+            this.getEntity().respawn(new MapLocationPoint(5,5));
+=======
             //TODO: changed by Andy to make sense
 //            this.getEntity().die();
+>>>>>>> master
         }
     }
     private void changeCurMana(double amt) {
@@ -600,7 +605,7 @@ public class Stats {
         // primary stats
         System.out.println("---------------------------------");
         System.out.println("Primary Stats:");
-        System.out.println("Level: " + level());
+        System.out.println("Level: " + getLevel());
         System.out.println("Lives: " + curLives() + "/" + maxLives());
         System.out.println("Experience: " + curExperience() + "/" + maxExperience());
         System.out.println("Strength: " + curStrength() + "/" + maxStrength());

@@ -10,8 +10,8 @@ import Main.Model.Stats.StatsModifier;
 public class Creep extends SneakSkills {
 
 
-    public Creep (Entity entity, double cooldown, double manacost) {
-        super(entity, cooldown, manacost);
+    public Creep (Entity entity) {
+        super(entity, 10, 5);
     }
 
     public boolean activate() {
