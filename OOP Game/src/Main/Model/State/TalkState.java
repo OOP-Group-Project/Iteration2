@@ -15,6 +15,7 @@ public class TalkState extends State{
     Entity e;
     Entity p;
 
+    //
     private void speak(){System.out.println(p.speak());}
     //
     private void respond(){System.out.println(e.speak());}

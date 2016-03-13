@@ -5,7 +5,7 @@ import Main.Model.Entity.Entity;
 /**
  * Created by AndyZhu on 7/3/2016.
  */
-public class Bane extends SummonerSkill {
+public class Bane extends SummonerSkills {
     public Bane (Entity entity) {
         super(entity);
     }

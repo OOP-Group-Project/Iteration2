@@ -5,7 +5,7 @@ import Main.Model.Entity.Entity;
 /**
  * Created by AndyZhu on 7/3/2016.
  */
-public class RangedWeapon extends SneakSkill {
+public class RangedWeapon extends SneakSkills {
     public RangedWeapon (Entity entity) {
         super(entity);
     }

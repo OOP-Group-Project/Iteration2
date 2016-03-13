@@ -1,6 +1,5 @@
 package Main.Controller.StateControllers;
 
-import Main.Controller.EntityControllers.EntityController;
 import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.UserActionEnum;
 import Main.Model.DirectionEnum;
