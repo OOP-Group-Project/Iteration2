@@ -1,10 +1,9 @@
-package Main.Controller.EntityControllers.ActionControllers.SkillsControllers;
+package Main.Controller.ObjectControllers.EntityController.ActionControllers.SkillsControllers;
 
 import Main.Controller.Manager.UserActionEnum;
 import Main.Model.Entity.Entity;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
-import Main.Model.Requirement;
 import Main.Model.Skills.*;
 
 /**

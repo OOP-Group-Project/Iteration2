@@ -10,3 +10,9 @@ Occupation:Smasher
 Level:3
 Location:2,11
 ~
+Name:Mike
+Type:NPC
+Level:10
+Occupation:Summoner
+Location:3,15
+

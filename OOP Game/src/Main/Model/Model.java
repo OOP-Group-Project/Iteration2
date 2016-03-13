@@ -5,6 +5,7 @@ import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
 import Main.Model.Entity.Npc;
 import Main.Model.Map.Map;
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.State.*;
 import Main.Model.io.EntityIO;
 import Main.Model.io.MapIO;
@@ -17,7 +18,6 @@ import java.util.EnumMap;
  */
 public class Model {
     private Avatar player;
-    private ArrayList<Entity> nonPlayerEntities = new ArrayList<Entity>();
     private Map world;
     private EnumMap<StateEnum, State> states;
 
@@ -28,23 +28,21 @@ public class Model {
          * The references to these will be propagated through all the states as needed, so these are important.
          ********************/
 
-        nonPlayerEntities = new EntityIO().loadEntities("Entities.txt");
 
-        // Create a dummy character first
-        player = (Avatar) nonPlayerEntities.get(0);
+        // Create an empty character first
+        player = new Avatar(new MapLocationPoint(0,0));
 
         // Create the map first, we'll loadMap everything into it later
         world = new MapIO().loadMap("map.txt");
 
-        // Test adding an area effect.
-//        world.getTile(1,7).addAreaEffect(new TakeDamage());
+
 
         /***********************
          * Create all the state objects
          ***********************/
         states = new EnumMap<>(StateEnum.class);
         states.put(StateEnum.LoadState, new LoadState(this));
-        states.put(StateEnum.PlayState, new PlayState(world, player,(Npc)nonPlayerEntities.get(1)));
+        states.put(StateEnum.PlayState, new PlayState(world, player));
         states.put(StateEnum.PauseState, new PauseState());
         
         //INVENTORY & STATS  need to be pass to player and InventoryState
@@ -75,8 +73,5 @@ public class Model {
         return "";
     }
 
-    public ArrayList<Entity> getNonPlayerEntities() {
-        return nonPlayerEntities;
-    }
 
 }

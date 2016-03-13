@@ -19,7 +19,7 @@ public class Map {
 //    private ArrayList<Entity> npcLocations;
 //    private Npc[] npcLocations;
 
-    // Stores locations of different entities, to be used with the NpcMovementController
+    // Stores locations of different entities, to be used with the NpcMovementGenerator
     private Avatar[] avatarLocations;
     private Pet[] petLocations;
     private Vehicle[] vehicleLocations;

@@ -39,6 +39,10 @@ public abstract class AreaEffect {
         this.charge = charge;
     }
 
+    public int getCharge() {
+        return charge;
+    }
+
     /*** Methods ***/
     public StatsModifier getModifier(){return modifier;}
     public AreaEffectEnum getType(){
