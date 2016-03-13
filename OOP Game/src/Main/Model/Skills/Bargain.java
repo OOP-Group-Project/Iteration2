@@ -20,7 +20,7 @@ public class Bargain extends BaseSkills {
         //takes off level * 10 from the
         //price of the item in the shop
         else {
-            return level * -10;
+            return level * 10;
         }
     }
 }

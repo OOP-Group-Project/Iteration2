@@ -4,34 +4,46 @@ import Main.Model.Entity.Entity;
 import Main.Model.Stats.Stats;
 import Main.Model.Stats.StatsModifier;
 
-import java.util.Random;
-
 /**
- * Created by Matthew on 3/12/2016.
+ * Created by AndyZhu on 7/3/2016.
  */
-public class Brawling extends SmasherSkill{
-
+public class Brawling extends SmasherSkills{
     public Brawling(Entity entity) {
         //1 second cooldown and 2 mana cost
-        super(entity, 1.0, 0);
+        super(entity, 1.0, 2.0);
     }
 
-    public StatsModifier activate() {
-        double totalDamage = 0;
-        if (canActivate() && enoughMana() && successfulPerfoemance()){
-            Stats stats = entity.getStats();
-            totalDamage = stats.curStrength() + level * 5;
+    public void activate(Entity enemy) {
+        if (!enoughMana()) {
+            System.out.println("Not enough mana");
+            return;
+        }
+        else if (!this.successfulPerfoemance()) {
+            enforceManaCost();
+            System.out.println("performance of BindWounds failed but");
+            return;
+        }
+        else {
+            double totalDamage = 0;
+            if (canActivate() && enoughMana()) {
+                Stats stats = entity.getStats();
+                //TODO:should use the Attack class to calc this
+                totalDamage = stats.curOffense() * level * 5;
+                StatsModifier sm = new StatsModifier();
+                sm.builder().lifeModifier(-totalDamage).build();
+                enemy.getStats().modifyStats(sm);
+            }
             enforceManaCost();
         }
-        StatsModifier sm = new StatsModifier();
-        sm = sm.builder().lifeModifier(-totalDamage).build();
-        return sm;
     }
 
     private boolean canActivate() {
-        //is fist weapon equipped?
-        //getWeapon().getWeaponType == FIST?
-        //return true if so
+        /**TODO:
+         is a one handed weapon equipped?
+         getWeapon().getWeaponType() == ONEHANDSWORD
+         return true if so
+         TODO: and disable TwoHandedWeapon before OneHandedWeapon cooled down?
+         */
         return true;
     }
 }

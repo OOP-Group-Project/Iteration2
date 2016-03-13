@@ -4,38 +4,46 @@ import Main.Model.Entity.Entity;
 import Main.Model.Stats.Stats;
 import Main.Model.Stats.StatsModifier;
 
-import java.util.Random;
-
 /**
- * Created by Matthew on 3/12/2016.
+ * Created by AndyZhu on 7/3/2016.
  */
-public class OneHandedWeapon extends SmasherSkill{
-
+public class OneHandedWeapon extends SmasherSkills {
     public OneHandedWeapon(Entity entity) {
-        //1 second cooldown and 2 mana cost
-        super(entity, 2.0, 0);
+        //1.4 second cooldown 4 mana cost
+        super(entity, 1.4, 4.0);
     }
 
-    public StatsModifier activate() {
-        double totalDamage = 0;
-        if (canActivate() && enoughMana()){
-            Random rand = new Random();
-            int randomNum = rand.nextInt(100);
-            if (level * 20 > randomNum) {
+    public void activate(Entity enemy) {
+        if (!enoughMana()) {
+            System.out.println("Not enough mana");
+            return;
+        }
+        else if (!this.successfulPerfoemance()) {
+            enforceManaCost();
+            System.out.println("performance of BindWounds failed but");
+            return;
+        }
+        else {
+            double totalDamage = 0;
+            if (canActivate() && enoughMana()) {
                 Stats stats = entity.getStats();
-                totalDamage = stats.curStrength() + level * 10;
+                //TODO:should use the Attack class to calc this
+                totalDamage = stats.curOffense() * level * 10;
+                StatsModifier sm = new StatsModifier();
+                sm.builder().lifeModifier(-totalDamage).build();
+                enemy.getStats().modifyStats(sm);
             }
             enforceManaCost();
         }
-        StatsModifier sm = new StatsModifier();
-        sm = sm.builder().lifeModifier(-totalDamage).build();
-        return sm;
     }
 
     private boolean canActivate() {
-        //is fist weapon equipped?
-        //getWeapon().getWeaponType == ONEHANDED?
-        //return true if so
+        /**TODO:
+            is a one handed weapon equipped?
+            getWeapon().getWeaponType() == ONEHANDSWORD
+            return true if so
+         TODO: and disable TwoHandedWeapon before OneHandedWeapon cooled down?
+         */
         return true;
     }
 }
