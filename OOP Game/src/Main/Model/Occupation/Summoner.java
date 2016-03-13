@@ -10,4 +10,9 @@ public class Summoner extends Occupation {
         modify.put("int", 1.3);
         modify.put("har", 1.0);
     }
+
+    @Override
+    public String toString() {
+        return "Summoner";
+    }
 }

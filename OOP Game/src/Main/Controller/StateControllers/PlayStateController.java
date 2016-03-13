@@ -65,6 +65,9 @@ public class PlayStateController extends StateController {
             case Select:
             	stateControllerManager.setState(StateEnum.InventoryState);
             	break;
+            case Talk:
+                stateControllerManager.setState(StateEnum.TalkState);
+                break;
         }
     }
 }

@@ -4,16 +4,13 @@ import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
 import Main.Model.Entity.Npc;
-import Main.Model.Inventory.Inventory;
 import Main.Model.Map.Map;
-import Main.Model.Map.MapLocationPoint;
 import Main.Model.State.*;
-import Main.Model.Stats.Stats;
+import Main.Model.io.EntityIO;
 import Main.Model.io.MapIO;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.HashMap;
 
 /**
  * Created by mason on 3/9/16.
@@ -27,20 +24,18 @@ public class Model {
 
     public Model() {
         /********************
-         * Testing code: Creating player and world
+         * Create empty Player and World
+         *
+         * The references to these will be propagated through all the states as needed, so these are important.
          ********************/
 
+        nonPlayerEntities = new EntityIO().loadEntities("Entities.txt");
+
         // Create a dummy character first
-        player = new Avatar(new MapLocationPoint(0,0));
-
-        // Create a dummy NPC
-        skeleton = new Npc(new MapLocationPoint(2,11));
-
-        // add skeleton
-        nonPlayerEntities.add(skeleton);
+        player = (Avatar) nonPlayerEntities.get(0);
 
         // Create the map first, we'll loadMap everything into it later
-        world = new MapIO().loadMap("map");
+        world = new MapIO().loadMap("map.txt");
 
         // Test adding an area effect.
 //        world.getTile(1,7).addAreaEffect(new TakeDamage());
@@ -55,7 +50,10 @@ public class Model {
         
         //INVENTORY & STATS  need to be pass to player and InventoryState
         states.put(StateEnum.InventoryState, new InventoryState());
-        new MapIO().saveMap(world, "map");
+
+        states.put(StateEnum.StartMenuState, new StartMenuState());
+
+        new MapIO().saveMap(world, "map.txt");
     }
 
     public Avatar getPlayer() {

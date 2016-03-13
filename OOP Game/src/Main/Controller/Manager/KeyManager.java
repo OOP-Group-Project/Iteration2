@@ -71,7 +71,8 @@ public class KeyManager implements KeyListener{
 		keyboardActionMapping.put(KeyEvent.VK_F, UserActionEnum.ViewDownLeft);
 		keyboardActionMapping.put(KeyEvent.VK_H, UserActionEnum.ViewDownRight);
 		
-		keyboardActionMapping.put(KeyEvent.VK_I, UserActionEnum.Select);
+		keyboardActionMapping.put(KeyEvent.VK_ENTER, UserActionEnum.Select);
+		keyboardActionMapping.put(KeyEvent.VK_K, UserActionEnum.Talk);
 	}
 
 }

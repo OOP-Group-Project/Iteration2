@@ -13,5 +13,5 @@ public abstract class Occupation {
 
     public Map map(){return modify;}
 
-
+    public abstract String toString();
 }

@@ -1,5 +1,8 @@
 package Main.Model.Items;
 
+import Main.Model.Actions.Attack;
+import Main.Model.Stats.StatsModifier;
+import Main.Model.Requirement;
 
 /**
  * Created by Peter Camejo on 3/9/2016.
@@ -9,12 +12,16 @@ public class Weapon extends Equippable {
     /*** Member Variables ***/
     private WeaponTypeEnum weaponType;
     private boolean twoHanded;
+    private Attack attack;
 
-    /*** Constructors ***/
+  /*** Constructors ***/
     //Sets twoHanded based on weaponType
-    public Weapon(/* EQuipable Parameters */ WeaponTypeEnum weaponType) {
+    public Weapon(WeaponTypeEnum weaponType, String name, int id, StatsModifier statsModifiers[], Requirement requirements[], Attack attack) {
+        super(ItemTypeEnum.Equippable, name, id, statsModifiers, requirements);
 
-        //super( Equipable parameters);
+        this.weaponType = weaponType;
+        this.attack = attack;
+
         if (weaponType == WeaponTypeEnum.ONEHANDSWORD ||
                 weaponType == WeaponTypeEnum.SHIELD ||
                 weaponType == WeaponTypeEnum.DAGGER) {
@@ -25,19 +32,15 @@ public class Weapon extends Equippable {
         }
     }
 
-    //Make Weapon Constructor
-    public Weapon(Weapon newWeapon){
-        //super(newWeapon)
-        this.weaponType = newWeapon.getWeaponType();
-        this.twoHanded = newWeapon.isTwoHanded();
-    }
-
     /*** Methods ***/
     public WeaponTypeEnum getWeaponType(){
         return this.weaponType;
     }
+    public Attack getAttack(){return attack;}
+    public void setAttack(Attack attack){this.attack = attack;}
     public boolean isTwoHanded(){ return this.twoHanded;}
     public void setTwoHanded(boolean isTwoHanded){
         this.twoHanded = isTwoHanded;
     }
+
 } //end Weapon

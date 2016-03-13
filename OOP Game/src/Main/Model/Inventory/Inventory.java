@@ -1,6 +1,6 @@
 package Main.Model.Inventory;
 
-import Main.Model.Items.TakeAble;
+import Main.Model.Items.Takable;
 
 /**
  * Created by walkhard on 2/18/16.
@@ -33,7 +33,7 @@ public class Inventory {
         return (items[index] != null);
     }
 
-    public TakeAble getItemAt(int index) {
+    public Takable getItemAt(int index) {
         if (!isThereAnItemAt(index))
             return null;
         return items[index].item;
@@ -45,9 +45,20 @@ public class Inventory {
         return items[index].amount;
     }
 
+    /* Made by Alex (Peter) : Gets an Item if it is in the Inventory. Otherwise returns null */
+
+    public Takable getItem(Takable item){
+        for(int i = 0; i < MAX_INVENTORY; i++){
+            if(items[i].item.getId() == item.getId()){
+                 return items[i].item;
+            }
+        }
+        return null;
+    }
+
 
     //return true if you can put the item in the Inventory
-    public boolean addItem(TakeAble newItem) {
+    public boolean addItem(Takable newItem) {
         int nextEmptySpace = MAX_INVENTORY;
 
         for (int i = 0; i < MAX_INVENTORY; i++) {
@@ -111,7 +122,7 @@ public class Inventory {
     	return false;
     }
 /*
-    public boolean removeItem(TakeAble newItem) {
+    public boolean removeItem(Takable newItem) {
     	
         for (int i = 0; i < items.length; i++) {
             if (items[i] != null) {
@@ -122,7 +133,7 @@ public class Inventory {
         return false;
     }
 
-    public ItemNode getItem(TakeAble findItem) {
+    public ItemNode getItem(Takable findItem) {
         
     	//iterating through inventory items
         for (ItemNode item : items) {
@@ -134,7 +145,7 @@ public class Inventory {
     }
 
 
-    public ItemNode getItemNode(TakeAble findItem) {
+    public ItemNode getItemNode(Takable findItem) {
         for (int i = 0; i < items.length; i++) {
             if (items[i] != null && items[i].item.equals(findItem))
                 return items[i];
@@ -142,7 +153,7 @@ public class Inventory {
         return null;
     }
 
-    public int getItemCount(TakeAble findItem) {
+    public int getItemCount(Takable findItem) {
 
         ItemNode item = getItem(findItem);
         int count = 0;
@@ -156,7 +167,7 @@ public class Inventory {
         return count;
     }
 /*----------------------------
-    public boolean loadItem(TakeAble newItem, int count, int index) {
+    public boolean loadItem(Takable newItem, int count, int index) {
         if (index == MAX_INVENTORY) {
             return false;
         } else {
@@ -177,14 +188,14 @@ public class Inventory {
   */
     
     public class ItemNode {
-        public TakeAble item;
+        public Takable item;
         public int amount;
 
-        public ItemNode(TakeAble item, int amount) {
+        public ItemNode(Takable item, int amount) {
             setVariables(item, amount);
         }
 
-        public void setVariables(TakeAble item, int amount) {
+        public void setVariables(Takable item, int amount) {
             this.item = item;
             this.amount = amount;
         }

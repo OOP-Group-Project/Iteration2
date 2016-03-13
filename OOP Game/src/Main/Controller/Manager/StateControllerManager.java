@@ -10,11 +10,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.EnumMap;
 
-import Main.Controller.StateControllers.InventoryStateController;
-import Main.Controller.StateControllers.LoadStateController;
-import Main.Controller.StateControllers.PauseStateController;
-import Main.Controller.StateControllers.PlayStateController;
-import Main.Controller.StateControllers.StateController;
+import Main.Controller.StateControllers.*;
 import Main.Model.Entity.Entity;
 import Main.Model.State.*;
 import Main.Model.Entity.Avatar;
@@ -35,8 +31,8 @@ public class StateControllerManager {
 		initializeStates(states, world, player, nonPlayerEntities);
 
 		// set our first state
-		previousState = StateEnum.LoadState;
-		setState(StateEnum.LoadState);
+		previousState = StateEnum.StartMenuState;
+		setState(StateEnum.StartMenuState);
 	}
 
 	private void initializeStates(EnumMap<StateEnum, State> states, Map world, Avatar player, ArrayList<Entity> nonPlayerEntities) {
@@ -46,6 +42,9 @@ public class StateControllerManager {
 		
 		//guessing
 		gameStateControllers.put(StateEnum.InventoryState,new InventoryStateController(this, (InventoryState)states.get(StateEnum.InventoryState)));
+		gameStateControllers.put(StateEnum.StartMenuState, new StartMenuStateController(this,(StartMenuState)states.get(StateEnum.StartMenuState)));
+		//also guessing
+		gameStateControllers.put(StateEnum.TalkState, new TalkStateController(this, (TalkState)states.get(StateEnum.TalkState)));
 	}
 	
 	public void setState(StateEnum state){

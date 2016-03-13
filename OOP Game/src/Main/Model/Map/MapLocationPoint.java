@@ -137,5 +137,23 @@ public class MapLocationPoint extends Point {
 //            }
 //        }
 //    }
+    public int getTileDistance(MapLocationPoint mlp)
+    {
+        int x1 = (int) this.getX();
+        int x2 = (int) mlp.getX();
+        int y1 = (int) this.getY();
+        int y2 = (int) mlp.getY();
+        int dx = x2 - x1;     // signed deltas
+        int dy = y2 - y1;
+        int x = Math.abs(dx);  // absolute deltas
+        int y = Math.abs(dy);
+        // special case if we start on an odd row or if we move into negative x direction
+        if ((dx < 0)^((y1&1)==1))
+            x = Math.max(0, x - (y + 1) / 2);
+        else
+            x = Math.max(0, x - (y) / 2);
+        return x + y;
+    }
+
 
 }

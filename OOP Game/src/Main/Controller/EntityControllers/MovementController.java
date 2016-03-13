@@ -9,8 +9,6 @@ import Main.Model.Map.PathFinder;
 import Main.Model.Map.Tile;
 import Main.Model.Terrain.TerrainTypeEnum;
 
-import java.awt.*;
-
 /**
  * Created by johnkaufmann on 3/10/16. JFK
  * TODO:
