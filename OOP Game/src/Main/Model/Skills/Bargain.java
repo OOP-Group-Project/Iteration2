@@ -12,9 +12,15 @@ public class Bargain extends BaseSkills {
         super(entity, 0, 0);
     }
 
-    public double activate() {
+    public int activate() {
+        if (!this.successfulPerfoemance()) {
+            System.out.println("performance of Bargain failed and the vendor is angry!");
+            return 0;
+        }
         //takes off level * 10 from the
         //price of the item in the shop
-        return level * 10;
+        else {
+            return level * 10;
+        }
     }
 }

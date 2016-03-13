@@ -2,37 +2,47 @@ package Main.Model.Skills;
 
 import Main.Model.Entity.Entity;
 import Main.Model.Stats.Stats;
-
-import java.util.Random;
+import Main.Model.Stats.StatsModifier;
 
 /**
  * Created by AndyZhu on 7/3/2016.
  */
 public class TwoHandedWeapon extends SmasherSkills {
     public TwoHandedWeapon(Entity entity) {
-        //3 second cooldown and 6 mana cost
-        super(entity, 3.0, 6.0);
+        //3.8 second cooldown and 6 mana cost
+        super(entity, 3.8, 6.0);
     }
 
-    public void activate(Entity npc) {
-        double totalDamage = 0;
-        if (canActivate() && enoughMana()){
-            Random rand = new Random();
-            int randomNum = rand.nextInt(100);
-            if (level * 20 > randomNum) {
+    public void activate(Entity enemy) {
+        if (!enoughMana()) {
+            System.out.println("Not enough mana");
+            return;
+        }
+        else if (!this.successfulPerfoemance()) {
+            enforceManaCost();
+            System.out.println("performance of BindWounds failed but");
+            return;
+        }
+        else {
+            double totalDamage = 0;
+            if (canActivate() && enoughMana()) {
                 Stats stats = entity.getStats();
-                //should use the Attack class to calc this
-                totalDamage = stats.curOffense() + stats.curStrength() + level * 15;
-                npc.modifyStats("hp", -totalDamage);
+                //TODO:should use the Attack class to calc this
+                totalDamage = stats.curOffense() * level * 20;
+                StatsModifier sm = new StatsModifier();
+                sm.builder().lifeModifier(-totalDamage).build();
+                enemy.getStats().modifyStats(sm);
             }
             enforceManaCost();
         }
     }
 
     private boolean canActivate() {
-        //is a two handed weapon equipped?
-        //getWeapon().getWeaponType() == TWOHANDSWORD
-        //return true if so
+        /**TODO:
+         is a one handed weapon equipped?
+         getWeapon().getWeaponType() == ONEHANDSWORD
+         return true if so
+         */
         return true;
     }
 }

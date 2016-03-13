@@ -2,37 +2,48 @@ package Main.Model.Skills;
 
 import Main.Model.Entity.Entity;
 import Main.Model.Stats.Stats;
-
-import java.util.Random;
+import Main.Model.Stats.StatsModifier;
 
 /**
  * Created by AndyZhu on 7/3/2016.
  */
 public class OneHandedWeapon extends SmasherSkills {
     public OneHandedWeapon(Entity entity) {
-        //2 second cooldown 4 mana cost
-        super(entity, 2.0, 4.0);
+        //1.4 second cooldown 4 mana cost
+        super(entity, 1.4, 4.0);
     }
 
-    public void activate(Entity npc) {
-        double totalDamage = 0;
-        if (canActivate() && enoughMana()){
-            Random rand = new Random();
-            int randomNum = rand.nextInt(100);
-            if (level * 20 > randomNum) {
+    public void activate(Entity enemy) {
+        if (!enoughMana()) {
+            System.out.println("Not enough mana");
+            return;
+        }
+        else if (!this.successfulPerfoemance()) {
+            enforceManaCost();
+            System.out.println("performance of BindWounds failed but");
+            return;
+        }
+        else {
+            double totalDamage = 0;
+            if (canActivate() && enoughMana()) {
                 Stats stats = entity.getStats();
-                //should use the Attack class to calc this
-                totalDamage = stats.curOffense() + stats.curStrength() + level * 10;
-                npc.modifyStats("hp", -totalDamage);
+                //TODO:should use the Attack class to calc this
+                totalDamage = stats.curOffense() * level * 10;
+                StatsModifier sm = new StatsModifier();
+                sm.builder().lifeModifier(-totalDamage).build();
+                enemy.getStats().modifyStats(sm);
             }
             enforceManaCost();
         }
     }
 
     private boolean canActivate() {
-        //is a one handed weapon equipped?
-        //getWeapon().getWeaponType() == ONEHANDSWORD
-        //return true if so
+        /**TODO:
+            is a one handed weapon equipped?
+            getWeapon().getWeaponType() == ONEHANDSWORD
+            return true if so
+         TODO: and disable TwoHandedWeapon before OneHandedWeapon cooled down?
+         */
         return true;
     }
 }

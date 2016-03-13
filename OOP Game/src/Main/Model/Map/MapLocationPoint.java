@@ -72,6 +72,12 @@ public class MapLocationPoint extends Point {
         return temp;
     }
 
+    /**
+     * calculate the distance from this location to another
+     * sometimes gives bad results
+     * TODO: fix it
+     * */
+
     public int getTileDistance(MapLocationPoint mlp)
     {
         int x1 = (int) this.getX();
