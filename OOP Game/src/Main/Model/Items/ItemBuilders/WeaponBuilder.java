@@ -13,7 +13,6 @@ public class WeaponBuilder extends ItemBuilder {
 
     private WeaponTypeEnum type = WeaponTypeEnum.FIST;
     private Attack attack = null;
-//    private Skill skills[] = null;
 
     public WeaponBuilder(WeaponTypeEnum type, String name, int id) {
         super(ItemTypeEnum.Equippable, name, id);

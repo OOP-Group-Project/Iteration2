@@ -12,8 +12,8 @@ public class Tile {
 
 	private TerrainTypeEnum terrainType;
 	private Entity entity = null;
-	private ArrayList<Item> items;
-    private AreaEffect areaEffect;
+	private ArrayList<Item> items = new ArrayList<>();
+    private AreaEffect areaEffect = null;
 
 
 	// Default constructor
@@ -70,5 +70,17 @@ public class Tile {
 			return false;
 		}
 		else return true;
+	}
+
+	public void removeAreaEffect() {
+		this.areaEffect = null;
+	}
+
+	public ArrayList<String> toTileString() {
+		ArrayList<String> str = new ArrayList<>();
+		for (Item item : items) {
+			str.add(String.valueOf(item.getId()));
+		}
+		return str;
 	}
 }
