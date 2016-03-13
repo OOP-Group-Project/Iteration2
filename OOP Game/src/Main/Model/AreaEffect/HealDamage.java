@@ -1,21 +1,39 @@
 package Main.Model.AreaEffect;
 
-import Main.Model.Stats.StatsEnum;
+import Main.Model.Stats.StatsModifier;
+
 
 /**
  * Created by Michael on 3/9/16.
+ * Implemented by Peter Camejo on 3/11/16
  */
 
 public class HealDamage extends AreaEffect {
+    /*** Member Variables ***/
+    private double healAmount;
 
-//    private static final long duration = 0;
-//    private static final int value = 1;
-//    private static final String name = "HealDamage";
+    /*** Constructor ***/
+    //Applies once
+    public HealDamage(double healAmount){
+        super(AreaEffectEnum.HEAL);
 
-    // Calls the AreaEffect constructor to create an associated effect
-    // that can be applied to the player using player.applyEffect(effect);
-    public HealDamage(){
-        super(AreaEffectEnum.Heal);
+        StatsModifier sm = new StatsModifier();
+        sm = sm.builder()
+                .lifeModifier(healAmount)
+                .build();
+        this.modifier = sm;
+
+    }
+
+    public HealDamage(double healAmount, int charge){
+        super(AreaEffectEnum.HEAL, charge);
+
+        StatsModifier sm = new StatsModifier();
+        sm = sm.builder()
+                .lifeModifier(healAmount)
+                .build();
+        this.modifier = sm;
+
     }
 
 }

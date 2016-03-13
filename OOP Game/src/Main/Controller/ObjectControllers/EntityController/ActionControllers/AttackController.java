@@ -132,7 +132,7 @@ public class AttackController extends TimedObjectController{
     }
 
     private void applyEffect(MapLocationPoint point) {
-        map.getTile(point.x,point.y).addAreaEffect(new TakeDamage());
+        map.getTile(point.x,point.y).addAreaEffect(new TakeDamage(10.00)); //Peter: Added 10.00 for compiplation.
     }
 
     // TODO: 3/13/16 implment spells

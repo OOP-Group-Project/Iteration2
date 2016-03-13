@@ -1,21 +1,36 @@
 package Main.Model.AreaEffect;
 
-import Main.Model.Stats.StatsEnum;
 
 /**
  * Created by Michael on 3/9/16.
+ * Implemented by Peter Camejo on 3/11/16
+ */
+
+/* Note: !!!! LevelUp does not have a StatModifier !!!!
+ * My suggested implementation for applying this areaEffect would be
+ *  to call Stats.levelUp() instead of the the typical Stats.modifyStats()
+ *  This implementation seems far simpler than for LevelUp
+ *  to have a statsModifier that modifies experience, as the amount
+ *  of experience needed to levelUp would change as the level increases.
+ *
+ *  if(AreaEffect.getType == AreaEffectEnum.LEVELUP){
+ *      Stats.levelUp();
+ *  }else{
+ *      Stats.modifyStats(AreaEffect.getModifier);
+ *  }
+ *
  */
 
 public class LevelUp extends AreaEffect {
+    /*** Constructor ***/
 
-//    private static final long duration = 0;
-//    private static final int value = 1;
-//    private static final String name = "LevelUp";
-
-    // Calls the AreaEffect constructor to create an associated effect
-    // that can be applied to the player using player.applyEffect(effect);
+    //Applies Once
     public LevelUp(){
-        super(AreaEffectEnum.LevelUp);
-//        this.type = AreaEffectEnum.LevelUp;
+        super(AreaEffectEnum.LEVELUP);
     }
+
+    public LevelUp(int charge){
+        super(AreaEffectEnum.LEVELUP , charge);
+    }
+
 }
