@@ -33,6 +33,11 @@ public abstract class Entity {
         location.move(dir);
     }
 
+//    public void move(MapLocationPoint playerLocation, MapLocationPoint point){
+//        location.move(location,point);
+//    }
+
+
     public MapLocationPoint getLocation() {
         return location;
     }

@@ -59,4 +59,11 @@ public class Tile {
 	public Entity getEntity() {
 		return entity;
 	}
+
+	public boolean isBlocked(){
+		if (this.terrainType == TerrainTypeEnum.Grass){
+			return false;
+		}
+		else return true;
+	}
 }

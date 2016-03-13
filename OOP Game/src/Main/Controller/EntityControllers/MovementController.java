@@ -5,6 +5,7 @@ import Main.Model.DirectionEnum;
 import Main.Model.Entity.Entity;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
+import Main.Model.Map.PathFinder;
 import Main.Model.Map.Tile;
 import Main.Model.Terrain.TerrainTypeEnum;
 
@@ -18,12 +19,14 @@ public class MovementController {
     private MapLocationPoint currentPoint;
     private boolean canWalkOnWater;
     private Entity entity;
+    private PathFinder pathFinder;
 
     public MovementController(Map map, Entity entity) {
         this.map = map;
         this.entity = entity;
         this.canWalkOnWater = false;
         this.currentPoint = entity.getLocation();
+        this.pathFinder = new PathFinder(this.map, 50);
     }
 
     public void move(UserActionEnum u) {

@@ -13,11 +13,13 @@ public class Map {
 	private Tile[][] tiles;
     private int width;
     private int height;
+	private boolean visited[][];
 
     public Map(int width, int height) {
         this.height = height;
         this.width = width;
         this.tiles = new Tile[width][height];
+		this.visited = new boolean[width][height];
     }
 	
 	//should be able to read from a path and set up the color for the tiles
@@ -60,4 +62,17 @@ public class Map {
 	public Tile getTile(int x, int y) {
 		return tiles[x][y];
 	}
+
+	public boolean isBlocked(int x, int y){
+        return tiles[x][y].isBlocked();
+	}
+
+	public float getCost(int sx, int sy, int tx, int ty){
+		return 1;
+	}
+
+    public void pathFinderVisited(int x, int y) {
+        visited[x][y] = true;
+    }
+
 }

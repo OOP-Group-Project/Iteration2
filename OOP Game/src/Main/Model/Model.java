@@ -38,14 +38,14 @@ public class Model {
         world = new MapIO().loadMap("map.txt");
 
         // Test adding an area effect.
-        world.getTile(1,7).addAreaEffect(new TakeDamage());
+//        world.getTile(1,7).addAreaEffect(new TakeDamage());
 
         /***********************
          * Create all the state objects
          ***********************/
         states = new EnumMap<>(StateEnum.class);
         states.put(StateEnum.LoadState, new LoadState(this));
-        states.put(StateEnum.PlayState, new PlayState(world, player));
+        states.put(StateEnum.PlayState, new PlayState(world, player,(Npc)nonPlayerEntities.get(1)));
         states.put(StateEnum.PauseState, new PauseState());
         
         //INVENTORY & STATS  need to be pass to player and InventoryState

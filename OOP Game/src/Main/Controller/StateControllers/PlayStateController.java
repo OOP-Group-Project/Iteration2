@@ -21,12 +21,12 @@ public class PlayStateController extends StateController {
     public PlayStateController(StateControllerManager stateControllerManager, PlayState playState) {
         this.stateControllerManager = stateControllerManager;
         this.playState = playState;
-        this.ec = new EntityController(playState.getWorld(), playState.getPlayer());
+        this.ec = new EntityController(playState.getWorld(), playState.getPlayer(),playState.getEnemy());
     }
 
     @Override
     public void update() {
-        
+        ec.update();
     }
 
     @Override

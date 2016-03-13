@@ -1,0 +1,11 @@
+Name:John
+Type:Avatar
+Occupation:Smasher
+Level:3
+Location:0,0
+~
+Name:John
+Type:NPC
+Occupation:Smasher
+Level:3
+Location:2,11
