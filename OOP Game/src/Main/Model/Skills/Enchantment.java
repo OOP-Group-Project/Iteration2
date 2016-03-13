@@ -16,14 +16,21 @@ public class Enchantment extends SummonerSkills {
     }
 
     public void activate() {
-        if(enoughMana()) {
-            Random rand = new Random();
-            int randomNum = rand.nextInt(100);
-            if (level * 15 > randomNum) {
-                //npc.goToSleep()
-            }
+        if (!enoughMana()) {
+            System.out.println("Not enough mana");
+            return;
+        }
+        else if (!this.successfulPerfoemance()) {
+            enforceManaCost();
+            System.out.println("performance of BindWounds failed but");
+            return;
+        }
+        else {
+            //npc.goToSleep()
             enforceManaCost();
         }
-    }
 
+    }
 }
+
+

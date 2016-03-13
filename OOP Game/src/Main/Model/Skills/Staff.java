@@ -14,11 +14,22 @@ public class Staff extends SummonerSkills {
         super(entity, 1, 0);
     }
 
-    public StatsModifier activate(Entity npc) {
-        Stats stats = entity.getStats();
-        double damageToDeal = stats.curOffense() + 5 * level;
-        StatsModifier sm = new StatsModifier();
-        sm = sm.builder().lifeModifier(-damageToDeal).build();
-        return sm;
+    public void activate(Entity enemy) {
+        if (!enoughMana()) {
+            System.out.println("Not enough mana");
+            return;
+        } else if (!this.successfulPerfoemance()) {
+            enforceManaCost();
+            System.out.println("performance of Staff failed but");
+            return;
+        } else {
+            Stats stats = entity.getStats();
+            double damageToDeal = stats.curOffense() + 5 * level;
+
+            Stats enemyStats = enemy.getStats();
+            StatsModifier sm = new StatsModifier();
+            sm = sm.builder().lifeModifier(-damageToDeal).build();
+            enemyStats.modifyStats(sm);
+        }
     }
 }

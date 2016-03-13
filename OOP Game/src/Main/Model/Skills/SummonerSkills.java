@@ -9,4 +9,6 @@ public abstract class SummonerSkills extends Skills {
     public SummonerSkills (Entity entity, double coolDownPeriod, double manaCost) {
         super(entity, coolDownPeriod, manaCost);
     }
+
+    public void activate() {}
 }

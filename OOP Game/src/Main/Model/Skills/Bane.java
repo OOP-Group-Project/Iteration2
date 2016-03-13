@@ -15,16 +15,24 @@ public class Bane extends SummonerSkills {
         super(entity, 2.0, 5.0);
     }
 
-    public StatsModifier activate() {
-        StatsModifier sm = new StatsModifier();
-        if(enoughMana()) {
-            Stats stats = entity.getStats();
-            if (successfulPerfoemance()) {
-                double currentInt = stats.curIntellect();
-                double damageToDeal = level * (currentInt / 3);
-                sm = sm.builder().lifeModifier(-damageToDeal).build();
-            }
+    public void activate(Entity enemy) {
+        if (!enoughMana()) {
+            System.out.println("Not enough mana");
+            return;
         }
-        return sm;
+        else if (!this.successfulPerfoemance()) {
+            enforceManaCost();
+            System.out.println("performance of BindWounds failed but");
+            return;
+        }
+        else {
+            StatsModifier sm = new StatsModifier();
+            Stats stats = enemy.getStats();
+            double currentInt = entity.getStats().curIntellect();
+            double damageToDeal = level * (currentInt / 3);
+            sm = sm.builder().lifeModifier(-damageToDeal).build();
+            stats.modifyStats(sm);
+            enforceManaCost();
+        }
     }
 }

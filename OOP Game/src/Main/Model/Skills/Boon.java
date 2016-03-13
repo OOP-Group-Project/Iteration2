@@ -13,17 +13,25 @@ public class Boon extends SummonerSkills {
     }
 
     public void activate() {
-        if(enoughMana()) {
-            if (successfulPerfoemance()) {
-                double increaseByAmount = level * 4;
-                entity.modifyStats("hp", increaseByAmount);
-                entity.buff("int", increaseByAmount);
-                entity.buff("off", increaseByAmount);
-                entity.buff("def", increaseByAmount);
-                entity.buff("arm", increaseByAmount);
-                //add partial immunities?
-                //how/when to remove buff?
-            }
+        if (!enoughMana()) {
+            System.out.println("Not enough mana");
+            return;
+        }
+        else if (!this.successfulPerfoemance()) {
+            enforceManaCost();
+            System.out.println("performance of BindWounds failed but");
+            return;
+        }
+        else {
+            double increaseByAmount = level * 4;
+            entity.modifyStats("hp", increaseByAmount);
+            entity.buff("int", increaseByAmount);
+            entity.buff("off", increaseByAmount);
+            entity.buff("def", increaseByAmount);
+            entity.buff("arm", increaseByAmount);
+            //add partial immunities?
+            //how/when to remove buff?
+
             //decrease mana
             enforceManaCost();
         }
