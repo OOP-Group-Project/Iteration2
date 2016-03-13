@@ -33,6 +33,8 @@ public class Equipment {
         return armor.unequipArmor(armorType);
     }
 
-
-
+    //get the current entities weapon
+    public Weapon getWeapon() {
+        return weapon.getWeapon();
+    }
 }
