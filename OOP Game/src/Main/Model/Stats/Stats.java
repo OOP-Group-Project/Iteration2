@@ -1,5 +1,6 @@
 package Main.Model.Stats;
 import Main.Model.Entity.Entity;
+import Main.Model.Map.MapLocationPoint;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -386,7 +387,7 @@ public class Stats {
             cur_hp = max_hp;
         else if(cur_hp < 0) {
             //TODO: changed by Andy to make sence
-            this.getEntity().die();
+            this.getEntity().respawn(new MapLocationPoint(5,5));
         }
     }
     private void changeCurMana(double amt) {
