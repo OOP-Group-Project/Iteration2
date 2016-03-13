@@ -45,7 +45,7 @@ public class Model {
          ***********************/
         states = new EnumMap<>(StateEnum.class);
         states.put(StateEnum.LoadState, new LoadState(this));
-        states.put(StateEnum.PlayState, new PlayState(world, player,skeleton));
+        states.put(StateEnum.PlayState, new PlayState(world, player,(Npc)nonPlayerEntities.get(1)));
         states.put(StateEnum.PauseState, new PauseState());
         
         //INVENTORY & STATS  need to be pass to player and InventoryState
