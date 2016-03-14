@@ -52,9 +52,6 @@ public class MapIO {
         map.setTiles(mapTiles);
 
         map = new ItemsIO().loadItemsToMap(map, "Items.txt");
-//        map = new AreaEffectsIO().loadAreaEffectsToMap(map, "AreaEffects.txt");
-
-        //TODO: implement the loadMap entity array
 
         return map;
     }
@@ -68,12 +65,12 @@ public class MapIO {
     // CANT be set to Map(0,0) or Pathfinding is null
     //given a file name load a map with all other generic properties
     public Map loadMap(String fileName) {
-        return loadMap(new Map(10,10), fileName);
+        return loadMap(new Map(32,32), fileName);
     }
 
     //load generic map
     public Map loadMap() {
-        return loadMap(new Map(10,10), "map.txt");
+        return loadMap(new Map(32,32), "map.txt");
     }
 
     //should be able to read from a path and set up the map
