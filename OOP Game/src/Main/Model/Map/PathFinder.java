@@ -55,7 +55,7 @@ public class PathFinder {
         int maxDepth = 0;
 
         // check if there is sneak
-        map.getTile(tx,tx).getEntity().getType() == Sneak
+//        map.getTile(tx,tx).getEntity().getType() == Sneak
         while ((maxDepth < maxSearchDistance) && (open.size() != 0)) {
             // pull out the first node in our open list, this is determined to
 
