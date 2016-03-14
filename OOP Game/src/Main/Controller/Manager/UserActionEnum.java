@@ -28,7 +28,7 @@ public enum UserActionEnum {
     Attack1,
     Attack2,
     Attack3,
-    Talk,
+    Interact,
 
     //views [18,23]
     ViewUp,
@@ -46,5 +46,5 @@ public enum UserActionEnum {
     Skill1,
     Skill2,
     Skill3,
-    Skill4;
+    Skill4
 }
