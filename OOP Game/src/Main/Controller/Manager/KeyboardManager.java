@@ -80,12 +80,12 @@ public class KeyboardManager implements KeyListener{
 		keyboardActionMapping.put(KeyEvent.VK_SHIFT, UserActionEnum.Shift);
 		keyboardActionMapping.put(KeyEvent.VK_CONTROL, UserActionEnum.Control);
 		keyboardActionMapping.put(KeyEvent.VK_ENTER, UserActionEnum.Select);
+		keyboardActionMapping.put(KeyEvent.VK_K, UserActionEnum.SkillTree);
 
 
 		//all other keys set to none for key binding menu
 		keyboardActionMapping.put(KeyEvent.VK_I, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_J, UserActionEnum.None);
-		keyboardActionMapping.put(KeyEvent.VK_K, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_L, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_M, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_N, UserActionEnum.None);

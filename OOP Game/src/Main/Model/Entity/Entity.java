@@ -88,6 +88,10 @@ public abstract class Entity {
         return skills;
     }
 
+    public int getSkillPoints() {
+        return stats.getSkillPoints();
+    }
+
     public void setLocation(MapLocationPoint location) {
         this.location.x = location.x;
         this.location.y = location.y;

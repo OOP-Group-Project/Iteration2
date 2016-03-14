@@ -39,11 +39,13 @@ public enum UserActionEnum {
     ViewDownLeft,
     ViewDownRight,
 
+    //skills [24,30]
+    SkillTree,
+
     //other
     None,
 
     //skills [28,31]
-
     Skill1,
     Skill2,
     Skill3,
