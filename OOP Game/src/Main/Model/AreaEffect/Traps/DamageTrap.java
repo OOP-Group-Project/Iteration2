@@ -1,5 +1,6 @@
 package Main.Model.AreaEffect.Traps;
 
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Stats.StatsModifier;
 
 /**
@@ -8,8 +9,8 @@ import Main.Model.Stats.StatsModifier;
 public class DamageTrap extends Trap {
 
     /*** Constructor ***/
-    public DamageTrap(double damageAmount){
-        super(TrapTypeEnum.DAMAGE , 0);
+    public DamageTrap(double damageAmount, MapLocationPoint location){
+        super(TrapTypeEnum.DAMAGE , 0, location);
         StatsModifier sm = new StatsModifier();
         sm = sm.builder()
                 .lifeModifier(-damageAmount)
@@ -17,8 +18,8 @@ public class DamageTrap extends Trap {
         this.modifier = sm;
     }
 
-    public DamageTrap(double damageAmount , int requiredDetectionSkill){
-        super(TrapTypeEnum.DAMAGE , requiredDetectionSkill);
+    public DamageTrap(double damageAmount , int requiredDetectionSkill, MapLocationPoint location){
+        super(TrapTypeEnum.DAMAGE , requiredDetectionSkill, location);
         StatsModifier sm = new StatsModifier();
         sm = sm.builder()
                 .lifeModifier(-damageAmount)

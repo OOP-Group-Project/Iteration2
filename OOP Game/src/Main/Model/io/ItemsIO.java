@@ -18,7 +18,6 @@ public class ItemsIO {
 
     public Map loadItemsToMap(Map map, String fileName) {
         ArrayList<String> data = new io().readFile(fileName);
-        data.remove(0);
 
         for (String d : data) {
             System.out.println(d);

@@ -1,6 +1,7 @@
 package Main.Model.AreaEffect;
 
 
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Stats.StatsModifier;
 
 import java.awt.geom.Area;
@@ -13,8 +14,8 @@ import java.awt.geom.Area;
 public class InstantDeath extends AreaEffect{
 
     /*** Constructor ***/
-    public InstantDeath(){
-        super(AreaEffectEnum.DEATH);
+    public InstantDeath(MapLocationPoint location){
+        super(AreaEffectEnum.DEATH, location);
 
         StatsModifier sm = new StatsModifier();
         sm = sm.builder()

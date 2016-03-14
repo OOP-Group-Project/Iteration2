@@ -1,5 +1,6 @@
 package Main.Model.AreaEffect;
 
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Stats.StatsModifier;
 
 
@@ -12,8 +13,8 @@ public class HealDamage extends AreaEffect {
 
     /*** Constructor ***/
     //Applies once
-    public HealDamage(double healAmount){
-        super(AreaEffectEnum.HEAL);
+    public HealDamage(double healAmount, MapLocationPoint location){
+        super(AreaEffectEnum.HEAL, location);
 
         StatsModifier sm = new StatsModifier();
         sm = sm.builder()
@@ -23,8 +24,8 @@ public class HealDamage extends AreaEffect {
 
     }
 
-    public HealDamage(double healAmount, int charge){
-        super(AreaEffectEnum.HEAL, charge);
+    public HealDamage(double healAmount, int charge, MapLocationPoint location){
+        super(AreaEffectEnum.HEAL, charge, location);
 
         StatsModifier sm = new StatsModifier();
         sm = sm.builder()
