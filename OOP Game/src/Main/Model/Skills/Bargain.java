@@ -13,6 +13,7 @@ public class Bargain extends BaseSkills {
     }
 
     public int activate() {
+
         if (!this.successfulPerformance()) {
             System.out.println("performance of Bargain failed and the vendor is angry!");
             return 0;

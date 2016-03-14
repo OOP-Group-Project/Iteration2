@@ -9,6 +9,7 @@ import Main.Model.Stats.StatsModifier;
  */
 public class Creep extends SneakSkills {
 
+
     public Creep (Entity entity) {
         super(entity, 10, 5);
     }

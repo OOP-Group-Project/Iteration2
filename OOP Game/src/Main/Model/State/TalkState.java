@@ -1,27 +1,20 @@
 package Main.Model.State;
-import Main.Model.Entity.Entity;
+
+import java.awt.Point;
 
 /**
  * Created by walkhard on 3/12/16.
  */
-
-public class TalkState extends State{
+public class TalkState {
     //
-    public TalkState(Entity player, Entity entity) {
-        e = entity;
-        p = player;
+    public TalkState() {
+
     }
     //
-    Entity e;
-    Entity p;
+    private Point option_selected;
 
-
-    private void speak(){System.out.println(p.speak());}
     //
-    private void respond(){System.out.println(e.speak());}
-    //
-    public void talk() {
-        speak();
-        respond();
+    private void init() {
+        option_selected = new Point(0,0);
     }
 }

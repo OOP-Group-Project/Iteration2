@@ -11,6 +11,7 @@ import java.util.Random;
  */
 public class TwoHandedWeapon extends SmasherSkills {
 
+
     public TwoHandedWeapon(Entity entity) {
         //2 second cooldown and 0 mana cost
         super(entity, 2.0, 0);

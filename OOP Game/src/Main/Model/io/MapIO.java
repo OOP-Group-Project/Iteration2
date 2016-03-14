@@ -1,5 +1,7 @@
 package Main.Model.io;
 
+import Main.Model.AreaEffect.AreaEffect;
+import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Map.Map;
 import Main.Model.Map.Tile;
 import Main.Model.Terrain.TerrainTypeEnum;
