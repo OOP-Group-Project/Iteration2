@@ -25,9 +25,10 @@ public class SneakController {
     public void performSkill(UserActionEnum u) {
         switch (u) {
             case Skill1:
-//                if (new PickPocket(sneak, 10000, 0).activate()) pickpocket();
+//                if (new PickPocket(sneak).activate()) pickpocket();
                 break;
             case Skill2:
+                new DetectTrap()
 //                if (new DetectTrap(sneak,100,0).activate()) uncoverTrap();
 //                    if (new RemoveTrap(sneak,100,0).activate()) disableTrap();
                 break;

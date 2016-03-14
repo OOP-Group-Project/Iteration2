@@ -1,6 +1,7 @@
 package Main.View.Graphics;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * Created by Michael on 3/5/16.
@@ -36,6 +37,7 @@ public class GraphicsAssets {
     public static BufferedImage[] skeletonWalkDown = new BufferedImage[9];
     public static BufferedImage[] skeletonWalkLeft = new BufferedImage[9];
 
+    public static ArrayList<BufferedImage> itemImages = new ArrayList<>();
 
     public static BufferedImage pet;
     public static BufferedImage npc;
@@ -67,6 +69,10 @@ public class GraphicsAssets {
         goldStar = ImageLoader.loadImage("/Resources/goldStar.png");
         skeletonWalk = ImageLoader.loadImage("/Resources/skeletonWalk.png");
         pet = ImageLoader.loadImage("/Resources/tigerPet.png");
+
+        for (int j = 0; j < 1; j++) {
+            itemImages.add(ImageLoader.loadImage("/Resources/item"+j));
+        }
 
         // Load in player sprites
         player = playerSpriteSheet.crop(X_START, Y_WALK_DOWN, WIDTH, HEIGHT);
