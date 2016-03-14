@@ -24,13 +24,13 @@ public class SmasherController {
     public void performSkill(UserActionEnum u) {
         switch (u) {
             case Skill1:
-                if (validateOneHanded()) entity.getStats(new OneHandedWeapon(entity).activate());
+                if (validateOneHanded()) entity.getStats().modifyStats(new OneHandedWeapon(entity).activate());
                 break;
             case Skill2:
-                if (validateTwoHanded()) entity.getStats(new TwoHandedWeapon(entity).activate());
+                if (validateTwoHanded()) entity.getStats().modifyStats(new TwoHandedWeapon(entity).activate());
                 break;
             case Skill3:
-                if (validateBrawling()) entity.getStats(new Brawling(entity).activate());
+                if (validateBrawling()) entity.getStats().modifyStats(new Brawling(entity).activate());
                 break;
             default:
                 System.out.print("Something went wrong in" + this.toString());
