@@ -20,7 +20,7 @@ public class Observation extends BaseSkills {
 
     public ArrayList<String> activate(Entity enemy, double distance) {
         ArrayList<String> array = new ArrayList<>();
-        if(true) {
+        if(allCheck()) {
             enforceManaCost();
             timeWhenPerformed = System.currentTimeMillis();
             Stats stats = enemy.getStats();

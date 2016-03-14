@@ -21,7 +21,6 @@ public class SmasherController {
     Entity entity;
     Entity enemy;
     Map map;
-    //Skills skill1 = entity.get
 
     public SmasherController(Entity entity, Map map) {
         this.entity = entity;

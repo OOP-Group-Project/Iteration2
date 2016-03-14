@@ -36,7 +36,8 @@ public class SkillsController{
             case Skill2:
                 //Bargain
                 Bargain bs2 = (Bargain) entity.getSkills().get(1);
-                bs2.activate();
+                double discount = bs2.activate();
+                System.out.println("The price of all items to sold/purchase has been decreased/increased by " + discount);
                 break;
             case Skill3:
                 //Observation
