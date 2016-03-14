@@ -128,30 +128,9 @@ public class EntityIO {
         return new MapLocationPoint(Integer.valueOf(loc[0]),Integer.valueOf(loc[1]));
     }
 
-    //given a count of how many items an entity and the index of the list along with the data of a file and the current inventory return an inventory
-    private Inventory setInventory(int itemCount, int index, ArrayList<String> fileData, Inventory inventory) {
-        // TODO: 3/12/16 uncomment when items implemented
-//        for (int i = index; i < itemCount; i++) {
-//            String[] line = fileData.get(i).split(":");
-//            int individualItemCount = Integer.valueOf(line[1]);
-//            for (int j = 0; j < individualItemCount; j++) {
-//                inventory.addItem(new TakeAble(line[0]));
-//            }
-//        }
-        return inventory;
-    }
-
-    //change in file structure TODO: 3/12/16 delete the old inventory creator if we keep this file struct
+    //change in file structure
     private Inventory setInventory(String s) {
-        Inventory inventory = new Inventory();
-
-        // TODO: 3/12/16 uncomment when items are implemented
-        String[] items = s.split(",");
-        for (String item : items) {
-//            inventory.addItem(new TakeAble(Integer.valueOf(item)));
-        }
-
-        return inventory;
+        return new ItemsIO().getEntityInventory(s);
     }
 
     //given a string containing the name of an occupation the file return an occupation (defaults to smasher if data corrupted)
