@@ -1,6 +1,7 @@
 package Main.Controller.ObjectControllers.EntityController.ActionControllers.SkillsControllers;
 
 import Main.Controller.Manager.UserActionEnum;
+import Main.Controller.ObjectControllers.ObjectController;
 import Main.Model.Entity.Entity;
 import Main.Model.Items.WeaponTypeEnum;
 import Main.Model.Map.Map;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  * Created by johnkaufmann on 3/13/16.
  * TODO:
  */
-public class SmasherController {
+public class SmasherController extends ObjectController {
     Entity entity;
     Entity enemy;
     Map map;

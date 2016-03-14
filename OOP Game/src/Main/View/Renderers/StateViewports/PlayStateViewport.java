@@ -152,7 +152,7 @@ public class PlayStateViewport extends StateViewport {
                     } else {
                         // If it wasn't in view, then add it.
                         inViewEntities.add(e);
-                        inViewEntityPxOffset.put(e, new Point(e.getLocation().x, e.getLocation().y));
+                        inViewEntityPxOffset.put(e, new Point(0,0));
                     }
                 }
             }

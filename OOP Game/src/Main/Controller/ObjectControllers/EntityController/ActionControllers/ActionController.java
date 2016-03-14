@@ -54,6 +54,8 @@ public class ActionController extends TimedObjectController {
                 IC.executeInteraction(map.getTile(entity.getLocation()), map.getTile(adjacentLocation));
             } else if(u == UserActionEnum.PickUpItem) {
                 IC.executeInteraction(map.getTile(entity.getLocation()));
+            } else if(u.ordinal() > 27 && u.ordinal() <=31) {
+                SC.performSkill(u);
             }
         }
     }
@@ -61,6 +63,8 @@ public class ActionController extends TimedObjectController {
     @Override
     public void update() {
         super.update();
+        this.AC.update();
+        this.SC.update();
         if(timer.isExpired()) {
             entity.setDoingAction(false);
         }

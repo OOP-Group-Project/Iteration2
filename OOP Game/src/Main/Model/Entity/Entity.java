@@ -124,7 +124,6 @@ public abstract class Entity {
     //
     public void modifyStats(StatsModifier statsModifier) {
         stats.modifyStats(statsModifier);
-        stats.printStats();
     }
 
 

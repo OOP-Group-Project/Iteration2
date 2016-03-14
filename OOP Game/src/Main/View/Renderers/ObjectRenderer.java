@@ -148,7 +148,6 @@ public class ObjectRenderer {
             if(value >= 0) {
 
 
-
                 // Render the correct image.
                 if (type == TerrainTypeEnum.Grass) {
 
