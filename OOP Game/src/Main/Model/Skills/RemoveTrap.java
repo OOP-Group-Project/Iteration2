@@ -9,8 +9,4 @@ public class RemoveTrap extends SneakSkills {
     public RemoveTrap (Entity entity) {
         super(entity, 3, 3);
     }
-
-    public boolean activate() {
-        return successfulPerformance();
-    }
 }
