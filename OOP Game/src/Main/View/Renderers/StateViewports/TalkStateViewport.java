@@ -21,7 +21,7 @@ public class TalkStateViewport extends StateViewport {
     private final Color BG_COLOR = new Color(0,0,0.8f,(float)0.75);
 
     //TTTLE
-    private String TITLE;
+    public String TITLE;
     private final Font TITLE_FONT = new Font("Calibri (Body)", Font.BOLD, (int)(HEIGHT * 0.08));
     private final Color TITLE_COLOR = Color.lightGray;
 
@@ -40,7 +40,7 @@ public class TalkStateViewport extends StateViewport {
         this.viewport = viewport;
         this.talkState = talkState;
         this.playStateViewport = playStateViewport;
-        this.TITLE = talkState.getTargetNPCSpiel();
+
     }
 
 

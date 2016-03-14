@@ -5,7 +5,7 @@ import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.ObjectControllers.EntityController.AvatarController;
 import Main.Controller.ObjectControllers.EntityController.MountController;
 import Main.Controller.ObjectControllers.ObjectController;
-import Main.Controller.StateControllers.TalkStateController;
+import Main.Controller.StateControllers.*;
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
 import Main.Model.Entity.EntityTypeEnum;
@@ -56,11 +56,10 @@ public class InteractionController extends ObjectController {
                 tempState.setTargetNPC(tileEntity);
                 stateControllerManager.setState(StateEnum.TradeState);*/
             } else if (tileEntity.getType() == EntityTypeEnum.NPC && player.getType() == EntityTypeEnum.Avatar) {
-                TalkStateController tempController = (TalkStateController) stateControllerManager.getStateController(StateEnum.TalkState);
+                TalkStateController tempController =  (TalkStateController) stateControllerManager.getStateController(StateEnum.TalkState);
                 TalkState tempState = tempController.getTalkState();
                 tempState.setTargetNPC(tileEntity);
                 stateControllerManager.setState(StateEnum.TalkState);
-
             }
         }
 }
