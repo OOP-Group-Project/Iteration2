@@ -31,7 +31,7 @@ public class SummonerController {
                 break;
             case Skill2:
                 Boon bn = new Boon(summoner);
-                if (bn.allCheck()) summoner.getStats().modifyStats(bn.activate());
+//                if (bn.allCheck()) summoner.getStats().modifyStats(bn.activate());
                 break;
             case Skill3:
                 Bane be = new Bane(summoner);
@@ -54,6 +54,6 @@ public class SummonerController {
     private void applyEnchantment(Enchantment ec) {
         MapLocationPoint point = summoner.peek();
         Entity target = map.getTile(point.x,point.y).getEntity();
-        if(target != null) target.getStats().modifyStats(ec.activate());
+//        if(target != null) target.getStats().modifyStats(ec.activate());
     }
 }
