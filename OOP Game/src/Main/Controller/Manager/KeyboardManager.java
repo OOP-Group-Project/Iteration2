@@ -10,7 +10,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 
 //singleton 
-public class KeyManager implements KeyListener{
+public class KeyboardManager implements KeyListener{
 
 	private EnumMap<StateEnum, StateController> stateControllers;
 	private StateControllerManager stateControllerManager;
@@ -18,7 +18,7 @@ public class KeyManager implements KeyListener{
 
 
 
-	public KeyManager(StateControllerManager stateControllerManager, EnumMap<StateEnum, StateController> stateControllers) {
+	public KeyboardManager(StateControllerManager stateControllerManager, EnumMap<StateEnum, StateController> stateControllers) {
 		this.stateControllers = stateControllers;
 		this.stateControllerManager = stateControllerManager;
 		keyboardActionMapping = new HashMap<>();

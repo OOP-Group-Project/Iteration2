@@ -86,6 +86,9 @@ public class ObjectRenderer {
             if (type == EntityTypeEnum.NPC){
                 g.drawImage(GraphicsAssets.skeletonWalk,topLeft.x,topLeft.y ,graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT,null);
             }
+            if (type == EntityTypeEnum.Pet) {
+                g.drawImage(GraphicsAssets.pet,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+            }
         }
     }
 
@@ -136,19 +139,19 @@ public class ObjectRenderer {
 //            System.out.println("type: " + areaEffect.getType());
 
             switch(type){
-                case Heal:
+                case HEAL:
                       g.drawImage(graphicsAssets.greenPlus,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
                       break;
-                case Damage:
+                case DAMAGE:
                     g.drawImage(graphicsAssets.redCross,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
                     break;
-                case LevelUp:
+                case LEVELUP:
                     g.drawImage(graphicsAssets.goldStar,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
                     break;
-                case Death:
+                case DEATH:
                     g.drawImage(graphicsAssets.skullCrossBones,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
                     break;
-                case Portal:
+                case PORTAL:
                     g.drawImage(graphicsAssets.portal, pxTopLeftPoint.x,pxTopLeftPoint.y,null);
             }
         }

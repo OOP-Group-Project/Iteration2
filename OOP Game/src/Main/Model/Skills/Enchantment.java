@@ -1,6 +1,7 @@
 package Main.Model.Skills;
 
 import Main.Model.Entity.Entity;
+import Main.Model.Stats.StatsModifier;
 
 import java.util.Random;
 
@@ -15,19 +16,17 @@ public class Enchantment extends SummonerSkills {
         super(entity, 10.0, 5.0);
     }
 
-    public void activate() {
-        if (!enoughMana()) {
-            System.out.println("Not enough mana");
-            return;
-        }
-        else if (!this.successfulPerfoemance()) {
+    //as we can't make the npc sleep, we just change the movement speed to 1%
+    public StatsModifier activate() {
+        StatsModifier sm = new StatsModifier();
+        if (allCheck()) {
             enforceManaCost();
-            System.out.println("performance of BindWounds failed but");
-            return;
+            timeWhenPerformed = System.currentTimeMillis();
+            sm = sm.builder().movementModifier(-0.99).build();
+            return sm;
         }
         else {
-            //npc.goToSleep()
-            enforceManaCost();
+            return sm;
         }
 
     }

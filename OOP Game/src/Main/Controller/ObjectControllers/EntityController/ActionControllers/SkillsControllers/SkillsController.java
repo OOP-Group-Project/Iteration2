@@ -1,4 +1,4 @@
-package Main.Controller.EntityControllers.ActionControllers.SkillsControllers;
+package Main.Controller.ObjectControllers.EntityController.ActionControllers.SkillsControllers;
 
 import Main.Controller.Manager.UserActionEnum;
 import Main.Model.Entity.Entity;
@@ -31,7 +31,7 @@ public class SkillsController {
                 new SummonerController(entity,map).performSkill(u);
                 break;
             case "Sneak":
-                new SneakController(entity,map).performSkill(u);
+                new Main.Controller.ObjectControllers.EntityController.ActionControllers.SkillsControllers.SneakController(entity,map).performSkill(u);
                 break;
             default:
                 System.out.println("Something went wrong in " + this.toString());

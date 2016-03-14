@@ -57,7 +57,7 @@ public class MapIO {
 
     //load map given an existing map
     public Map loadMap(Map map) {
-        return loadMap(map, "map");
+        return loadMap(map, "map.txt");
     }
 
 

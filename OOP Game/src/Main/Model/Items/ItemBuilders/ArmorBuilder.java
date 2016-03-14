@@ -12,20 +12,26 @@ import Main.Model.Skills.Skills;
 public class ArmorBuilder extends ItemBuilder {
 
     private ArmorTypeEnum armorType;
-    private Skills skills[] = null;
+
+    private Skills[] skills = null;
+
 
     public ArmorBuilder(ArmorTypeEnum armorType, String name, int id) {
         super(ItemTypeEnum.Equippable, name, id);
         this.armorType = armorType;
     }
 
-    public ArmorBuilder setSkills(Skills skills[]) {
+
+/*
+    public ArmorBuilder setSkills(Skills[] skills) {
+>>>>>>> origin/master
         this.skills = skills;
         return this;
     }
+*/
 
     @Override
     public Item build() {
-        return new Armor(armorType, name, id, statsModifiers, requirements, skills);
+        return new Armor(armorType, name, id, statsModifiers, requirements);
     }
 }

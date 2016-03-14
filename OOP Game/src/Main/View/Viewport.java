@@ -1,7 +1,7 @@
 package Main.View;
 
 import Main.Controller.Controller;
-import Main.Controller.Manager.KeyManager;
+import Main.Controller.Manager.KeyboardManager;
 import Main.Model.Model;
 import Main.Model.State.*;
 import Main.Model.Entity.Avatar;
@@ -94,6 +94,7 @@ public class Viewport extends JFrame implements Runnable {
        // stateViewports.put(StateEnum.TalkState, new TalkStateViewport(this, (PlayStateViewport)stateViewports.get(StateEnum.PlayState), (TalkState)states.get(StateEnum.TalkState)));
         stateViewports.put(StateEnum.StatState,new StatStateViewport(this,(PlayStateViewport)stateViewports.get(StateEnum.PlayState),(StatState)states.get(StateEnum.StatState)));
         stateViewports.put(StateEnum.KeyBindingsState,new KeyBindingsStateViewport(this,(PlayStateViewport)stateViewports.get(StateEnum.PlayState),(KeyBindingsState)states.get(StateEnum.KeyBindingsState), controller));
+        stateViewports.put(StateEnum.AvatarCreationState,new AvatarCreationStateViewport(this,(AvatarCreationState)states.get(StateEnum.AvatarCreationState)));
 
     }
 

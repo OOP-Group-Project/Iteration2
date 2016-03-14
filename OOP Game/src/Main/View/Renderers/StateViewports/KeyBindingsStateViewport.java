@@ -1,7 +1,7 @@
 package Main.View.Renderers.StateViewports;
 
 import Main.Controller.Controller;
-import Main.Controller.Manager.KeyManager;
+import Main.Controller.Manager.KeyboardManager;
 import Main.Controller.Manager.UserActionEnum;
 import Main.Model.State.KeyBindingsState;
 import Main.Model.State.StatState;
@@ -109,7 +109,7 @@ public class KeyBindingsStateViewport extends StateViewport {
 
     private void renderStats(Graphics g) {
 
-        KeyManager keyManager = controller.getKeyManager();
+        KeyboardManager keyManager = controller.getKeyManager();
         HashMap<Integer, UserActionEnum> keyboardActionMapping = keyManager.getKeyboardActionMapping();
         keyBindingsState.sendKeyManager(keyboardActionMapping);
         keyBindingsState.sendController(controller);

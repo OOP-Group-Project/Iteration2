@@ -9,42 +9,11 @@ import Main.Model.Stats.StatsModifier;
  */
 public class OneHandedWeapon extends SmasherSkills {
     public OneHandedWeapon(Entity entity) {
-        //1.4 second cooldown 4 mana cost
-        super(entity, 1.4, 4.0);
-    }
 
-    public void activate() {
-        if (!enoughMana()) {
-            System.out.println("Not enough mana");
-            return;
-        }
-        else if (!this.successfulPerfoemance()) {
-            enforceManaCost();
-            System.out.println("performance of BindWounds failed but");
-            return;
-        }
-        else {
-            double totalDamage = 0;
-            if (canActivate() && enoughMana()) {
-                Stats stats = entity.getStats();
-                //TODO:should use the Attack class to calc this
-                totalDamage = stats.curOffense() * level * 10;
-                StatsModifier sm = new StatsModifier();
-                sm.builder().lifeModifier(-totalDamage).build();
-               // enemy.getStats().modifyStats(sm);
-            }
-            enforceManaCost();
-        }
-    }
-
-    private boolean canActivate() {
-        /**TODO:
-            is a one handed weapon equipped?
-            getWeapon().getWeaponType() == ONEHANDSWORD
-            return true if so
-         TODO: and disable TwoHandedWeapon before OneHandedWeapon cooled down?
-         */
-        return true;
+        //1.4 second cooldown 2 mana cost
+        super(entity, 1.4, 2.0);
+        damageFactor = 3;
+        skillName = "One handed weapon attack";
     }
 
 }

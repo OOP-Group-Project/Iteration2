@@ -12,17 +12,15 @@ public class Tile {
 
 	private TerrainTypeEnum terrainType;
 	private Entity entity = null;
-	private ArrayList<Item> items;
-    private AreaEffect areaEffect;
+	private ArrayList<Item> items = new ArrayList<>();
+    private AreaEffect areaEffect = null;
 
 
 	// Default constructor
-	public Tile(){
-		this.terrainType = TerrainTypeEnum.Grass;
-	}
 	
-	public Tile(TerrainTypeEnum terrainType,int id) {
+	public Tile(TerrainTypeEnum terrainType, int id) {
 		this.terrainType = terrainType;
+		items = new ArrayList<>();
 	}
 
 	public void addEntity(Entity e) {
@@ -52,6 +50,13 @@ public class Tile {
 		return areaEffect != null;
 	}
 
+	public boolean hasEntity() {
+		return entity != null;
+	}
+
+	public boolean hasItems() {
+		return !items.isEmpty();
+	}
 	public TerrainTypeEnum getTerrainType() {
 		return terrainType;
 	}
@@ -60,10 +65,23 @@ public class Tile {
 		return entity;
 	}
 
+    // Can add different types of conditions of whether  a tile is blocked for pathfinding (Iteration 3)?
 	public boolean isBlocked(){
-		if (this.terrainType == TerrainTypeEnum.Grass){
-			return false;
+		if (terrainType == TerrainTypeEnum.Grass) {
+            return false;
+        }
+        return true;
+	}
+
+	public void removeAreaEffect() {
+		this.areaEffect = null;
+	}
+
+	public ArrayList<String> toTileString() {
+		ArrayList<String> str = new ArrayList<>();
+		for (Item item : items) {
+			str.add(String.valueOf(item.getId()));
 		}
-		else return true;
+		return str;
 	}
 }

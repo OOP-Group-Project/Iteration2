@@ -51,7 +51,7 @@ public class Requirement {
 
     /*** Methods ***/
     public boolean meetsLevel(Entity entity) {
-        int entityLevel = entity.getStats().level();
+        int entityLevel = entity.getStats().getLevel();
 
         if(entityLevel >= this.requiredLevel){
              return true;

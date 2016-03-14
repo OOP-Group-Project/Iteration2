@@ -1,38 +1,33 @@
 package Main.Model.Skills;
 
 import Main.Model.Entity.Entity;
-import Main.Model.Stats.Stats;
 import Main.Model.Stats.StatsModifier;
 
 /**
  * Created by Matthew on 3/12/2016.
+ * LinearEffect
+ * This skill just does damage to an enemy on a line
  */
 public class Bane extends SummonerSkills {
-
 
     public Bane(Entity entity) {
         //2.0 cooldown and 5.0 mana cost
         super(entity, 2.0, 5.0);
+        damageFactor = 3;
     }
 
-    public void activate(Entity enemy) {
-        if (!enoughMana()) {
-            System.out.println("Not enough mana");
-            return;
-        }
-        else if (!this.successfulPerfoemance()) {
+    public StatsModifier activate() {
+        StatsModifier sm = new StatsModifier();
+        if (allCheck()) {
             enforceManaCost();
-            System.out.println("performance of BindWounds failed but");
-            return;
+            timeWhenPerformed = System.currentTimeMillis();
+            double currentInt = entity.getStats().curIntellect();
+            double damageToDeal = level * currentInt * damageFactor;
+            sm = sm.builder().lifeModifier(-damageToDeal).build();
+            return sm;
         }
         else {
-            StatsModifier sm = new StatsModifier();
-            Stats stats = enemy.getStats();
-            double currentInt = entity.getStats().curIntellect();
-            double damageToDeal = level * (currentInt / 3);
-            sm = sm.builder().lifeModifier(-damageToDeal).build();
-            stats.modifyStats(sm);
-            enforceManaCost();
+            return sm;
         }
     }
 

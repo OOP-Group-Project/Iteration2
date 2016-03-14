@@ -11,31 +11,11 @@ import java.util.Random;
  */
 public class TwoHandedWeapon extends SmasherSkills {
 
+
     public TwoHandedWeapon(Entity entity) {
-        //1 second cooldown and 2 mana cost
+        //2 second cooldown and 0 mana cost
         super(entity, 2.0, 0);
-    }
-
-    public StatsModifier activate() {
-        double totalDamage = 0;
-        if (canActivate() && enoughMana()){
-            Random rand = new Random();
-            int randomNum = rand.nextInt(100);
-            if (level * 20 > randomNum) {
-                Stats stats = entity.getStats();
-                totalDamage = stats.curStrength() + level * 15;
-            }
-            enforceManaCost();
-        }
-        StatsModifier sm = new StatsModifier();
-        sm = sm.builder().lifeModifier(-totalDamage).build();
-        return sm;
-    }
-
-    private boolean canActivate() {
-        //is fist weapon equipped?
-        //getWeapon().getWeaponType == TWOHANDED?
-        //return true if so
-        return true;
+        skillName = "Two handed weapon attack";
+        damageFactor = 6;
     }
 }

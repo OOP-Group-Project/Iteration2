@@ -5,6 +5,8 @@ import Main.Model.Items.Item;
 import Main.Model.Items.ItemTypeEnum;
 import Main.Model.Items.Weapon;
 import Main.Model.Items.WeaponTypeEnum;
+import Main.Model.Skills.Skills;
+
 
 /**
  * Created by mason on 3/11/16.
@@ -13,7 +15,7 @@ public class WeaponBuilder extends ItemBuilder {
 
     private WeaponTypeEnum type = WeaponTypeEnum.FIST;
     private Attack attack = null;
-//    private Skills skills[] = null;
+
 
     public WeaponBuilder(WeaponTypeEnum type, String name, int id) {
         super(ItemTypeEnum.Equippable, name, id);

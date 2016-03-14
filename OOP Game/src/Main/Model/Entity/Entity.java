@@ -4,6 +4,7 @@ import Main.Model.DirectionEnum;
 import Main.Model.Equipment.Equipment;
 import Main.Model.Inventory.Inventory;
 import Main.Model.Map.MapLocationPoint;
+import Main.Model.Map.Tile;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Stats.Stats;
 import Main.Model.Stats.StatsModifier;
@@ -20,6 +21,8 @@ public abstract class Entity {
     protected Inventory inventory;
     protected Equipment equipment;
     protected MapLocationPoint location;
+    protected boolean isMoving;
+    protected boolean isDoingAction;
     protected DirectionEnum orientation;
 
     //create Entities at certain locations with a certain type
@@ -28,8 +31,10 @@ public abstract class Entity {
         this.spiel = entitySpiel;
         this.occupation = occupation;
         this.location = location;
-        this.stats = new Stats(occupation.map(),1);
+        this.stats = new Stats(occupation.map(), this, 1);
         this.inventory = new Inventory();
+        this.isMoving = false;
+        this.isDoingAction = false;
     }
     //moves a players known x and y (JFK)
     public void move(DirectionEnum dir) {
@@ -45,11 +50,18 @@ public abstract class Entity {
         return location;
     }
 
+    public void setLocation(MapLocationPoint location) {
+        this.location = location;
+    }
+
     //returns the type of entity it is
     public EntityTypeEnum getType() {
         return type;
     }
 
+    public void setType(EntityTypeEnum type) {
+        this.type = type;
+    }
     // P.Smith
     // Entities now know how to adjust their Stats()
     /*
@@ -67,13 +79,17 @@ public abstract class Entity {
      */
     //
     public void modifyStats(StatsModifier statsModifier) {
-
+        stats.modifyStats(statsModifier);
     }
 
 
     public Stats getStats() { return stats; }
     //TODO: question by Andy: do we want to keep eveything here? Would it be better if we getStats and call on Stats?
     public void modifyStats(String stat_to_modify, double amt) {stats.modifyStats(stat_to_modify, amt);}
+
+    public boolean hasHealth() {
+        return stats.curLife() > 0;
+    }
 
 //    public void modifyStats(StatsModifier sm) {stats.modifyStats(sm);}
 
@@ -99,18 +115,72 @@ public abstract class Entity {
         return occupation;
     }
 
+    public void setOccupation(Occupation occupation) {
+        this.occupation = occupation;
+    }
     // Entities now have the ability to "speak"
     //
     public String speak(){return spiel.spiel();}
 
+    public void setSpiel(EntitySpeechEnum spiel) {
+        this.spiel = spiel;
+    }
+
+    public EntitySpeechEnum getSpiel() {
+        return this.spiel;
+    }
+
     //
     public Inventory getInventory(){ return this.inventory;}
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public boolean isMoving() {
+        return isMoving;
+    }
+
+    public void setMoving(boolean isMoving) {
+        this.isMoving = isMoving;
+    }
+
+    public boolean isDoingAction() {
+        return isDoingAction;
+    }
+
+    public void setDoingAction(boolean isDoingAction) {
+        this.isDoingAction = isDoingAction;
+    }
 
     public DirectionEnum getOrientation() {
         return orientation;
     }
 
+    public void setOrientation(DirectionEnum dir) {
+        this.orientation = dir;
+    }
+
     public Equipment getEquipment() {
         return equipment;
+    }
+
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
+    }
+
+    public void respawn(MapLocationPoint location) {
+        this.location.x = location.x;
+        this.location.y = location.y;
+        StatsModifier sm = new StatsModifier();
+        sm = sm.builder().lifeModifier(15).build();
+        this.stats.modifyStats(sm);
+        // TODO: Reset avatar's stats when respawn
+        //this.stats.reset();
+    }
+
+    //looks at the tile infront of it
+    public MapLocationPoint peek() {
+        return location.getAdjacent(orientation);
     }
 }

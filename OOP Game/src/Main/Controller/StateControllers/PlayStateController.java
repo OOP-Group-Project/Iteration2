@@ -1,11 +1,13 @@
 package Main.Controller.StateControllers;
 
-import Main.Controller.EntityControllers.ActionControllers.NpcController;
-import Main.Controller.EntityControllers.EntityController;
+import Main.Controller.Manager.ObjectControllerManager;
+import Main.Controller.ObjectControllers.EntityController.AvatarController;
+import Main.Controller.ObjectControllers.EntityController.EntityController;
+import Main.Controller.ObjectControllers.EntityController.NpcController;
 import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.UserActionEnum;
+import Main.Controller.ObjectControllers.MapController;
 import Main.Model.DirectionEnum;
-import Main.Model.Entity.Entity;
 import Main.Model.State.PlayState;
 import Main.Model.State.StateEnum;
 
@@ -16,26 +18,37 @@ import Main.Model.State.StateEnum;
 public class PlayStateController extends StateController {
 
     private StateControllerManager stateControllerManager;
+    private ObjectControllerManager objectControllerManager;
     private PlayState playState;
-    private EntityController ec;
-    private NpcController npcController;
+    private UserActionEnum lastAction;
 
-    public PlayStateController(StateControllerManager stateControllerManager, PlayState playState) {
+    public PlayStateController(StateControllerManager stateControllerManager, ObjectControllerManager objectControllerManager, PlayState playState) {
         this.stateControllerManager = stateControllerManager;
+        this.objectControllerManager = objectControllerManager;
         this.playState = playState;
-        this.ec = new EntityController(playState.getWorld(), playState.getPlayer());
-        this.npcController = new NpcController(playState.getWorld(), playState.getPlayer(), playState.getNPC());
+        this.lastAction = UserActionEnum.Pause;
     }
 
     @Override
     public void update() {
-        ec.update();
-        npcController.update();
+        ((MapController)objectControllerManager.getObjectController(playState.getWorld())).update();
+        switch(lastAction){
+            case ViewUp:
+            case ViewUpLeft:
+            case ViewUpRight:
+            case ViewDown:
+            case ViewDownLeft:
+            case ViewDownRight:
+                break;
+            default:
+                playState.centerToAvatar();
+                break;
+        }
     }
 
     @Override
     public void handleAction(UserActionEnum action) {
-        ec.handleInput(action);
+        ((AvatarController)objectControllerManager.getObjectController(playState.getPlayer())).handleInput(action);
         switch(action) {
             case Up:
             case UpRight:
@@ -79,6 +92,7 @@ public class PlayStateController extends StateController {
                 stateControllerManager.setState(StateEnum.KeyBindingsState);
                 break;
         }
+        lastAction = action;
     }
 }
 
