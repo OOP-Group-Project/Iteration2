@@ -19,6 +19,7 @@ public class BindWounds extends BaseSkills {
             System.out.println("Not enough mana");
             return;
         }
+
         else if (!this.successfulPerformance()) {
             enforceManaCost();
             System.out.println("performance of BindWounds failed but");
@@ -33,4 +34,5 @@ public class BindWounds extends BaseSkills {
             enforceManaCost();
         }
     }
+
 }

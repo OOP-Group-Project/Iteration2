@@ -30,4 +30,5 @@ public class Bane extends SummonerSkills {
             return sm;
         }
     }
+
 }

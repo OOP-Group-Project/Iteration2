@@ -24,7 +24,7 @@ public class PlayStateController extends StateController {
         this.stateControllerManager = stateControllerManager;
         this.objectControllerManager = objectControllerManager;
         this.playState = playState;
-        this.lastAction = UserActionEnum.Pause;
+        this.lastAction = UserActionEnum.None;
     }
 
     @Override
@@ -86,6 +86,9 @@ public class PlayStateController extends StateController {
                 break;
             case Shift:
                 stateControllerManager.setState(StateEnum.StatState);
+                break;
+            case Control:
+                stateControllerManager.setState(StateEnum.KeyBindingsState);
                 break;
         }
         lastAction = action;

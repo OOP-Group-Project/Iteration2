@@ -29,4 +29,9 @@ public class Mount extends Entity {
         this.player = null;
         return player;
     }
+
+    @Override
+    public void setLocation(MapLocationPoint location) {
+        this.location = location;
+    }
 }

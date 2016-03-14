@@ -15,8 +15,7 @@ public class Tile {
 	private ArrayList<Item> items = new ArrayList<>();
     private AreaEffect areaEffect = null;
 
-
-	// Default constructor
+// Default constructor
 	
 	public Tile(TerrainTypeEnum terrainType, int id) {
 		this.terrainType = terrainType;
@@ -52,6 +51,10 @@ public class Tile {
 
 	public boolean hasEntity() {
 		return entity != null;
+	}
+
+	public ArrayList<Item> getItems() {
+		return items;
 	}
 
 	public boolean hasItems() {

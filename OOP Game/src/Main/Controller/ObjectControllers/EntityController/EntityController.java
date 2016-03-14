@@ -11,7 +11,7 @@ import Main.Model.Map.MapLocationPoint;
 public abstract class EntityController extends ObjectController {
 
     protected boolean isAction(UserActionEnum U) {
-        if (U.ordinal() >= 8 && U.ordinal() <= 18) {
+        if (U.ordinal() >= 8 && U.ordinal() <= 20) {
             //System.out.println("Found an action!");
             return true;
         }

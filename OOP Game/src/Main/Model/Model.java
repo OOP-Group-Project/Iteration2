@@ -32,7 +32,7 @@ public class Model {
         world = new MapIO().loadMap("map.txt");
         world = new ItemsIO().loadItemsToMap(world, "Items.txt");
 
-        new ItemsIO().saveItemsOnMap(world, "Items1.txt");
+        //new ItemsIO().saveItemsOnMap(world, "Items1.txt");
         // Test adding an area effect.
 //        world.getTile(1,7).addAreaEffect(new TakeDamage());
 
@@ -48,9 +48,10 @@ public class Model {
         //INVENTORY & STATS  need to be pass to player and InventoryState
         states.put(StateEnum.InventoryState, new InventoryState());
         states.put(StateEnum.StatState, new StatState(player));
+        states.put(StateEnum.KeyBindingsState, new KeyBindingsState());
 
         states.put(StateEnum.StartMenuState, new StartMenuState());
-        states.put(StateEnum.AvatarCreationState,new AvatarCreationState(player));
+        states.put(StateEnum.AvatarCreationState,new AvatarCreationState(player,world));
 
         new MapIO().saveMap(world, "map.txt");
     }

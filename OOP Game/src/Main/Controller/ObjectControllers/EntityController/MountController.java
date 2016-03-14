@@ -30,7 +30,6 @@ public class MountController extends EntityController {
     public void handleInput(UserActionEnum action) {
         if(isMovement(action)) {
             movementController.move(action);
-            avatarInMount.setLocation(mount.getLocation());
         } else if(action == UserActionEnum.Interact) {
             // Try to get out of the mount.
             removeEntityFromMount();
@@ -40,6 +39,7 @@ public class MountController extends EntityController {
     public void removeEntityFromMount() {
         Avatar avatar = null;
         MapLocationPoint exitLocation = null;
+        mount.setLocation((MapLocationPoint)mount.getLocation().clone());
 
         for(DirectionEnum dir : DirectionEnum.values()) {
             if(avatarController.checkBlocked(mount.getLocation().getAdjacent(dir))) {
@@ -60,6 +60,7 @@ public class MountController extends EntityController {
     public void addEntityToMount(AvatarController avatarController, Avatar avatar) {
         this.avatarInMount = avatar;
         this.avatarInMount.setLocation(mount.getLocation());
+        mount.setLocation(avatarInMount.getLocation());
         mount.setPlayerInside(avatar);
         this.avatarController = avatarController;
     }

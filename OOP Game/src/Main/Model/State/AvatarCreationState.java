@@ -1,10 +1,12 @@
 package Main.Model.State;
 
 import Main.Model.Entity.Avatar;
+import Main.Model.Map.Map;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Occupation.Smasher;
 import Main.Model.Occupation.Sneak;
 import Main.Model.Occupation.Summoner;
+import Main.Model.io.MapIO;
 
 /**
  * Created by jcvarela on 3/13/2016.
@@ -51,15 +53,20 @@ public class AvatarCreationState extends State {
     }
 
     private OccupationSelection selected;
+    private Map map;
+    private MapIO mapIO;
 
-    public AvatarCreationState(Avatar avatar){
+    public AvatarCreationState(Avatar avatar,Map map){
         this.avatar = avatar;
+        this.map = map;
 
         init();
     }
 
     public void init(){
         selected = OccupationSelection.values()[0];
+        mapIO = new MapIO();
+
     }
 
     public void previusOption(){
@@ -69,8 +76,9 @@ public class AvatarCreationState extends State {
         selected = selected.next();
     }
 
-    public void createAvatar(){
+    public void createGame(){
         avatar.setOccupation(selected.getOccupation());
+        mapIO.loadMap(map);
     }
     public String getStringSelected(){
         return selected.getName();
