@@ -9,6 +9,9 @@ import Main.Model.Occupation.Smasher;
  */
 public class Vehicle extends Entity {
     public Vehicle(MapLocationPoint location) {
-        super(EntityTypeEnum.Vehicle, EntitySpeechEnum.TRASH, new Smasher(), location);
+        super(EntityTypeEnum.Vehicle, EntitySpeechEnum.TRASH, new Smasher(), location, 1);
+    }
+    public Vehicle(MapLocationPoint location, int level) {
+        super(EntityTypeEnum.Vehicle, EntitySpeechEnum.TRASH, new Smasher(), location, level);
     }
 }

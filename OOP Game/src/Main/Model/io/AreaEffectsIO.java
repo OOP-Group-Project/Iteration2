@@ -14,6 +14,7 @@ import java.util.ArrayList;
  */
 public class AreaEffectsIO {
     io io = new io();
+    ArrayList<AreaEffect> AEList;
     public AreaEffectsIO() {
     }
 
@@ -61,6 +62,45 @@ public class AreaEffectsIO {
             }
         }
         return map;
+    }
+
+    public ArrayList<AreaEffect> getAreaEffectsList(String fileName) {
+        ArrayList<String> data = io.readFile(fileName);
+        AEList = new ArrayList<>();
+        for (String str : data) {
+            String[] datapoints = str.split("-");
+            String[] location = datapoints[1].split(",");
+            String[] constructor = datapoints[0].split(",");
+            int x = Integer.valueOf(location[0]);
+            int y = Integer.valueOf(location[1]);
+            MapLocationPoint point = new MapLocationPoint(x,y);
+            double x1 = Double.valueOf(constructor[1]);
+            int x2 = Integer.valueOf(datapoints[2]);
+            switch (constructor[0]) {
+                case "0":
+                    AEList.add(new HealDamage(x1,x2,point));
+                    break;
+                case "1":
+                    AEList.add(new InstantDeath(point));
+                    break;
+                case "2":
+                    AEList.add(new LevelUp(point));
+                    break;
+                case "3":
+                    AEList.add(new TakeDamage(x1,x2,point));
+                    break;
+                case "4":
+                    // TODO: 3/14/16 add for portals
+                    break;
+                case "5":
+                    AEList.add(new Trap(point));
+                    break;
+                case "6":
+                    AEList.add(new SpeedUp(x1,x2,point));
+                    break;
+            }
+        }
+        return AEList;
     }
 
     public void saveAreaEffectsFromMap(Map map, String fileName) {

@@ -30,8 +30,9 @@ public class Model {
         player = new Avatar(new MapLocationPoint(0,0));
 
         // Create the map first, we'll loadMap everything into it later
-        world = new MapIO().loadMap("map.txt");
+        world = new MapIO().loadMap(new Map(20,20));
 
+        //new ItemsIO().saveItemsOnMap(world, "Items1.txt");
         // Test adding an area effect.
 //        world.getTile(1,7).addAreaEffect(new TakeDamage());
 
@@ -50,7 +51,7 @@ public class Model {
         states.put(StateEnum.KeyBindingsState, new KeyBindingsState());
 
         states.put(StateEnum.StartMenuState, new StartMenuState());
-        states.put(StateEnum.AvatarCreationState,new AvatarCreationState(this));
+        states.put(StateEnum.AvatarCreationState,new AvatarCreationState(player,world));
 
         new MapIO().saveMap(world, "map.txt");
     }

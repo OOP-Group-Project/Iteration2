@@ -5,19 +5,21 @@ import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.UserActionEnum;
 import Main.Controller.ObjectControllers.AreaEffectController;
 import Main.Controller.ObjectControllers.EntityController.AvatarController;
+import Main.Controller.ObjectControllers.EntityController.MountController;
 import Main.Controller.ObjectControllers.EntityController.NpcController;
 import Main.Controller.ObjectControllers.MapController;
 import Main.Controller.ObjectControllers.ObjectController;
 import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.AreaEffect.HealDamage;
 import Main.Model.AreaEffect.TakeDamage;
-import Main.Model.Entity.Avatar;
-import Main.Model.Entity.Entity;
-import Main.Model.Entity.EntityTypeEnum;
+import Main.Model.DirectionEnum;
+import Main.Model.Entity.*;
 import Main.Model.Map.Map;
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Model;
 import Main.Model.State.LoadState;
 import Main.Model.State.StateEnum;
+import Main.Model.io.AreaEffectsIO;
 import Main.Model.io.EntityIO;
 
 import java.util.ArrayList;
@@ -62,26 +64,36 @@ public class LoadStateController extends StateController {
         player.setInventory(tempAvatar.getInventory());
         player.setSpiel(tempAvatar.getSpiel());
         player.setLocation(tempAvatar.getLocation());
+        player.setOrientation(DirectionEnum.Down);
 
         // Add player controller
-        objectControllerManager.addObjectController(player, new AvatarController(world, player));
+        objectControllerManager.addObjectController(player, new AvatarController(objectControllerManager, world, player));
         world.addEntity(player, player.getLocation().x, player.getLocation().y);
 
         // Add all the NPCsw
         for(Entity e : gameEntities){
             if(e.getType() == EntityTypeEnum.NPC) {
-                objectControllerManager.addObjectController(e, new NpcController(world, player, e));
-                world.addEntity(e,e.getLocation().x,e.getLocation().y);
+                objectControllerManager.addObjectController(e, new NpcController(objectControllerManager, world, player, (Npc)e));
+                world.addEntity(e,e.getLocation());
             }
-            if (e.getType() == EntityTypeEnum.Pet) {
-                objectControllerManager.addObjectController(e, new NpcController(world, player, e));
-                world.addEntity(e,e.getLocation().x,e.getLocation().y);
+            else if (e.getType() == EntityTypeEnum.Pet) {
+                objectControllerManager.addObjectController(e, new NpcController(objectControllerManager, world, player, (Npc)e));
+                world.addEntity(e, e.getLocation());
+            } else if(e.getType() == EntityTypeEnum.Mount) {
+                objectControllerManager.addObjectController(e, new MountController(world, (Mount)e));
+                world.addEntity(e, e.getLocation());
             }
+            e.setOrientation(DirectionEnum.Down);
         }
 
-        AreaEffect testAreaEffect = new TakeDamage(10, 1000);
-        world.getTile(1,5).addAreaEffect(testAreaEffect);
-        objectControllerManager.addObjectController(testAreaEffect, new AreaEffectController(testAreaEffect, testAreaEffect.getCharge()));
+        for (AreaEffect ae : new AreaEffectsIO().getAreaEffectsList("AreaEffects.txt")) {
+            world.getTile(ae.getLocation().x,ae.getLocation().y).addAreaEffect(ae);
+            objectControllerManager.addObjectController(ae, new AreaEffectController(ae, ae.getCharge()));
+        }
+        
+//        AreaEffect testAreaEffect = new TakeDamage(10, 1000, new MapLocationPoint(1,5));
+//        world.getTile(1,5).addAreaEffect(testAreaEffect);
+//        objectControllerManager.addObjectController(testAreaEffect, new AreaEffectController(testAreaEffect, testAreaEffect.getCharge()));
 
         stateManager.setState(StateEnum.PlayState);
 

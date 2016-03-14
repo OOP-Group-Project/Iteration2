@@ -23,28 +23,30 @@ public class SneakController {
     }
 
     public void performSkill(UserActionEnum u) {
-      /*  switch (u) {
-            case Skill1:
+        switch (u) {
+            case Skill4:
                 if (new PickPocket(sneak).activate())
                     pickpocket();
                 break;
-            case Skill2:
-                if (new DetectTrap(sneak).activate()) uncoverTrap();
-                    if (new RemoveTrap(sneak).activate()) disableTrap();
+            case Skill5:
+                if (new DetectAndRemoveTrap(sneak).activate()) {
+                    uncoverTrap();
+                    disableTrap();
+                }
                 break;
-            case Skill3:
+            case Skill6:
                 Creep c = new Creep(sneak);
                 //TODO: modifyStats of enemies instead
                 if (c.activate())
                     sneak.getStats().modifyStats(c.attack());
                 break;
-            case Skill4:
+            case Skill7:
                 if (validateRanged())
                     sneak.getStats().modifyStats(new RangedWeapon(sneak).attack());
                 break;
             default:
                 System.out.print("Something went wrong in" + this.toString());
-        }*/
+        }
     }
 
     private void disableTrap() {
