@@ -11,6 +11,7 @@ public class Brawling extends SmasherSkills{
     public Brawling(Entity entity) {
         //1 second cooldown and 2 mana cost
         super(entity, 1.0, 2.0);
+
         damageFactor = 1;
         skillName = "Brawling";
     }

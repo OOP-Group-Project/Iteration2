@@ -16,6 +16,11 @@ public class PauseState extends State {
 				return StateEnum.PlayState;
 			}
 			
+		},
+		KeyBinding("Key Binding"){
+			protected StateEnum activate(){
+				return StateEnum.KeyBindingsState;
+			}
 		}
 		,MainMenu("Main Menu") {
 			@Override
