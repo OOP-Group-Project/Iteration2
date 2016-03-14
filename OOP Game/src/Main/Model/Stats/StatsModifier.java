@@ -21,6 +21,7 @@ public class StatsModifier {
 
     private int experienceModifier = 0;
     private int livesLeftModifier = 0;
+    private double partialImmunityModifer = 0;
 
     public double getLifeModifier() { return lifeModifier; }
     public double getManaModifier() { return manaModifier; }
@@ -34,6 +35,7 @@ public class StatsModifier {
     public double getArmorModifier() {return armorModifier; }
     public int getExperienceModifier() {return experienceModifier; }
     public int getLivesLeftModifier(){ return livesLeftModifier; }
+    public double getPartialImmunityModifer() { return partialImmunityModifer;}
 
     public StatsModifierBuilder builder() {
         return new StatsModifierBuilder();
@@ -52,6 +54,7 @@ public class StatsModifier {
         private double armorModifier = 0;
         private int experienceModifier = 0;
         private int livesLeftModifier = 0;
+        private double partialImmunityModifer = 0;
 
         public StatsModifier build() {
 
@@ -69,6 +72,7 @@ public class StatsModifier {
             sm.armorModifier = armorModifier == 0 ? 0 : armorModifier;
             sm.experienceModifier = experienceModifier == 0 ? 0 : experienceModifier;
             sm.livesLeftModifier = livesLeftModifier == 0 ? 0 : livesLeftModifier;
+            sm.partialImmunityModifer = partialImmunityModifer == 0 ? 0 : partialImmunityModifer;
             return sm;
         }
 
@@ -115,6 +119,10 @@ public class StatsModifier {
         }
         public StatsModifierBuilder livesLeftModifier(int livesLeftModifier) {
             this.livesLeftModifier = livesLeftModifier;
+            return this;
+        }
+        public StatsModifierBuilder particalImmunityModifier (double partialImmunityModifer) {
+            this.partialImmunityModifer = partialImmunityModifer;
             return this;
         }
     }
