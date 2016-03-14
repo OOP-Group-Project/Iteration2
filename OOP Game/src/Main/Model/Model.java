@@ -1,17 +1,12 @@
 package Main.Model;
 
-import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Entity.Avatar;
-import Main.Model.Entity.Entity;
-import Main.Model.Entity.Npc;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.State.*;
-import Main.Model.io.EntityIO;
 import Main.Model.io.ItemsIO;
 import Main.Model.io.MapIO;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
 
 /**

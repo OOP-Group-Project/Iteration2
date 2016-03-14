@@ -108,8 +108,6 @@ public class PlayStateViewport extends StateViewport {
 
             // Render it
             ObjectRenderer.entityRenderer.render(graphics, inViewEntity, mapCameraCenter, pxRenderOffset);
-
-
         }
     }
 

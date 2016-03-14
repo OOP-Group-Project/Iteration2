@@ -173,7 +173,7 @@ public abstract class Entity {
         this.location.x = location.x;
         this.location.y = location.y;
         StatsModifier sm = new StatsModifier();
-        sm.builder().lifeModifier(15).build();
+        sm = sm.builder().lifeModifier(15).build();
         this.stats.modifyStats(sm);
         // TODO: Reset avatar's stats when respawn
         //this.stats.reset();
