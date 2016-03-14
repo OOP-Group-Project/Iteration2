@@ -10,7 +10,7 @@ import Main.Model.Map.Map;
 /**
  * Created by Michael on 3/13/16.
  */
-public class NpcController extends EntityController {
+public class NpcController extends Main.Controller.ObjectControllers.EntityController.EntityController {
     private ActionController actionController;
     private NpcMovementGenerator npcMovementGenerator;
     private MovementController movementController;
@@ -29,5 +29,6 @@ public class NpcController extends EntityController {
         if(nextMove != null) {
             movementController.move(nextMove);
         }
+
     }
 }
