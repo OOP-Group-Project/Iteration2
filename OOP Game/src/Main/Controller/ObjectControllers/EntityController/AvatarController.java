@@ -27,6 +27,7 @@ public class AvatarController extends EntityController {
     }
 
     public void handleInput(UserActionEnum action) {
+
         if(mountController == null) {
             if(isMovement(action)) {
                 movementController.move(action);
