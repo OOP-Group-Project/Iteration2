@@ -64,47 +64,57 @@ public class ItemsIO {
         switch (idnum) {
             case 8:
                 return new ArmorBuilder(ArmorTypeEnum.HEAD, "HeartyHeadPiece", 8).build();
+
             case 9:
                 return new ArmorBuilder(ArmorTypeEnum.CHEST, "HeartyChestPiece", 9).build();
 
             case 10:
-                return new ArmorBuilder(ArmorTypeEnum.GLOVES, "HeartyGloves", 10).build();
+                return new ArmorBuilder(ArmorTypeEnum.LEGS, "HeartyLegPiece", 10).build();
 
             case 11:
-                return new ArmorBuilder(ArmorTypeEnum.BOOTS, "HeartyBoots", 11).build();
+                return new ArmorBuilder(ArmorTypeEnum.GLOVES, "HeartyGloves", 11).build();
 
             case 12:
-                return new ArmorBuilder(ArmorTypeEnum.TRINKET, "HeartyShield", 12).build();
+                return new ArmorBuilder(ArmorTypeEnum.BOOTS, "HeartyBoots", 12).build();
 
             case 13:
-                return new ArmorBuilder(ArmorTypeEnum.HEAD, "SneakyHeadPiece", 13).build();
+                return new ArmorBuilder(ArmorTypeEnum.TRINKET, "HeartyShield", 13).build();
 
             case 14:
-                return new ArmorBuilder(ArmorTypeEnum.CHEST, "SneakyChestPiece", 14).build();
+                return new ArmorBuilder(ArmorTypeEnum.HEAD, "SneakyHeadPiece", 14).build();
 
             case 15:
-                return new ArmorBuilder(ArmorTypeEnum.GLOVES, "SneakyGloves", 15).build();
+                return new ArmorBuilder(ArmorTypeEnum.CHEST, "SneakyChestPiece", 15).build();
 
             case 16:
-                return new ArmorBuilder(ArmorTypeEnum.BOOTS, "SneakyBoots", 16).build();
+                return new ArmorBuilder(ArmorTypeEnum.LEGS, "SneakyLegPiece", 16).build();
 
             case 17:
-                return new ArmorBuilder(ArmorTypeEnum.TRINKET, "MagicShield", 17).build();
+                return new ArmorBuilder(ArmorTypeEnum.GLOVES, "SneakyGloves", 17).build();
 
             case 18:
-                return new ArmorBuilder(ArmorTypeEnum.HEAD, "MagicHeadPiece", 18).build();
+                return new ArmorBuilder(ArmorTypeEnum.BOOTS, "SneakyBoots", 18).build();
 
             case 19:
-                return new ArmorBuilder(ArmorTypeEnum.CHEST, "MagicChestPiece", 19).build();
+                return new ArmorBuilder(ArmorTypeEnum.TRINKET, "MagicShield", 19).build();
 
             case 20:
-                return new ArmorBuilder(ArmorTypeEnum.GLOVES, "MagicGloves", 20).build();
+                return new ArmorBuilder(ArmorTypeEnum.HEAD, "MagicHeadPiece", 20).build();
 
             case 21:
-                return new ArmorBuilder(ArmorTypeEnum.BOOTS, "MagicBoots", 21).build();
+                return new ArmorBuilder(ArmorTypeEnum.CHEST, "MagicChestPiece", 21).build();
 
             case 22:
-                return new ArmorBuilder(ArmorTypeEnum.TRINKET, "MagicShield", 22).build();
+                return new ArmorBuilder(ArmorTypeEnum.CHEST, "MagicLegPiece", 22).build();
+
+            case 23:
+                return new ArmorBuilder(ArmorTypeEnum.GLOVES, "MagicGloves", 23).build();
+
+            case 24:
+                return new ArmorBuilder(ArmorTypeEnum.BOOTS, "MagicBoots", 24).build();
+
+            case 25:
+                return new ArmorBuilder(ArmorTypeEnum.TRINKET, "MagicShield", 25).build();
             default:
                 System.out.println("Something went wrong in " + this.toString());
                 return null;

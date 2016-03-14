@@ -70,8 +70,8 @@ public class GraphicsAssets {
         skeletonWalk = ImageLoader.loadImage("/Resources/skeletonWalk.png");
         pet = ImageLoader.loadImage("/Resources/tigerPet.png");
 
-        for (int j = 0; j < 1; j++) {
-            itemImages.add(ImageLoader.loadImage("/Resources/item"+j));
+        for (int j = 0; j < 30; j++) {
+            itemImages.add(ImageLoader.loadImage("/Resources/Items/item"+j+".png"));
         }
 
         // Load in player sprites

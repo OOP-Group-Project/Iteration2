@@ -28,7 +28,6 @@ public class SneakController {
 //                if (new PickPocket(sneak).activate()) pickpocket();
                 break;
             case Skill2:
-                new DetectTrap()
 //                if (new DetectTrap(sneak,100,0).activate()) uncoverTrap();
 //                    if (new RemoveTrap(sneak,100,0).activate()) disableTrap();
                 break;

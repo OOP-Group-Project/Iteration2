@@ -23,35 +23,38 @@ public enum ItemsList {
     //summoner weapons [7]
     Staff,
 
-    //smasher armor [8,12]
+    //smasher armor [8,13]
     HeartyHeadPiece,
     HeartyChestPlate,
+    HeartyLegPiece,
     HeartyGloves,
     HeartyBoots,
     HeartySheild,
 
-    //sneak armor [13,17]
+    //sneak armor [14,19]
     SneakyHeadPiece,
     SneakyChestPlate,
+    SneakyLegPiece,
     SneakyGloves,
     SneakyBoots,
     SneakySheild,
 
-    //summoner armor [18,22]
+    //summoner armor [20,25]
     MagicHeadPiece,
     MagicChestPlate,
+    MagicLegPiece,
     MagicGloves,
     MagicBoots,
     MagicSheild,
 
     /**
-     * One Shot Items [23,24]
+     * One Shot Items [26,27]
      */
     HealthPotion,
     ManaPotion,
 
     /**
-     * Interactive Items [25,26]
+     * Interactive Items [28,29]
      */
     //opens something
     Key,
