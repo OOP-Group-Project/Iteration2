@@ -2,6 +2,7 @@ package Main.Controller.ObjectControllers.EntityController.ActionControllers;
 
 import Main.Controller.Manager.ObjectControllerManager;
 import Main.Controller.Manager.UserActionEnum;
+import Main.Controller.ObjectControllers.AreaEffectController;
 import Main.Controller.ObjectControllers.ObjectController;
 import Main.Controller.ObjectControllers.TimedObjectController;
 import Main.Model.AreaEffect.AreaEffect;
@@ -35,15 +36,20 @@ public class AttackController extends TimedObjectController{
     // gets the tile the attack is performed on and applys the area effect
     public void performMeleeAttack() {
         point = entity.getLocation().getAdjacent(entity.getOrientation());
-        applyEffect(point);
+        applyEffect(point, 100, 10.0);
     }
 
     //searchs for an NPC and applies an area effect on the first tile the npc is found on
     public void performRangeAttack() {
         orientation = entity.getOrientation();
         point = entity.getLocation().getAdjacent(orientation);
-        while (map.getTile(point.x,point.y).getEntity() == null) point = point.getAdjacent(orientation);
-        applyEffect(point);
+        int distance = 0;
+        int speed = 100;
+        while (map.getTile(point.x,point.y).getEntity() == null){
+            point = point.getAdjacent(orientation);
+            distance++;
+        }
+        applyEffect(point, speed*distance, 10.0);
     }
 
 //    public void performAngularAttack(int effectedRadius) {
@@ -60,12 +66,13 @@ public class AttackController extends TimedObjectController{
 //    }
 
     public void performAngularAttack(int effectedRadius) {
+        int speed = 100;
         orientation = entity.getOrientation();
         point = entity.getLocation().getAdjacent(orientation);
         DirectionEnum[] expansions = findExpansion();
         for (int i = 1; i < effectedRadius; i++) {
             //apply effect to the point you moved to then expand out
-            applyEffect(point);
+            applyEffect(point, 100, 10.0);
 
             //set up for expansion on both sides
             MapLocationPoint leftSide = point;
@@ -76,8 +83,8 @@ public class AttackController extends TimedObjectController{
             for (int j = 0; j < i/2; j++) {
                 leftSide = leftSide.getAdjacent(expansions[0]);
                 rightSide = rightSide.getAdjacent(expansions[1]);
-                applyEffect(leftSide);
-                applyEffect(rightSide);
+                applyEffect(leftSide, speed*i, 10.0);
+                applyEffect(rightSide, speed*i, 10.0);
             }
 
             //move to the next radius
@@ -136,10 +143,12 @@ public class AttackController extends TimedObjectController{
         }
     }
 
-    private void applyEffect(MapLocationPoint point) {
-        AreaEffect areaEffect = new TakeDamage(10.00);
+    private void applyEffect(MapLocationPoint point, int charge, double damage) {
+        AreaEffect areaEffect = new TakeDamage(damage, charge, point);
+        objectControllerManager.addObjectController(areaEffect, new AreaEffectController(areaEffect, charge));
 
-        map.getTile(point.x,point.y).addAreaEffect(new TakeDamage(10.00)); //Peter: Added 10.00 for compiplation.
+        map.getTile(point.x,point.y).addAreaEffect(areaEffect); //Peter: Added 10.00 for compiplation.
+
     }
 
     // TODO: 3/13/16 implment spells

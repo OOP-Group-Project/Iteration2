@@ -1,5 +1,6 @@
 package Main.Model.AreaEffect.Traps;
 
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Stats.StatsModifier;
 
 /**
@@ -9,8 +10,8 @@ import Main.Model.Stats.StatsModifier;
 //Lowers Strength when activated (Made this just in case we can't show off SlowingTrap
 public class WeakeningTrap extends Trap{
     /*** Constructor ***/
-    public WeakeningTrap(double amount){
-        super(TrapTypeEnum.WEAKENING , 0);
+    public WeakeningTrap(double amount, MapLocationPoint location){
+        super(TrapTypeEnum.WEAKENING , 0, location);
         StatsModifier sm = new StatsModifier();
         sm = sm.builder()
                 .strengthModifier(-amount)
@@ -18,8 +19,8 @@ public class WeakeningTrap extends Trap{
         this.modifier = sm;
     }
 
-    public WeakeningTrap(double amount , int requiredDetectionSkill){
-        super(TrapTypeEnum.WEAKENING , requiredDetectionSkill);
+    public WeakeningTrap(double amount , int requiredDetectionSkill, MapLocationPoint location){
+        super(TrapTypeEnum.WEAKENING , requiredDetectionSkill, location);
         StatsModifier sm = new StatsModifier();
         sm = sm.builder()
                 .strengthModifier(amount)

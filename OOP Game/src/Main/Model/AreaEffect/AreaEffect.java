@@ -1,5 +1,6 @@
 package Main.Model.AreaEffect;
 
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Stats.Stats;
 import Main.Model.Stats.StatsModifier;
 
@@ -13,6 +14,7 @@ public abstract class AreaEffect {
     /*** Member Variables ***/
     protected AreaEffectEnum type;
     protected StatsModifier modifier;
+    protected MapLocationPoint location;
     protected int charge;
 
     /*** Constructor ***/
@@ -23,22 +25,26 @@ public abstract class AreaEffect {
     }
 
     //For OneShot AreaEffect children super() calls
-    public AreaEffect(AreaEffectEnum type){
+    public AreaEffect(AreaEffectEnum type, MapLocationPoint location){
         this.type = type;
         charge = 0;
     }
 
-    public AreaEffect(AreaEffectEnum type, int charge){
+    public AreaEffect(AreaEffectEnum type, int charge, MapLocationPoint location){
         this.type = type;
         this.charge = charge;
+        this.location = location;
     }
 
-    public AreaEffect(AreaEffectEnum type , StatsModifier modifier , int charge){
+    public AreaEffect(AreaEffectEnum type , StatsModifier modifier , int charge, MapLocationPoint location){
         this.type = type;
         this.modifier = modifier;
         this.charge = charge;
     }
 
+    public MapLocationPoint getLocation() {
+        return location;
+    }
     public int getCharge() {
         return charge;
     }

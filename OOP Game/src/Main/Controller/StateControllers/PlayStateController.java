@@ -6,7 +6,7 @@ import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.UserActionEnum;
 import Main.Controller.ObjectControllers.MapController;
 import Main.Model.DirectionEnum;
-import Main.Model.State.InventoryState;
+import Main.Model.Entity.Avatar;
 import Main.Model.State.PlayState;
 import Main.Model.State.StateEnum;
 
@@ -43,11 +43,16 @@ public class PlayStateController extends StateController {
                 playState.centerToAvatar();
                 break;
         }
+        Avatar avatar = playState.getPlayer();
+        if (!avatar.hasHealth() && avatar.getLives() == 0) {
+            stateControllerManager.setState(StateEnum.DeathState);
+        }
     }
 
     @Override
     public void handleAction(UserActionEnum action) {
-        ((AvatarController)objectControllerManager.getObjectController(playState.getPlayer())).handleInput(action);
+        Avatar avatar = playState.getPlayer();
+        ((AvatarController)objectControllerManager.getObjectController(avatar)).handleInput(action);
         switch(action) {
             case Up:
             case UpRight:
@@ -92,6 +97,9 @@ public class PlayStateController extends StateController {
             case Control:
                 stateControllerManager.setState(StateEnum.KeyBindingsState);
                 break;
+        }
+        if (!avatar.hasHealth() && avatar.getLives() == 0) {
+            stateControllerManager.setState(StateEnum.DeathState);
         }
         lastAction = action;
     }

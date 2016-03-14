@@ -11,27 +11,25 @@ public class BindWounds extends BaseSkills {
 
     public BindWounds(Entity entity) {
         //sets cooldown period to 10 seconds and mana cost to 10
-        super(entity, 10.0, 10.0);
+        super(entity, 10.0, 5.0);
+        skillName = "Bind wounds";
     }
 
     public void activate() {
-        if (!enoughMana()) {
-            System.out.println("Not enough mana");
-            return;
-        }
 
-        else if (!this.successfulPerformance()) {
+        if (allCheck()) {
+            timeWhenPerformed = System.currentTimeMillis();
             enforceManaCost();
-            System.out.println("performance of BindWounds failed but");
-            return;
-        }
-        else {
             Stats stats = entity.getStats();
             double amountToHeal = level * 3 + 4;
             StatsModifier sm = new StatsModifier();
             sm = sm.builder().lifeModifier(amountToHeal).build();
             stats.modifyStats(sm);
-            enforceManaCost();
+            System.out.println("Performance of " + skillName + " is successful");
+            System.out.println("The amount to heal is: " + amountToHeal);
+        }
+        else {
+            return;
         }
     }
 

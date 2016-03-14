@@ -9,6 +9,7 @@ public class Sneak extends Occupation {
         modify.put("agi", 1.3);
         modify.put("int", 1.0);
         modify.put("har", 1.1);
+        occupationType = OccupationTypeEnum.Sneak;
     }
 
     @Override

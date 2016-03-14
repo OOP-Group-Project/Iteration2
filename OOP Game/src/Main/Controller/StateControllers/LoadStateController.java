@@ -14,10 +14,13 @@ import Main.Model.AreaEffect.HealDamage;
 import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.*;
+import Main.Model.Inventory.Inventory;
 import Main.Model.Map.Map;
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Model;
 import Main.Model.State.LoadState;
 import Main.Model.State.StateEnum;
+import Main.Model.io.AreaEffectsIO;
 import Main.Model.io.EntityIO;
 
 import java.util.ArrayList;
@@ -62,6 +65,7 @@ public class LoadStateController extends StateController {
         player.setSpiel(tempAvatar.getSpiel());
         player.setLocation(tempAvatar.getLocation());
         player.setOrientation(DirectionEnum.Down);
+        player.setInventory(new Inventory());
 
         // Add player controller
         objectControllerManager.addObjectController(player, new AvatarController(objectControllerManager, world, player));
@@ -83,9 +87,14 @@ public class LoadStateController extends StateController {
             e.setOrientation(DirectionEnum.Down);
         }
 
-        AreaEffect testAreaEffect = new TakeDamage(10, 1000);
-        world.getTile(1,5).addAreaEffect(testAreaEffect);
-        objectControllerManager.addObjectController(testAreaEffect, new AreaEffectController(testAreaEffect, testAreaEffect.getCharge()));
+        for (AreaEffect ae : new AreaEffectsIO().getAreaEffectsList("AreaEffects.txt")) {
+            world.getTile(ae.getLocation().x,ae.getLocation().y).addAreaEffect(ae);
+            objectControllerManager.addObjectController(ae, new AreaEffectController(ae, ae.getCharge()));
+        }
+        
+//        AreaEffect testAreaEffect = new TakeDamage(10, 1000, new MapLocationPoint(1,5));
+//        world.getTile(1,5).addAreaEffect(testAreaEffect);
+//        objectControllerManager.addObjectController(testAreaEffect, new AreaEffectController(testAreaEffect, testAreaEffect.getCharge()));
 
         stateManager.setState(StateEnum.PlayState);
 

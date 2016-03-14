@@ -12,16 +12,31 @@ public class Creep extends SneakSkills {
 
     public Creep (Entity entity) {
         super(entity, 10, 5);
+        skillName = "Creep";
     }
 
     public StatsModifier attack() {
-        double totalDamage = 0;
+        double totalDamage;
         Stats stats = entity.getStats();
         totalDamage = stats.curAgility() * level * 5;
         enforceManaCost();
         StatsModifier sm = new StatsModifier();
         sm = sm.builder().lifeModifier( -totalDamage).build();
         return sm;
+    }
+
+
+    public StatsModifier activateCreep() {
+        StatsModifier sm = new StatsModifier();
+        if (allCheck()) {
+            enforceManaCost();
+            timeWhenPerformed = System.currentTimeMillis();
+            sm = sm.builder().agilityModifier(level * 2).build();
+            return sm;
+        }
+        else {
+            return sm;
+        }
     }
 
     //duration in seconds

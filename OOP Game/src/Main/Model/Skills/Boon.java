@@ -16,6 +16,7 @@ public class Boon extends SummonerSkills {
 
     public Boon(Entity entity) {
         super(entity, 20.0, 10.0);
+        skillName = "Boon";
     }
 
     public StatsModifier activate() {
@@ -47,7 +48,7 @@ public class Boon extends SummonerSkills {
     }
 
     public double getDuration() {
-        return level * 10; //in seconds
+        return level * 10000; //in milliseconds
     }
 
 }

@@ -46,11 +46,11 @@ public class MapController extends ObjectController {
                     Entity tileEntity = currentTile.getEntity();
                     EntityController ec = (EntityController)objectControllerManager.getObjectController(tileEntity);
                     ec.update();
-                    if(!tileEntity.hasHealth()) {
-                        if(tileEntity.getType() == EntityTypeEnum.Avatar) {
-                            ec.respawn(new MapLocationPoint(0,0));
+                    if(!tileEntity.hasHealth() && tileEntity.getLives() == 0 ) {
+                        if(tileEntity.getType() == EntityTypeEnum.Avatar && !tileEntity.isDead()) {
                             map.addEntity(tileEntity, 0,0);
                             currentTile.removeEntity();
+                            tileEntity.revertDeath();
                         }
 
                     }
