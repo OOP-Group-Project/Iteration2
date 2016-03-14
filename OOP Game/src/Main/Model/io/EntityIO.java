@@ -135,7 +135,8 @@ public class EntityIO {
 //            String[] line = fileData.get(i).split(":");
 //            int individualItemCount = Integer.valueOf(line[1]);
 //            for (int j = 0; j < individualItemCount; j++) {
-//                inventory.addItem(new TakeAble(line[0]));
+//
+//                inventory.addItem(new (line[0]));
 //            }
 //        }
         return inventory;
