@@ -80,7 +80,9 @@ public class KeyboardManager implements KeyListener{
 		keyboardActionMapping.put(KeyEvent.VK_G, UserActionEnum.ViewDown);
 		keyboardActionMapping.put(KeyEvent.VK_F, UserActionEnum.ViewDownLeft);
 		keyboardActionMapping.put(KeyEvent.VK_H, UserActionEnum.ViewDownRight);
-		
+		keyboardActionMapping.put(KeyEvent.VK_1, UserActionEnum.Attack);
+
+
 		keyboardActionMapping.put(KeyEvent.VK_ENTER, UserActionEnum.Select);
 		keyboardActionMapping.put(KeyEvent.VK_K, UserActionEnum.Interact);
 		keyboardActionMapping.put(KeyEvent.VK_NUMPAD5, UserActionEnum.Select);
@@ -101,7 +103,6 @@ public class KeyboardManager implements KeyListener{
 		keyboardActionMapping.put(KeyEvent.VK_T, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_U, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_V, UserActionEnum.None);
-		keyboardActionMapping.put(KeyEvent.VK_1, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_2, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_3, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_4, UserActionEnum.None);

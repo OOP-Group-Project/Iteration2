@@ -5,6 +5,7 @@ import Main.Model.Inventory.Inventory;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Occupation.Smasher;
+import Main.Model.Stats.StatsModifier;
 
 /**
  * Created by walkhard on 2/18/16.
@@ -31,9 +32,14 @@ public class Npc extends Entity {
         super(EntityTypeEnum.NPC, EntitySpeechEnum.TRASH, o, location, level, inv);
     }
 
-    public void respawn(int xLocation, int yLocation) {
-        this.location = new MapLocationPoint(xLocation, yLocation);
+    public void respawn(MapLocationPoint location) {
+//        this.location.x = location.x;
+//        this.location.y = location.y;
+//        StatsModifier sm = new StatsModifier();
+//        sm = sm.builder().lifeModifier(15).build();
+//        this.stats.modifyStats(sm);
+//        // TODO: Reset avatar's stats when respawn
+        //this.stats.reset();
     }
-
 
 }

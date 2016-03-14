@@ -38,6 +38,11 @@ public class Mount extends Entity {
         if (this.player != null) player.move(dir);
     }
 
+    public void respawn(MapLocationPoint location) {
+
+    }
+
+    @Override
     public void setLocation(MapLocationPoint location) {
         super.setLocation(location);
         if (this.player != null) player.setLocation(location);

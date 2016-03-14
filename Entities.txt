@@ -13,12 +13,12 @@ Location:10,11
 ~
 Name:Mike
 Type:NPC
-Level:10
+Level:1
 Occupation:Summoner
 Location:8,15
 ~
 Name:Mike
 Type:Mount
-Level:10
+Level:1
 Occupation:Summoner
 Location:15,17
