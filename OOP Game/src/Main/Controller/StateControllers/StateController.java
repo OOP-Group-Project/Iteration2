@@ -2,6 +2,7 @@ package Main.Controller.StateControllers;
 
 import Main.Controller.Manager.UserActionEnum;
 import Main.Model.State.State;
+import Main.Model.State.TalkState;
 import Main.Model.State.StateEnum;
 
 import java.awt.event.KeyEvent;

@@ -1,6 +1,6 @@
 package Main.View.Renderers.StateViewports;
 
-import Main.Model.State.TalkState.Option;
+
 import Main.Model.State.TalkState;
 import Main.View.Viewport;
 
@@ -55,7 +55,7 @@ public class TalkStateViewport extends StateViewport {
 
         renderTitle(g2);
 
-        renderOptions(g2);
+
 
         int w = viewport.getPxHeight();
         int h = viewport.getPxWidth();
@@ -83,24 +83,5 @@ public class TalkStateViewport extends StateViewport {
         g.drawString(TITLE, titleX, titleY);
     }
 
-    private void renderOptions(Graphics g){
 
-        g.setFont(OPTION_FONT);
-        FontMetrics fm = g.getFontMetrics();
-
-        int y = OPTION_START_Y_POS + 50;
-        for(Option option: Option.values()){
-/*
-            if(option.getName().equals(talkState.getStringSelected())){
-                g.setColor(OPTION_COLOR2);
-            }else{
-                g.setColor(OPTION_COLOR);
-            }
-*/
-            g.setColor(OPTION_COLOR);
-            g.drawString(option.getName(), WIDTH/2 - fm.stringWidth(option.getName())/2, y);
-            y += fm.getHeight();
-        }
-
-    }
 }

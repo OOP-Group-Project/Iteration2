@@ -22,20 +22,16 @@ public class TalkStateController extends StateController {
         this.talkState = talkState;
     }
 
-    public void initState(){ talkState.init();}
+    public TalkState getTalkState(){ return this.talkState;}
 
     @Override
     public void handleAction(UserActionEnum action){
         switch(action){
-            case Select:
-                stateControllerManager.setState(talkState.getNextState());
+            case Interact:
+                stateControllerManager.setState(StateEnum.PlayState);
                 break;
-            case Up:
-                talkState.previousOption();
-                break;
-            case Down:
-                talkState.nextOption();
-
+            case Pause:
+                stateControllerManager.setState(StateEnum.PlayState);
         }
     }
 
