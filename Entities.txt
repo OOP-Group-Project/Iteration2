@@ -15,4 +15,9 @@ Type:NPC
 Level:10
 Occupation:Summoner
 Location:3,15
-
+~
+Name:Mike
+Type:Mount
+Level:10
+Occupation:Summoner
+Location:4,4

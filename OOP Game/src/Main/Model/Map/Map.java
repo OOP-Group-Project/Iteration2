@@ -1,6 +1,5 @@
 package Main.Model.Map;
 
-import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.Entity.*;
 import Main.Model.Items.Item;
 import Main.Model.Terrain.TerrainTypeEnum;
@@ -23,7 +22,7 @@ public class Map {
     // Stores locations of different entities, to be used with the NpcMovementGenerator
     private Avatar[] avatarLocations;
     private Pet[] petLocations;
-    private Vehicle[] vehicleLocations;
+    private Mount[] mountLocations;
 
     public Map(int width, int height) {
         this.height = height;
@@ -57,6 +56,10 @@ public class Map {
 		tiles[xLocation][yLocation].addEntity(e);
 	}
 
+    public void addEntity(Entity e, MapLocationPoint point) {
+        tiles[point.x][point.y].addEntity(e);
+    }
+
 	public void addItem(Item i, int xLocation, int yLocation) {
 		tiles[xLocation][yLocation].addItem(i);
 	}
@@ -73,6 +76,9 @@ public class Map {
 		return tiles[x][y];
 	}
 
+    public Tile getTile(MapLocationPoint mapLocationPoint) {
+        return tiles[mapLocationPoint.x][mapLocationPoint.y];
+    }
     public void updateEntityLocation(Entity e){
         // If list doesn't contain an avatar, then add it
         if (!entityLocations.containsKey(EntityTypeEnum.Avatar)){
