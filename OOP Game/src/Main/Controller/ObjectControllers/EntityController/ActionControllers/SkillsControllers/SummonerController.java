@@ -69,6 +69,7 @@ public class SummonerController extends TimedObjectController{
                             enemy = targetTile.getEntity();
                             sm = bane.activate();
                             enemy.getStats().modifyStats(sm);
+                            break;
                         }
                         else {
                             System.out.println("not target found");

@@ -65,6 +65,7 @@ ranged weapon
                                     sneak.getInventory().addItem(enemy.getInventory().getItemAt(0));
                                     enemy.getInventory().removeItemAt(0);
                                 }
+                                break;
                             }
                         }
                         else {
@@ -120,6 +121,7 @@ ranged weapon
                                 enemy = targetTile.getEntity();
                                 sm = rangedWeapon.attack();
                                 enemy.getStats().modifyStats(sm);
+                                break;
                             } else {
                                 System.out.println("not target found");
                                 //TODO: and do something?
