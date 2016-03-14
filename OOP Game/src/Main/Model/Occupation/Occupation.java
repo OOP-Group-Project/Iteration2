@@ -8,10 +8,15 @@ import java.util.HashMap;
  */
 
 public abstract class Occupation {
+    protected OccupationTypeEnum occupationType;
     //
-    protected Map<String, Double> modify = new HashMap<>();
+    protected HashMap<String, Double> modify = new HashMap<>();
 
-    public Map map(){return modify;}
+    public HashMap<String, Double> map(){return modify;}
 
     public abstract String toString();
+
+    public OccupationTypeEnum getOccupationType() {
+        return  occupationType;
+    }
 }

@@ -2,6 +2,7 @@ package Main.Model.State;
 
 import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
+import Main.Model.io.AreaEffectsIO;
 
 /**
  * Created by mason on 3/10/16.
@@ -38,7 +39,7 @@ public class PauseState extends State {
 		}
 		protected abstract StateEnum activate();
 		
-		protected PauseOption previous(){	
+		protected PauseOption previous(){
 			if(this.ordinal() == 0){
 				return PauseOption.values()[PauseOption.values().length - 1];
 			} 
@@ -63,6 +64,7 @@ public class PauseState extends State {
 	
     public PauseState() {
     	init();
+
     }
     
     public void init(){

@@ -6,6 +6,7 @@ import Main.Model.Entity.Npc;
 import Main.Model.Entity.Pet;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
+import Main.Model.io.AreaEffectsIO;
 
 import java.awt.*;
 

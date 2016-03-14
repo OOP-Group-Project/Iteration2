@@ -16,5 +16,6 @@ public class PickPocket extends SneakSkills {
 
     public PickPocket (Entity entity) {
         super(entity, 5, 3);
+        skillName = "Pick pocket";
     }
 }

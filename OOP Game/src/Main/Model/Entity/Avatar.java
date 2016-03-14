@@ -1,13 +1,8 @@
 package Main.Model.Entity;
 
-import Main.Model.DirectionEnum;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Smasher;
-import Main.Model.Stats.StatsModifier;
-import Main.View.Graphics.GraphicsAssets;
-
-import java.awt.*;
 
 /**
  * Created by walkhard on 2/18/16. Modified by John Kaufmann 3/9/16
@@ -21,11 +16,11 @@ public class Avatar extends Entity{
 
 
     public Avatar(MapLocationPoint location) {
-        super(EntityTypeEnum.Avatar, EntitySpeechEnum.PLAYER, new Smasher(), location);
+        super(EntityTypeEnum.Avatar, EntitySpeechEnum.PLAYER, new Smasher(), location, 1);
     }
 
     public Avatar(Occupation o, MapLocationPoint location) {
-        super(EntityTypeEnum.Avatar, EntitySpeechEnum.PLAYER, o, location);
+        super(EntityTypeEnum.Avatar, EntitySpeechEnum.PLAYER, o, location, 1);
     }
 
 

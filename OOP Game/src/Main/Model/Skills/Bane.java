@@ -14,6 +14,7 @@ public class Bane extends SummonerSkills {
         //2.0 cooldown and 5.0 mana cost
         super(entity, 2.0, 5.0);
         damageFactor = 3;
+        skillName = "Bane";
     }
 
     public StatsModifier activate() {
