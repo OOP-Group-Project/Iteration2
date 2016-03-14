@@ -23,7 +23,7 @@ public class SneakController {
     }
 
     public void performSkill(UserActionEnum u) {
-        switch (u) {
+      /*  switch (u) {
             case Skill1:
 //                if (new PickPocket(sneak, 10000, 0).activate()) pickpocket();
                 break;
@@ -40,7 +40,7 @@ public class SneakController {
                 break;
             default:
                 System.out.print("Something went wrong in" + this.toString());
-        }
+        }*/
     }
 
     private void disableTrap() {

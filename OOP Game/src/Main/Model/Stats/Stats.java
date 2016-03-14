@@ -388,6 +388,7 @@ public class Stats {
             cur_hp = max_hp;
         else if(cur_hp < 0) {
             this.getEntity().respawn(new MapLocationPoint(5,5));
+
         }
     }
     private void changeCurMana(double amt) {
