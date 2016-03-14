@@ -26,6 +26,13 @@ public class KeyboardManager implements KeyListener{
 		setDefaultKeyActions();
 	}
 
+	public KeyboardManager(StateControllerManager stateControllerManager, EnumMap<StateEnum, StateController> stateControllers, HashMap<Integer, UserActionEnum> keyboardActionMapping) {
+		this.stateControllers = stateControllers;
+		this.stateControllerManager = stateControllerManager;
+		this.keyboardActionMapping = keyboardActionMapping;
+	}
+
+
 	// When we receive a key press event, we should parse what to do with the key and pass it off to the appropriate controller.
 	@Override
 	public void keyPressed(KeyEvent key) {
@@ -162,6 +169,10 @@ public class KeyboardManager implements KeyListener{
 		}
 	}
 
+
+	public void setKeyboardActionMapping(HashMap<Integer, UserActionEnum> keyboardActionMapping){
+		this.keyboardActionMapping = keyboardActionMapping;
+	}
 
 
 	public HashMap<Integer, UserActionEnum> getKeyboardActionMapping() {
