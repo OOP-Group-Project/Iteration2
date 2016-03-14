@@ -3,7 +3,7 @@ Type:Avatar
 Occupation:Smasher
 Level:3
 Inventory:1-1,0-10,3-1
-Location:16,16
+Location:17,15
 ~
 Name:John
 Type:NPC

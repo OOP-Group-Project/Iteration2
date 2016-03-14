@@ -49,7 +49,7 @@ public class Avatar extends Entity{
         }
     }
 
-    private void seeAround(){
+    public void seeAround(){
         setAreaSeen();
         areaSeen[location.x][location.y] = 1f;
         RadialEffect re = new RadialEffect();
@@ -84,7 +84,7 @@ public class Avatar extends Entity{
     }
 
     public void move(DirectionEnum dir) {
-        location.move(dir);
+        super.move(dir);
         seeAround();
     }
 
