@@ -6,6 +6,7 @@ import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.UserActionEnum;
 import Main.Controller.ObjectControllers.MapController;
 import Main.Model.DirectionEnum;
+import Main.Model.State.InventoryState;
 import Main.Model.State.PlayState;
 import Main.Model.State.StateEnum;
 
@@ -78,6 +79,7 @@ public class PlayStateController extends StateController {
                 playState.moveCenterPoint(DirectionEnum.DownRight);
                 break;
             case Select:
+                ((InventoryStateController)stateControllerManager.getStateController(StateEnum.InventoryState)).init(playState.getPlayer().getInventory());
             	stateControllerManager.setState(StateEnum.InventoryState);
             	break;
             case Interact:

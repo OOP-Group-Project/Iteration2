@@ -1,7 +1,10 @@
 package Main.Controller.ObjectControllers.EntityController.ActionControllers;
 
+import Main.Controller.Manager.ObjectControllerManager;
 import Main.Controller.Manager.UserActionEnum;
+import Main.Controller.ObjectControllers.ObjectController;
 import Main.Controller.ObjectControllers.TimedObjectController;
+import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.Entity;
@@ -21,10 +24,12 @@ public class AttackController extends TimedObjectController{
     private Map map;
     private MapLocationPoint point;
     private DirectionEnum orientation;
+    private ObjectControllerManager objectControllerManager;
 
-    public AttackController(Map map, Entity entity) {
+    public AttackController(ObjectControllerManager objectControllerManager, Map map, Entity entity) {
         this.entity = entity;
         this.map = map;
+        this.objectControllerManager = objectControllerManager;
     }
 
     // gets the tile the attack is performed on and applys the area effect
@@ -132,6 +137,8 @@ public class AttackController extends TimedObjectController{
     }
 
     private void applyEffect(MapLocationPoint point) {
+        AreaEffect areaEffect = new TakeDamage(10.00);
+
         map.getTile(point.x,point.y).addAreaEffect(new TakeDamage(10.00)); //Peter: Added 10.00 for compiplation.
     }
 

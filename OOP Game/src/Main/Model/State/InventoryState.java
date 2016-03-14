@@ -51,6 +51,11 @@ public class InventoryState extends State{
 		ItemSelected = new Point(0,0);
 		sectionSelected = SectionToShow.Inventory;
 	}
+
+	public void init(Inventory inventory) {
+		init();
+		this.inventory = inventory;
+	}
 	
 	public Point getSelected(){
 		return ItemSelected;

@@ -59,7 +59,6 @@ public class LoadStateController extends StateController {
         Avatar tempAvatar = (Avatar)gameEntities.get(0);
         player.setOccupation(tempAvatar.getOccupation());
         player.setType(tempAvatar.getType());
-        player.setInventory(tempAvatar.getInventory());
         player.setSpiel(tempAvatar.getSpiel());
         player.setLocation(tempAvatar.getLocation());
         player.setOrientation(DirectionEnum.Down);
