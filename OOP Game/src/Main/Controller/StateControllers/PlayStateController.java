@@ -84,6 +84,7 @@ public class PlayStateController extends StateController {
                 playState.moveCenterPoint(DirectionEnum.DownRight);
                 break;
             case Select:
+                ((InventoryStateController)stateControllerManager.getStateController(StateEnum.InventoryState)).init(playState.getPlayer().getInventory());
             	stateControllerManager.setState(StateEnum.InventoryState);
             	break;
             case Interact:

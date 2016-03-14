@@ -6,7 +6,6 @@ import Main.Controller.Timer;
 import Main.Model.AreaEffect.AreaEffectEnum;
 import Main.Model.AreaEffect.Traps.Trap;
 import Main.Model.Entity.Entity;
-import Main.Model.Items.WeaponTypeEnum;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Map.Tile;
@@ -110,7 +109,7 @@ ranged weapon
                 }
                 break;
             case Skill7:
-                if (validateRanged()) {
+                if (validateRangedWeapon()) {
                     origin = sneak.getLocation();
                     q = le.getAffectedArea((int) origin.getX(), (int) origin.getY(), rangedWeapon.getLevel() / 2 + 1, sneak.getOrientation());
                     while (!q.isEmpty()) {
@@ -137,9 +136,13 @@ ranged weapon
         }
     }
 
+    private boolean validateRangedWeapon() {
+        return false;
+    }
+
     private void disableTrap() {
         MapLocationPoint targetTile = sneak.getLocation().getAdjacent(sneak.getOrientation());
-        map.getTile(targetTile.x,targetTile.y).removeAreaEffect();
+        map.getTile(targetTile.x, targetTile.y).removeAreaEffect();
     }
 
     //checks to see if there is a tile with a trap in front of the entity and if so uncover it
@@ -152,12 +155,17 @@ ranged weapon
         }
     }
 
-    private boolean validateRanged() {
-        if (sneak.getEquipment().getWeapon().getWeaponType() == WeaponTypeEnum.FIST)
-            return true;
-        else {
-            return false;
-        }
+    private boolean validateDetectTrap() {
+        MapLocationPoint point = sneak.getLocation().getAdjacent(sneak.getOrientation());
+        if (true) return true;
+        return false;
+    }
+
+    //check to see if theres an entity if so apply pickpocket
+    private boolean validatePickPocket() {
+        MapLocationPoint point = sneak.getLocation().getAdjacent(sneak.getOrientation());
+//        if (map.getTile(point.x, point.y).getEntity()) return true;
+        return true;
     }
 
     public void update () {
