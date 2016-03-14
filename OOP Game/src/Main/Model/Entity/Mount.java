@@ -31,6 +31,11 @@ public class Mount extends Entity {
     }
 
     @Override
+    public void respawn(MapLocationPoint location) {
+
+    }
+
+    @Override
     public void setLocation(MapLocationPoint location) {
         this.location = location;
     }
