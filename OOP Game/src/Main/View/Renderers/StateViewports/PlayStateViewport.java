@@ -1,5 +1,6 @@
 package Main.View.Renderers.StateViewports;
 
+import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
 import Main.Model.Map.Map;
 import Main.Model.State.PlayState;
@@ -7,6 +8,7 @@ import Main.Model.Stats.Stats;
 import Main.View.Graphics.GraphicsAssets;
 import Main.View.Renderers.ObjectRenderer;
 import Main.View.Viewport;
+import javafx.geometry.Rectangle2D;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -172,29 +174,95 @@ public class PlayStateViewport extends StateViewport {
     private void renderStats(Graphics g){
         BufferedImage overImage = new BufferedImage(WIDTH,HEIGHT, BufferedImage.TYPE_4BYTE_ABGR);
         Graphics g2 = overImage.getGraphics();
-        Font titleFont = new Font("Calibri (Body)", Font.BOLD, 32);
-        g2.setFont(titleFont);
-        FontMetrics fm = g2.getFontMetrics();
 
-        g.setColor(Color.BLUE);
-        //g.fillRect(TITLE_START_X, TITLE_START_Y, TITLE_WIDTH, TITLE_HEIGHT);
-        g.fillRect(0, 0, WIDTH * 2, 40);
+        g2.setColor(new Color(0.8f,0.8f,0.8f,0.8f));
+        g2.fillRect(0, 0, WIDTH, 50);
 
+        renderInfo(g2);
+
+        renderHealth(g2);
+
+        renderMana(g2);
+
+        renderEXP(g2);
+
+
+        int w = viewport.getPxWidth();
+        int h = viewport.getPxHeight();
+
+
+        g.drawImage(overImage, 0, 0, w, h, null);
+    }
+
+    private void renderInfo(Graphics g){
+
+        Font infoFont = new Font("Calibri (Body)", Font.BOLD, 24);
+        g.setFont(infoFont);
+        FontMetrics fm = g.getFontMetrics();
+
+        Avatar player = playState.getPlayer();
+
+        String title = player.getOccupation().toString();
+        title += " ( Level: " + player.getStats().getLevel() +")";
+
+        int width = fm.stringWidth(title);
+
+        g.setColor(new Color(50,50,50));
+        g.drawString(title,WIDTH/2 - width/2,fm.getHeight());
+
+    }
+
+    private void renderHealth(Graphics g){
         Stats stats = playState.getPlayer().getStats();
+        double  max = stats.maxLife();
+        double now = stats.curLife();
 
-        Color defaultColor = Color.YELLOW;
-        g2.setColor(defaultColor);
-        String current = "Health: " + ((double)Math.round(stats.curLife() * 1000d) / 1000d);
-        g2.drawString(current, 5, 30);
-        current = "        Mana: " + ((double)Math.round(stats.curMana() * 1000d) / 1000d);
-        g2.drawString(current, 150, 30);
-        current = "        Lives: " + ((double)Math.round(stats.curLives() * 1000d) / 1000d);
-        g2.drawString(current, 350, 30);
+        int perc = (int)(100*now/max);
 
+        int x = 20;
+        int y = 10;
+        int width = 200;
+        int height = 20;
 
+        g.setColor(Color.RED);
+        g.fillRect(x,y,(int)(width*perc/100),height);
+        g.setColor(Color.black);
+        g.fillRect(x + (int)(width*perc/100), y, (int)(width*(100-perc)/100),height);
+    }
+    private void renderMana(Graphics g){
+        Stats stats = playState.getPlayer().getStats();
+        double  max = stats.maxMana();
+        double now = stats.curMana();
 
-        g.drawImage(overImage, 0, 0, WIDTH, HEIGHT, null);
+        int perc = (int)(100*now/max);
+
+        int x = 20;
+        int y = 30;
+        int width = 200;
+        int height = 20;
+
+        g.setColor(Color.blue);
+        g.fillRect(x,y,(int)(width*perc/100),height);
+        g.setColor(Color.black);
+        g.fillRect(x + (int)(width*perc/100), y, (int)(width*(100-perc)/100),height);
     }
 
 
+    private void renderEXP(Graphics g){
+
+        Stats stats = playState.getPlayer().getStats();
+        double  max = stats.maxExperience();
+        double now = stats.curExperience();
+
+
+        int x = 0;
+        int y = 50;
+        int width = WIDTH;
+        int height = 10;
+
+        g.setColor(Color.yellow);
+        g.fillRect(x,y,(int)(width*now/max),height);
+        g.setColor(Color.black);
+        g.fillRect(x + (int)(width*now/max), y, (int)(width*(100-now/max)/100),height);
+    }
 }
