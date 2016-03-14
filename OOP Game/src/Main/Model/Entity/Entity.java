@@ -32,10 +32,11 @@ public abstract class Entity {
     protected ArrayList<Skills> skills = new ArrayList<>();
 
     //create Entities at certain locations with a certain type
-    public Entity(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location, int level) {
+    public Entity(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location, int level, Inventory inv) {
         this.type = entityType;
         this.spiel = entitySpiel;
         this.occupation = occupation;
+        this.inventory = inv;
         skills.add(new BindWounds(this));
         skills.add(new Bargain(this));
         skills.add(new Observation(this));

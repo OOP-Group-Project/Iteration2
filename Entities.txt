@@ -2,6 +2,7 @@ Name:John
 Type:Avatar
 Occupation:Smasher
 Level:3
+Inventory:1-1,0-10,3-1
 Location:0,0
 ~
 Name:John
