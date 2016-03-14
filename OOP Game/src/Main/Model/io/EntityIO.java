@@ -7,6 +7,8 @@ import Main.Model.Occupation.Occupation;
 import Main.Model.Occupation.Smasher;
 import Main.Model.Occupation.Sneak;
 import Main.Model.Occupation.Summoner;
+import Main.Model.Skills.BindWounds;
+import Main.Model.Skills.Skills;
 import Main.Model.Stats.Stats;
 
 import java.util.ArrayList;
@@ -57,6 +59,7 @@ public class EntityIO {
         Stats stats;
         Occupation occupation = null;
         Inventory inventory = null;
+        ArrayList<Skills> skills;
         MapLocationPoint location = new MapLocationPoint(0,0);
         int level = 1;
         Entity entity = null;
@@ -81,6 +84,8 @@ public class EntityIO {
                     break;
                 case "Inventory":
                     inventory = setInventory(data[1]);
+                    break;
+                case "Skill":
                     break;
                 case "Location":
                     location = setLocation(data[1]);
@@ -113,6 +118,12 @@ public class EntityIO {
 
 
         return entity;
+    }
+
+    private ArrayList<Skills> setSkills(String s) {
+        String[] skills = s.split(",");
+        ArrayList<Skills> arraySkills = new ArrayList<>();
+        return null;
     }
 
     //given a string sets an entity type

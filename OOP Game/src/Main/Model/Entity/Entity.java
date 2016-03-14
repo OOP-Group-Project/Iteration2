@@ -36,7 +36,6 @@ public abstract class Entity {
         this.type = entityType;
         this.spiel = entitySpiel;
         this.occupation = occupation;
-        this.inventory = inv;
         skills.add(new BindWounds(this));
         skills.add(new Bargain(this));
         skills.add(new Observation(this));
@@ -63,13 +62,14 @@ public abstract class Entity {
         }
         this.location = location;
         this.stats = new Stats(occupation.map(), this, level);
-        this.inventory = new Inventory();
+        this.inventory = inv;
         this.isMoving = false;
         this.isDoingAction = false;
         this.isDead = false;
     }
 
-    public void enetitySkillsInitializer(Entity entity) {
+    public void entitySkillsInitializer(ArrayList<Skills> skills) {
+        this.skills = skills;
     }
     //moves a players known x and y (JFK)
     public void move(DirectionEnum dir) {
@@ -228,8 +228,4 @@ public abstract class Entity {
 
     public abstract void respawn(MapLocationPoint location);
 
-    //looks at the tile infront of it
-    public MapLocationPoint peek() {
-        return location.getAdjacent(orientation);
-    }
 }
