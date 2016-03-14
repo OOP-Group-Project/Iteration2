@@ -222,7 +222,7 @@ public class EntityIO {
 
     //formats the level of the entity to a format that can be read by io
     private String getLevel(String levelFormat, Entity entity) {
-        return levelFormat += String.valueOf(entity.getStats().level());
+        return levelFormat += String.valueOf(entity.getStats().getLevel());
     }
 
     //formats the occupation of the entity to a format that can be read by io

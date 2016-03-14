@@ -5,51 +5,23 @@ package Main.Model.Stats;
  * Created by AndyZhu on 11/3/2016.
  */
 public class StatsModifier {
-/*
-    public StatsModifier(
-            double lifeModifier,
-            double manaModifier,
-            double strengthModifier,
-            double agilityModifier,
-            double intellectModifier,
-            double hardinessModifier,
-            double movementModifier,
-            double offensiveModifier,
-            double defenseModifier,
-            double armorModifier,
-            int experienceModifier,
-            int livesLeftModifier) {
-        this.lifeModifier = lifeModifier;
-        this.manaModifier = manaModifier;
-        this.strengthModifier = strengthModifier;
-        this.agilityModifier = agilityModifier;
-        this.intellectModifier = intellectModifier;
-        this.hardinessModifier = hardinessModifier;
-        this.movementModifier = movementModifier;
-        this.offensiveModifier = offensiveModifier;
-        this.defenseModifier = defenseModifier;
-        this.armorModifier = armorModifier;
-        this.experienceModifier = experienceModifier;
-        this.livesLeftModifier = livesLeftModifier;
-    }
-*/
-    public StatsModifier(){}
 
-    protected double lifeModifier;
-    private double manaModifier;
+    protected double lifeModifier = 0;
+    private double manaModifier = 0;
 
-    private double strengthModifier;
-    private double agilityModifier;
-    private double intellectModifier;
-    private double hardinessModifier;
-    private double movementModifier;
+    private double strengthModifier = 0;
+    private double agilityModifier = 0;
+    private double intellectModifier = 0;
+    private double hardinessModifier = 0;
+    private double movementModifier = 0;
 
-    private double offensiveModifier;
-    private double defenseModifier;
-    private double armorModifier;
+    private double offensiveModifier = 0;
+    private double defenseModifier = 0;
+    private double armorModifier = 0;
 
-    private int experienceModifier;
-    private int livesLeftModifier;
+    private int experienceModifier = 0;
+    private int livesLeftModifier = 0;
+    private double partialImmunityModifer = 0;
 
     public double getLifeModifier() { return lifeModifier; }
     public double getManaModifier() { return manaModifier; }
@@ -63,6 +35,7 @@ public class StatsModifier {
     public double getArmorModifier() {return armorModifier; }
     public int getExperienceModifier() {return experienceModifier; }
     public int getLivesLeftModifier(){ return livesLeftModifier; }
+    public double getPartialImmunityModifer() { return partialImmunityModifer;}
 
     public StatsModifierBuilder builder() {
         return new StatsModifierBuilder();
@@ -81,6 +54,7 @@ public class StatsModifier {
         private double armorModifier = 0;
         private int experienceModifier = 0;
         private int livesLeftModifier = 0;
+        private double partialImmunityModifer = 0;
 
         public StatsModifier build() {
 
@@ -98,6 +72,7 @@ public class StatsModifier {
             sm.armorModifier = armorModifier == 0 ? 0 : armorModifier;
             sm.experienceModifier = experienceModifier == 0 ? 0 : experienceModifier;
             sm.livesLeftModifier = livesLeftModifier == 0 ? 0 : livesLeftModifier;
+            sm.partialImmunityModifer = partialImmunityModifer == 0 ? 0 : partialImmunityModifer;
             return sm;
         }
 
@@ -144,6 +119,10 @@ public class StatsModifier {
         }
         public StatsModifierBuilder livesLeftModifier(int livesLeftModifier) {
             this.livesLeftModifier = livesLeftModifier;
+            return this;
+        }
+        public StatsModifierBuilder particalImmunityModifier (double partialImmunityModifer) {
+            this.partialImmunityModifer = partialImmunityModifer;
             return this;
         }
     }

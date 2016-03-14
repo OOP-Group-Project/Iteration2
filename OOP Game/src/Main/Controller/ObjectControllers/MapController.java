@@ -4,10 +4,10 @@ import Main.Controller.Manager.ObjectControllerManager;
 import Main.Controller.ObjectControllers.EntityController.EntityController;
 import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.Entity.Entity;
+import Main.Model.Entity.EntityTypeEnum;
 import Main.Model.Map.Map;
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Map.Tile;
-
-import java.awt.geom.Area;
 
 /**
  * Created by mason on 3/12/16.
@@ -40,15 +40,20 @@ public class MapController extends ObjectController {
                     }
 
                 }
-                // Apply effects
-
-                // Move Effects
 
                 // update characters
                 if(currentTile.hasEntity()) {
                     Entity tileEntity = currentTile.getEntity();
                     EntityController ec = (EntityController)objectControllerManager.getObjectController(tileEntity);
                     ec.update();
+                    if(!tileEntity.hasHealth()) {
+                        if(tileEntity.getType() == EntityTypeEnum.Avatar) {
+                            ec.respawn(new MapLocationPoint(0,0));
+                            map.addEntity(tileEntity, 0,0);
+                            currentTile.removeEntity();
+                        }
+
+                    }
                 }
             }
         }

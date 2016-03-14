@@ -27,9 +27,6 @@ public class PlayState extends State {
         return player;
     }
 
-    public Npc getNPC(){
-        return npc;
-    }
 
     public Pet getPet() { return pet;}
 

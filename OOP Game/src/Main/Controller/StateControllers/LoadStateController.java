@@ -10,6 +10,7 @@ import Main.Controller.ObjectControllers.MapController;
 import Main.Controller.ObjectControllers.ObjectController;
 import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.AreaEffect.HealDamage;
+import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
 import Main.Model.Entity.EntityTypeEnum;
@@ -77,8 +78,8 @@ public class LoadStateController extends StateController {
                 world.addEntity(e,e.getLocation().x,e.getLocation().y);
             }
         }
-        
-        AreaEffect testAreaEffect = new HealDamage(10, 1000);
+
+        AreaEffect testAreaEffect = new TakeDamage(10, 1000);
         world.getTile(1,5).addAreaEffect(testAreaEffect);
         objectControllerManager.addObjectController(testAreaEffect, new AreaEffectController(testAreaEffect, testAreaEffect.getCharge()));
 

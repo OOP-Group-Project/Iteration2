@@ -5,14 +5,12 @@ import Main.Model.Entity.Entity;
 /**
  * Created by AndyZhu on 7/3/2016.
  */
-public class DetectTrap extends SneakSkill {
+public class DetectTrap extends SneakSkills {
     public DetectTrap (Entity entity) {
-        super(entity);
+        super(entity, 2, 2);
     }
 
-    @Override
-    public void apply() {
-
+    public boolean activate() {
+        return successfulPerformance();
     }
-
 }

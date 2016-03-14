@@ -12,9 +12,8 @@ public class Tile {
 
 	private TerrainTypeEnum terrainType;
 	private Entity entity = null;
-	private ArrayList<Item> items;
-    private AreaEffect areaEffect;
-    private boolean hasEntity;
+	private ArrayList<Item> items = new ArrayList<>();
+    private AreaEffect areaEffect = null;
 
 
 	// Default constructor
@@ -26,14 +25,12 @@ public class Tile {
 
 	public void addEntity(Entity e) {
 		this.entity = e;
-        this.hasEntity = true;
 	}
 
 	public Entity removeEntity() {
 		Entity entityToRemove;
 		entityToRemove = this.entity;
 		this.entity = null;
-        this.hasEntity = false;
 		return entityToRemove;
 	}
 
@@ -74,5 +71,17 @@ public class Tile {
             return false;
         }
         return true;
+	}
+
+	public void removeAreaEffect() {
+		this.areaEffect = null;
+	}
+
+	public ArrayList<String> toTileString() {
+		ArrayList<String> str = new ArrayList<>();
+		for (Item item : items) {
+			str.add(String.valueOf(item.getId()));
+		}
+		return str;
 	}
 }

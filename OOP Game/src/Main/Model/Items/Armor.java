@@ -1,8 +1,8 @@
 package Main.Model.Items;
 
+import Main.Model.Skills.Skills;
 import Main.Model.Stats.StatsModifier;
 import Main.Model.Requirement;
-import Main.Model.Skills.Skill;
 
 /**
  * Created by Peter Camejo on 3/9/2016.
@@ -11,14 +11,13 @@ import Main.Model.Skills.Skill;
 public class Armor extends Equippable{
     /*** Member Variables ***/
     private ArmorTypeEnum armorType;
-    private Skill skills[];
 
     /*** Constructors ***/
-    public Armor(ArmorTypeEnum armorType, String name, int id, StatsModifier statsModifiers[], Requirement requirements[], Skill skills[]){
+    public Armor(ArmorTypeEnum armorType, String name, int id, StatsModifier statsModifiers[], Requirement requirements[]){
+
         super(ItemTypeEnum.Equippable, name, id, statsModifiers, requirements);
         //super(Equippable constructor stuff)
         this.armorType = armorType;
-        this.skills = skills;
     }
 
     /*** Methods ***/
