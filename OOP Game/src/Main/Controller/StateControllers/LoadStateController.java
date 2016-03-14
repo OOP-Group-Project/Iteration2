@@ -73,6 +73,10 @@ public class LoadStateController extends StateController {
                 objectControllerManager.addObjectController(e, new NpcController(world, player, e));
                 world.addEntity(e,e.getLocation().x,e.getLocation().y);
             }
+            if (e.getType() == EntityTypeEnum.Pet) {
+                objectControllerManager.addObjectController(e, new NpcController(world, player, e));
+                world.addEntity(e,e.getLocation().x,e.getLocation().y);
+            }
         }
 
         AreaEffect testAreaEffect = new TakeDamage(10, 1000);

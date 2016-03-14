@@ -1,5 +1,7 @@
 package Main.Model.Map;
 
+import Main.Model.Occupation.Sneak;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -7,38 +9,17 @@ import java.util.Collections;
  * Created by Michael on 3/12/16.
  */
 public class PathFinder {
-    /** The set of nodes that have been searched through */
     private ArrayList closed = new ArrayList();
-    /** The set of nodes that we do not yet consider fully searched */
     private SortedList open = new SortedList();
-
-    /** The map being searched */
     private Map map;
-    /** The maximum depth of search we're willing to accept before giving up */
     private int maxSearchDistance;
-
-    /** The complete set of nodes across the map */
     private Node[][] nodes;
-
-    /** The heuristic we're applying to determine which nodes to search first */
     private Heuristic heuristic;
 
-    /**
-     * Create a path finder with the default heuristic - closest to target.
-     *
-     * @param map The map to be searched
-     * @param maxSearchDistance The maximum depth we'll search before giving up
-     */
     public PathFinder(Map map, int maxSearchDistance) {
         this(map, maxSearchDistance, new Heuristic());
     }
 
-    /**
-     * Create a path finder
-     *  @param map The map to be searched
-     * @param maxSearchDistance The maximum depth we'll search before giving up
-     * @param heuristic The heuristic used to determine the search order of the map
-     */
     public PathFinder(Map map, int maxSearchDistance, Heuristic heuristic) {
         this.heuristic = heuristic;
         this.map = map;
@@ -52,9 +33,6 @@ public class PathFinder {
         }
     }
 
-    /**
-     * @see PathFinder#findPath( int, int, int, int)
-     */
     public Path findPath(int sx, int sy, int tx, int ty) {
         // easy first check, if the destination is blocked, we can't get there
 
@@ -75,6 +53,9 @@ public class PathFinder {
 
         // while we haven'n't exceeded our max search depth
         int maxDepth = 0;
+
+        // check if there is sneak
+//        map.getTile(tx,tx).getEntity().getType() == Sneak
         while ((maxDepth < maxSearchDistance) && (open.size() != 0)) {
             // pull out the first node in our open list, this is determined to
 
@@ -105,9 +86,7 @@ public class PathFinder {
                     int xp = x + current.x;
                     int yp = y + current.y;
 
-//                    System.out.println("current: " + current.x + " x: " + x);
-
-                    //check for even cases
+                    //check for invalid cases for even columns
                     if (current.x % 2 == 0){
                         // (-1, -1) case for even columns
                         if ((current.x - xp) == -1 && (current.y - yp) == -1){
@@ -117,12 +96,7 @@ public class PathFinder {
                         if ((current.x - xp) == 1 && (current.y - yp) == -1){
                             continue;
                         }
-//                        if ((x == -1) && (y == -1)){
-//                            continue;
-//                        }
-//                        if ((x == 1) && (y == -1)){
-//                            continue;
-//                        }
+                    //check for invalid cases for odd columns
                     }else{
                         // (-1, 1) case for odd columns
                         if ((current.x - xp) == -1 && (current.y - yp) == 1){
@@ -132,13 +106,6 @@ public class PathFinder {
                         if ((current.x - xp) == 1 && (current.y - yp) == 1){
                             continue;
                         }
-                        // invalid cases for odd columns
-//                        if ((x == -1) && (y == 1)){
-//                            continue;
-//                        }
-//                        if ((x == 1) && (x == 1)){
-//                            continue;
-//                        }
                     }
 
                     if (isValidLocation(sx, sy, xp, yp)) {
@@ -244,30 +211,6 @@ public class PathFinder {
     protected boolean isValidLocation( int sx, int sy, int x, int y) {
         boolean invalid = (x < 0) || (y < 0) || (x >= map.getWidth()) || (y >= map.getHeight());
 
-        if(sx % 2 == 0){
-            if (x == -1 && x == -1){
-                return false;
-            }
-            if (x == 1 && y == -1){
-                return false;
-            }
-        }else{
-            if (x == -1 && y == 1){
-                return false;
-            }
-            if (x == 1 && y == 1){
-                return false;
-            }
-        }
-//        if (x % 2 != 0){
-//          System.out.println("->>   sx: " + sx + " sy: " + sy);
-//            if (x == (sx + 1) && (y == sy +1)){
-//                return false;
-//            }
-//        }
-//        else {
-//
-//        }
         if ((!invalid) && ((sx != x) || (sy != y))) {
             invalid = map.isBlocked(x, y);
         }
@@ -313,17 +256,11 @@ public class PathFinder {
 
 
     private class Node implements Comparable {
-        /** The x coordinate of the node */
         private int x;
-        /** The y coordinate of the node */
         private int y;
-        /** The path cost for this node */
         private float cost;
-        /** The parent of this node, how we reached it in the search */
         private Node parent;
-        /** The heuristic cost of this node */
         private float heuristic;
-        /** The search depth of this node */
         private int depth;
 
         public Node(int x, int y) {

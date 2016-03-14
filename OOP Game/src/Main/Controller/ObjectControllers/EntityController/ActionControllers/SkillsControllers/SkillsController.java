@@ -31,7 +31,7 @@ public class SkillsController {
                 new SummonerController(entity,map).performSkill(u);
                 break;
             case "Sneak":
-                new SneakController(entity,map).performSkill(u);
+                new Main.Controller.ObjectControllers.EntityController.ActionControllers.SkillsControllers.SneakController(entity,map).performSkill(u);
                 break;
             default:
                 System.out.println("Something went wrong in " + this.toString());
