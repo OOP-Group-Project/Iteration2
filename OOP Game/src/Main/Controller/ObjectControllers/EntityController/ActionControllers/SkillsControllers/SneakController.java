@@ -20,7 +20,7 @@ public class SneakController {
     }
 
     public void performSkill(UserActionEnum u) {
-        switch (u) {
+      /*  switch (u) {
             case Skill1:
                 if (validatePickPocket()) new PickPocket(sneak).apply();
                 break;
@@ -36,7 +36,7 @@ public class SneakController {
                 break;
             default:
                 System.out.print("Something went wrong in" + this.toString());
-        }
+        }*/
     }
 
     private boolean validateRangedWeapon() {

@@ -50,6 +50,7 @@ public class Model {
         states.put(StateEnum.StatState, new StatState(player));
 
         states.put(StateEnum.StartMenuState, new StartMenuState());
+        states.put(StateEnum.AvatarCreationState,new AvatarCreationState(player));
 
         new MapIO().saveMap(world, "map.txt");
     }

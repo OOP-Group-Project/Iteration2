@@ -387,7 +387,7 @@ public class Stats {
             cur_hp = max_hp;
         else if(cur_hp < 0) {
             //TODO: changed by Andy to make sence
-            this.getEntity().die();
+            //this.getEntity().die();
         }
     }
     private void changeCurMana(double amt) {
