@@ -73,6 +73,7 @@ public class GraphicsAssets {
         pet = ImageLoader.loadImage("/Resources/tigerPet.png");
         skullCrossBones = ImageLoader.loadImage("/Resources/skullAndCrossBones.png");
         trap = ImageLoader.loadImage("/Resources/trap.gif");
+        portal = ImageLoader.loadImage("/Resources/portal.png");
 
         for (int j = 0; j < 30; j++) {
             itemImages.add(ImageLoader.loadImage("/Resources/Items/item"+j+".png"));
