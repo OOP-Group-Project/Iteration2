@@ -4,6 +4,7 @@ import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.AreaEffect.AreaEffectEnum;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Requirement;
+import Main.Model.Stats.StatsModifier;
 
 
 /**
@@ -17,10 +18,16 @@ public class Trap extends AreaEffect {
 
     /*** Constructors ***/
     public Trap(MapLocationPoint location){
-        super(AreaEffectEnum.TRAP, location);
+        super(AreaEffectEnum.TRAP, 100, location);
         this.isVisible = false;
         this.requiredDetectionSkill = 0;
         this.trapType = null;
+        StatsModifier sm = new StatsModifier();
+        sm = sm.builder()
+                .lifeModifier(-10)
+                .movementModifier(-100)
+                .build();
+        this.modifier = sm;
     }
     public Trap(TrapTypeEnum trapType,int requiredDetectionSkill, MapLocationPoint location){
         super(AreaEffectEnum.TRAP, location);

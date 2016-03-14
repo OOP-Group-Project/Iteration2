@@ -103,14 +103,16 @@ public class PlayStateViewport extends StateViewport {
         graphics.setColor(new Color(0,0,0));
         graphics.fillRect(0,0, viewport.getPxWidth(), viewport.getPxHeight());
         // Then render them
-        ObjectRenderer.mapRenderer.render(graphics, playState.getWorld(), mapCameraCenter, mapStartX, mapEndX, mapStartY, mapEndY);
+        ObjectRenderer.mapRenderer.render(graphics, playState.getWorld(), mapCameraCenter, mapStartX, mapEndX, mapStartY, mapEndY,playState.getPlayer().getAreaSeen());
 
         for(Entity inViewEntity : inViewEntities) {
             // Get the offset amount
             Point pxRenderOffset = inViewEntityPxOffset.get(inViewEntity);
 
+            int x = inViewEntity.getLocation().x;
+            int y = inViewEntity.getLocation().y;
             // Render it
-            ObjectRenderer.entityRenderer.render(graphics, inViewEntity, mapCameraCenter, pxRenderOffset);
+            ObjectRenderer.entityRenderer.render(graphics, inViewEntity, mapCameraCenter, pxRenderOffset,playState.getPlayer().areaBeenSeen(x,y));
         }
         renderStats(graphics);
     }
