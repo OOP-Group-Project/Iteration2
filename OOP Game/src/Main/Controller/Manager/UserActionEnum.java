@@ -19,7 +19,7 @@ public enum UserActionEnum {
     Select,
     Shift,
 
-    //entity actions [10, 17]
+    //entity actions [10, 18]
     Attack,
     Spell1,
     Spell2,
@@ -28,6 +28,7 @@ public enum UserActionEnum {
     Attack2,
     Attack3,
     Talk,
+    Trade,
 
     //views [18,23]
     ViewUp,

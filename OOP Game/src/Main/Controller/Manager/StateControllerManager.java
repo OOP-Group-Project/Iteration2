@@ -37,6 +37,7 @@ public class StateControllerManager {
 		gameStateControllers.put(StateEnum.TalkState, new TalkStateController(this, (TalkState)model.getStates().get(StateEnum.TalkState)));
 		gameStateControllers.put(StateEnum.StatState, new StatStateController(this,(StatState)model.getStates().get(StateEnum.StatState)));
 		gameStateControllers.put(StateEnum.AvatarCreationState, new AvatarCreationStateController(this,(AvatarCreationState) model.getStates().get(StateEnum.AvatarCreationState)));
+		gameStateControllers.put(StateEnum.TradeState, new TradeStateController(this, (TradeState) model.getStates().get(StateEnum.TradeState)));
 
 		// set our first state
 		previousState = StateEnum.StartMenuState;

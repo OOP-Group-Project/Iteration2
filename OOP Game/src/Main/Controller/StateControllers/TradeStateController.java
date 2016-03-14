@@ -3,7 +3,10 @@ package Main.Controller.StateControllers;
 import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.UserActionEnum;
 import Main.Model.State.PauseState;
+import Main.Model.State.StateEnum;
 import Main.Model.State.TradeState;
+
+import java.awt.*;
 
 /**
  * Created by Michael on 3/14/16.
@@ -26,15 +29,20 @@ public class TradeStateController extends StateController {
     @Override
     public void handleAction(UserActionEnum action) {
         switch (action){
-            case Select:
-                stateControllerManager.setState(tradeState.getNextState());
+            case Pause:
                 tradeState.init();
+                stateControllerManager.setState(StateEnum.PlayState);
+                break;
+            case Select:
+                tradeState.init();
+                stateControllerManager.setState(StateEnum.PlayState);
                 break;
             case Up:
-                tradeState.previousOption();
+                tradeState.moveSelect(new Point(0,-1));
                 break;
             case Down:
-                tradeState.nextOption();
+                tradeState.moveSelect(new Point(0,1));
+                break;
         }
     }
 }

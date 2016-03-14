@@ -93,6 +93,7 @@ public class Viewport extends JFrame implements Runnable {
         stateViewports.put(StateEnum.TalkState, new TalkStateViewport(this, (PlayStateViewport)stateViewports.get(StateEnum.PlayState), (TalkState)states.get(StateEnum.TalkState)));
         stateViewports.put(StateEnum.StatState,new StatStateViewport(this,(PlayStateViewport)stateViewports.get(StateEnum.PlayState),(StatState)states.get(StateEnum.StatState)));
         stateViewports.put(StateEnum.AvatarCreationState,new AvatarCreationStateViewport(this,(AvatarCreationState)states.get(StateEnum.AvatarCreationState)));
+        stateViewports.put(StateEnum.TradeState,new TradeStateViewport(this,(PlayStateViewport)stateViewports.get(StateEnum.PlayState),(TradeState)states.get(StateEnum.TradeState)));
 
     }
 

@@ -39,7 +39,7 @@ public class TalkStateViewport extends StateViewport {
     private TalkState talkState;
     private PlayStateViewport playStateViewport;
 
-    public TalkStateViewport(Viewport viewport, TalkState talkState, PlayStateViewport playStateViewport){
+    public TalkStateViewport(Viewport viewport, PlayStateViewport playStateViewport, TalkState talkState){
         this.viewport = viewport;
         this.talkState = talkState;
         this.playStateViewport = playStateViewport;

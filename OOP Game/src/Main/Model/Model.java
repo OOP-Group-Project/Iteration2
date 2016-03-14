@@ -56,6 +56,10 @@ public class Model {
 
         states.put(StateEnum.StartMenuState, new StartMenuState());
         states.put(StateEnum.AvatarCreationState,new AvatarCreationState(player));
+//        states.put(StateEnum.TradeState,new TradeState(player.getInventory(),player.getInventory()));
+        states.put(StateEnum.TradeState, new TradeState(player));
+
+        player.getInventory();
 
         new MapIO().saveMap(world, "map.txt");
     }
