@@ -78,6 +78,7 @@ public class AvatarCreationState extends State {
 
     public void createGame(){
         avatar.setOccupation(selected.getOccupation());
+        avatar.init(1);
         mapIO.loadMap(map);
     }
     public String getStringSelected(){

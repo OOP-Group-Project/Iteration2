@@ -49,6 +49,8 @@ public class Avatar extends Entity{
         }
     }
 
+
+
     private void seeAround(){
         setAreaSeen();
         areaSeen[location.x][location.y] = 1f;
