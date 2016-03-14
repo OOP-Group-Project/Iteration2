@@ -46,7 +46,7 @@ public class MapIO {
         map.setWidth(width);
         map.setTiles(mapTiles);
 
-        //set the avatar
+        map = new ItemsIO().loadItemsToMap(map, "Items.txt");
 
         //TODO: implement the loadMap entity array
 
