@@ -14,7 +14,8 @@ public enum StateEnum {
     SaveState,
     StartMenuState,
     StatState,
-    TalkState;
+    TalkState,
+    TradeState
 
 
 }
