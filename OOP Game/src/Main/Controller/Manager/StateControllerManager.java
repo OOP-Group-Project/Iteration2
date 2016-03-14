@@ -45,6 +45,10 @@ public class StateControllerManager {
 		setState(StateEnum.StartMenuState);
 	}
 
+    public StateController getStateController(StateEnum state) {
+        return gameStateControllers.get(state);
+    }
+
 	
 	public void setState(StateEnum state){
 		previousState = currentState;

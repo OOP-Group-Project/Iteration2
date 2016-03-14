@@ -23,7 +23,7 @@ public class ActionController extends TimedObjectController {
     public ActionController(ObjectControllerManager objectControllerManager, Map map, Entity entity) {
         this.map = map;
         this.entity = entity;
-        this.AC = new AttackController(map, entity);
+        this.AC = new AttackController(objectControllerManager, map, entity);
         this.IC = new InteractionController(objectControllerManager, entity);
         this.occupation = entity.getOccupation().toString();
     }
@@ -51,6 +51,8 @@ public class ActionController extends TimedObjectController {
             } else if (u == UserActionEnum.Interact) {
                 MapLocationPoint adjacentLocation = entity.getLocation().getAdjacent(entity.getOrientation());
                 IC.executeInteraction(map.getTile(entity.getLocation()), map.getTile(adjacentLocation));
+            } else if(u == UserActionEnum.PickUpItem) {
+                IC.executeInteraction(map.getTile(entity.getLocation()));
             }
         }
     }

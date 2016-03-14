@@ -14,6 +14,7 @@ import Main.Model.AreaEffect.HealDamage;
 import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.*;
+import Main.Model.Inventory.Inventory;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Model;
@@ -61,10 +62,10 @@ public class LoadStateController extends StateController {
         Avatar tempAvatar = (Avatar)gameEntities.get(0);
         player.setOccupation(tempAvatar.getOccupation());
         player.setType(tempAvatar.getType());
-        player.setInventory(tempAvatar.getInventory());
         player.setSpiel(tempAvatar.getSpiel());
         player.setLocation(tempAvatar.getLocation());
         player.setOrientation(DirectionEnum.Down);
+        player.setInventory(new Inventory());
 
         // Add player controller
         objectControllerManager.addObjectController(player, new AvatarController(objectControllerManager, world, player));

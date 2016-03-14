@@ -55,11 +55,11 @@ public class EntityIO {
         //set up avatar parameters
         EntityTypeEnum type = EntityTypeEnum.NPC;
         Stats stats;
-        Occupation occupation;
-        Inventory inventory;
+        Occupation occupation = null;
+        Inventory inventory = null;
         MapLocationPoint location = new MapLocationPoint(0,0);
         int level = 1;
-        Entity entity;
+        Entity entity = null;
 
         //set the avatar parameters given file data
         for (int i = 0; i < FileData.size(); i++) {
@@ -89,23 +89,21 @@ public class EntityIO {
         }
 
         //instantiate a new entity;
-        System.out.println(type);
         switch (type) {
             case Avatar:
-                entity = new Avatar(location);
+                entity = new Avatar(occupation,location,level, inventory);
                 break;
             case NPC:
-                entity = new Npc(location);
+                entity = new Npc(occupation,location,level,inventory);
                 break;
             case Pet:
-                entity = new Pet(location);
+                entity = new Pet(location,level);
                 break;
             case Mount:
                 entity = new Mount(location);
                 break;
             default:
-                entity = new Npc(location);
-                break;
+                System.out.println("Something went wrong in the instatiation of an entity in " + this.toString());
         }
 
         //level the entity up appropriately

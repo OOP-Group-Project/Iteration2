@@ -1,5 +1,6 @@
 package Main.Model.Entity;
 
+import Main.Model.Inventory.Inventory;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Smasher;
@@ -10,13 +11,17 @@ import Main.Model.Occupation.Smasher;
  * TODO: Implement methods.
  */
 public class Avatar extends Entity{
+//
+//    public Avatar(MapLocationPoint location, Inventory inv) {
+//        super(EntityTypeEnum.Avatar, EntitySpeechEnum.PLAYER, new Smasher(), location, 1, inv);
+//    }
 
-    public Avatar(MapLocationPoint location) {
-        super(EntityTypeEnum.Avatar, EntitySpeechEnum.PLAYER, new Smasher(), location, 1);
+    public Avatar(Occupation o, MapLocationPoint location, int level, Inventory inv) {
+        super(EntityTypeEnum.Avatar, EntitySpeechEnum.PLAYER, o, location, level, inv);
     }
 
     public Avatar(Occupation o, MapLocationPoint location) {
-        super(EntityTypeEnum.Avatar, EntitySpeechEnum.PLAYER, o, location, 1);
+        super(EntityTypeEnum.Avatar, EntitySpeechEnum.PLAYER, o, location, 1, new Inventory());
     }
 
 }
