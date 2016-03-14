@@ -4,10 +4,6 @@ package Main.Model.Entity;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Occupation.Smasher;
-import Main.View.Graphics.GraphicsAssets;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * Created by walkhard on 2/18/16.
@@ -15,15 +11,19 @@ import java.awt.image.BufferedImage;
 public class Npc extends Entity {
 
     public Npc(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location){
-        super(entityType, entitySpiel, occupation, location);
+        super(entityType, entitySpiel, occupation, location, 1);
     }
 
     public Npc(MapLocationPoint location) {
-        super(EntityTypeEnum.NPC, EntitySpeechEnum.TRASH, new Smasher(), location);
+        super(EntityTypeEnum.NPC, EntitySpeechEnum.TRASH, new Smasher(), location, 1);
+    }
+
+    public Npc(MapLocationPoint location, int level) {
+        super(EntityTypeEnum.NPC, EntitySpeechEnum.TRASH, new Smasher(), location, level);
     }
 
     public Npc(Occupation o, MapLocationPoint location) {
-        super(EntityTypeEnum.NPC, EntitySpeechEnum.TRASH, o, location);
+        super(EntityTypeEnum.NPC, EntitySpeechEnum.TRASH, o, location, 1);
     }
 
     public void respawn(int xLocation, int yLocation) {

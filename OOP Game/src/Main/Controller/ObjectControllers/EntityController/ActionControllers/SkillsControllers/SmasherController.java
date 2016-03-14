@@ -4,9 +4,14 @@ import Main.Controller.Manager.UserActionEnum;
 import Main.Model.Entity.Entity;
 import Main.Model.Items.WeaponTypeEnum;
 import Main.Model.Map.Map;
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Skills.Brawling;
 import Main.Model.Skills.OneHandedWeapon;
+import Main.Model.Skills.Skills;
 import Main.Model.Skills.TwoHandedWeapon;
+import Main.Model.Stats.StatsModifier;
+
+import java.lang.annotation.Target;
 
 /**
  * Created by johnkaufmann on 3/13/16.
@@ -14,7 +19,9 @@ import Main.Model.Skills.TwoHandedWeapon;
  */
 public class SmasherController {
     Entity entity;
+    Entity enemy;
     Map map;
+    Skills skill1 = entity.get
 
     public SmasherController(Entity entity, Map map) {
         this.entity = entity;
@@ -24,13 +31,22 @@ public class SmasherController {
     public void performSkill(UserActionEnum u) {
         switch (u) {
             case Skill1:
-                if (validateOneHanded()) entity.getStats().modifyStats(new OneHandedWeapon(entity).activate());
+                if (validateOneHanded()) {
+                    MapLocationPoint targetLocation = entity.getLocation().getAdjacent(entity.getOrientation());
+                    if (map.getTile((int)targetLocation.getX(), (int)targetLocation.getY()).hasEntity()) {
+                        StatsModifier sm = new StatsModifier();
+
+                    }
+                    entity.getStats().modifyStats(new OneHandedWeapon(entity).activate());
+                }
                 break;
             case Skill2:
-                if (validateTwoHanded()) entity.getStats().modifyStats(new TwoHandedWeapon(entity).activate());
+                if (validateTwoHanded())
+                    entity.getStats().modifyStats(new TwoHandedWeapon(entity).activate());
                 break;
             case Skill3:
-                if (validateBrawling()) entity.getStats().modifyStats(new Brawling(entity).activate());
+                if (validateBrawling())
+                    entity.getStats().modifyStats(new Brawling(entity).activate());
                 break;
             default:
                 System.out.print("Something went wrong in" + this.toString());

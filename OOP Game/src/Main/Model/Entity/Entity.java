@@ -4,10 +4,12 @@ import Main.Model.DirectionEnum;
 import Main.Model.Equipment.Equipment;
 import Main.Model.Inventory.Inventory;
 import Main.Model.Map.MapLocationPoint;
-import Main.Model.Map.Tile;
 import Main.Model.Occupation.Occupation;
+import Main.Model.Skills.*;
 import Main.Model.Stats.Stats;
 import Main.Model.Stats.StatsModifier;
+
+import java.util.ArrayList;
 
 /**
  * Modified by John Kaufmann 2/9/16
@@ -24,14 +26,40 @@ public abstract class Entity {
     protected boolean isMoving;
     protected boolean isDoingAction;
     protected DirectionEnum orientation;
+    protected ArrayList<Skills> skills;
 
     //create Entities at certain locations with a certain type
-    public Entity(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location) {
+    public Entity(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location, int level) {
         this.type = entityType;
         this.spiel = entitySpiel;
         this.occupation = occupation;
+        skills.add(new BindWounds(this));
+        skills.add(new Bargain(this));
+        skills.add(new Observation(this));
+        switch (occupation.getOccupationType()) {
+            case Smasher:
+                skills.add(new OneHandedWeapon(this));
+                skills.add(new TwoHandedWeapon(this));
+                skills.add(new Brawling(this));
+                break;
+            case Sneak:
+                skills.add(new PickPocket(this));
+                skills.add(new DetectTrap(this));
+                skills.add(new RemoveTrap(this));
+                skills.add(new Creep(this));
+                skills.add(new RangedWeapon(this));
+                break;
+            case Summoner:
+                skills.add(new Enchantment(this));
+                skills.add(new Boon(this));
+                skills.add(new Bane(this));
+                skills.add(new Staff(this));
+                break;
+            default:
+                System.out.println("Something is wrong with Entity's skills initialization");
+        }
         this.location = location;
-        this.stats = new Stats(occupation.map(), this, 1);
+        this.stats = new Stats(occupation.map(), this, level);
         this.inventory = new Inventory();
         this.isMoving = false;
         this.isDoingAction = false;
