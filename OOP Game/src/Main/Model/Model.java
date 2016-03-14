@@ -53,7 +53,7 @@ public class Model {
         states.put(StateEnum.StartMenuState, new StartMenuState());
         states.put(StateEnum.AvatarCreationState,new AvatarCreationState(player,world));
         states.put(StateEnum.DeathState, new DeathState());
-
+        states.put(StateEnum.SkillState, new SkillState(player));
         new MapIO().saveMap(world, "map.txt");
     }
 

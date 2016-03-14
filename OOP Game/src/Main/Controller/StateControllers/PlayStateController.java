@@ -96,6 +96,9 @@ public class PlayStateController extends StateController {
             case Control:
                 stateControllerManager.setState(StateEnum.KeyBindingsState);
                 break;
+            case SkillTree:
+                stateControllerManager.setState(StateEnum.SkillState);
+                break;
         }
         if (!avatar.hasHealth() && avatar.getLives() == 0) {
             stateControllerManager.setState(StateEnum.DeathState);
