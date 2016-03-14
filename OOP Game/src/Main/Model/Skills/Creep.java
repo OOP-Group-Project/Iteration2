@@ -9,25 +9,22 @@ import Main.Model.Stats.StatsModifier;
  */
 public class Creep extends SneakSkills {
 
-
     public Creep (Entity entity) {
         super(entity, 10, 5);
     }
 
-    public boolean activate() {
-        return successfulPerformance();
-    }
-
     public StatsModifier attack() {
         double totalDamage = 0;
-        if (successfulPerformance()) {
-            Stats stats = entity.getStats();
-            totalDamage = stats.curAgility() + level * 20;
-            enforceManaCost();
-        }
+        Stats stats = entity.getStats();
+        totalDamage = stats.curAgility() * level * 5;
+        enforceManaCost();
         StatsModifier sm = new StatsModifier();
-        sm = sm.builder().lifeModifier(-totalDamage).build();
+        sm = sm.builder().lifeModifier( -totalDamage).build();
         return sm;
     }
 
+    //duration in seconds
+    public double getDuration() {
+        return level * 10;
+    }
 }

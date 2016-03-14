@@ -1,10 +1,10 @@
 package Main.Controller.ObjectControllers.EntityController.ActionControllers.SkillsControllers;
 
 import Main.Controller.Manager.UserActionEnum;
-import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.AreaEffect.AreaEffectEnum;
 import Main.Model.AreaEffect.Traps.Trap;
 import Main.Model.Entity.Entity;
+import Main.Model.Items.WeaponTypeEnum;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Skills.*;
@@ -25,18 +25,22 @@ public class SneakController {
     public void performSkill(UserActionEnum u) {
       /*  switch (u) {
             case Skill1:
-//                if (new PickPocket(sneak, 10000, 0).activate()) pickpocket();
+                if (new PickPocket(sneak).activate())
+                    pickpocket();
                 break;
             case Skill2:
-//                if (new DetectTrap(sneak,100,0).activate()) uncoverTrap();
-//                    if (new RemoveTrap(sneak,100,0).activate()) disableTrap();
+                if (new DetectTrap(sneak).activate()) uncoverTrap();
+                    if (new RemoveTrap(sneak).activate()) disableTrap();
                 break;
             case Skill3:
                 Creep c = new Creep(sneak);
-                if (c.activate()) sneak.getStats().modifyStats(c.attack());
+                //TODO: modifyStats of enemies instead
+                if (c.activate())
+                    sneak.getStats().modifyStats(c.attack());
                 break;
             case Skill4:
-                sneak.getStats().modifyStats(new RangedWeapon(sneak).activate());
+                if (validateRanged())
+                    sneak.getStats().modifyStats(new RangedWeapon(sneak).attack());
                 break;
             default:
                 System.out.print("Something went wrong in" + this.toString());
@@ -61,5 +65,13 @@ public class SneakController {
         Entity target = map.getTile(sneak.getLocation().x, sneak.getLocation().y).getEntity();
         if (target != null && target.getInventory().isThereAnItemAt(0))
             sneak.getInventory().addItem(target.getInventory().getItemAt(0));
+    }
+
+    private boolean validateRanged() {
+        if (sneak.getEquipment().getWeapon().getWeaponType() == WeaponTypeEnum.FIST)
+            return true;
+        else {
+            return false;
+        }
     }
 }

@@ -109,8 +109,4 @@ public abstract class Skills {
             return true;
         }
     }
-    public void apply() {
-
-    }
-
 }

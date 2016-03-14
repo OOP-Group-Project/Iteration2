@@ -33,6 +33,4 @@ public class BindWounds extends BaseSkills {
             enforceManaCost();
         }
     }
-
-
 }
