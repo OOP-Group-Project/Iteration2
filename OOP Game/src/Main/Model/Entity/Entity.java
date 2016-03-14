@@ -51,7 +51,8 @@ public abstract class Entity {
     }
 
     public void setLocation(MapLocationPoint location) {
-        this.location = location;
+        this.location.x = location.x;
+        this.location.y = location.y;
     }
 
     //returns the type of entity it is

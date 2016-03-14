@@ -15,10 +15,7 @@ public class InventoryStateController extends StateController{
 	
 	private StateControllerManager stateControllerManager;
 	private InventoryState inventoryState;
-	
 
-	
-	
 	public InventoryStateController(StateControllerManager stateManager, InventoryState inventoryState) {
 		stateControllerManager = stateManager;
 		this.inventoryState = inventoryState;
