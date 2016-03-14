@@ -1,5 +1,6 @@
 package Main.View.Graphics;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -49,6 +50,7 @@ public class GraphicsAssets {
     public static BufferedImage goldStar;
     public static BufferedImage redCross;
     public static BufferedImage skullCrossBones;
+    public static BufferedImage trap;
 
     public static final int TILE_PX_WIDTH = 100;
     public static final int TILE_PX_HEIGHT = 87;
@@ -70,6 +72,7 @@ public class GraphicsAssets {
         skeletonWalk = ImageLoader.loadImage("/Resources/skeletonWalk.png");
         pet = ImageLoader.loadImage("/Resources/tigerPet.png");
         skullCrossBones = ImageLoader.loadImage("/Resources/skullAndCrossBones.png");
+        trap = ImageLoader.loadImage("/Resources/trap.gif");
 
         for (int j = 0; j < 30; j++) {
             itemImages.add(ImageLoader.loadImage("/Resources/Items/item"+j+".png"));

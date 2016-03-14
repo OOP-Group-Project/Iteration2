@@ -155,6 +155,9 @@ public class ObjectRenderer {
                 case LEVELUP:
                     g.drawImage(graphicsAssets.goldStar,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
                     break;
+                case TRAP:
+                    g.drawImage(graphicsAssets.trap,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
+                    break;
                 case DEATH:
                     g.drawImage(graphicsAssets.skullCrossBones,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
                     break;
