@@ -27,6 +27,7 @@ public abstract class Entity {
     protected boolean isMoving;
     protected boolean isDoingAction;
     protected DirectionEnum orientation;
+    protected boolean isDead;
     protected ArrayList<Skills> skills = new ArrayList<>();
 
     //create Entities at certain locations with a certain type
@@ -63,6 +64,7 @@ public abstract class Entity {
         this.inventory = new Inventory();
         this.isMoving = false;
         this.isDoingAction = false;
+        this.isDead = false;
     }
 
     public void enetitySkillsInitializer(Entity entity) {
@@ -127,6 +129,12 @@ public abstract class Entity {
         return stats.curLife() > 0;
     }
 
+    public int getLives() {return stats.curLives();}
+
+    public void died() {isDead = true;}
+
+    public boolean isDead() {return isDead;}
+
 //    public void modifyStats(StatsModifier sm) {stats.modifyStats(sm);}
 
     // used to temporarily modify stats
@@ -134,6 +142,8 @@ public abstract class Entity {
 
     // reverts change caused by buff()
     public void revert(){stats.revert();}
+
+    public void revertDeath() {stats.revertDeath();}
 
     //
     public void modifyLives(int amt){stats.modifyLives(amt);}
