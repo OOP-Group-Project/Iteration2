@@ -89,6 +89,9 @@ public abstract class Entity {
         return skills;
     }
 
+    public void setSkills(ArrayList<Skills> skills) {
+        this.skills = skills;
+    }
     public int getSkillPoints() {
         return stats.getSkillPoints();
     }

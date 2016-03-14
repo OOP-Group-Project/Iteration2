@@ -90,6 +90,11 @@ public class KeyboardManager implements KeyListener{
 		keyboardActionMapping.put(KeyEvent.VK_7, UserActionEnum.Skill6);
 		keyboardActionMapping.put(KeyEvent.VK_8, UserActionEnum.Skill7);
 
+		keyboardActionMapping.put(KeyEvent.VK_V, UserActionEnum.Spell1);
+		keyboardActionMapping.put(KeyEvent.VK_B, UserActionEnum.Spell2);
+		keyboardActionMapping.put(KeyEvent.VK_N, UserActionEnum.Spell3);
+
+
 		keyboardActionMapping.put(KeyEvent.VK_ENTER, UserActionEnum.Select);
 		keyboardActionMapping.put(KeyEvent.VK_K, UserActionEnum.Interact);
 		keyboardActionMapping.put(KeyEvent.VK_NUMPAD5, UserActionEnum.Select);
@@ -104,12 +109,10 @@ public class KeyboardManager implements KeyListener{
 		keyboardActionMapping.put(KeyEvent.VK_J, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_L, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_M, UserActionEnum.None);
-		keyboardActionMapping.put(KeyEvent.VK_N, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_O, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_P, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_T, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_U, UserActionEnum.None);
-		keyboardActionMapping.put(KeyEvent.VK_V, UserActionEnum.None);
 
 		keyboardActionMapping.put(KeyEvent.VK_9, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_0, UserActionEnum.None);

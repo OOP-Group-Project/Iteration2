@@ -206,6 +206,10 @@ public class ObjectRenderer {
                     areaEffectRenderer.render(g, tile.getAreaEffect(), topLeft,value);
                 }
 
+                if (tile.hasAttackEffects()) {
+                    areaEffectRenderer.render(g, tile.getAttackEffects().get(0), topLeft, value);
+                }
+
                 if (tile.hasItems()) {
                     for (Item item : tile.getItems()) {
                         itemRenderer.render(g, item, topLeft,value);
