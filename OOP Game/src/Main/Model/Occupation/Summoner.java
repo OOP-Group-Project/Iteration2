@@ -9,6 +9,7 @@ public class Summoner extends Occupation {
         modify.put("agi", 1.0);
         modify.put("int", 1.3);
         modify.put("har", 1.0);
+        occupationType = OccupationTypeEnum.Summoner;
     }
 
     @Override

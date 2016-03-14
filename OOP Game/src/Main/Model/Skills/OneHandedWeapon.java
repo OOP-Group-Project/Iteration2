@@ -6,6 +6,7 @@ import Main.Model.Stats.StatsModifier;
 
 /**
  * Created by AndyZhu on 7/3/2016.
+ * linear effect with length as 1
  */
 public class OneHandedWeapon extends SmasherSkills {
     public OneHandedWeapon(Entity entity) {

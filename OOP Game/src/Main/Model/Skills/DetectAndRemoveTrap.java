@@ -13,9 +13,10 @@ import java.util.ArrayList;
  * Created by AndyZhu on 7/3/2016.
  *
  */
-public class DetectTrap extends SneakSkills {
-    public DetectTrap (Entity entity) {
+public class DetectAndRemoveTrap extends SneakSkills {
+    public DetectAndRemoveTrap (Entity entity) {
         super(entity, 2, 2);
+        skillName = "Detect and remove trap";
     }
 }
 

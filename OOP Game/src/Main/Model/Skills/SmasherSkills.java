@@ -17,6 +17,7 @@ public abstract class SmasherSkills extends Skills {
         super(entity, coolDownPeriod, manaCost);
     }
 
+    //returns a StatsModifer with damage to deal at enemy
     public StatsModifier activate() {
         StatsModifier sm = new StatsModifier();
 
@@ -24,15 +25,13 @@ public abstract class SmasherSkills extends Skills {
             double totalDamage;
             timeWhenPerformed = System.currentTimeMillis();
             Stats stats = entity.getStats();
-            //TODO:should use the Attack class to calc this
             totalDamage = stats.curOffense() * level * damageFactor;
             sm = sm.builder().lifeModifier(-totalDamage).build();
             enforceManaCost();
             System.out.println("Successfully performed " + skillName);
             System.out.println("The damage is: " + stats.curOffense() + " * " + level + " * " + damageFactor + ": " + totalDamage);
             return sm;
-        }
-        else {
+        } else {
             return sm;
         }
     }

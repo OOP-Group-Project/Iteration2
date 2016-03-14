@@ -440,7 +440,11 @@ public class Stats {
         else if(cur_arm < 0)
             cur_arm = 0;
     }
-    private void changeCurExperience(int amt){cur_exp += amt;}
+    private void changeCurExperience(int amt){
+        cur_exp += amt;
+        if (cur_exp >= max_exp)
+            levelUp();
+    }
     //
     private void changeLevel(int amt) {
         if (amt > 0)
@@ -541,6 +545,7 @@ public class Stats {
         setMaxExperience();
         setTemp();
         setCur();
+        changeSkillPoints(level);
     }
     //
     public void buff(StatsModifier sm) {

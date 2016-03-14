@@ -12,7 +12,7 @@ public class Mount extends Entity {
     private Avatar player;
 
     public Mount(MapLocationPoint location) {
-        super(EntityTypeEnum.Mount, EntitySpeechEnum.TRASH, new Smasher(), location);
+        super(EntityTypeEnum.Mount, EntitySpeechEnum.TRASH, new Smasher(), location, 1);
         this.player = null;
     }
 
