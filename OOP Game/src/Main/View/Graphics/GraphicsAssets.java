@@ -75,7 +75,7 @@ public class GraphicsAssets {
         trap = ImageLoader.loadImage("/Resources/AreaEffects/trap.png");
         portal = ImageLoader.loadImage("/Resources/AreaEffects/portal.png");
 
-        for (int j = 0; j < 30; j++) {
+        for (int j = 0; j < 29; j++) {
             itemImages.add(ImageLoader.loadImage("/Resources/Items/item"+j+".png"));
         }
 
