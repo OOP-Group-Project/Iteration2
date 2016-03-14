@@ -3,7 +3,7 @@ Type:Avatar
 Occupation:Smasher
 Level:3
 Inventory:1-1,0-10,3-1
-Location:16,16
+Location:17,15
 ~
 Name:John
 Type:NPC
@@ -13,12 +13,12 @@ Location:10,11
 ~
 Name:Mike
 Type:NPC
-Level:10
+Level:1
 Occupation:Summoner
 Location:8,15
 ~
 Name:Mike
 Type:Mount
-Level:10
+Level:1
 Occupation:Summoner
 Location:15,17
