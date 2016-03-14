@@ -31,11 +31,19 @@ public abstract class Entity {
     protected boolean isDead;
     protected ArrayList<Skills> skills = new ArrayList<>();
 
+
     //create Entities at certain locations with a certain type
     public Entity(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location, int level, Inventory inv) {
         this.type = entityType;
         this.spiel = entitySpiel;
         this.occupation = occupation;
+        this.inventory = inv;
+        this.location = location;
+
+        init(level);
+    }
+
+    public void init(int level){
         skills.add(new BindWounds(this));
         skills.add(new Bargain(this));
         skills.add(new Observation(this));
@@ -60,7 +68,6 @@ public abstract class Entity {
             default:
                 System.out.println("Something is wrong with Entity's skills initialization");
         }
-        this.location = location;
         this.stats = new Stats(occupation.map(), this, level);
         this.inventory = inv;
         this.isMoving = false;

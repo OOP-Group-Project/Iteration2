@@ -103,6 +103,7 @@ public class PlayStateController extends StateController {
                 stateControllerManager.setState(StateEnum.SkillState);
                 break;
         }
+
         if (!avatar.hasHealth() && avatar.getLives() == 0) {
             stateControllerManager.setState(StateEnum.DeathState);
         }
