@@ -1,17 +1,37 @@
 package Main.Model.Skills;
 
 import Main.Model.Entity.Entity;
+import Main.Model.Stats.Stats;
+import Main.Model.Stats.StatsModifier;
+
+import java.util.Random;
 
 /**
- * Created by AndyZhu on 7/3/2016.
+ * Created by Matthew on 3/12/2016.
+ * deals damage with staff
  */
-public class Staff extends SummonerSkill {
-    public Staff (Entity entity) {
-        super(entity);
+public class Staff extends SummonerSkills {
+
+    public Staff(Entity entity) {
+        //2.4 seconds cooldown, 0 mana cost
+        super(entity, 2.4, 0);
+        damageFactor = 1;
     }
 
-    @Override
-    public void apply() {
-
+    public StatsModifier activate() {
+        StatsModifier sm = new StatsModifier();
+        if (allCheck()) {
+            enforceManaCost();
+            timeWhenPerformed = System.currentTimeMillis();
+            Stats stats = entity.getStats();
+            double damageToDeal = stats.curOffense() * level * damageFactor;
+            sm = sm.builder().lifeModifier(-damageToDeal).build();
+            System.out.println("Successfully performed " + skillName);
+            System.out.println("The damage is: " + damageToDeal);
+            return sm;
+        }
+        else {
+            return sm;
+        }
     }
 }

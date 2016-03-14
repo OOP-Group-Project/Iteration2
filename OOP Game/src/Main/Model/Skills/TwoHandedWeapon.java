@@ -1,17 +1,20 @@
 package Main.Model.Skills;
 
 import Main.Model.Entity.Entity;
+import Main.Model.Stats.Stats;
+import Main.Model.Stats.StatsModifier;
+
+import java.util.Random;
 
 /**
- * Created by AndyZhu on 7/3/2016.
+ * Created by Matthew on 3/12/2016.
  */
-public class TwoHandedWeapon extends SmasherSkill {
-    public TwoHandedWeapon (Entity entity) {
-        super(entity);
-    }
+public class TwoHandedWeapon extends SmasherSkills {
 
-    @Override
-    public void apply() {
-
+    public TwoHandedWeapon(Entity entity) {
+        //2 second cooldown and 0 mana cost
+        super(entity, 2.0, 0);
+        skillName = "Two handed weapon attack";
+        damageFactor = 6;
     }
 }

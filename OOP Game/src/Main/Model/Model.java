@@ -1,16 +1,12 @@
 package Main.Model;
 
-import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Entity.Avatar;
-import Main.Model.Entity.Entity;
-import Main.Model.Entity.Npc;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.State.*;
-import Main.Model.io.EntityIO;
+import Main.Model.io.ItemsIO;
 import Main.Model.io.MapIO;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
 
 /**
@@ -34,7 +30,11 @@ public class Model {
 
         // Create the map first, we'll loadMap everything into it later
         world = new MapIO().loadMap("map.txt");
+        world = new ItemsIO().loadItemsToMap(world, "Items.txt");
 
+        new ItemsIO().saveItemsOnMap(world, "Items1.txt");
+        // Test adding an area effect.
+//        world.getTile(1,7).addAreaEffect(new TakeDamage());
 
 
         /***********************
@@ -50,6 +50,7 @@ public class Model {
         states.put(StateEnum.StatState, new StatState(player));
 
         states.put(StateEnum.StartMenuState, new StartMenuState());
+        states.put(StateEnum.AvatarCreationState,new AvatarCreationState(player));
 
         new MapIO().saveMap(world, "map.txt");
     }

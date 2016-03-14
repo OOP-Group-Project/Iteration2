@@ -8,9 +8,6 @@ import Main.Model.Stats.StatsModifier;
  */
 
 public class TakeDamage extends AreaEffect {
-    /*** Member Variables ***/
-    private double damageAmount;
-
     /*** Constructor ***/
     //Applies Once
     public TakeDamage(double damageAmount){

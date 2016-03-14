@@ -9,8 +9,6 @@ import Main.Model.Stats.StatsModifier;
  */
 
 public class HealDamage extends AreaEffect {
-    /*** Member Variables ***/
-    private double healAmount;
 
     /*** Constructor ***/
     //Applies once

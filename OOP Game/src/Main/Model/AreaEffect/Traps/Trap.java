@@ -1,30 +1,37 @@
 package Main.Model.AreaEffect.Traps;
 
 import Main.Model.AreaEffect.AreaEffect;
-import Main.Model.Stats.StatsModifier;
 import Main.Model.AreaEffect.AreaEffectEnum;
+import Main.Model.Requirement;
+
 
 /**
  * Created by Peter Camejo on 3/13/2016.
  */
 public class Trap extends AreaEffect {
     /*** Member Variables ***/
-    private boolean isVisible;
+    protected boolean isVisible;
+    protected TrapTypeEnum trapType;
+    protected int requiredDetectionSkill; //Detection skilled need to make trap visible.
 
     /*** Constructors ***/
     public Trap(){
-        this.type = AreaEffectEnum.TRAP;
-        this.modifier = null;
+        super(AreaEffectEnum.TRAP);
         this.isVisible = false;
+        this.requiredDetectionSkill = 0;
+        this.trapType = null;
     }
-
-    public Trap(StatsModifier modifier , boolean isVisible){
-        super(AreaEffectEnum.TRAP , 0);
-        this.isVisible = isVisible;
+    public Trap(TrapTypeEnum trapType,int requiredDetectionSkill){
+        super(AreaEffectEnum.TRAP);
+        this.isVisible = false;
+        this.requiredDetectionSkill = requiredDetectionSkill;
+        this.trapType = trapType;
     }
 
     /*** Methods ***/
     public void setIsVisible(boolean visible){this.isVisible = visible;}
     public boolean getIsVisible(){return this.isVisible;}
+    public TrapTypeEnum getTrapType(){ return this.trapType;}
+    public int getRequiredDetectionSkill(){return this.requiredDetectionSkill;}
 
 }
