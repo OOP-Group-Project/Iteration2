@@ -3,6 +3,8 @@ package Main.Model.Skills;
 import Main.Model.Entity.Entity;
 import Main.Model.Stats.StatsModifier;
 
+import java.util.Random;
+
 /**
  * Created by Matthew on 3/12/2016.
  */
@@ -29,6 +31,7 @@ public class Enchantment extends SummonerSkills {
         }
 
     }
+
 }
 
 

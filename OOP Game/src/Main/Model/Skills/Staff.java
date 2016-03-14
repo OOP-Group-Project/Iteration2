@@ -35,4 +35,5 @@ public class Staff extends SummonerSkills {
             return sm;
         }
     }
+
 }

@@ -1,6 +1,5 @@
 package Main.Model.Map;
 
-import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.Entity.*;
 import Main.Model.Items.Item;
 import Main.Model.Terrain.TerrainTypeEnum;
@@ -16,13 +15,14 @@ public class Map {
     private int height;
 	private boolean visited[][];
     private MapLocationPoint playerLocation;
-//    private ArrayList<Entity> npcLocations;
+    private HashMap<EntityTypeEnum, MapLocationPoint> entityLocations;
+    private ArrayList<MapLocationPoint> npcLocations;
 //    private Npc[] npcLocations;
 
     // Stores locations of different entities, to be used with the NpcMovementGenerator
     private Avatar[] avatarLocations;
     private Pet[] petLocations;
-    private Vehicle[] vehicleLocations;
+    private Mount[] mountLocations;
 
     public Map(int width, int height) {
         this.height = height;
@@ -54,8 +54,11 @@ public class Map {
 
 	public void addEntity(Entity e, int xLocation, int yLocation) {
 		tiles[xLocation][yLocation].addEntity(e);
-//        addToList(e);
 	}
+
+    public void addEntity(Entity e, MapLocationPoint point) {
+        tiles[point.x][point.y].addEntity(e);
+    }
 
 	public void addItem(Item i, int xLocation, int yLocation) {
 		tiles[xLocation][yLocation].addItem(i);
@@ -73,28 +76,44 @@ public class Map {
 		return tiles[x][y];
 	}
 
-//    public ArrayList<Entity> getNpcLocations(){
-//        return npcLocations;
-//    }
+    public Tile getTile(MapLocationPoint mapLocationPoint) {
+        return tiles[mapLocationPoint.x][mapLocationPoint.y];
+    }
+    public void updateEntityLocation(Entity e){
+        // If list doesn't contain an avatar, then add it
+        if (!entityLocations.containsKey(EntityTypeEnum.Avatar)){
+            entityLocations.put(EntityTypeEnum.Avatar,e.getLocation());
 
-//    public void getAvatar(){
-//        for(int i = 0; i < width; i++){
-//            for(int j = 0; j < width; j++){
-//                if (tiles[i][j].getEntity().getType() == EntityTypeEnum.Avatar){
-//                    System.out.println(tiles[i][j].getEntity().getLocation());
-////                    return tiles[i][j].getEntity().getLocation();
-//                }
-//            }
-//        }
-////        return null;
-//    }
+        // If list contains an avatar, can only be one, replace the value
+        } else if (entityLocations.containsKey(EntityTypeEnum.Avatar)){
+            entityLocations.replace(EntityTypeEnum.Avatar,e.getLocation());
+
+        // If list doesn't contain NPC, then add it
+        } else if (!entityLocations.containsKey(EntityTypeEnum.NPC)){
+            entityLocations.put(EntityTypeEnum.NPC,e.getLocation());
+        }
+    }
+
+    public void removeEntityLocation(MapLocationPoint location){
+        if (entityLocations.containsValue(location)){
+
+        }
+    }
 
     public void setPlayerLocation(MapLocationPoint location){
-        this.playerLocation = location;
+        playerLocation = location;
     }
 
     public MapLocationPoint getPlayerLocation(){
         return playerLocation;
+    }
+
+    public void setNPCLocation(MapLocationPoint location){
+        this.npcLocations.add(location);
+    }
+
+    public ArrayList<MapLocationPoint> getAvatarLocation(){
+        return npcLocations;
     }
 
 	public boolean isBlocked(int x, int y){
@@ -108,20 +127,5 @@ public class Map {
     public void pathFinderVisited(int x, int y) {
         visited[x][y] = true;
     }
-
-//    private void addToList(Entity e){
-//        if(e.getType() == EntityTypeEnum.NPC){
-//            npcLocations.add(e);
-//        }
-//        if(e.getType() == EntityTypeEnum.Avatar){
-//
-//        }
-//        if(e.getType() == EntityTypeEnum.Pet){
-//
-//        }
-//        if(e.getType() == EntityTypeEnum.Vehicle){
-//
-//        }
-//    }
 
 }

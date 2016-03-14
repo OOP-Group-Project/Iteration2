@@ -1,5 +1,7 @@
 package Main.Model.io;
 
+import Main.Model.AreaEffect.AreaEffect;
+import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Map.Map;
 import Main.Model.Map.Tile;
 import Main.Model.Terrain.TerrainTypeEnum;
@@ -46,7 +48,7 @@ public class MapIO {
         map.setWidth(width);
         map.setTiles(mapTiles);
 
-        //set the avatar
+        map = new ItemsIO().loadItemsToMap(map, "Items.txt");
 
         //TODO: implement the loadMap entity array
 
@@ -55,7 +57,7 @@ public class MapIO {
 
     //load map given an existing map
     public Map loadMap(Map map) {
-        return loadMap(map, "map");
+        return loadMap(map, "map.txt");
     }
 
 

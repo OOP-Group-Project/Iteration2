@@ -86,6 +86,13 @@ public class ObjectRenderer {
             if (type == EntityTypeEnum.NPC){
                 g.drawImage(GraphicsAssets.skeletonWalk,topLeft.x,topLeft.y ,graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT,null);
             }
+            else if (type == EntityTypeEnum.Pet) {
+                g.drawImage(GraphicsAssets.pet,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+            }
+            else if(type == EntityTypeEnum.Mount) {
+                g.drawImage(GraphicsAssets.pet,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+            }
+
         }
     }
 
@@ -117,16 +124,19 @@ public class ObjectRenderer {
                 // Render HealDamage AreaEffect
                 areaEffectRenderer.render(g, tile.getAreaEffect(), topLeft);
             }
+
+            if(tile.hasItems()) {
+                for (Item item : tile.getItems()) {
+                    itemRenderer.render(g, item, topLeft);
+                }
+            }
         }
     }
 
     public static class itemRenderer {
-        public static void render(Graphics g, Item item, Point pxCenterPoint) {
-//            ItemTypeEnum type = item.getType();
-//
-//            switch(type) {
-
-            //}
+        public static void render(Graphics g, Item item, Point pxTopLeft) {
+            int itemId = item.getId()-1;
+            g.drawImage(graphicsAssets.itemImages.get(itemId), pxTopLeft.x+5, pxTopLeft.y, graphicsAssets.TILE_PX_WIDTH-20,graphicsAssets.TILE_PX_HEIGHT-10, null);
         }
     }
 

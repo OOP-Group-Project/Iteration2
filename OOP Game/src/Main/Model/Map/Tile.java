@@ -15,8 +15,7 @@ public class Tile {
 	private ArrayList<Item> items = new ArrayList<>();
     private AreaEffect areaEffect = null;
 
-
-	// Default constructor
+// Default constructor
 	
 	public Tile(TerrainTypeEnum terrainType, int id) {
 		this.terrainType = terrainType;
@@ -54,6 +53,10 @@ public class Tile {
 		return entity != null;
 	}
 
+	public ArrayList<Item> getItems() {
+		return items;
+	}
+
 	public boolean hasItems() {
 		return !items.isEmpty();
 	}
@@ -65,11 +68,13 @@ public class Tile {
 		return entity;
 	}
 
+
+    // Can add different types of conditions of whether  a tile is blocked for pathfinding (Iteration 3)?
 	public boolean isBlocked(){
-		if (this.terrainType == TerrainTypeEnum.Grass){
-			return false;
-		}
-		else return true;
+		if (terrainType == TerrainTypeEnum.Grass) {
+            return false;
+        }
+        return true;
 	}
 
 	public void removeAreaEffect() {

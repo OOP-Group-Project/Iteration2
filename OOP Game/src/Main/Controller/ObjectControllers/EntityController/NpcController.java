@@ -1,5 +1,6 @@
 package Main.Controller.ObjectControllers.EntityController;
 
+import Main.Controller.Manager.ObjectControllerManager;
 import Main.Controller.Manager.UserActionEnum;
 import Main.Controller.ObjectControllers.EntityController.ActionControllers.ActionController;
 import Main.Controller.ObjectControllers.EntityController.ActionControllers.MovementController;
@@ -13,16 +14,17 @@ import com.sun.javafx.sg.prism.NGParallelCamera;
 /**
  * Created by Michael on 3/13/16.
  */
-public class NpcController extends EntityController {
+public class NpcController extends Main.Controller.ObjectControllers.EntityController.EntityController {
     private ActionController actionController;
     private NpcMovementGenerator npcMovementGenerator;
     private MovementController movementController;
     private Npc npc;
 
-    public NpcController(Map map, Entity entity, Entity npc) {
+    public NpcController(ObjectControllerManager objectControllerManager, Map map, Entity entity, Npc npc) {
         this.npcMovementGenerator = new NpcMovementGenerator(map, entity, npc, new  Heuristic());
-        this.actionController = new ActionController(map, entity);
+        this.actionController = new ActionController(objectControllerManager, map, entity);
         this.movementController = new MovementController(map, npc);
+        this.npc = npc;
     }
 
     @Override
@@ -38,5 +40,6 @@ public class NpcController extends EntityController {
         if(nextMove != null) {
             movementController.move(nextMove);
         }
+
     }
 }

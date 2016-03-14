@@ -10,9 +10,11 @@ import Main.Model.Stats.StatsModifier;
  */
 public class OneHandedWeapon extends SmasherSkills {
     public OneHandedWeapon(Entity entity) {
+
         //1.4 second cooldown 2 mana cost
         super(entity, 1.4, 2.0);
         damageFactor = 3;
         skillName = "One handed weapon attack";
     }
+
 }

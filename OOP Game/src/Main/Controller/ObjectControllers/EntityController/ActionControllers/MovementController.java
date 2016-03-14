@@ -4,6 +4,7 @@ import Main.Controller.Manager.UserActionEnum;
 import Main.Controller.ObjectControllers.TimedObjectController;
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.Entity;
+import Main.Model.Entity.EntityTypeEnum;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Map.Tile;
@@ -48,13 +49,11 @@ public class MovementController extends TimedObjectController{
             // Timer will allow the number of milliseconds passed as an argument elapse before saying that the entity is no longer moving.
             timer.start(speedInMs);
 
-
-
             /*****************************
              * Do our movement
              *****************************/
             MapLocationPoint endPoint = entity.getLocation();
-            Tile startTile = map.getTile(currentPoint.x, currentPoint.y);
+            Tile startTile = map.getTile(entity.getLocation().x, entity.getLocation().y);
 
             //System.out.println("Movement controller being used with direction: " + u);
             switch (u) {
@@ -69,6 +68,7 @@ public class MovementController extends TimedObjectController{
                             changeTile(startTile, map.getTile(endPoint.x, endPoint.y));
                         }
                     }
+                    entity.setOrientation(DirectionEnum.Up);
                     break;
                 case UpLeft:
                     //move endPoint
@@ -81,6 +81,7 @@ public class MovementController extends TimedObjectController{
                             changeTile(startTile, map.getTile(endPoint.x, endPoint.y));
                         }
                     }
+                    entity.setOrientation(DirectionEnum.UpLeft);
                     break;
                 case UpRight:
                     //move endPoint
@@ -93,6 +94,7 @@ public class MovementController extends TimedObjectController{
                             changeTile(startTile, map.getTile(endPoint.x, endPoint.y));
                         }
                     }
+                    entity.setOrientation(DirectionEnum.UpRight);
                     break;
                 case Down:
                     //move endPoint
@@ -105,6 +107,7 @@ public class MovementController extends TimedObjectController{
                             changeTile(startTile, map.getTile(endPoint.x, endPoint.y));
                         }
                     }
+                    entity.setOrientation(DirectionEnum.Down);
                     break;
                 case DownLeft:
                     //move endPoint
@@ -117,6 +120,7 @@ public class MovementController extends TimedObjectController{
                             changeTile(startTile, map.getTile(endPoint.x, endPoint.y));
                         }
                     }
+                    entity.setOrientation(DirectionEnum.DownLeft);
                     break;
                 case DownRight:
                     //move endPoint
@@ -129,12 +133,15 @@ public class MovementController extends TimedObjectController{
                             changeTile(startTile, map.getTile(endPoint.x, endPoint.y));
                         }
                     }
+                    entity.setOrientation(DirectionEnum.DownRight);
                     break;
                 default:
                     System.out.println("Something went wrong with our movement in movement controller!");
             }
         }
-
+        if (entity.getType() == EntityTypeEnum.Avatar){
+            map.setPlayerLocation(entity.getLocation());
+        }
     }
 
     /*****************************
@@ -168,19 +175,21 @@ public class MovementController extends TimedObjectController{
     }
 
     //checks to see if the tile is blocked
-    private boolean checkBlocked(MapLocationPoint endPoint) {
+    public boolean checkBlocked(MapLocationPoint endPoint) {
         //check blocked
-        Tile endpointTile = map.getTile(endPoint.x, endPoint.y);
-        if (endpointTile.getEntity() == null) {
-            if (endpointTile.getTerrainType() == TerrainTypeEnum.Grass) return true;
-            if (endpointTile.getTerrainType() == TerrainTypeEnum.Water) if (canWalkOnWater) return true;
-            if (endpointTile.getTerrainType() == TerrainTypeEnum.Mountain) if(canTravelOverMountains) return true;
-            //print statement
-            System.out.println("Entity attempted to move in a tile he couldn't!");
-            return false;
-        } else {
-            return false;
+        if(checkOutOfBounds(endPoint)) {
+            Tile endpointTile = map.getTile(endPoint.x, endPoint.y);
+            if (endpointTile.getEntity() == null) {
+                if (endpointTile.getTerrainType() == TerrainTypeEnum.Grass) return true;
+                if (endpointTile.getTerrainType() == TerrainTypeEnum.Water) if (canWalkOnWater) return true;
+                if (endpointTile.getTerrainType() == TerrainTypeEnum.Mountain) if (canTravelOverMountains) return true;
+                //print statement
+                System.out.println("Entity attempted to move in a tile he couldn't!");
+                return false;
+            }
         }
+        return false;
+
     }
 
     //check the next tile and then depending on what it is activate the effect. (UNCOMMENT WHEN YOU NEED EFFECT)

@@ -2,8 +2,6 @@ package Main.Controller.StateControllers;
 
 import Main.Controller.Manager.ObjectControllerManager;
 import Main.Controller.ObjectControllers.EntityController.AvatarController;
-import Main.Controller.ObjectControllers.EntityController.EntityController;
-import Main.Controller.ObjectControllers.EntityController.NpcController;
 import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.UserActionEnum;
 import Main.Controller.ObjectControllers.MapController;
@@ -20,16 +18,30 @@ public class PlayStateController extends StateController {
     private StateControllerManager stateControllerManager;
     private ObjectControllerManager objectControllerManager;
     private PlayState playState;
+    private UserActionEnum lastAction;
 
     public PlayStateController(StateControllerManager stateControllerManager, ObjectControllerManager objectControllerManager, PlayState playState) {
         this.stateControllerManager = stateControllerManager;
         this.objectControllerManager = objectControllerManager;
         this.playState = playState;
+        this.lastAction = UserActionEnum.None;
     }
 
     @Override
     public void update() {
         ((MapController)objectControllerManager.getObjectController(playState.getWorld())).update();
+        switch(lastAction){
+            case ViewUp:
+            case ViewUpLeft:
+            case ViewUpRight:
+            case ViewDown:
+            case ViewDownLeft:
+            case ViewDownRight:
+                break;
+            default:
+                playState.centerToAvatar();
+                break;
+        }
     }
 
     @Override
@@ -68,13 +80,18 @@ public class PlayStateController extends StateController {
             case Select:
             	stateControllerManager.setState(StateEnum.InventoryState);
             	break;
-            case Talk:
-                stateControllerManager.setState(StateEnum.TalkState);
+            case Interact:
+
+                //stateControllerManager.setState(StateEnum.TalkState);
                 break;
             case Shift:
                 stateControllerManager.setState(StateEnum.StatState);
                 break;
+            case Control:
+                stateControllerManager.setState(StateEnum.KeyBindingsState);
+                break;
         }
+        lastAction = action;
     }
 }
 

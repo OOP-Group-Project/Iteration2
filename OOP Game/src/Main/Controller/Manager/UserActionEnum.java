@@ -18,6 +18,7 @@ public enum UserActionEnum {
     Pause,
     Select,
     Shift,
+    Control,
 
     //entity actions [10, 17]
     Attack,
@@ -27,7 +28,7 @@ public enum UserActionEnum {
     Attack1,
     Attack2,
     Attack3,
-    Talk,
+    Interact,
 
     //views [18,23]
     ViewUp,
@@ -44,5 +45,8 @@ public enum UserActionEnum {
     Skill4,
     Skill5,
     Skill6,
-    Skill7;
+    Skill7,
+
+    //other
+    None;
 }

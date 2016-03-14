@@ -14,6 +14,10 @@ public class Npc extends Entity {
         super(entityType, entitySpiel, occupation, location, 1);
     }
 
+    public Npc(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location, int level){
+        super(entityType, entitySpiel, occupation, location, level);
+    }
+
     public Npc(MapLocationPoint location) {
         super(EntityTypeEnum.NPC, EntitySpeechEnum.TRASH, new Smasher(), location, 1);
     }

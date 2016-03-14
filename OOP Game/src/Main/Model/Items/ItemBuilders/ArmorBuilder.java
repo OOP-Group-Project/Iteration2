@@ -6,7 +6,6 @@ import Main.Model.Items.Item;
 import Main.Model.Items.ItemTypeEnum;
 import Main.Model.Skills.Skills;
 
-
 /**
  * Created by mason on 3/11/16.
  */
@@ -22,8 +21,10 @@ public class ArmorBuilder extends ItemBuilder {
         this.armorType = armorType;
     }
 
+
 /*
     public ArmorBuilder setSkills(Skills[] skills) {
+>>>>>>> origin/master
         this.skills = skills;
         return this;
     }

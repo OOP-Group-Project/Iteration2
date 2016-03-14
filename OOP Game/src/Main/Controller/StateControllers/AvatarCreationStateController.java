@@ -24,9 +24,10 @@ public class AvatarCreationStateController extends StateController{
         switch(action) {
             case Pause:
                 stateControllerManager.setState(StateEnum.StartMenuState);
+                avatarCreationState.init();
                 break;
             case Select:
-                avatarCreationState.createAvatar();
+                avatarCreationState.createGame();
                 stateControllerManager.setState(StateEnum.LoadState);
                 avatarCreationState.init();
                 break;

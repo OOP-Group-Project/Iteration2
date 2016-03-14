@@ -10,6 +10,7 @@ import Main.Model.Requirement;
  * TODO: Update constructors w/ super() when Equippable is implmented.
  */
 public class Armor extends Equippable{
+
         /*** Member Variables ***/
         private ArmorTypeEnum armorType;
 

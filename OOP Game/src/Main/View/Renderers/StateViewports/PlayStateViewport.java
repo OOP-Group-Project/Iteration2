@@ -3,11 +3,13 @@ package Main.View.Renderers.StateViewports;
 import Main.Model.Entity.Entity;
 import Main.Model.Map.Map;
 import Main.Model.State.PlayState;
+import Main.Model.Stats.Stats;
 import Main.View.Graphics.GraphicsAssets;
 import Main.View.Renderers.ObjectRenderer;
 import Main.View.Viewport;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -96,7 +98,6 @@ public class PlayStateViewport extends StateViewport {
     public void render(Graphics graphics) {
         // First update the position and offset of the map and all entities that are on screen.
         update();
-
         graphics.setColor(new Color(0,0,0));
         graphics.fillRect(0,0, viewport.getPxWidth(), viewport.getPxHeight());
         // Then render them
@@ -108,9 +109,8 @@ public class PlayStateViewport extends StateViewport {
 
             // Render it
             ObjectRenderer.entityRenderer.render(graphics, inViewEntity, mapCameraCenter, pxRenderOffset);
-
-
         }
+        renderStats(graphics);
     }
 
     public void update() {
@@ -165,6 +165,35 @@ public class PlayStateViewport extends StateViewport {
         // update the pixel offset for the camera
 
         // update the pixel offsets for the entities
+
+    }
+
+
+    private void renderStats(Graphics g){
+        BufferedImage overImage = new BufferedImage(WIDTH,HEIGHT, BufferedImage.TYPE_4BYTE_ABGR);
+        Graphics g2 = overImage.getGraphics();
+        Font titleFont = new Font("Calibri (Body)", Font.BOLD, 32);
+        g2.setFont(titleFont);
+        FontMetrics fm = g2.getFontMetrics();
+
+        g.setColor(Color.BLUE);
+        //g.fillRect(TITLE_START_X, TITLE_START_Y, TITLE_WIDTH, TITLE_HEIGHT);
+        g.fillRect(0, 0, WIDTH * 2, 40);
+
+        Stats stats = playState.getPlayer().getStats();
+
+        Color defaultColor = Color.YELLOW;
+        g2.setColor(defaultColor);
+        String current = "Health: " + ((double)Math.round(stats.curLife() * 1000d) / 1000d);
+        g2.drawString(current, 5, 30);
+        current = "        Mana: " + ((double)Math.round(stats.curMana() * 1000d) / 1000d);
+        g2.drawString(current, 150, 30);
+        current = "        Lives: " + ((double)Math.round(stats.curLives() * 1000d) / 1000d);
+        g2.drawString(current, 350, 30);
+
+
+
+        g.drawImage(overImage, 0, 0, WIDTH, HEIGHT, null);
     }
 
 

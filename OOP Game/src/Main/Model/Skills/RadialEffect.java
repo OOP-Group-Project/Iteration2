@@ -31,7 +31,7 @@ import java.util.ArrayList;
  */
 public class RadialEffect implements InfluenceArea {
 
-    public Queue< ArrayList<MapLocationPoint> > getAffectedArea(int x, int y, int radius) {
+    public Queue<ArrayList<MapLocationPoint>> getAffectedArea(int x, int y, int radius) {
 
         MapLocationPoint tempPoint;
         MapLocationPoint upPoint;

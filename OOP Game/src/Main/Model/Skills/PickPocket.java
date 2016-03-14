@@ -11,6 +11,7 @@ import Main.Model.Stats.StatsModifier;
  * Created by AndyZhu on 7/3/2016.
  *
  */
+
 public class PickPocket extends SneakSkills {
 
     public PickPocket (Entity entity) {

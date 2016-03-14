@@ -44,8 +44,6 @@ public class MapLocationPoint extends Point {
                 case DownRight:
                     temp.x++;
                     break;
-                default:
-                    break;
             }
         } else {
             switch(direction) {
@@ -69,74 +67,17 @@ public class MapLocationPoint extends Point {
                 case UpRight:
                     temp.x++;
                     break;
-                default:
-                    break;
             }
         }
         return temp;
     }
 
-//    public void move(MapLocationPoint currentLocation,Point nextPoint){
-//
-//        // Current position
-//        int x1 = currentLocation.x;
-//        int y1 = currentLocation.y;
-//
-//        // Next position
-//        int x2 = nextPoint.x;
-//        int y2 = nextPoint.y;
-//
-//        // Even cases
-//        if (currentLocation.x % 2 == 0){
-//            if (x1 == x2) {
-//                if (y1 > y2) {
-//                    getAdjacent(DirectionEnum.Up);
-//                }
-//                if (y1 < y2) {
-//                    getAdjacent(DirectionEnum.Down);
-//                }
-//            } else if (y1 == y2) { // Y position are equal, check for x
-//                if (x1 > x2) {
-//                    getAdjacent(DirectionEnum.DownLeft);
-//                }
-//                if (x1 < x2) {
-//                    getAdjacent(DirectionEnum.DownRight);
-//                }
-//            } else { // Neither Y nor X are equal, check X equivalents
-//                if (x1 > x2) {
-//                    getAdjacent(DirectionEnum.UpLeft);
-//                }
-//                if (x1 < x2) {
-//                    getAdjacent(DirectionEnum.UpRight);
-//                }
-//            }
-//        } else{ // Odd cases
-//            if(x1 == x2){
-//                if(y1 > y2){
-//                    getAdjacent(DirectionEnum.Up);
-//                }
-//                if(y1 < y2){
-//                    getAdjacent(DirectionEnum.Down);
-//                }
-//            }
-//            if(y1 == y2){
-//                if (x1 > x2){
-//                    getAdjacent(DirectionEnum.UpLeft);
-//                }
-//                if (x1 < x2){
-//                    getAdjacent(DirectionEnum.UpRight);
-//                }
-//            }
-//            else { // Neither Y nor X are equal, check X equivalents
-//                if (x1 > x2){
-//                    getAdjacent(DirectionEnum.DownLeft);
-//                }
-//                if (x1 < x2){
-//                    getAdjacent(DirectionEnum.DownRight);
-//                }
-//            }
-//        }
-//    }
+    /**
+     * calculate the distance from this location to another
+     * sometimes gives bad results
+     * TODO: fix it
+     * */
+
     public int getTileDistance(MapLocationPoint mlp)
     {
         int x1 = (int) this.getX();

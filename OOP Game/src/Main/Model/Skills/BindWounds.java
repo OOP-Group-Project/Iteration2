@@ -16,6 +16,7 @@ public class BindWounds extends BaseSkills {
     }
 
     public void activate() {
+
         if (allCheck()) {
             timeWhenPerformed = System.currentTimeMillis();
             enforceManaCost();
@@ -31,4 +32,5 @@ public class BindWounds extends BaseSkills {
             return;
         }
     }
+
 }

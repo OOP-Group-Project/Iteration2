@@ -16,6 +16,7 @@ public class Bargain extends BaseSkills {
     //takes off level * 10 from the
     //price of the item in the shop
     public int activate() {
+
         if (allCheck()) {
             enforceManaCost();
             timeWhenPerformed = System.currentTimeMillis();

@@ -6,7 +6,10 @@ import Main.Model.Stats.StatsModifier;
 
 /**
  * Created by Matthew on 3/12/2016.
+<<<<<<< HEAD
+=======
  * manage that heals
+>>>>>>> origin/master
  */
 public class Boon extends SummonerSkills {
 

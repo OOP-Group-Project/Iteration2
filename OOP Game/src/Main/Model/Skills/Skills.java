@@ -28,7 +28,6 @@ public abstract class Skills {
         this.entity = entity;
         this.coolDownPeriod = coolDownPeriod;
         this.manaCost = manaCost;
-
         this.remainingCoolDownPeriod = 0;
         this.cooledDown = true;
     }
@@ -59,6 +58,7 @@ public abstract class Skills {
         return stats.curMana() >= manaCost;
     }
 
+
     public boolean successfulPerformance() {
         Random random = new Random();
         //it's a number increments from 0.5 to 1 with level
@@ -73,6 +73,7 @@ public abstract class Skills {
     public int getLevel() { return level; }
 
     public double getCoolDownPeriod() { return coolDownPeriod; }
+
 
     public double getRemainingCoolDownPeriod() {
         remainingCoolDownPeriod = System.currentTimeMillis() - timeWhenPerformed;

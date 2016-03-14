@@ -5,6 +5,7 @@ package Main.Model.State;
  */
 public enum StateEnum {
 
+
     AvatarCreationState,
     InventoryState,
     LoadState,
@@ -14,7 +15,8 @@ public enum StateEnum {
     SaveState,
     StartMenuState,
     StatState,
-    TalkState;
-
+    TalkState,
+    TradeState,
+    KeyBindingsState;
 
 }
