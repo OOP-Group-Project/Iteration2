@@ -7,7 +7,7 @@ Location:1,0
 Name:John
 Type:NPC
 Occupation:Smasher
-Level:1
+Level:2
 Location:2,11
 ~
 Name:Mike
