@@ -31,14 +31,18 @@ public class SummonerController {
                 break;
             case Skill2:
                 Boon bn = new Boon(summoner);
-                if (bn.allCheck()) summoner.getStats().modifyStats(bn.activate());
+                if (bn.allCheck()) {
+                    summoner.getStats().modifyStats(bn.activate());
+                    double duation = bn.getDuration();
+                }
+
                 break;
             case Skill3:
                 Bane be = new Bane(summoner);
                 if (be.allCheck()) applyBane(be);
                 break;
             case Skill4:
-                new Staff(summoner).apply();
+                new Staff(summoner).activate();
                 break;
             default:
                 System.out.print("Something went wrong in" + this.toString());

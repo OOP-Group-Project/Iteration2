@@ -377,11 +377,8 @@ public class Stats {
             cur_act = 0;
     }
     private void changeCurLife(double amt) {
-<<<<<<< HEAD
-=======
         amt = amt * (1 - partialImmunity);
         // change stat
->>>>>>> master
         if(abs(amt) > 0.99)
             cur_hp += amt;
         else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
@@ -652,8 +649,4 @@ public class Stats {
         System.out.println("Defense: " + curDefense() + "/" + maxDefense());
         System.out.println("Armor: " + curArmor() + "/" + maxArmor());
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 }
