@@ -56,17 +56,20 @@ public class LoadStateController extends StateController {
 
         objectControllerManager.addObjectController(world, new MapController(objectControllerManager, world));
 
-        // Load all the game entities
         gameEntities = new EntityIO().loadEntities("Entities.txt");
-
-        // load the avatar
         Avatar tempAvatar = (Avatar)gameEntities.get(0);
-        player.setOccupation(tempAvatar.getOccupation());
-        player.setType(tempAvatar.getType());
-        player.setSpiel(tempAvatar.getSpiel());
+
+        // Load all the game entities
+        if(stateManager.getPreviousState() != StateEnum.AvatarCreationState) {
+            // load the avatar
+            player.setOccupation(tempAvatar.getOccupation());
+            player.setType(tempAvatar.getType());
+            player.setSpiel(tempAvatar.getSpiel());
+        }
         player.setLocation(tempAvatar.getLocation());
         player.setOrientation(DirectionEnum.Down);
         player.setInventory(new Inventory());
+
 
         // Add player controller
         objectControllerManager.addObjectController(player, new AvatarController(objectControllerManager, world, player));

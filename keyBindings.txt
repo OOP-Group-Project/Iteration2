@@ -12,7 +12,7 @@
 44,None
 47,None
 48,None
-49,None
+49,Attack
 50,None
 51,None
 52,None

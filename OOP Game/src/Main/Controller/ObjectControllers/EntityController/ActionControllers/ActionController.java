@@ -45,7 +45,11 @@ public class ActionController extends TimedObjectController {
                 AC.performMeleeAttack();
             } else if (occupation == "Sneak" && u == UserActionEnum.Attack) {
                 AC.performRangeAttack();
-            } else if (occupation == "Summoner" && u == UserActionEnum.Attack) {
+            } else if (occupation == "Summoner" && u == UserActionEnum.Spell1) {
+                AC.performSpell(u);
+            } else if (occupation == "Summoner" && u == UserActionEnum.Spell2) {
+                AC.performSpell(u);
+            } else if (occupation == "Summoner" && u == UserActionEnum.Spell3) {
                 AC.performSpell(u);
             } else if (u.ordinal() > 24 && u.ordinal() < 27) {
                 SC.performSkill(u);
@@ -54,6 +58,8 @@ public class ActionController extends TimedObjectController {
                 IC.executeInteraction(map.getTile(entity.getLocation()), map.getTile(adjacentLocation));
             } else if(u == UserActionEnum.PickUpItem) {
                 IC.executeInteraction(map.getTile(entity.getLocation()));
+            } else if(u.ordinal() > 27 && u.ordinal() <=31) {
+                SC.performSkill(u);
             }
         }
     }
@@ -61,6 +67,8 @@ public class ActionController extends TimedObjectController {
     @Override
     public void update() {
         super.update();
+        this.AC.update();
+        this.SC.update();
         if(timer.isExpired()) {
             entity.setDoingAction(false);
         }

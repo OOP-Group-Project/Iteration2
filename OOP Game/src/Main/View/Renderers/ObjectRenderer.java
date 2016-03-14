@@ -148,7 +148,6 @@ public class ObjectRenderer {
             if(value >= 0) {
 
 
-
                 // Render the correct image.
                 if (type == TerrainTypeEnum.Grass) {
 
@@ -205,6 +204,10 @@ public class ObjectRenderer {
                 if (tile.hasAreaEffect()) {
                     // Render HealDamage AreaEffect
                     areaEffectRenderer.render(g, tile.getAreaEffect(), topLeft,value);
+                }
+
+                if (tile.hasAttackEffects()) {
+                    areaEffectRenderer.render(g, tile.getAttackEffects().get(0), topLeft, value);
                 }
 
                 if (tile.hasItems()) {

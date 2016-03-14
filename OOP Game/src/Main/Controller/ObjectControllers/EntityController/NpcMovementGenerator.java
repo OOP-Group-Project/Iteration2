@@ -58,13 +58,13 @@ public class NpcMovementGenerator {
 
             // If there are no NPCs in radius then follow the player
             if(entityLocations.size() == 0){
-                System.out.println("There are no mobs");
+              //  System.out.println("There are no mobs");
 //                return map.getPlayerLocation();
                 return followedEntityLocation;
 
             // There are NPCs, find the closest NPC (and attack)
             } else {
-                System.out.println("There are mobs");
+               // System.out.println("There are mobs");
                 return findMinimum(followerEntity.getLocation().x, followerEntity.getLocation().y,entityLocations);
             }
         }
@@ -96,7 +96,7 @@ public class NpcMovementGenerator {
 
         for(int i = 0; i < entityLocations.size(); i++){
             MapLocationPoint point = entityLocations.get(i).getLocation();
-            System.out.println(entityLocations.get(i).getLocation());
+            //System.out.println(entityLocations.get(i).getLocation());
             temp = (int)pathFinder.getHeuristicCost(sx, sy, point.x, point.y);
             if (temp < minimum){
                 minimum = temp;

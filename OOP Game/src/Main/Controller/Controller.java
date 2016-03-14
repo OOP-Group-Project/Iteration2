@@ -20,7 +20,6 @@ public class Controller implements Runnable{
 
     private Thread thread;
     private boolean gameIsRunning;
-    private EntityController[] NonPlayerEntities;
 
     KeyboardManager keyboardManager;
     StateControllerManager stateControllerManager;
@@ -31,7 +30,7 @@ public class Controller implements Runnable{
         objectControllerManager = new ObjectControllerManager(model);
         stateControllerManager = new StateControllerManager(objectControllerManager, model);
         KeyBindingsIO io = new KeyBindingsIO();
-        keyboardManager = new KeyboardManager(stateControllerManager, stateControllerManager.getGameStateControllers(), io.load());
+        keyboardManager = new KeyboardManager(stateControllerManager, stateControllerManager.getGameStateControllers() /*, io.load()*/);
         // AIManager = new AIManager()
         // Construct all the entity controllers
         // NPCController pncc = new NPCController(aim)

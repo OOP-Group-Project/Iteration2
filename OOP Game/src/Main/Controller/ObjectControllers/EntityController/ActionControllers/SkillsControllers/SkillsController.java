@@ -1,10 +1,13 @@
 package Main.Controller.ObjectControllers.EntityController.ActionControllers.SkillsControllers;
 
 import Main.Controller.Manager.UserActionEnum;
+import Main.Controller.ObjectControllers.ObjectController;
 import Main.Controller.ObjectControllers.TimedObjectController;
 import Main.Model.Entity.Entity;
+import Main.Model.Entity.EntityTypeEnum;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
+import Main.Model.Occupation.OccupationTypeEnum;
 import Main.Model.Skills.*;
 import sun.misc.Queue;
 
@@ -14,18 +17,28 @@ import java.util.ArrayList;
  * Created by johnkaufmann on 3/13/16.
  * TODO:
  */
-public class SkillsController{
+public class SkillsController extends ObjectController{
     Entity entity;
     Map map;
-    String occupation;
+    OccupationTypeEnum occupation;
     boolean observing = false;
+    ObjectController occupationSkills = null;
 
     public SkillsController(Entity entity, Map map) {
         this.entity = entity;
         this.map = map;
-        this.occupation = entity.getOccupation().toString();
+        this.occupation = entity.getOccupation().getOccupationType();
+        switch(occupation) {
+            case Summoner:
+                occupationSkills = new SummonerController(entity, map);
+                break;
+            case Smasher:
+                occupationSkills = new SmasherController(entity, map);
+                break;
+            case Sneak:
+                occupationSkills = new SneakController(entity, map);
+        }
     }
-
 
     public void performSkill(UserActionEnum u) {
         switch (u) {
@@ -74,14 +87,14 @@ public class SkillsController{
                 break;
             case Skill4:case Skill5:case Skill6:case Skill7:
                 switch (occupation) {
-                    case "Smasher":
-                        new SmasherController(entity,map).performSkill(u);
+                    case Smasher:
+                        ((SmasherController)occupationSkills).performSkill(u);
                         break;
-                    case "Summoner":
-                        new SummonerController(entity,map).performSkill(u);
+                    case Summoner:
+                        ((SummonerController)occupationSkills).performSkill(u);
                         break;
-                    case "Sneak":
-                        new SneakController(entity,map).performSkill(u);
+                    case Sneak:
+                        ((SneakController)occupationSkills).performSkill(u);
                         break;
                     default:
                         System.out.println("Something went wrong in " + this.toString());
@@ -91,5 +104,16 @@ public class SkillsController{
 
         }
 
+    }
+
+    public void update() {
+        switch (occupation) {
+            case Summoner:
+                ((SummonerController)occupationSkills).update();
+                break;
+            case Sneak:
+                ((SneakController)occupationSkills).update();
+                break;
+        }
     }
 }

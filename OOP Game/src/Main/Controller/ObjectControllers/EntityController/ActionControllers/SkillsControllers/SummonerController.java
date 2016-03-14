@@ -2,11 +2,13 @@ package Main.Controller.ObjectControllers.EntityController.ActionControllers.Ski
 
 import Main.Controller.Manager.UserActionEnum;
 import Main.Controller.ObjectControllers.TimedObjectController;
+import Main.Model.Entity.Avatar;
 import Main.Model.Entity.Entity;
 import Main.Model.Map.Map;
 
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Map.Tile;
+import Main.Model.Occupation.Summoner;
 import Main.Model.Skills.*;
 import Main.Model.Stats.StatsModifier;
 import sun.misc.Queue;
@@ -23,15 +25,19 @@ public class SummonerController extends TimedObjectController{
     Tile targetTile;
     StatsModifier sm;
     UserActionEnum skill;
-    Enchantment ec = (Enchantment) summoner.getSkills().get(3);
-    Boon boon = (Boon) summoner.getSkills().get(4);
-    Bane bane = (Bane) summoner.getSkills().get(5);
-    Staff staff = (Staff) summoner.getSkills().get(6);
+    Enchantment ec ;
+    Boon boon;
+    Bane bane;
+    Staff staff;
     private boolean boonActivated = false;
 
     public SummonerController(Entity summoner, Map map) {
         this.summoner = summoner;
         this.map = map;
+        ec = (Enchantment) summoner.getSkills().get(3);
+        boon = (Boon) summoner.getSkills().get(4);
+        bane = (Bane) summoner.getSkills().get(5);
+        staff = (Staff) summoner.getSkills().get(6);
     }
 
     public void performSkill(UserActionEnum u) {

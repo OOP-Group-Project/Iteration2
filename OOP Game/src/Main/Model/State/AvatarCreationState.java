@@ -6,7 +6,10 @@ import Main.Model.Occupation.Occupation;
 import Main.Model.Occupation.Smasher;
 import Main.Model.Occupation.Sneak;
 import Main.Model.Occupation.Summoner;
+import Main.Model.Skills.*;
 import Main.Model.io.MapIO;
+
+import java.util.ArrayList;
 
 /**
  * Created by jcvarela on 3/13/2016.
