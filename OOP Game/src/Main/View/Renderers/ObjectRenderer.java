@@ -135,7 +135,7 @@ public class ObjectRenderer {
 
     public static class itemRenderer {
         public static void render(Graphics g, Item item, Point pxTopLeft) {
-            int itemId = item.getId()-1;
+            int itemId = item.getId();
             g.drawImage(graphicsAssets.itemImages.get(itemId), pxTopLeft.x+5, pxTopLeft.y, graphicsAssets.TILE_PX_WIDTH-20,graphicsAssets.TILE_PX_HEIGHT-10, null);
         }
     }
@@ -154,6 +154,9 @@ public class ObjectRenderer {
                     break;
                 case LEVELUP:
                     g.drawImage(graphicsAssets.goldStar,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
+                    break;
+                case TRAP:
+                    g.drawImage(graphicsAssets.trap,pxTopLeftPoint.x,pxTopLeftPoint.y,null);
                     break;
                 case DEATH:
                     g.drawImage(graphicsAssets.skullCrossBones,pxTopLeftPoint.x,pxTopLeftPoint.y,null);

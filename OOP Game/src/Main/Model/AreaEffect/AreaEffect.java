@@ -27,6 +27,7 @@ public abstract class AreaEffect {
     //For OneShot AreaEffect children super() calls
     public AreaEffect(AreaEffectEnum type, MapLocationPoint location){
         this.type = type;
+        this.location = location;
         charge = 0;
     }
 
@@ -38,6 +39,7 @@ public abstract class AreaEffect {
 
     public AreaEffect(AreaEffectEnum type , StatsModifier modifier , int charge, MapLocationPoint location){
         this.type = type;
+        this.location = location;
         this.modifier = modifier;
         this.charge = charge;
     }
