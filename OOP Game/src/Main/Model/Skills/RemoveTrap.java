@@ -13,9 +13,4 @@ public class RemoveTrap extends SneakSkills {
     public boolean activate() {
         return successfulPerformance();
     }
-
-    @Override
-    public void apply() {
-
-    }
 }

@@ -16,13 +16,11 @@ public class Boon extends SummonerSkills {
         if (!enoughMana()) {
             System.out.println("Not enough mana");
             return;
-        }
-        else if (!this.successfulPerformance()) {
+        } else if (!this.successfulPerformance()) {
             enforceManaCost();
             System.out.println("performance of BindWounds failed but");
             return;
-        }
-        else {
+        } else {
             double increaseByAmount = level * 4;
             entity.modifyStats("hp", increaseByAmount);
             entity.buff("int", increaseByAmount);
@@ -35,10 +33,5 @@ public class Boon extends SummonerSkills {
             //decrease mana
             enforceManaCost();
         }
-    }
-
-    @Override
-    public void apply() {
-
     }
 }

@@ -376,8 +376,6 @@ public class Stats {
             cur_act = 0;
     }
     private void changeCurLife(double amt) {
-
-        // change stat
         if(abs(amt) > 0.99)
             cur_hp += amt;
         else if(abs(amt) >= 0.0 && abs(amt) < 1.00)
@@ -386,13 +384,8 @@ public class Stats {
         if (cur_hp > max_hp)
             cur_hp = max_hp;
         else if(cur_hp < 0) {
-<<<<<<< HEAD
-            //TODO: changed by Andy to make sence
+            System.out.println("You are dead and respawned");
             this.getEntity().respawn(new MapLocationPoint(5,5));
-=======
-            //TODO: changed by Andy to make sense
-//            this.getEntity().die();
->>>>>>> master
         }
     }
     private void changeCurMana(double amt) {
@@ -621,9 +614,5 @@ public class Stats {
         System.out.println("Offense: " + curOffense() + "/" + maxOffense());
         System.out.println("Defense: " + curDefense() + "/" + maxDefense());
         System.out.println("Armor: " + curArmor() + "/" + maxArmor());
-    }
-
-    public int getLevel() {
-        return level;
     }
 }

@@ -33,9 +33,4 @@ public class Bane extends SummonerSkills {
             return sm;
         }
     }
-
-    @Override
-    public void apply() {
-
-    }
 }

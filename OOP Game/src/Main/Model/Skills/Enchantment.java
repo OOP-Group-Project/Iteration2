@@ -29,11 +29,6 @@ public class Enchantment extends SummonerSkills {
         }
 
     }
-
-    @Override
-    public void apply() {
-
-    }
 }
 
 

@@ -30,9 +30,4 @@ public class Staff extends SummonerSkills {
             return sm;
         }
     }
-
-    @Override
-    public void apply() {
-
-    }
 }
