@@ -18,6 +18,7 @@ public class KeyBindingsState extends State {
 
     private ArrayList<Integer> arrayListInt;
     private ArrayList<UserActionEnum> arrayListEnum;
+    private HashMap<Integer, UserActionEnum> keyBoard;
 
     private int firstInt;
     private int secondInt;
@@ -77,8 +78,14 @@ public class KeyBindingsState extends State {
         return currentIndex;
     }
 
+    public void init() {
+        controller.setKeyManager(keyBoard);
+    }
+
 
     public void sendKeyManager(HashMap<Integer, UserActionEnum> keyboardActionMapping) {
+        System.out.println("key manager");
+        keyBoard = keyboardActionMapping;
         Iterator iter = keyboardActionMapping.entrySet().iterator();
         totalElements = 0;
         arrayListInt.clear();
@@ -90,6 +97,10 @@ public class KeyBindingsState extends State {
             totalElements++;
             arrayListEnum.add(actionEnum);
         }
+    }
+
+    public HashMap<Integer, UserActionEnum> getKeyboardActionMapping(){
+        return keyBoard;
     }
 
     public void sendController(Controller controller) {
