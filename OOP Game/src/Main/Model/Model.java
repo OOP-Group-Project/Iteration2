@@ -49,7 +49,7 @@ public class Model {
         states.put(StateEnum.InventoryState, new InventoryState());
         states.put(StateEnum.StatState, new StatState(player));
         states.put(StateEnum.KeyBindingsState, new KeyBindingsState());
-
+        states.put(StateEnum.TalkState, new TalkState());
         states.put(StateEnum.StartMenuState, new StartMenuState());
         states.put(StateEnum.AvatarCreationState,new AvatarCreationState(player,world));
         states.put(StateEnum.DeathState, new DeathState());
