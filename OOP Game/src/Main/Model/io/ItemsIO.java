@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * TODO: implement this class
  */
 public class ItemsIO {
-    io io;
+    io io = new io();
     public ItemsIO() {
     }
 
@@ -162,12 +162,14 @@ public class ItemsIO {
     }
 
     public void saveItemsOnMap(Map map, String fileName){
+        ArrayList<String> data = new ArrayList<>();
         for (int x = 0; x < map.getHeight(); x++) {
             for (int y = 0; y < map.getWidth(); y++) {
                 for (String str : map.getTile(x,y).toTileString()) {
-                    System.out.println(str+"-"+x+","+y+"-1");
+                    data.add(str+"-"+x+","+y+"-1");
                 }
             }
         }
+        io.writeFile(data, "Items.txt");
     }
 }
