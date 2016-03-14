@@ -13,4 +13,5 @@ public class RemoveTrap extends SneakSkills {
     public boolean activate() {
         return successfulPerfoemance();
     }
+
 }

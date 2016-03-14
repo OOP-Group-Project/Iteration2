@@ -32,4 +32,5 @@ public class Staff extends SummonerSkills {
             enemyStats.modifyStats(sm);
         }
     }
+
 }

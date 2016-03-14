@@ -30,7 +30,7 @@ public enum UserActionEnum {
     Attack3,
     Talk,
 
-    //views
+    //views [18,23]
     ViewUp,
     ViewDown,
     ViewUpRight,
@@ -38,6 +38,13 @@ public enum UserActionEnum {
     ViewDownLeft,
     ViewDownRight,
 
+
     //other
-    None;
+    None,
+
+    //skills [24,27]
+    Skill1,
+    Skill2,
+    Skill3,
+    Skill4;
 }

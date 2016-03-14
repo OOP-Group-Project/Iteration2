@@ -13,7 +13,7 @@ public class OneHandedWeapon extends SmasherSkills {
         super(entity, 1.4, 4.0);
     }
 
-    public void activate(Entity enemy) {
+    public void activate() {
         if (!enoughMana()) {
             System.out.println("Not enough mana");
             return;
@@ -31,7 +31,7 @@ public class OneHandedWeapon extends SmasherSkills {
                 totalDamage = stats.curOffense() * level * 10;
                 StatsModifier sm = new StatsModifier();
                 sm.builder().lifeModifier(-totalDamage).build();
-                enemy.getStats().modifyStats(sm);
+               // enemy.getStats().modifyStats(sm);
             }
             enforceManaCost();
         }
@@ -46,4 +46,5 @@ public class OneHandedWeapon extends SmasherSkills {
          */
         return true;
     }
+
 }

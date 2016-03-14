@@ -10,7 +10,9 @@ public class DetectTrap extends SneakSkills {
         super(entity, cooldown, manacost);
     }
 
+
     public boolean activate() {
         return successfulPerfoemance();
     }
+
 }

@@ -1,34 +1,29 @@
-package Main.Controller.EntityControllers;
+package Main.Controller.EntityControllers.ActionControllers;
 
-import Main.Controller.EntityControllers.ActionControllers.ActionController;
+import Main.Controller.EntityControllers.NpcMovementController;
 import Main.Controller.Manager.UserActionEnum;
 import Main.Model.Entity.Entity;
 import Main.Model.Map.Heuristic;
 import Main.Model.Map.Map;
 
-import java.util.ArrayList;
-
 /**
- * Created by johnkaufmann on 3/10/16.
- * TODO:
+ * Created by Michael on 3/13/16.
  */
-public class EntityController {
-    private PlayerMovementController PlayerMovementController;
-    private Main.Controller.EntityControllers.ActionControllers.ActionController ActionController;
-//    private NpcMovementController NpcMovementController;
+public class NpcController {
+    private ActionController ActionController;
+    private NpcMovementController NpcMovementController;
 
-    public EntityController(Map map , Entity entity) {
-        this.PlayerMovementController = new PlayerMovementController(map, entity );
-//        this.NpcMovementController = new NpcMovementController(map, entity, npc ,new Heuristic());
+    public NpcController(Map map, Entity entity, Entity npc) {
+        this.NpcMovementController = new NpcMovementController(map, entity, npc, new  Heuristic());
         this.ActionController = new ActionController(map, entity);
     }
 
     public void handleInput(UserActionEnum U) {
-        if (isMovement(U)) PlayerMovementController.move(U);
         if (isAction(U)) ActionController.performAction(U);
     }
 
     public void update(){
+        NpcMovementController.update();
     }
 
     private boolean isAction(UserActionEnum U) {

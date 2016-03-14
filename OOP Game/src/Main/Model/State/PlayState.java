@@ -10,14 +10,14 @@ import java.awt.*;
 
 public class PlayState extends State {
     private Avatar player;
-    private Npc enemy;
+    private Npc npc;
     private Map world;
     private MapLocationPoint centerPoint;
 
-	public PlayState(Map world, Avatar entity, Npc enemy) {
+	public PlayState(Map world, Avatar entity, Npc npc) {
         this.world = world;
         this.player = entity;
-        this.enemy = enemy;
+        this.npc = npc;
         this.centerPoint = new MapLocationPoint(player.getLocation().x, player.getLocation().y);
 	}
 
@@ -25,8 +25,8 @@ public class PlayState extends State {
         return player;
     }
 
-    public Npc getEnemy(){
-        return enemy;
+    public Npc getNPC(){
+        return npc;
     }
 
     public MapLocationPoint getCenterPoint() {

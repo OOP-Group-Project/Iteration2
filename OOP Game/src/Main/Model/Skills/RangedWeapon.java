@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * Created by Matthew on 3/12/2016.
  */
-public class RangedWeapon extends SneakSkills{
+public class RangedWeapon extends SneakSkills {
 
     public RangedWeapon(Entity entity) {
         //1 second cooldown and 2 mana cost
@@ -18,7 +18,7 @@ public class RangedWeapon extends SneakSkills{
 
     public StatsModifier activate() {
         double totalDamage = 0;
-        if (canActivate() && enoughMana() && successfulPerfoemance()){
+        if (canActivate() && enoughMana() && successfulPerfoemance()) {
             Stats stats = entity.getStats();
             totalDamage = stats.curAgility() + level * 10;
             enforceManaCost();

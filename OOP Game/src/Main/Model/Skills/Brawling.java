@@ -13,7 +13,7 @@ public class Brawling extends SmasherSkills{
         super(entity, 1.0, 2.0);
     }
 
-    public void activate(Entity enemy) {
+    public void activate() {
         if (!enoughMana()) {
             System.out.println("Not enough mana");
             return;
@@ -31,7 +31,7 @@ public class Brawling extends SmasherSkills{
                 totalDamage = stats.curOffense() * level * 5;
                 StatsModifier sm = new StatsModifier();
                 sm.builder().lifeModifier(-totalDamage).build();
-                enemy.getStats().modifyStats(sm);
+                //enemy.getStats().modifyStats(sm);
             }
             enforceManaCost();
         }
@@ -46,4 +46,5 @@ public class Brawling extends SmasherSkills{
          */
         return true;
     }
+
 }

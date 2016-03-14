@@ -1,5 +1,6 @@
 package Main.Controller.StateControllers;
 
+import Main.Controller.EntityControllers.ActionControllers.NpcController;
 import Main.Controller.EntityControllers.EntityController;
 import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.UserActionEnum;
@@ -17,16 +18,19 @@ public class PlayStateController extends StateController {
     private StateControllerManager stateControllerManager;
     private PlayState playState;
     private EntityController ec;
+    private NpcController npcController;
 
     public PlayStateController(StateControllerManager stateControllerManager, PlayState playState) {
         this.stateControllerManager = stateControllerManager;
         this.playState = playState;
-        this.ec = new EntityController(playState.getWorld(), playState.getPlayer(),playState.getEnemy());
+        this.ec = new EntityController(playState.getWorld(), playState.getPlayer());
+        this.npcController = new NpcController(playState.getWorld(), playState.getPlayer(), playState.getNPC());
     }
 
     @Override
     public void update() {
         ec.update();
+        npcController.update();
     }
 
     @Override

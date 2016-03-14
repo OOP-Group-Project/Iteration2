@@ -31,6 +31,7 @@ public class Enchantment extends SummonerSkills {
         }
 
     }
+
 }
 
 

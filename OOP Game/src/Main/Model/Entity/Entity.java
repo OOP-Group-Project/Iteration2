@@ -1,6 +1,7 @@
 package Main.Model.Entity;
 
 import Main.Model.DirectionEnum;
+import Main.Model.Equipment.Equipment;
 import Main.Model.Inventory.Inventory;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
@@ -17,7 +18,9 @@ public abstract class Entity {
     protected Stats stats;
     protected Occupation occupation;
     protected Inventory inventory;
+    protected Equipment equipment;
     protected MapLocationPoint location;
+    protected DirectionEnum orientation;
 
     //create Entities at certain locations with a certain type
     public Entity(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location) {
@@ -103,4 +106,11 @@ public abstract class Entity {
     //
     public Inventory getInventory(){ return this.inventory;}
 
+    public DirectionEnum getOrientation() {
+        return orientation;
+    }
+
+    public Equipment getEquipment() {
+        return equipment;
+    }
 }

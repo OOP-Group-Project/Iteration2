@@ -36,4 +36,5 @@ public class Boon extends SummonerSkills {
             enforceManaCost();
         }
     }
+
 }
