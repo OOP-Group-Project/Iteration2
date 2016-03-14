@@ -12,6 +12,7 @@ public class Enchantment extends SummonerSkills {
     public Enchantment(Entity entity) {
         //10 sec cooldown and 5 mana cost
         super(entity, 10.0, 5.0);
+        skillName = "Enchantment";
     }
 
     //as we can't make the npc sleep, we just change the movement speed to 1%

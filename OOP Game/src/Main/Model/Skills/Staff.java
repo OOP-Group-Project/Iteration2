@@ -16,6 +16,7 @@ public class Staff extends SummonerSkills {
         //2.4 seconds cooldown, 0 mana cost
         super(entity, 2.4, 0);
         damageFactor = 1;
+        skillName = "Staff";
     }
 
     public StatsModifier activate() {

@@ -5,6 +5,7 @@ import Main.Model.Equipment.Equipment;
 import Main.Model.Inventory.Inventory;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
+import Main.Model.Occupation.Smasher;
 import Main.Model.Skills.*;
 import Main.Model.Stats.Stats;
 import Main.Model.Stats.StatsModifier;
@@ -26,7 +27,7 @@ public abstract class Entity {
     protected boolean isMoving;
     protected boolean isDoingAction;
     protected DirectionEnum orientation;
-    protected ArrayList<Skills> skills;
+    protected ArrayList<Skills> skills = new ArrayList<>();
 
     //create Entities at certain locations with a certain type
     public Entity(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location, int level) {
@@ -44,8 +45,7 @@ public abstract class Entity {
                 break;
             case Sneak:
                 skills.add(new PickPocket(this));
-                skills.add(new DetectTrap(this));
-                skills.add(new RemoveTrap(this));
+                skills.add(new DetectAndRemoveTrap(this));
                 skills.add(new Creep(this));
                 skills.add(new RangedWeapon(this));
                 break;
@@ -64,6 +64,9 @@ public abstract class Entity {
         this.isMoving = false;
         this.isDoingAction = false;
     }
+
+    public void enetitySkillsInitializer(Entity entity) {
+    }
     //moves a players known x and y (JFK)
     public void move(DirectionEnum dir) {
         location.move(dir);
@@ -76,6 +79,10 @@ public abstract class Entity {
 
     public MapLocationPoint getLocation() {
         return location;
+    }
+
+    public ArrayList<Skills> getSkills() {
+        return skills;
     }
 
     public void setLocation(MapLocationPoint location) {

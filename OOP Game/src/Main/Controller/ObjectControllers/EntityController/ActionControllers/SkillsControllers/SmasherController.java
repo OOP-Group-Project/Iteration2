@@ -21,7 +21,7 @@ public class SmasherController {
     Entity entity;
     Entity enemy;
     Map map;
-    Skills skill1 = entity.get
+    //Skills skill1 = entity.get
 
     public SmasherController(Entity entity, Map map) {
         this.entity = entity;
@@ -30,7 +30,7 @@ public class SmasherController {
 
     public void performSkill(UserActionEnum u) {
         switch (u) {
-            case Skill1:
+            case Skill4:
                 if (validateOneHanded()) {
                     MapLocationPoint targetLocation = entity.getLocation().getAdjacent(entity.getOrientation());
                     if (map.getTile((int)targetLocation.getX(), (int)targetLocation.getY()).hasEntity()) {
@@ -40,11 +40,11 @@ public class SmasherController {
                     entity.getStats().modifyStats(new OneHandedWeapon(entity).activate());
                 }
                 break;
-            case Skill2:
+            case Skill5:
                 if (validateTwoHanded())
                     entity.getStats().modifyStats(new TwoHandedWeapon(entity).activate());
                 break;
-            case Skill3:
+            case Skill6:
                 if (validateBrawling())
                     entity.getStats().modifyStats(new Brawling(entity).activate());
                 break;
@@ -64,7 +64,8 @@ public class SmasherController {
     }
 
     private boolean validateOneHanded() {
-        if (entity.getEquipment().getWeapon().getWeaponType() == WeaponTypeEnum.ONEHANDSWORD) return true;
+        if (entity.getEquipment().getWeapon().getWeaponType() == WeaponTypeEnum.ONEHANDSWORD)
+            return true;
         return false;
     }
 }
