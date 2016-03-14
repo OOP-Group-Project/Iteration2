@@ -1,5 +1,6 @@
 package Main.Model.AreaEffect;
 
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Stats.StatsModifier;
 
 /**
@@ -10,8 +11,8 @@ import Main.Model.Stats.StatsModifier;
 public class TakeDamage extends AreaEffect {
     /*** Constructor ***/
     //Applies Once
-    public TakeDamage(double damageAmount){
-        super(AreaEffectEnum.DAMAGE);
+    public TakeDamage(double damageAmount, MapLocationPoint location){
+        super(AreaEffectEnum.DAMAGE, location);
 
         StatsModifier sm = new StatsModifier();
         sm = sm.builder()
@@ -20,8 +21,8 @@ public class TakeDamage extends AreaEffect {
         this.modifier = sm;
     }
 
-    public TakeDamage(double damageAmount , int charge){
-        super(AreaEffectEnum.DAMAGE , charge );
+    public TakeDamage(double damageAmount , int charge, MapLocationPoint location){
+        super(AreaEffectEnum.DAMAGE , charge, location);
 
         StatsModifier sm = new StatsModifier();
         sm = sm.builder()
