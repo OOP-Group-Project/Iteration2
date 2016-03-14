@@ -19,17 +19,17 @@ public class PauseStateViewport extends StateViewport {
 	
 	//BACKGROUND OPTIONS
 	//--dimension
-	private final double BG_START_X_POS_PERCENTAGE = 0.2;
-	private final double BG_START_Y_POS_PERCENTAGE = 0.2;
-	private final double BG_WIDTH_PERCENTAGE = 0.6;
-	private final double BG_HEIGHT_PERCENTAGE = 0.6;
+	private final double BG_START_X_POS_PERCENTAGE = 0.0;
+	private final double BG_START_Y_POS_PERCENTAGE = 0.3;
+	private final double BG_WIDTH_PERCENTAGE = 1.0;
+	private final double BG_HEIGHT_PERCENTAGE = 0.4;
 	//--other
 	private final Color BG_COLOR = new Color(0,0,0.8f,(float)0.75);
 	
 	
 	//TITLE
-	private final String TITLE = "Pause";
-	private final Font TITLE_FONT = new Font("Calibri (Body)", Font.BOLD, (int)(HEIGHT*0.15));
+	private final String TITLE = "LORUM IPSUM FILLER TEXT MAYNE";
+	private final Font TITLE_FONT = new Font("Calibri (Body)", Font.BOLD, (int)(HEIGHT*0.06));
 	private final Color TITLE_COLOR = Color.lightGray;
 	
 	

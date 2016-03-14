@@ -34,7 +34,7 @@ public class StateControllerManager {
 		gameStateControllers.put(StateEnum.PauseState, new PauseStateController(this, (PauseState)model.getStates().get(StateEnum.PauseState)));
 		gameStateControllers.put(StateEnum.InventoryState,new InventoryStateController(this, (InventoryState)model.getStates().get(StateEnum.InventoryState)));
 		gameStateControllers.put(StateEnum.StartMenuState, new StartMenuStateController(this,(StartMenuState)model.getStates().get(StateEnum.StartMenuState)));
-		//gameStateControllers.put(StateEnum.TalkState, new TalkStateController(this, (TalkState)model.getStates().get(StateEnum.TalkState)));
+		gameStateControllers.put(StateEnum.TalkState, new TalkStateController(this, (TalkState)model.getStates().get(StateEnum.TalkState)));
 		gameStateControllers.put(StateEnum.StatState, new StatStateController(this,(StatState)model.getStates().get(StateEnum.StatState)));
 		gameStateControllers.put(StateEnum.AvatarCreationState, new AvatarCreationStateController(this,(AvatarCreationState) model.getStates().get(StateEnum.AvatarCreationState)));
 		gameStateControllers.put(StateEnum.KeyBindingsState, new KeyBindingsStateController(this,(KeyBindingsState) model.getStates().get(StateEnum.KeyBindingsState)));
