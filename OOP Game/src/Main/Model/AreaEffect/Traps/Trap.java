@@ -2,6 +2,7 @@ package Main.Model.AreaEffect.Traps;
 
 import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.AreaEffect.AreaEffectEnum;
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Requirement;
 
 
@@ -15,14 +16,14 @@ public class Trap extends AreaEffect {
     protected int requiredDetectionSkill; //Detection skilled need to make trap visible.
 
     /*** Constructors ***/
-    public Trap(){
-        super(AreaEffectEnum.TRAP);
+    public Trap(MapLocationPoint location){
+        super(AreaEffectEnum.TRAP, location);
         this.isVisible = false;
         this.requiredDetectionSkill = 0;
         this.trapType = null;
     }
-    public Trap(TrapTypeEnum trapType,int requiredDetectionSkill){
-        super(AreaEffectEnum.TRAP);
+    public Trap(TrapTypeEnum trapType,int requiredDetectionSkill, MapLocationPoint location){
+        super(AreaEffectEnum.TRAP, location);
         this.isVisible = false;
         this.requiredDetectionSkill = requiredDetectionSkill;
         this.trapType = trapType;

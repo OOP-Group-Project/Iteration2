@@ -4,6 +4,7 @@ import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Map.Map;
 import Main.Model.Map.Tile;
+import Main.Model.Model;
 import Main.Model.Terrain.TerrainTypeEnum;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class MapIO {
     }
 
     //method will instantiate a loadMap controller and return a model
-    public Map loadMap(Map map, String fileName) {
+    public Map loadMap(Model model, String fileName) {
         /***************
          * Read a map
          **************/
@@ -44,11 +45,13 @@ public class MapIO {
         Tile[][] mapTiles = loadTiles(FileData, new Tile[width][height]);
 
         //set the up the new map
+        Map map = model.getWorld();
         map.setHeight(height);
         map.setWidth(width);
         map.setTiles(mapTiles);
 
         map = new ItemsIO().loadItemsToMap(map, "Items.txt");
+        map = new AreaEffectsIO().loadAreaEffectsToMap(map, "AreaEffects.txt");
 
         //TODO: implement the loadMap entity array
 
@@ -56,15 +59,15 @@ public class MapIO {
     }
 
     //load map given an existing map
-    public Map loadMap(Map map) {
-        return loadMap(map, "map.txt");
+    public Map loadMap(Model model) {
+        return loadMap(model, "map.txt");
     }
 
 
     // CANT be set to Map(0,0) or Pathfinding is null
     //given a file name load a map with all other generic properties
     public Map loadMap(String fileName) {
-        return loadMap(new Map(20,20), fileName);
+        return loadMap(new Model(), fileName);
     }
 
     //load generic map
@@ -122,6 +125,7 @@ public class MapIO {
         }
 
         //serialize data
+        new ItemsIO().saveItemsOnMap(map,"Items.txt");
         io.writeFile(data, fileName);
     }
 

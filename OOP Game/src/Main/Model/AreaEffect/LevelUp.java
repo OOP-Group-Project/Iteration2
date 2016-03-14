@@ -1,6 +1,8 @@
 package Main.Model.AreaEffect;
 
 
+import Main.Model.Map.MapLocationPoint;
+
 /**
  * Created by Michael on 3/9/16.
  * Implemented by Peter Camejo on 3/11/16
@@ -25,12 +27,12 @@ public class LevelUp extends AreaEffect {
     /*** Constructor ***/
 
     //Applies Once
-    public LevelUp(){
-        super(AreaEffectEnum.LEVELUP);
+    public LevelUp(MapLocationPoint location){
+        super(AreaEffectEnum.LEVELUP, location);
     }
 
-    public LevelUp(int charge){
-        super(AreaEffectEnum.LEVELUP , charge);
+    public LevelUp(int charge, MapLocationPoint location){
+        super(AreaEffectEnum.LEVELUP , charge, location);
     }
 
 }
