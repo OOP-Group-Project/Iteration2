@@ -46,7 +46,7 @@ public class SmasherController {
                 }
                 break;
             case Skill5:
-                TwoHandedWeapon thw = (TwoHandedWeapon) entity.getSkills().get(3);
+                TwoHandedWeapon thw = (TwoHandedWeapon) entity.getSkills().get(4);
                 if (validateTwoHanded()) {
                     AngularEffect ar = new AngularEffect();
                     MapLocationPoint entityLocation = entity.getLocation();
@@ -69,7 +69,7 @@ public class SmasherController {
                 }
                 break;
             case Skill6:
-                Brawling brawling = (Brawling) entity.getSkills().get(3);
+                Brawling brawling = (Brawling) entity.getSkills().get(5);
                 if (validateBrawling()) {
                     MapLocationPoint targetLocation = entity.getLocation().getAdjacent(entity.getOrientation());
                     Tile targetTile = map.getTile((int)targetLocation.getX(), (int)targetLocation.getY());
