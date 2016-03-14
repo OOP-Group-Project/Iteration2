@@ -26,7 +26,7 @@ public class NpcMovementGenerator {
         this.followerEntity = followerEntity;
         this.followedEntityLocation = followedEntity.getLocation();
         this.currentTargetLocation = new MapLocationPoint(followedEntityLocation.x, followedEntityLocation.y);
-        this.pathFinder = new PathFinder(map, 1/*followerEntity.getStats().getLevel()*/, heuristic);
+        this.pathFinder = new PathFinder(map, followerEntity.getStats().getLevel(), heuristic);
         this.path = pathFinder.findPath(followerEntity.getLocation().x, followerEntity.getLocation().y,  currentTargetLocation.x, currentTargetLocation.y);
 
     }
