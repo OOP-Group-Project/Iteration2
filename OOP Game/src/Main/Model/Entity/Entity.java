@@ -3,6 +3,7 @@ package Main.Model.Entity;
 import Main.Model.DirectionEnum;
 import Main.Model.Equipment.Equipment;
 import Main.Model.Inventory.Inventory;
+import Main.Model.Items.Takable;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Occupation.Smasher;
@@ -31,10 +32,11 @@ public abstract class Entity {
     protected ArrayList<Skills> skills = new ArrayList<>();
 
     //create Entities at certain locations with a certain type
-    public Entity(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location, int level) {
+    public Entity(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location, int level, Inventory inv) {
         this.type = entityType;
         this.spiel = entitySpiel;
         this.occupation = occupation;
+        this.inventory = inv;
         skills.add(new BindWounds(this));
         skills.add(new Bargain(this));
         skills.add(new Observation(this));
@@ -85,6 +87,10 @@ public abstract class Entity {
 
     public ArrayList<Skills> getSkills() {
         return skills;
+    }
+
+    public int getSkillPoints() {
+        return stats.getSkillPoints();
     }
 
     public void setLocation(MapLocationPoint location) {
@@ -146,16 +152,20 @@ public abstract class Entity {
 
     public void revertDeath() {stats.revertDeath();}
 
-    //
     public void modifyLives(int amt){stats.modifyLives(amt);}
-    //
+
     public void modifyExperience(int amt){stats.modifyExperience(amt);}
-    //
+
     public void checkExperience(){
         if(stats.checkExperience())
             stats.levelUp();
     }
-    //
+
+    public boolean addItem(Takable item) {
+        return inventory.addItem(item);
+    }
+
+
     public void levelUp(){stats.levelUp();}
 
     public Occupation getOccupation() {

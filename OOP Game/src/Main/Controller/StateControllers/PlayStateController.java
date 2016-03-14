@@ -84,6 +84,7 @@ public class PlayStateController extends StateController {
                 playState.moveCenterPoint(DirectionEnum.DownRight);
                 break;
             case Select:
+                ((InventoryStateController)stateControllerManager.getStateController(StateEnum.InventoryState)).init(playState.getPlayer().getInventory());
             	stateControllerManager.setState(StateEnum.InventoryState);
             	break;
             case Interact:
@@ -95,6 +96,9 @@ public class PlayStateController extends StateController {
                 break;
             case Control:
                 stateControllerManager.setState(StateEnum.KeyBindingsState);
+                break;
+            case SkillTree:
+                stateControllerManager.setState(StateEnum.SkillState);
                 break;
         }
         if (!avatar.hasHealth() && avatar.getLives() == 0) {

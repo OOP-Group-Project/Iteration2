@@ -18,6 +18,7 @@ public enum StateEnum {
     TalkState,
     DeathState,
     TradeState,
-    KeyBindingsState;
+    KeyBindingsState,
+    SkillState;
 
 }

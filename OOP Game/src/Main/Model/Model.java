@@ -3,6 +3,8 @@ package Main.Model;
 import Main.Model.Entity.Avatar;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
+import Main.Model.Occupation.Occupation;
+import Main.Model.Occupation.Smasher;
 import Main.Model.State.*;
 import Main.Model.io.AreaEffectsIO;
 import Main.Model.io.ItemsIO;
@@ -27,7 +29,7 @@ public class Model {
 
 
         // Create an empty character first
-        player = new Avatar(new MapLocationPoint(0,0));
+        player = new Avatar(new Smasher(), new MapLocationPoint(0,0));
 
         // Create the map first, we'll loadMap everything into it later
         world = new MapIO().loadMap(new Map(20,20));
@@ -53,7 +55,7 @@ public class Model {
         states.put(StateEnum.StartMenuState, new StartMenuState());
         states.put(StateEnum.AvatarCreationState,new AvatarCreationState(player,world));
         states.put(StateEnum.DeathState, new DeathState());
-
+        states.put(StateEnum.SkillState, new SkillState(player));
         new MapIO().saveMap(world, "map.txt");
     }
 

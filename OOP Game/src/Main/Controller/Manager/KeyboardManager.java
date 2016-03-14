@@ -57,6 +57,7 @@ public class KeyboardManager implements KeyListener{
 		keyboardActionMapping.put(KeyEvent.VK_Z, UserActionEnum.DownLeft);
 		keyboardActionMapping.put(KeyEvent.VK_C, UserActionEnum.DownRight);
 		keyboardActionMapping.put(KeyEvent.VK_S, UserActionEnum.Interact);
+		keyboardActionMapping.put(KeyEvent.VK_SPACE, UserActionEnum.PickUpItem);
 		keyboardActionMapping.put(KeyEvent.VK_NUMPAD8, UserActionEnum.Up);
 		keyboardActionMapping.put(KeyEvent.VK_NUMPAD7, UserActionEnum.UpLeft);
 		keyboardActionMapping.put(KeyEvent.VK_NUMPAD9, UserActionEnum.UpRight);
@@ -81,12 +82,12 @@ public class KeyboardManager implements KeyListener{
 		keyboardActionMapping.put(KeyEvent.VK_SHIFT, UserActionEnum.Shift);
 		keyboardActionMapping.put(KeyEvent.VK_CONTROL, UserActionEnum.Control);
 		keyboardActionMapping.put(KeyEvent.VK_ENTER, UserActionEnum.Select);
+		keyboardActionMapping.put(KeyEvent.VK_K, UserActionEnum.SkillTree);
 
 
 		//all other keys set to none for key binding menu
 		keyboardActionMapping.put(KeyEvent.VK_I, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_J, UserActionEnum.None);
-		keyboardActionMapping.put(KeyEvent.VK_K, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_L, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_M, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_N, UserActionEnum.None);
@@ -104,7 +105,6 @@ public class KeyboardManager implements KeyListener{
 		keyboardActionMapping.put(KeyEvent.VK_8, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_9, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_0, UserActionEnum.None);
-		keyboardActionMapping.put(KeyEvent.VK_SPACE, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_ALT, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_ASTERISK, UserActionEnum.None);
 		keyboardActionMapping.put(KeyEvent.VK_ADD, UserActionEnum.None);

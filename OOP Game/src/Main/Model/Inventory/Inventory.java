@@ -64,8 +64,8 @@ public class Inventory {
         for (int i = 0; i < MAX_INVENTORY; i++) {
             
         	//set the next empty space
-        	if (items[i] == null) { 
-        		items[nextEmptySpace] = new ItemNode(newItem, 1);
+        	if (items[i] == null) {
+        		items[nextEmptySpace - 1] = new ItemNode(newItem, 1);
         		return true;
             }
 

@@ -39,11 +39,16 @@ public class StateControllerManager {
 		gameStateControllers.put(StateEnum.AvatarCreationState, new AvatarCreationStateController(this,(AvatarCreationState) model.getStates().get(StateEnum.AvatarCreationState)));
 		gameStateControllers.put(StateEnum.KeyBindingsState, new KeyBindingsStateController(this,(KeyBindingsState) model.getStates().get(StateEnum.KeyBindingsState)));
 		gameStateControllers.put(StateEnum.DeathState, new DeathStateController(this,(DeathState) model.getStates().get(StateEnum.DeathState)));
+		gameStateControllers.put(StateEnum.SkillState, new SkillStateController(this,(SkillState)model.getStates().get(StateEnum.SkillState)));
 
 		// set our first state
 		previousState = StateEnum.StartMenuState;
 		setState(StateEnum.StartMenuState);
 	}
+
+    public StateController getStateController(StateEnum state) {
+        return gameStateControllers.get(state);
+    }
 
 	
 	public void setState(StateEnum state){

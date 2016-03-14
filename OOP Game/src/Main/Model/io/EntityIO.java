@@ -55,11 +55,11 @@ public class EntityIO {
         //set up avatar parameters
         EntityTypeEnum type = EntityTypeEnum.NPC;
         Stats stats;
-        Occupation occupation;
-        Inventory inventory;
+        Occupation occupation = null;
+        Inventory inventory = null;
         MapLocationPoint location = new MapLocationPoint(0,0);
         int level = 1;
-        Entity entity;
+        Entity entity = null;
 
         //set the avatar parameters given file data
         for (int i = 0; i < FileData.size(); i++) {
@@ -89,23 +89,21 @@ public class EntityIO {
         }
 
         //instantiate a new entity;
-        System.out.println(type);
         switch (type) {
             case Avatar:
-                entity = new Avatar(location);
+                entity = new Avatar(occupation,location,level, inventory);
                 break;
             case NPC:
-                entity = new Npc(location);
+                entity = new Npc(occupation,location,level,inventory);
                 break;
             case Pet:
-                entity = new Pet(location);
+                entity = new Pet(location,level);
                 break;
             case Mount:
                 entity = new Mount(location);
                 break;
             default:
-                entity = new Npc(location);
-                break;
+                System.out.println("Something went wrong in the instatiation of an entity in " + this.toString());
         }
 
         //level the entity up appropriately
@@ -128,30 +126,9 @@ public class EntityIO {
         return new MapLocationPoint(Integer.valueOf(loc[0]),Integer.valueOf(loc[1]));
     }
 
-    //given a count of how many items an entity and the index of the list along with the data of a file and the current inventory return an inventory
-    private Inventory setInventory(int itemCount, int index, ArrayList<String> fileData, Inventory inventory) {
-        // TODO: 3/12/16 uncomment when items implemented
-//        for (int i = index; i < itemCount; i++) {
-//            String[] line = fileData.get(i).split(":");
-//            int individualItemCount = Integer.valueOf(line[1]);
-//            for (int j = 0; j < individualItemCount; j++) {
-//                inventory.addItem(new TakeAble(line[0]));
-//            }
-//        }
-        return inventory;
-    }
-
-    //change in file structure TODO: 3/12/16 delete the old inventory creator if we keep this file struct
+    //change in file structure
     private Inventory setInventory(String s) {
-        Inventory inventory = new Inventory();
-
-        // TODO: 3/12/16 uncomment when items are implemented
-        String[] items = s.split(",");
-        for (String item : items) {
-//            inventory.addItem(new TakeAble(Integer.valueOf(item)));
-        }
-
-        return inventory;
+        return new ItemsIO().getEntityInventory(s);
     }
 
     //given a string containing the name of an occupation the file return an occupation (defaults to smasher if data corrupted)

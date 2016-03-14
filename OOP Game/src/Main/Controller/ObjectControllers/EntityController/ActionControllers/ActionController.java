@@ -51,6 +51,8 @@ public class ActionController extends TimedObjectController {
             } else if (u == UserActionEnum.Interact) {
                 MapLocationPoint adjacentLocation = entity.getLocation().getAdjacent(entity.getOrientation());
                 IC.executeInteraction(map.getTile(entity.getLocation()), map.getTile(adjacentLocation));
+            } else if(u == UserActionEnum.PickUpItem) {
+                IC.executeInteraction(map.getTile(entity.getLocation()));
             }
         }
     }
