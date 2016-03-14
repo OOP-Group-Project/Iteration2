@@ -1,5 +1,7 @@
 package Main.Model.Stats;
+import Main.Model.DirectionEnum;
 import Main.Model.Entity.Entity;
+import Main.Model.Entity.EntityTypeEnum;
 import Main.Model.Map.MapLocationPoint;
 
 import java.util.HashMap;
@@ -396,7 +398,7 @@ public class Stats {
             }
             else {
                 entity.died();
-                System.out.println("You are dead and did not respawn");
+//                System.out.println("You are dead and did not respawn");
             }
         }
     }

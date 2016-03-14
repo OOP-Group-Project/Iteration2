@@ -109,12 +109,17 @@ public class KeyBindingsStateViewport extends StateViewport {
 
     private void renderStats(Graphics g) {
 
-        KeyboardManager keyManager = controller.getKeyManager();
-        HashMap<Integer, UserActionEnum> keyboardActionMapping = keyManager.getKeyboardActionMapping();
-        keyBindingsState.sendKeyManager(keyboardActionMapping);
-        keyBindingsState.sendController(controller);
-        Iterator iter = keyboardActionMapping.entrySet().iterator();
-        int length = keyboardActionMapping.size();
+        if(firstRender) {
+            KeyboardManager keyManager = controller.getKeyManager();
+            HashMap<Integer, UserActionEnum> keyboardActionMapping = keyManager.getKeyboardActionMapping();
+            keyBindingsState.sendKeyManager(keyboardActionMapping);
+            keyBindingsState.sendController(controller);
+            firstRender = false;
+        }
+        keyBindingsState.init();
+        HashMap<Integer, UserActionEnum> keyboardActionMapping2 = keyBindingsState.getKeyboardActionMapping();
+        Iterator iter = keyboardActionMapping2.entrySet().iterator();
+        int length = keyboardActionMapping2.size();
 
         BufferedImage overImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_4BYTE_ABGR);
         Graphics g2 = overImage.getGraphics();

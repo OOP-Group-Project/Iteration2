@@ -130,6 +130,7 @@ public abstract class Entity {
     //
     public void modifyStats(StatsModifier statsModifier) {
         stats.modifyStats(statsModifier);
+        stats.printStats();
     }
 
 
@@ -231,15 +232,7 @@ public abstract class Entity {
         this.equipment = equipment;
     }
 
-    public void respawn(MapLocationPoint location) {
-        this.location.x = location.x;
-        this.location.y = location.y;
-        StatsModifier sm = new StatsModifier();
-        sm = sm.builder().lifeModifier(15).build();
-        this.stats.modifyStats(sm);
-        // TODO: Reset avatar's stats when respawn
-        //this.stats.reset();
-    }
+    public abstract void respawn(MapLocationPoint location);
 
     //looks at the tile infront of it
     public MapLocationPoint peek() {

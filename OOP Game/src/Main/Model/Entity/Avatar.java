@@ -4,11 +4,11 @@ import Main.Model.DirectionEnum;
 import Main.Model.Inventory.Inventory;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Map.MapLocationPoint;
-import Main.Model.Occupation.Smasher;
 import Main.Model.Skills.RadialEffect;
 import sun.misc.Queue;
 
 import java.util.ArrayList;
+import Main.Model.Stats.StatsModifier;
 
 /**
  * Created by walkhard on 2/18/16. Modified by John Kaufmann 3/9/16
@@ -28,8 +28,6 @@ public class Avatar extends Entity{
         super(EntityTypeEnum.Avatar, EntitySpeechEnum.PLAYER, o, location, 1, new Inventory());
     }
 
-
-
     public void initAreaSeen(int row, int col){
         areaSeen = new float[row][col];
         for (int i =0; i < row; i ++){
@@ -48,7 +46,6 @@ public class Avatar extends Entity{
             }
         }
     }
-
 
 
     private void seeAround(){
@@ -86,7 +83,7 @@ public class Avatar extends Entity{
     }
 
     public void move(DirectionEnum dir) {
-        location.move(dir);
+        super.move(dir);
         seeAround();
     }
 
@@ -94,4 +91,14 @@ public class Avatar extends Entity{
         super.setLocation(location);
         seeAround();
     }
+    public void respawn(MapLocationPoint location) {
+        this.location.x = location.x;
+        this.location.y = location.y;
+        StatsModifier sm = new StatsModifier();
+        sm = sm.builder().lifeModifier(15).build();
+        this.stats.modifyStats(sm);
+        // TODO: Reset avatar's stats when respawn
+        //this.stats.reset();
+    }
+
 }

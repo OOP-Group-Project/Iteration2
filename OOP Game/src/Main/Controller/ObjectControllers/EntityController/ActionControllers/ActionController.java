@@ -35,7 +35,7 @@ public class ActionController extends TimedObjectController {
             entity.setDoingAction(true);
 
             // Calculate speed of action
-            int speed = 100; // milliseconds
+            int speed = 500; // milliseconds
 
             this.timer.start(speed);
             // Do action
