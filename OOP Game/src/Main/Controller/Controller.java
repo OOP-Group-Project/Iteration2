@@ -42,6 +42,8 @@ public class Controller implements Runnable{
         return keyboardManager;
     }
 
+    public KeyManager getKeyManager() { return keyboardManager;}
+
     public void update() {
         stateControllerManager.update();
     }

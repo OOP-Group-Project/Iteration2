@@ -51,6 +51,7 @@ public class Model {
         //INVENTORY & STATS  need to be pass to player and InventoryState
         states.put(StateEnum.InventoryState, new InventoryState());
         states.put(StateEnum.StatState, new StatState(player));
+        states.put(StateEnum.KeyBindingsState, new KeyBindingsState());
 
         states.put(StateEnum.StartMenuState, new StartMenuState());
 

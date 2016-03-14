@@ -44,8 +44,9 @@ public class StateControllerManager {
 		gameStateControllers.put(StateEnum.InventoryState,new InventoryStateController(this, (InventoryState)states.get(StateEnum.InventoryState)));
 		gameStateControllers.put(StateEnum.StartMenuState, new StartMenuStateController(this,(StartMenuState)states.get(StateEnum.StartMenuState)));
 		//also guessing
-		gameStateControllers.put(StateEnum.TalkState, new TalkStateController(this, (TalkState)states.get(StateEnum.TalkState)));
+		//gameStateControllers.put(StateEnum.TalkState, new TalkStateController(this, (TalkState)states.get(StateEnum.TalkState)));
 		gameStateControllers.put(StateEnum.StatState, new StatStateController(this,(StatState)states.get(StateEnum.StatState)));
+		gameStateControllers.put(StateEnum.KeyBindingsState, new KeyBindingsStateController(this,(KeyBindingsState)states.get(StateEnum.KeyBindingsState)));
 	}
 	
 	public void setState(StateEnum state){

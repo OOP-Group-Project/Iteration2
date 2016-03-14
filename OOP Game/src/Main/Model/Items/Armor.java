@@ -1,5 +1,6 @@
 package Main.Model.Items;
 
+import Main.Model.Skills.Skills;
 import Main.Model.Stats.StatsModifier;
 import Main.Model.Requirement;
 
@@ -10,10 +11,10 @@ import Main.Model.Requirement;
 public class Armor extends Equippable{
     /*** Member Variables ***/
     private ArmorTypeEnum armorType;
-    private Skill skills[];
+    private Skills skills[];
 
     /*** Constructors ***/
-    public Armor(ArmorTypeEnum armorType, String name, int id, StatsModifier statsModifiers[], Requirement requirements[], Skill skills[]){
+    public Armor(ArmorTypeEnum armorType, String name, int id, StatsModifier statsModifiers[], Requirement requirements[], Skills skills[]){
         super(ItemTypeEnum.Equippable, name, id, statsModifiers, requirements);
         //super(Equippable constructor stuff)
         this.armorType = armorType;
