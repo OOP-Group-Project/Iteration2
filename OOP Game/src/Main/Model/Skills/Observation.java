@@ -43,13 +43,13 @@ public class Observation extends BaseSkills {
                 //just used to alternate plus and minuses
                 if (randomNum % 2 == 0) {
                     lifeToShow = stats.curLife() - minRandomNum;
-                    levelT0Show = stats.level() + minRandomNum / 2;
+                    levelT0Show = stats.getLevel() + minRandomNum / 2;
                     defRatingToShow = stats.curDefense() + minRandomNum;
                     offRatingToShow = stats.curOffense() - minRandomNum;
                 }
                 else {
                     lifeToShow = stats.curLife() + minRandomNum;
-                    levelT0Show = stats.level() - minRandomNum / 2;
+                    levelT0Show = stats.getLevel() - minRandomNum / 2;
                     defRatingToShow = stats.curDefense() - minRandomNum;
                     offRatingToShow = stats.curOffense() + minRandomNum;
                 }

@@ -1,6 +1,6 @@
 package Main.Model.Stats;
 import Main.Model.Entity.Entity;
-import Main.Model.Occupation.Occupation;
+import Main.Model.Map.MapLocationPoint;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +55,7 @@ public class Stats {
 
     private int skillPoints;
     private Entity entity;
+    private double partialImmunity = 0;
 
     // primary stats (maximum)
     private double max_str;    //strength
@@ -140,7 +141,7 @@ public class Stats {
     public Entity getEntity() {return entity;}
 
     //
-    public int level() {return level;}
+    public int getLevel() {return level;}
 
     // accessors (current)
     public double curStrength() {return cur_str;}
@@ -376,7 +377,7 @@ public class Stats {
             cur_act = 0;
     }
     private void changeCurLife(double amt) {
-
+        amt = amt * (1 - partialImmunity);
         // change stat
         if(abs(amt) > 0.99)
             cur_hp += amt;
@@ -386,8 +387,8 @@ public class Stats {
         if (cur_hp > max_hp)
             cur_hp = max_hp;
         else if(cur_hp < 0) {
-            //TODO: changed by Andy to make sence
-            //this.getEntity().die();
+            this.getEntity().respawn(new MapLocationPoint(5,5));
+
         }
     }
     private void changeCurMana(double amt) {
@@ -446,6 +447,7 @@ public class Stats {
         else if (amt < 0)
             level -= amt;
     }
+    private void changePartialImmunity (double amt) { partialImmunity = amt; }
 
     public void changeSkillPoints (int amt) {
         skillPoints += amt;
@@ -540,6 +542,36 @@ public class Stats {
         setCur();
     }
     //
+    public void buff(StatsModifier sm) {
+        changeMaxStrength(sm.getStrengthModifier());
+        changeMaxAgility(sm.getAgilityModifier());
+        changeMaxIntellect(sm.getIntellectModifier());
+        changeMaxHardiness(sm.getHardinessModifier());
+        changeMaxLives(sm.getLivesLeftModifier());
+        changeMaxMovement(sm.getMovementModifier());
+
+        changeCurStrength(sm.getStrengthModifier());
+        changeCurAgility(sm.getAgilityModifier());
+        changeCurIntellect(sm.getIntellectModifier());
+        changeCurHardiness(sm.getHardinessModifier());
+        changeCurExperience(sm.getExperienceModifier());
+        changeCurLives(sm.getLivesLeftModifier());
+        changeCurMovement(sm.getMovementModifier());
+
+        calculateSecondaryStats();
+
+        changeMaxLife(sm.getLifeModifier());
+        changeMaxMana(sm.getManaModifier());
+        changeMaxOffense(sm.getOffensiveModifier());
+        changeMaxDefense(sm.getDefenseModifier());
+        changeMaxArmor(sm.getArmorModifier());
+        changeCurLife(sm.getLifeModifier());
+        changeCurMana(sm.getManaModifier());
+        changeCurOffense(sm.getOffensiveModifier());
+        changeCurDefense(sm.getDefenseModifier());
+        changeCurArmor(sm.getArmorModifier());
+    }
+
     public void buff(String stat_to_buff, Double amt) {
         switch(stat_to_buff) {
             case "str": changeMaxStrength(amt);
@@ -580,7 +612,7 @@ public class Stats {
     }
     //
     public void revert() {
-        cur_hp = temp_hp * cur_hp / max_hp ;
+        cur_hp = temp_hp * cur_hp / max_hp;
         cur_mp = temp_mp * cur_mp / max_mp;
         max_str = temp_str;
         max_agi = temp_agi;
@@ -600,7 +632,7 @@ public class Stats {
         // primary stats
         System.out.println("---------------------------------");
         System.out.println("Primary Stats:");
-        System.out.println("Level: " + level());
+        System.out.println("Level: " + getLevel());
         System.out.println("Lives: " + curLives() + "/" + maxLives());
         System.out.println("Experience: " + curExperience() + "/" + maxExperience());
         System.out.println("Strength: " + curStrength() + "/" + maxStrength());
@@ -617,4 +649,5 @@ public class Stats {
         System.out.println("Defense: " + curDefense() + "/" + maxDefense());
         System.out.println("Armor: " + curArmor() + "/" + maxArmor());
     }
+
 }
