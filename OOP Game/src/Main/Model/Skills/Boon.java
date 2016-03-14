@@ -16,6 +16,7 @@ public class Boon extends SummonerSkills {
 
     public Boon(Entity entity) {
         super(entity, 20.0, 10.0);
+        skillName = "Boon";
     }
 
     public StatsModifier activate() {

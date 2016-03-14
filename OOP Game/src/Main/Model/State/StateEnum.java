@@ -16,7 +16,8 @@ public enum StateEnum {
     StartMenuState,
     StatState,
     TalkState,
-    KeyBindingsState,
-    DeathState;
+    DeathState,
+    TradeState,
+    KeyBindingsState;
 
 }

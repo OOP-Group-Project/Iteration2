@@ -9,6 +9,7 @@ public class Smasher extends Occupation {
         modify.put("agi", 1.1);
         modify.put("int", 1.0);
         modify.put("har", 1.5);
+        occupationType = OccupationTypeEnum.Smasher;
     }
 
     @Override

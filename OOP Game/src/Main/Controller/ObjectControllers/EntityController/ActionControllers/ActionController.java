@@ -1,10 +1,12 @@
 package Main.Controller.ObjectControllers.EntityController.ActionControllers;
 
+import Main.Controller.Manager.ObjectControllerManager;
 import Main.Controller.Manager.UserActionEnum;
 import Main.Controller.ObjectControllers.EntityController.ActionControllers.SkillsControllers.SkillsController;
 import Main.Controller.ObjectControllers.TimedObjectController;
 import Main.Model.Entity.Entity;
 import Main.Model.Map.Map;
+import Main.Model.Map.MapLocationPoint;
 
 /**
  * Created by johnkaufmann on 3/10/16.
@@ -15,12 +17,14 @@ public class ActionController extends TimedObjectController {
     private Entity entity;
     private AttackController AC;
     private SkillsController SC;
+    private InteractionController IC;
     private String occupation;
 
-    public ActionController(Map map, Entity entity) {
+    public ActionController(ObjectControllerManager objectControllerManager, Map map, Entity entity) {
         this.map = map;
         this.entity = entity;
         this.AC = new AttackController(map, entity);
+        this.IC = new InteractionController(objectControllerManager, entity);
         this.occupation = entity.getOccupation().toString();
     }
 
@@ -36,10 +40,18 @@ public class ActionController extends TimedObjectController {
             // Do action
 
             // Attack!
-            if (occupation == "Smasher" && u.ordinal() == 10) AC.performMeleeAttack();
-            else if (occupation == "Sneak" && u.ordinal() == 10) AC.performRangeAttack();
-            else if (occupation == "Summoner" && u.ordinal() > 10 && u.ordinal() < 14) AC.performSpell(u);
-            else if (u.ordinal() > 24 && u.ordinal() < 27) SC.performSkill(u);
+            if (occupation == "Smasher" && u == UserActionEnum.Attack) {
+                AC.performMeleeAttack();
+            } else if (occupation == "Sneak" && u == UserActionEnum.Attack) {
+                AC.performRangeAttack();
+            } else if (occupation == "Summoner" && u == UserActionEnum.Attack) {
+                AC.performSpell(u);
+            } else if (u.ordinal() > 24 && u.ordinal() < 27) {
+                SC.performSkill(u);
+            } else if (u == UserActionEnum.Interact) {
+                MapLocationPoint adjacentLocation = entity.getLocation().getAdjacent(entity.getOrientation());
+                IC.executeInteraction(map.getTile(entity.getLocation()), map.getTile(adjacentLocation));
+            }
         }
     }
 

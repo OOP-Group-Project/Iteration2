@@ -13,6 +13,7 @@ public class RangedWeapon extends SneakSkills{
     public RangedWeapon(Entity entity) {
         //1 second cooldown and 2 mana cost
         super(entity, 2.0, 0);
+        skillName = "Ranged Weapon";
     }
 
     public StatsModifier attack() {

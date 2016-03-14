@@ -25,23 +25,22 @@ public class SummonerController {
 
     public void performSkill(UserActionEnum u) {
         switch (u) {
-            case Skill1:
+            case Skill4:
                 Enchantment ec = new Enchantment(summoner);
                 if (ec.allCheck()) applyEnchantment(ec);
                 break;
-            case Skill2:
+            case Skill5:
                 Boon bn = new Boon(summoner);
                 if (bn.allCheck()) {
                     summoner.getStats().modifyStats(bn.activate());
                     double duation = bn.getDuration();
                 }
-
                 break;
-            case Skill3:
+            case Skill6:
                 Bane be = new Bane(summoner);
                 if (be.allCheck()) applyBane(be);
                 break;
-            case Skill4:
+            case Skill7:
                 new Staff(summoner).activate();
                 break;
             default:

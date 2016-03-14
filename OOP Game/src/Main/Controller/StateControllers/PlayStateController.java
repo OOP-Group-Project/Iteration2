@@ -2,8 +2,6 @@ package Main.Controller.StateControllers;
 
 import Main.Controller.Manager.ObjectControllerManager;
 import Main.Controller.ObjectControllers.EntityController.AvatarController;
-import Main.Controller.ObjectControllers.EntityController.EntityController;
-import Main.Controller.ObjectControllers.EntityController.NpcController;
 import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.UserActionEnum;
 import Main.Controller.ObjectControllers.MapController;
@@ -27,7 +25,7 @@ public class PlayStateController extends StateController {
         this.stateControllerManager = stateControllerManager;
         this.objectControllerManager = objectControllerManager;
         this.playState = playState;
-        this.lastAction = UserActionEnum.Pause;
+        this.lastAction = UserActionEnum.None;
     }
 
     @Override
@@ -88,8 +86,9 @@ public class PlayStateController extends StateController {
             case Select:
             	stateControllerManager.setState(StateEnum.InventoryState);
             	break;
-            case Talk:
-                stateControllerManager.setState(StateEnum.TalkState);
+            case Interact:
+
+                //stateControllerManager.setState(StateEnum.TalkState);
                 break;
             case Shift:
                 stateControllerManager.setState(StateEnum.StatState);

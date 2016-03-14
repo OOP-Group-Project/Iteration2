@@ -100,8 +100,8 @@ public class EntityIO {
             case Pet:
                 entity = new Pet(location);
                 break;
-            case Vehicle:
-                entity = new Vehicle(location);
+            case Mount:
+                entity = new Mount(location);
                 break;
             default:
                 entity = new Npc(location);
@@ -240,8 +240,8 @@ public class EntityIO {
                 return typeFormat + "NPC";
             case Pet:
                 return typeFormat + "Pet";
-            case Vehicle:
-                return typeFormat + "Vehicle";
+            case Mount:
+                return typeFormat + "Mount";
             default:
                 return typeFormat + "NPC";
         }

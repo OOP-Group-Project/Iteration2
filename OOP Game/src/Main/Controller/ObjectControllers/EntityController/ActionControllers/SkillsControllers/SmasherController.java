@@ -4,9 +4,14 @@ import Main.Controller.Manager.UserActionEnum;
 import Main.Model.Entity.Entity;
 import Main.Model.Items.WeaponTypeEnum;
 import Main.Model.Map.Map;
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Skills.Brawling;
 import Main.Model.Skills.OneHandedWeapon;
+import Main.Model.Skills.Skills;
 import Main.Model.Skills.TwoHandedWeapon;
+import Main.Model.Stats.StatsModifier;
+
+import java.lang.annotation.Target;
 
 /**
  * Created by johnkaufmann on 3/13/16.
@@ -14,6 +19,7 @@ import Main.Model.Skills.TwoHandedWeapon;
  */
 public class SmasherController {
     Entity entity;
+    Entity enemy;
     Map map;
 
     public SmasherController(Entity entity, Map map) {
@@ -23,14 +29,23 @@ public class SmasherController {
 
     public void performSkill(UserActionEnum u) {
         switch (u) {
-            case Skill1:
-                if (validateOneHanded()) entity.getStats().modifyStats(new OneHandedWeapon(entity).activate());
+            case Skill4:
+                if (validateOneHanded()) {
+                    MapLocationPoint targetLocation = entity.getLocation().getAdjacent(entity.getOrientation());
+                    if (map.getTile((int)targetLocation.getX(), (int)targetLocation.getY()).hasEntity()) {
+                        StatsModifier sm = new StatsModifier();
+
+                    }
+                    entity.getStats().modifyStats(new OneHandedWeapon(entity).activate());
+                }
                 break;
-            case Skill2:
-                if (validateTwoHanded()) entity.getStats().modifyStats(new TwoHandedWeapon(entity).activate());
+            case Skill5:
+                if (validateTwoHanded())
+                    entity.getStats().modifyStats(new TwoHandedWeapon(entity).activate());
                 break;
-            case Skill3:
-                if (validateBrawling()) entity.getStats().modifyStats(new Brawling(entity).activate());
+            case Skill6:
+                if (validateBrawling())
+                    entity.getStats().modifyStats(new Brawling(entity).activate());
                 break;
             default:
                 System.out.print("Something went wrong in" + this.toString());
@@ -48,7 +63,8 @@ public class SmasherController {
     }
 
     private boolean validateOneHanded() {
-        if (entity.getEquipment().getWeapon().getWeaponType() == WeaponTypeEnum.ONEHANDSWORD) return true;
+        if (entity.getEquipment().getWeapon().getWeaponType() == WeaponTypeEnum.ONEHANDSWORD)
+            return true;
         return false;
     }
 }
