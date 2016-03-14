@@ -9,6 +9,9 @@ import Main.Model.Entity.EntityTypeEnum;
 import Main.Model.Items.Item;
 import Main.Model.Map.Map;
 import Main.Model.Map.Tile;
+import Main.Model.Occupation.Occupation;
+import Main.Model.Occupation.OccupationTypeEnum;
+import Main.Model.Requirement;
 import Main.Model.Terrain.TerrainTypeEnum;
 import Main.View.Graphics.GraphicsAssets;
 import Main.View.Viewport;
@@ -70,18 +73,33 @@ public class ObjectRenderer {
             pxCenterPoint.x += pxRenderOffset.x;
             pxCenterPoint.y += pxRenderOffset.y;
 
+            // Calculate location that the tile needs to be rendered using the pxCenterPoint
+            Point topLeft = new Point(pxCenterPoint.x - (graphicsAssets.TILE_PX_WIDTH/2), pxCenterPoint.y - (graphicsAssets.TILE_PX_HEIGHT/2));
+
+
             // Calculate the top left corner from the center point
             // Render the correct image
             EntityTypeEnum type = entity.getType();
+            Requirement sneak = new Requirement(OccupationTypeEnum.Sneak);
+            Requirement summoner = new Requirement(OccupationTypeEnum.Sneak);
+            Requirement smasher = new Requirement(OccupationTypeEnum.Sneak);
+
             if(type == EntityTypeEnum.Avatar) {
                 // Check occupation
+                if(sneak.isCorrectOccupation(entity)){
+                    g.drawImage(GraphicsAssets.sneak,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+                }
+                if(summoner.isCorrectOccupation(entity)){
+                    g.drawImage(GraphicsAssets.summoner,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+                }
+                if(smasher.isCorrectOccupation(entity)){
+                    g.drawImage(GraphicsAssets.smasher,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+                }
                 g.setColor(new Color(0,0,0));
                 g.fillOval(pxCenterPoint.x - 25, pxCenterPoint.y - 25, 50, 50);
                 // render the correct image for the avatar's occupation.
             }
 
-            // Calculate location that the tile needs to be rendered using the pxCenterPoint
-            Point topLeft = new Point(pxCenterPoint.x - (graphicsAssets.TILE_PX_WIDTH/2), pxCenterPoint.y - (graphicsAssets.TILE_PX_HEIGHT/2));
 
             if (type == EntityTypeEnum.NPC){
                 g.drawImage(GraphicsAssets.skeletonWalk,topLeft.x,topLeft.y ,graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT,null);
