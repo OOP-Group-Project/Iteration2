@@ -11,6 +11,7 @@ import Main.Controller.ObjectControllers.MapController;
 import Main.Controller.ObjectControllers.ObjectController;
 import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.AreaEffect.HealDamage;
+import Main.Model.AreaEffect.Portal;
 import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.*;
@@ -91,6 +92,9 @@ public class LoadStateController extends StateController {
             world.getTile(ae.getLocation().x,ae.getLocation().y).addAreaEffect(ae);
             objectControllerManager.addObjectController(ae, new AreaEffectController(ae, ae.getCharge()));
         }
+//        AreaEffect portal = new Portal(new MapLocationPoint(2, 2), new MapLocationPoint(10, 10));
+//        world.getTile(2,2).addAreaEffect(portal);
+//        objectControllerManager.addObjectController(portal, new AreaEffectController(portal, portal.getCharge()));
         
 //        AreaEffect testAreaEffect = new TakeDamage(10, 1000, new MapLocationPoint(1,5));
 //        world.getTile(1,5).addAreaEffect(testAreaEffect);

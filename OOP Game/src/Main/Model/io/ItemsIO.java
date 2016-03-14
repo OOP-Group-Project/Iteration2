@@ -1,5 +1,6 @@
 package Main.Model.io;
 
+import Main.Model.Inventory.Inventory;
 import Main.Model.Items.*;
 import Main.Model.Items.ItemBuilders.*;
 import Main.Model.Map.Map;
@@ -20,7 +21,6 @@ public class ItemsIO {
         ArrayList<String> data = new io().readFile(fileName);
 
         for (String d : data) {
-            System.out.println(d);
             String[] itemdata = d.split("-");
             String[] coordinates = itemdata[1].split(",");
             int x = Integer.valueOf(coordinates[0]);
@@ -32,6 +32,19 @@ public class ItemsIO {
             }
         }
         return map;
+    }
+
+    public Inventory getEntityInventory(String data) {
+        Inventory inv = new Inventory();
+        String[] items = data.split(",");
+        for (String item : items) {
+            String[] itemdata = item.split("-");
+            int itemcount = Integer.valueOf(itemdata[1]);
+            for (int i = 0; i < itemcount; i++) {
+                inv.addItem((Takable) getItem(itemdata[0]));
+            }
+        }
+        return inv;
     }
 
     /**

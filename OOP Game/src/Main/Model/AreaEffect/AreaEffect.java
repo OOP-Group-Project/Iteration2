@@ -45,6 +45,7 @@ public abstract class AreaEffect {
     public MapLocationPoint getLocation() {
         return location;
     }
+    public MapLocationPoint getDestination() { return getDestination();}
     public int getCharge() {
         return charge;
     }

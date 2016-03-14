@@ -1,8 +1,10 @@
 package Main.Model.io;
 
 import Main.Model.AreaEffect.AreaEffect;
+import Main.Model.AreaEffect.Portal;
 import Main.Model.AreaEffect.TakeDamage;
 import Main.Model.Map.Map;
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Map.Tile;
 import Main.Model.Model;
 import Main.Model.Terrain.TerrainTypeEnum;
@@ -86,6 +88,7 @@ public class MapIO {
                 else tiles[i][j] = new Tile(TerrainTypeEnum.Water,0);
             }
         }
+
         return tiles;
     }
 
