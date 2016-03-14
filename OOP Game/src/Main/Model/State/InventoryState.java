@@ -4,17 +4,16 @@ import java.awt.Font;
 import java.awt.Point;
 
 import Main.Controller.Manager.UserActionEnum;
+import Main.Model.Entity.Avatar;
 import Main.Model.Inventory.Inventory;
+import Main.Model.Items.Item;
 import Main.Model.Stats.Stats;
 
 
 
 public class InventoryState extends State{
-	private int ITEM_PER_ROW = 10;
 	
-	
-	private Inventory inventory;
-	private Stats stats;
+	private Avatar avatar;
 	
 	private Point ItemSelected;
 	
@@ -33,17 +32,10 @@ public class InventoryState extends State{
 		public int getItemsPerRow() {return itemPerRow;}
 		public int getItemPerCol() {return itemPerCol;}
 	}
+
 	
-	//JUST FOR TEST 
-	public InventoryState(){
-		this.inventory = new Inventory(); 
-		init();
-	}
-	
-	public InventoryState(Inventory inventory, Stats stats){
-		this.inventory = inventory;
-		this.stats = stats;
-		
+	public InventoryState(Avatar avatar){
+		this.avatar = avatar;
 		init();
 	}
 	
@@ -52,10 +44,6 @@ public class InventoryState extends State{
 		sectionSelected = SectionToShow.Inventory;
 	}
 
-	public void init(Inventory inventory) {
-		init();
-		this.inventory = inventory;
-	}
 	
 	public Point getSelected(){
 		return ItemSelected;
@@ -84,9 +72,15 @@ public class InventoryState extends State{
 	
 	//SHOULDN'T BE HERE
 	public Inventory getInventory(){
-		return inventory;
+		return avatar.getInventory();
 	}
 	public Stats getStats(){
-		return stats;
+		return avatar.getStats();
+	}
+	public Item getItem(int pos){
+		return avatar.getInventory().getItemAt(pos );
+	}
+	public int getItemAmount(int pos){
+		return avatar.getInventory().getItemAmountAt(pos );
 	}
 }
