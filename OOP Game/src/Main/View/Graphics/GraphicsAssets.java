@@ -29,6 +29,10 @@ public class GraphicsAssets {
     public static BufferedImage[] playerWalkLeft = new BufferedImage[9];
     public static BufferedImage player;
 
+    public static BufferedImage sneak;
+    public static BufferedImage smasher;
+    public static BufferedImage summoner;
+    public static BufferedImage friendlyNPC;
 
     public static BufferedImage skeleton;
     public static BufferedImage skeletonWalk;
@@ -60,7 +64,13 @@ public class GraphicsAssets {
         SpriteSheet playerSpriteSheet = new SpriteSheet(ImageLoader.loadImage("/Resources/PlayerSpriteSheet.png"));
         SpriteSheet skeletonSpriteSheet = new SpriteSheet(ImageLoader.loadImage("/Resources/SkeletonSpriteSheet.png"));
 
+
         // Load in water sprites
+
+        sneak = ImageLoader.loadImage("/Resources/sneak.png");
+        smasher = ImageLoader.loadImage("/Resources/summoner.png");
+        summoner = ImageLoader.loadImage("/Resources/summoner.png");
+        friendlyNPC = ImageLoader.loadImage("/Resources/friendlyNPC");
         water = ImageLoader.loadImage("/Resources/water.png");
         grass = ImageLoader.loadImage("/Resources/grass.png");
         mountain = ImageLoader.loadImage("/Resources/mountain.png");
