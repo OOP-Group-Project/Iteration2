@@ -26,6 +26,7 @@ public class ActionController extends TimedObjectController {
         this.AC = new AttackController(objectControllerManager, map, entity);
         this.IC = new InteractionController(objectControllerManager, entity);
         this.occupation = entity.getOccupation().toString();
+        SC = new SkillsController(entity, map);
     }
 
     public void performAction(UserActionEnum u) {

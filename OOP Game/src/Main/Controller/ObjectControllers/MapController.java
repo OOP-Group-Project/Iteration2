@@ -3,6 +3,7 @@ package Main.Controller.ObjectControllers;
 import Main.Controller.Manager.ObjectControllerManager;
 import Main.Controller.ObjectControllers.EntityController.EntityController;
 import Main.Model.AreaEffect.AreaEffect;
+import Main.Model.AreaEffect.AreaEffectEnum;
 import Main.Model.Entity.Entity;
 import Main.Model.Entity.EntityTypeEnum;
 import Main.Model.Map.Map;
@@ -34,9 +35,16 @@ public class MapController extends ObjectController {
                     AreaEffectController aec = (AreaEffectController) objectControllerManager.getObjectController(areaEffect);
                     aec.update();
 
+
                     // Apply to entity
                     if(currentTile.hasEntity()) {
-                        aec.activate(currentTile.getEntity());
+                        if(areaEffect.getType() == AreaEffectEnum.PORTAL) {
+                            aec.activate(currentTile.getEntity(), map);
+                            currentTile.removeEntity();
+                        }
+                        else {
+                            aec.activate(currentTile.getEntity());
+                        }
                     }
 
                 }
