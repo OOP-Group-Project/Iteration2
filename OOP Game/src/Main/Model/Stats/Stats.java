@@ -27,6 +27,8 @@ public class Stats {
         setMaxMovement();
         setTemp();
         setCur();
+        cur_lives = 1;
+        max_lives = 1;
     }
 
     //TODO:there is currently no difference among the stats of different occupations.
@@ -387,9 +389,15 @@ public class Stats {
         if (cur_hp > max_hp)
             cur_hp = max_hp;
         else if(cur_hp < 0) {
-            System.out.println("You are dead and respawned");
-            this.getEntity().respawn(new MapLocationPoint(5,5));
-
+            if(curLives() > 0){
+                System.out.println("You are dead and respawned");
+                cur_lives--;
+                entity.respawn(new MapLocationPoint(0,0));
+            }
+            else {
+                entity.died();
+                System.out.println("You are dead and did not respawn");
+            }
         }
     }
     private void changeCurMana(double amt) {
@@ -631,6 +639,22 @@ public class Stats {
         max_mov = temp_mov;
         max_arm = temp_arm;
         max_act = temp_act;
+    }
+
+    public void revertDeath() {
+        cur_hp =  max_hp;
+        cur_mp =  max_mp;
+        max_str = max_str;
+        max_agi = max_agi;
+        max_int = max_int;
+        max_har = max_har;
+        max_hp = max_hp;
+        max_mp = max_mp;
+        max_off = max_off;
+        max_def = max_def;
+        max_mov = max_mov;
+        max_arm = max_arm;
+        max_act = max_act;
     }
 
     // print
