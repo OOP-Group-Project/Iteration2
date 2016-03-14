@@ -60,7 +60,7 @@ public class SummonerController extends TimedObjectController{
             case Skill6:
                 MapLocationPoint origin = summoner.getLocation();
                 LinearEffect le = new LinearEffect();
-                Queue<MapLocationPoint> q = le.getAffectedArea((int) origin.getX(), (int) origin.getY(), 4, summoner.getOrientation());
+                Queue<MapLocationPoint> q = le.getAffectedArea((int) origin.getX(), (int) origin.getY(), bane.getLevel() / 2 + 1, summoner.getOrientation());
                 while (!q.isEmpty()) {
                     try {
                         targetLocation = q.dequeue();
@@ -69,6 +69,7 @@ public class SummonerController extends TimedObjectController{
                             enemy = targetTile.getEntity();
                             sm = bane.activate();
                             enemy.getStats().modifyStats(sm);
+                            break;
                         }
                         else {
                             System.out.println("not target found");
