@@ -46,4 +46,5 @@ public class Boon extends SummonerSkills {
     public double getDuration() {
         return level * 10; //in seconds
     }
+
 }

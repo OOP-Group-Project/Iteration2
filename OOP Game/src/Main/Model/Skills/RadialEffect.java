@@ -16,14 +16,13 @@ import java.util.ArrayList;
  * Do something like
  *  RadialEffect re = new RadialEffect();
     Queue<ArrayList<MapLocationPoint>> q = re.getAffectedArea(5,5,3);
-    int radius = 1;
+    int currentRadius = 1;
     while (!q.isEmpty()) {
-        System.out.println("Radius: " + radius++);
+        System.out.println("Radius: " + currentRadius++); // if you need the radius
         try {
             ArrayList<MapLocationPoint> current = q.dequeue();
-            int size = current.size();
-            for (int i = 0; i < size; i++) {
-                System.out.println(current.remove(0)); // actions go here
+            for (int i = 0; i < current.size(); i++) {
+                current.get(i); // here is what you need (a MapLocationPoint) and actions go here
             }
         } catch (InterruptedException e) {
         e.printStackTrace();
@@ -32,7 +31,7 @@ import java.util.ArrayList;
  */
 public class RadialEffect implements InfluenceArea {
 
-    public Queue< ArrayList<MapLocationPoint> > getAffectedArea(int x, int y, int radius) {
+    public Queue<ArrayList<MapLocationPoint>> getAffectedArea(int x, int y, int radius) {
 
         MapLocationPoint tempPoint;
         MapLocationPoint upPoint;

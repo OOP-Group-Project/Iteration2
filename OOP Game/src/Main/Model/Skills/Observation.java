@@ -67,9 +67,4 @@ public class Observation extends BaseSkills {
             return null;
         }
     }
-
-    @Override
-    public void apply() {
-
-    }
 }

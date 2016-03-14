@@ -14,22 +14,19 @@ public class RangedWeapon extends SneakSkills{
         super(entity, 2.0, 0);
     }
 
-    public StatsModifier activate() {
+    public StatsModifier attack() {
         double totalDamage = 0;
-        if (canActivate() && enoughMana() && successfulPerformance()){
-            Stats stats = entity.getStats();
-            totalDamage = stats.curAgility() + level * 10;
-            enforceManaCost();
-        }
         StatsModifier sm = new StatsModifier();
-        sm = sm.builder().lifeModifier(-totalDamage).build();
-        return sm;
-    }
-
-    private boolean canActivate() {
-        //is fist weapon equipped?
-        //getWeapon().getWeaponType == TWOHANDED?
-        //return true if so
-        return true;
+        if (allCheck()) {
+            Stats stats = entity.getStats();
+            timeWhenPerformed = System.currentTimeMillis();
+            totalDamage = stats.curAgility() * level * 2;
+            sm = sm.builder().lifeModifier(-totalDamage).build();
+            enforceManaCost();
+            return sm;
+        }
+        else {
+            return sm;
+        }
     }
 }

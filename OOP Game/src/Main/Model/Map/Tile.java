@@ -68,11 +68,12 @@ public class Tile {
 		return entity;
 	}
 
+    // Can add different types of conditions of whether  a tile is blocked for pathfinding (Iteration 3)?
 	public boolean isBlocked(){
-		if (this.terrainType == TerrainTypeEnum.Grass){
-			return false;
-		}
-		else return true;
+		if (terrainType == TerrainTypeEnum.Grass) {
+            return false;
+        }
+        return true;
 	}
 
 	public void removeAreaEffect() {

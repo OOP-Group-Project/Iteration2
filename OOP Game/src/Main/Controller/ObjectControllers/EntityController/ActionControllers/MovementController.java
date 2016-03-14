@@ -4,6 +4,7 @@ import Main.Controller.Manager.UserActionEnum;
 import Main.Controller.ObjectControllers.TimedObjectController;
 import Main.Model.DirectionEnum;
 import Main.Model.Entity.Entity;
+import Main.Model.Entity.EntityTypeEnum;
 import Main.Model.Map.Map;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Map.Tile;
@@ -134,7 +135,9 @@ public class MovementController extends TimedObjectController{
                     System.out.println("Something went wrong with our movement in movement controller!");
             }
         }
-
+        if (entity.getType() == EntityTypeEnum.Avatar){
+            map.setPlayerLocation(entity.getLocation());
+        }
     }
 
     /*****************************

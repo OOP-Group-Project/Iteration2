@@ -86,6 +86,9 @@ public class ObjectRenderer {
             if (type == EntityTypeEnum.NPC){
                 g.drawImage(GraphicsAssets.skeletonWalk,topLeft.x,topLeft.y ,graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT,null);
             }
+            if (type == EntityTypeEnum.Pet) {
+                g.drawImage(GraphicsAssets.pet,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+            }
         }
     }
 

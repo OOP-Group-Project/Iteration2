@@ -14,9 +14,4 @@ public class OneHandedWeapon extends SmasherSkills {
         damageFactor = 3;
         skillName = "One handed weapon attack";
     }
-
-    @Override
-    public void apply() {
-
-    }
 }

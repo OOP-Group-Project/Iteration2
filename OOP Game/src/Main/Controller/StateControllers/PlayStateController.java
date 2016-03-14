@@ -20,16 +20,30 @@ public class PlayStateController extends StateController {
     private StateControllerManager stateControllerManager;
     private ObjectControllerManager objectControllerManager;
     private PlayState playState;
+    private UserActionEnum lastAction;
 
     public PlayStateController(StateControllerManager stateControllerManager, ObjectControllerManager objectControllerManager, PlayState playState) {
         this.stateControllerManager = stateControllerManager;
         this.objectControllerManager = objectControllerManager;
         this.playState = playState;
+        this.lastAction = UserActionEnum.Pause;
     }
 
     @Override
     public void update() {
         ((MapController)objectControllerManager.getObjectController(playState.getWorld())).update();
+        switch(lastAction){
+            case ViewUp:
+            case ViewUpLeft:
+            case ViewUpRight:
+            case ViewDown:
+            case ViewDownLeft:
+            case ViewDownRight:
+                break;
+            default:
+                playState.centerToAvatar();
+                break;
+        }
     }
 
     @Override
@@ -75,6 +89,7 @@ public class PlayStateController extends StateController {
                 stateControllerManager.setState(StateEnum.StatState);
                 break;
         }
+        lastAction = action;
     }
 }
 

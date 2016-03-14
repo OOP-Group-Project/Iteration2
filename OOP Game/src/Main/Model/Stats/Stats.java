@@ -387,7 +387,9 @@ public class Stats {
         if (cur_hp > max_hp)
             cur_hp = max_hp;
         else if(cur_hp < 0) {
+            System.out.println("You are dead and respawned");
             this.getEntity().respawn(new MapLocationPoint(5,5));
+
         }
     }
     private void changeCurMana(double amt) {
@@ -648,5 +650,4 @@ public class Stats {
         System.out.println("Defense: " + curDefense() + "/" + maxDefense());
         System.out.println("Armor: " + curArmor() + "/" + maxArmor());
     }
-
 }
