@@ -104,6 +104,5 @@ public class LoadStateController extends StateController {
 //        objectControllerManager.addObjectController(testAreaEffect, new AreaEffectController(testAreaEffect, testAreaEffect.getCharge()));
 
         stateManager.setState(StateEnum.PlayState);
-
     }
 }

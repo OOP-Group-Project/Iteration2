@@ -21,10 +21,6 @@ public class InventoryStateController extends StateController{
 		this.inventoryState = inventoryState;
 	}
 
-	public void init(Inventory inventory) {
-		inventoryState.init(inventory);
-	}
-
 	@Override
 	public void handleAction(UserActionEnum action) {
 		

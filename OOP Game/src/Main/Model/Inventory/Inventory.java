@@ -65,17 +65,24 @@ public class Inventory {
             
         	//set the next empty space
         	if (items[i] == null) {
-        		items[nextEmptySpace - 1] = new ItemNode(newItem, 1);
-        		return true;
+                if(i < nextEmptySpace)
+                    nextEmptySpace = i;
+                continue;
             }
 
             //increment items if u have it
-            if (items[i].item.equals(newItem)) {
+            if (items[i].item.getId() == newItem.getId()) {
                 items[i].amount += 1;
                 return true;
             }
         }
-        return false;
+
+        if(nextEmptySpace == MAX_INVENTORY)
+            return false;
+        else {
+            items[nextEmptySpace] = new ItemNode(newItem, 1);
+            return true;
+        }
     }
 
 

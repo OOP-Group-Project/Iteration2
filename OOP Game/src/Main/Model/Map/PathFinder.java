@@ -34,15 +34,13 @@ public class PathFinder {
     }
 
     public Path findPath(int sx, int sy, int tx, int ty) {
-        // easy first check, if the destination is blocked, we can't get there
 
+        // check if destination is blocked
         if (map.isBlocked( tx, ty)) {
             return null;
         }
 
-        // initial state for A*. The closed group is empty. Only the starting
-
-        // tile is in the open list and it'e're already there
+        // initial A* state, empty closed and 1 in starting in open
         nodes[sx][sy].cost = 0;
         nodes[sx][sy].depth = 0;
         closed.clear();
@@ -51,15 +49,14 @@ public class PathFinder {
 
         nodes[tx][ty].parent = null;
 
-        // while we haven'n't exceeded our max search depth
+
         int maxDepth = 0;
 
         // check if there is sneak
-//        map.getTile(tx,tx).getEntity().getType() == Sneak
-        while ((maxDepth < maxSearchDistance) && (open.size() != 0)) {
-            // pull out the first node in our open list, this is determined to
+        // map.getTile(tx,tx).getEntity().getType() == Sneak
 
-            // be the most likely to be the next step based on our heuristic
+        // maxDepth serves as an "aggro radius"
+        while ((maxDepth < maxSearchDistance) && (open.size() != 0)) {
 
             Node current = getFirstInOpen();
             if (current == nodes[tx][ty]) {
@@ -69,19 +66,14 @@ public class PathFinder {
             removeFromOpen(current);
             addToClosed(current);
 
-            // search through all the neighbours of the current node evaluating
-
-            // them as next steps
-
+            // Search through all the nodes
             for (int x=-1;x<2;x++) {
                 for (int y=-1;y<2;y++) {
-                    // not a neighbour, its the current tile
 
+                    // current tile
                     if ((x == 0) && (y == 0)) {
                         continue;
                     }
-
-                    // determine the location of the neighbour and evaluate it
 
                     int xp = x + current.x;
                     int yp = y + current.y;
@@ -108,23 +100,13 @@ public class PathFinder {
                         }
                     }
 
+                    // check if the node is a valid location
                     if (isValidLocation(sx, sy, xp, yp)) {
-                        // the cost to get to this node is cost the current plus the movement
-
-                        // cost to reach this node. Note that the heursitic value is only used
-
-                        // in the sorted open list
 
                         float nextStepCost = current.cost + getMovementCost(current.x, current.y, xp, yp);
                         Node neighbour = nodes[xp][yp];
                         map.pathFinderVisited(xp, yp);
 
-                        // if the new cost we've determined for this node is lower than
-
-                        // it has been previously makes sure the node hasn'e've
-                        // determined that there might have been a better path to get to
-
-                        // this node so it needs to be re-evaluated
 
                         if (nextStepCost < neighbour.cost) {
                             if (inOpenList(neighbour)) {
@@ -134,12 +116,6 @@ public class PathFinder {
                                 removeFromClosed(neighbour);
                             }
                         }
-
-                        // if the node hasn't already been processed and discarded then
-
-                        // reset it's cost to our current cost and add it as a next possible
-
-                        // step (i.e. to the open list)
 
                         if (!inOpenList(neighbour) && !(inClosedList(neighbour))) {
                             neighbour.cost = nextStepCost;
@@ -152,18 +128,9 @@ public class PathFinder {
             }
         }
 
-        // since we'e've run out of search
-        // there was no path. Just return null
-
         if (nodes[tx][ty].parent == null) {
             return null;
         }
-
-        // At this point we've definitely found a path so we can uses the parent
-
-        // references of the nodes to find out way from the target location back
-
-        // to the start recording the nodes on the way.
 
         Path path = new Path();
         Node target = nodes[tx][ty];
@@ -173,15 +140,12 @@ public class PathFinder {
         }
         path.prependStep(sx,sy);
 
-        // thats it, we have our path
-
         return path;
     }
 
     protected Node getFirstInOpen() {
         return (Node) open.first();
     }
-
 
     protected void addToOpen(Node node) {
         open.add(node);
@@ -202,7 +166,6 @@ public class PathFinder {
     protected boolean inClosedList(Node node) {
         return closed.contains(node);
     }
-
 
     protected void removeFromClosed(Node node) {
         closed.remove(node);
@@ -253,7 +216,6 @@ public class PathFinder {
             return list.contains(o);
         }
     }
-
 
     private class Node implements Comparable {
         private int x;

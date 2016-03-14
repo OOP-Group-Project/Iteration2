@@ -81,30 +81,7 @@ public class AvatarCreationState extends State {
 
     public void createGame(){
         avatar.setOccupation(selected.getOccupation());
-        ArrayList<Skills> skills = new ArrayList<>();
-        skills.add(new BindWounds(avatar));
-        skills.add(new Bargain(avatar));
-        skills.add(new Observation(avatar));
-        switch (selected.getOccupation().getOccupationType()) {
-            case Smasher:
-                skills.add(new OneHandedWeapon(avatar));
-                skills.add(new TwoHandedWeapon(avatar));
-                skills.add(new Brawling(avatar));
-                break;
-            case Sneak:
-                skills.add(new PickPocket(avatar));
-                skills.add(new DetectAndRemoveTrap(avatar));
-                skills.add(new Creep(avatar));
-                skills.add(new RangedWeapon(avatar));
-                break;
-            case Summoner:
-                skills.add(new Enchantment(avatar));
-                skills.add(new Boon(avatar));
-                skills.add(new Bane(avatar));
-                skills.add(new Staff(avatar));
-                break;
-        }
-        avatar.setSkills(skills);
+        avatar.init(1);
         mapIO.loadMap(map);
     }
     public String getStringSelected(){

@@ -9,9 +9,13 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
+import javax.swing.text.Utilities;
 
 import Main.Model.Inventory.Inventory;
+import Main.Model.Items.Item;
 import Main.Model.State.InventoryState;
+import Main.View.Graphics.GraphicsAssets;
+import Main.View.Renderers.ObjectRenderer;
 import Main.View.Viewport;
 
 public class InventoryStateViewport extends StateViewport{
@@ -84,7 +88,7 @@ public class InventoryStateViewport extends StateViewport{
 		int w = viewport.getPxWidth();
 		int h = viewport.getPxHeight();
 		
-		g.drawImage(overImage, (int)(w*0.1), (int)(h*0.1) , (int)(w*0.8) ,(int)(h*0.75) , null);
+		g.drawImage(overImage, 0, 0 , w ,h , null);
 	}
 
     private void renderTitle(Graphics g) {
@@ -135,7 +139,7 @@ public class InventoryStateViewport extends StateViewport{
 	            if (selected.equals(new Point(i%itemPerRow,i/itemPerRow))){
 	                g2.setColor(Color.RED);
 	                //change
-	                g2.drawRect(xpos - 3, ypos - 3, this.ITEM_WIDTH + 6, this.ITEM_HEIGHT + 6);
+	                g2.fillRect(xpos - 3, ypos - 3, this.ITEM_WIDTH + 6, this.ITEM_HEIGHT + 6);
 	            }
 	            
 	            paintIcon(g2, xpos, ypos, i);
@@ -153,8 +157,9 @@ public class InventoryStateViewport extends StateViewport{
 	}
 	
 	private void paintIcon(Graphics g, int xpos, int ypos, int pos) {
+			Item it = inventoryState.getItem(pos);
 
-	        if (true) {
+	        if (it == null) {
 	            //draw empty slot
 	            g.setColor(Color.LIGHT_GRAY);
 	            g.fillRect(xpos, ypos, ITEM_WIDTH, ITEM_HEIGHT);
@@ -168,20 +173,19 @@ public class InventoryStateViewport extends StateViewport{
 	            //g.drawString("?", xMid - fm.stringWidth("?")/2, ypos + fm.getHeight());
 	        } else {
 
-	            //draw pic
-	            g.setColor(Color.LIGHT_GRAY);
+				//draw pic
+	            g.setColor(new Color(200,200,200));
 	            g.fillRect(xpos, ypos, ITEM_WIDTH, ITEM_HEIGHT);
-	         //   ImageIcon im = Utilities.getImageIcon(ITEM_IMAGE_LOCATION + itemNode.item.getPathToPicture());
-	           // g.drawImage(im.getImage(), xpos, ypos, this.ITEM_WIDTH, this.ITEM_HEIGHT, null);
 
+				g.drawImage(GraphicsAssets.itemImages.get(it.getId()), xpos, ypos, this.ITEM_WIDTH, this.ITEM_HEIGHT, null);
 
 	            //draw amount
 	            g.setFont(smallFont);
 	            FontMetrics fm = g.getFontMetrics();
-	          //  int width = fm.stringWidth(itemNode.amount + "");
+	            int width = fm.stringWidth(inventoryState.getItemAmount(pos) + "");
 	            int height = fm.getHeight();
 	            g.setColor(Color.BLACK);
-	           // g.drawString("x" + itemNode.amount + "", xpos, ypos + (int) (fm.getHeight() * 0.8));
+	           	g.drawString("x" + inventoryState.getItemAmount(pos) + "", xpos, ypos + (int) (fm.getHeight() * 0.8));
 	        }
 
 	    }
