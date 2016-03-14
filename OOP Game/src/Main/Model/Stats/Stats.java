@@ -389,6 +389,7 @@ public class Stats {
         else if(cur_hp < 0) {
             System.out.println("You are dead and respawned");
             this.getEntity().respawn(new MapLocationPoint(5,5));
+
         }
     }
     private void changeCurMana(double amt) {

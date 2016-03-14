@@ -8,7 +8,7 @@ public class StartMenuState extends State {
 	private enum Option{
 		NewGame("New Game"){
 			protected StateEnum getState(){
-				return StateEnum.LoadState;
+				return StateEnum.AvatarCreationState;
 			}
 		}
 		,Exit("Exit"){

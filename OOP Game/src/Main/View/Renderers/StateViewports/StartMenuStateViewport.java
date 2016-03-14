@@ -11,7 +11,7 @@ import Main.Model.State.StartMenuState;
 import Main.View.Viewport;
 
 public class StartMenuStateViewport extends StateViewport{
-	
+
 	//SCREEN DIMENSION
     private static final int WIDTH = 700;
     private static final int HEIGHT = 700;
