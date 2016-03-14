@@ -30,6 +30,28 @@ public class GraphicsAssets {
     public static BufferedImage player;
 
     public static BufferedImage sneak;
+    public static BufferedImage sneakUp;
+    public static BufferedImage sneakDown;
+    public static BufferedImage sneakDL;
+    public static BufferedImage sneakDR;
+    public static BufferedImage sneakUR;
+    public static BufferedImage sneakUL;
+
+
+    public static BufferedImage summonerUp;
+    public static BufferedImage summonerDown;
+    public static BufferedImage summonerUL;
+    public static BufferedImage summonerUR;
+    public static BufferedImage summonerDR;
+    public static BufferedImage summonerDL;
+
+    public static BufferedImage skeletonUp;
+    public static BufferedImage skeletonDown;
+    public static BufferedImage skeletonDR;
+    public static BufferedImage skeletonDL;
+    public static BufferedImage skeletonUR;
+    public static BufferedImage skeletonUL;
+
     public static BufferedImage smasher;
     public static BufferedImage summoner;
     public static BufferedImage friendlyNPC;
@@ -65,12 +87,32 @@ public class GraphicsAssets {
         SpriteSheet skeletonSpriteSheet = new SpriteSheet(ImageLoader.loadImage("/Resources/SkeletonSpriteSheet.png"));
 
 
-        // Load in water sprites
+        // Load in sneak sprites
+        sneakDown = ImageLoader.loadImage("/Resources/sneakDown.png");
+        sneakUp = ImageLoader.loadImage("/Resources/sneakUp.png");
+        sneakUR = ImageLoader.loadImage("/Resources/sneakUR.png");
+        sneakUL = ImageLoader.loadImage("/Resources/sneakUL.png");
+        sneakDL = ImageLoader.loadImage("/Resources/sneakDL.png");
+        sneakDR = ImageLoader.loadImage("/Resources/sneakDR.png");
 
-        sneak = ImageLoader.loadImage("/Resources/sneak.png");
-        smasher = ImageLoader.loadImage("/Resources/summoner.png");
-        summoner = ImageLoader.loadImage("/Resources/summoner.png");
-        friendlyNPC = ImageLoader.loadImage("/Resources/friendlyNPC");
+
+        // Load in summoner sprites
+        summonerUp = ImageLoader.loadImage("/Resources/summonUp.png");
+        summonerDown = ImageLoader.loadImage("/Resources/summonDown.png");
+        summonerDR = ImageLoader.loadImage("/Resources/summonDR.png");
+        summonerDL = ImageLoader.loadImage("/Resources/summonDL.png");
+        summonerUR = ImageLoader.loadImage("/Resources/summonUR.png");
+        summonerUL = ImageLoader.loadImage("/Resources/summonUL.png");
+
+        //load in skeleton sprites
+        skeletonUp = ImageLoader.loadImage("/Resources/skeletonUp.png");
+        skeletonDown = ImageLoader.loadImage("/Resources/skeletonDown.png");
+        skeletonUR = ImageLoader.loadImage("/Resources/skeletonUR.png");
+        skeletonUL = ImageLoader.loadImage("/Resources/skeletonUL.png");
+        skeletonDL = ImageLoader.loadImage("/Resources/skeletonDL.png");
+        skeletonDR = ImageLoader.loadImage("/Resources/skeletonDR.png");
+
+//        friendlyNPC = ImageLoader.loadImage("/Resources/friendlyNPC");
         water = ImageLoader.loadImage("/Resources/water.png");
         grass = ImageLoader.loadImage("/Resources/grass.png");
         mountain = ImageLoader.loadImage("/Resources/mountain.png");

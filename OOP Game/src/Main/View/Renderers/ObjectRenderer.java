@@ -4,6 +4,7 @@ import Main.Model.AreaEffect.AreaEffect;
 import Main.Model.AreaEffect.AreaEffectEnum;
 import Main.Model.AreaEffect.HealDamage;
 import Main.Model.AreaEffect.TakeDamage;
+import Main.Model.DirectionEnum;
 import Main.Model.Entity.Entity;
 import Main.Model.Entity.EntityTypeEnum;
 import Main.Model.Items.Item;
@@ -80,29 +81,110 @@ public class ObjectRenderer {
             // Calculate the top left corner from the center point
             // Render the correct image
             EntityTypeEnum type = entity.getType();
-            Requirement sneak = new Requirement(OccupationTypeEnum.Sneak);
-            Requirement summoner = new Requirement(OccupationTypeEnum.Sneak);
-            Requirement smasher = new Requirement(OccupationTypeEnum.Sneak);
-
+            DirectionEnum dir = entity.getOrientation();
             if(type == EntityTypeEnum.Avatar) {
                 // Check occupation
-                if(sneak.isCorrectOccupation(entity)){
-                    g.drawImage(GraphicsAssets.sneak,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+                if(entity.getOccupation().toString() == "Sneak"){
+                    System.out.println("Is is sneak");
+                    switch(dir){
+                        case Up:
+                            g.drawImage(GraphicsAssets.sneakUp,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+                            break;
+                        case UpLeft:
+                            g.drawImage(GraphicsAssets.sneakUL,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+                            break;
+                        case UpRight:
+                            g.drawImage(GraphicsAssets.sneakUR,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+                            break;
+                        case Down:
+                            g.drawImage(GraphicsAssets.sneakDown,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+                            break;
+                        case DownLeft:
+                            g.drawImage(GraphicsAssets.sneakDL,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+                            break;
+                        case DownRight:
+                            g.drawImage(GraphicsAssets.sneakDR,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+                            break;
+                    }
                 }
-                if(summoner.isCorrectOccupation(entity)){
-                    g.drawImage(GraphicsAssets.summoner,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+                if(entity.getOccupation().toString() == "Summoner") {
+                   switch(dir){
+                    case Up:
+                        g.drawImage(GraphicsAssets.summonerUp, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                        break;
+                    case UpLeft:
+                        g.drawImage(GraphicsAssets.summonerUL, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                        break;
+                    case UpRight:
+                        g.drawImage(GraphicsAssets.summonerUR, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                        break;
+                    case Down:
+                        g.drawImage(GraphicsAssets.summonerDown, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                        break;
+                    case DownLeft:
+                        g.drawImage(GraphicsAssets.summonerDL, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                        break;
+                    case DownRight:
+                        g.drawImage(GraphicsAssets.summonerDR, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                        break;
                 }
-                if(smasher.isCorrectOccupation(entity)){
-                    g.drawImage(GraphicsAssets.smasher,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+//      System.out.println("Is is summoner");
+//                    g.drawImage(GraphicsAssets.sneak,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
                 }
-                g.setColor(new Color(0,0,0));
-                g.fillOval(pxCenterPoint.x - 25, pxCenterPoint.y - 25, 50, 50);
+                if(entity.getOccupation().toString() == "Smasher"){
+                    switch(dir) {
+                        case Up:
+                            g.drawImage(GraphicsAssets.sneakUp, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                            break;
+                        case UpLeft:
+                            g.drawImage(GraphicsAssets.sneakUL, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                            break;
+                        case UpRight:
+                            g.drawImage(GraphicsAssets.sneakUR, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                            break;
+                        case Down:
+                            g.drawImage(GraphicsAssets.sneakDown, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                            break;
+                        case DownLeft:
+                            g.drawImage(GraphicsAssets.sneakDL, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                            break;
+                        case DownRight:
+                            g.drawImage(GraphicsAssets.sneakDR, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                            break;
+                        default:
+                            break;
+                    }
+                    System.out.println("Is is smasher");
+//                    g.drawImage(GraphicsAssets.sneak,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
+                }
+//                g.setColor(new Color(0,0,0));
+//                g.fillOval(pxCenterPoint.x - 25, pxCenterPoint.y - 25, 50, 50);
                 // render the correct image for the avatar's occupation.
             }
-
-
             if (type == EntityTypeEnum.NPC){
-                g.drawImage(GraphicsAssets.skeletonWalk,topLeft.x,topLeft.y ,graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT,null);
+                switch(dir) {
+                    case Up:
+                        g.drawImage(GraphicsAssets.skeletonUp, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                        break;
+                    case UpLeft:
+                        g.drawImage(GraphicsAssets.skeletonUL, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                        break;
+                    case UpRight:
+                        g.drawImage(GraphicsAssets.skeletonUR, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                        break;
+                    case Down:
+                        g.drawImage(GraphicsAssets.skeletonDown, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                        break;
+                    case DownLeft:
+                        g.drawImage(GraphicsAssets.skeletonDL, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                        break;
+                    case DownRight:
+                        g.drawImage(GraphicsAssets.skeletonDR, topLeft.x, topLeft.y, graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT, null);
+                        break;
+                    default:
+                        break;
+                }
+//                g.drawImage(GraphicsAssets.skeletonWalk,topLeft.x,topLeft.y ,graphicsAssets.TILE_PX_WIDTH, graphicsAssets.TILE_PX_HEIGHT,null);
             }
             else if (type == EntityTypeEnum.Pet) {
                 g.drawImage(GraphicsAssets.pet,topLeft.x,topLeft.y,graphicsAssets.TILE_PX_WIDTH,graphicsAssets.TILE_PX_HEIGHT,null);
