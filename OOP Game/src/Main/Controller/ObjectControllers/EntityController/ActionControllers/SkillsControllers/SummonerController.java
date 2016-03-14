@@ -1,22 +1,33 @@
 package Main.Controller.ObjectControllers.EntityController.ActionControllers.SkillsControllers;
 
 import Main.Controller.Manager.UserActionEnum;
+import Main.Controller.ObjectControllers.TimedObjectController;
 import Main.Model.Entity.Entity;
 import Main.Model.Map.Map;
+
 import Main.Model.Map.MapLocationPoint;
-import Main.Model.Skills.Bane;
-import Main.Model.Skills.Boon;
-import Main.Model.Skills.Enchantment;
-import Main.Model.Skills.Staff;
+import Main.Model.Map.Tile;
+import Main.Model.Skills.*;
+import Main.Model.Stats.StatsModifier;
+import sun.misc.Queue;
 
 /**
  * Created by johnkaufmann on 3/13/16.
  * TODO:
  */
-public class SummonerController {
+public class SummonerController extends TimedObjectController{
     Entity summoner;
+    Entity enemy;
     Map map;
+    MapLocationPoint targetLocation;
+    Tile targetTile;
+    StatsModifier sm;
     UserActionEnum skill;
+    Enchantment ec = (Enchantment) summoner.getSkills().get(3);
+    Boon boon = (Boon) summoner.getSkills().get(4);
+    Bane bane = (Bane) summoner.getSkills().get(5);
+    Staff staff = (Staff) summoner.getSkills().get(6);
+    private boolean boonActivated = false;
 
     public SummonerController(Entity summoner, Map map) {
         this.summoner = summoner;
@@ -26,37 +37,75 @@ public class SummonerController {
     public void performSkill(UserActionEnum u) {
         switch (u) {
             case Skill4:
-                Enchantment ec = new Enchantment(summoner);
-                if (ec.allCheck()) applyEnchantment(ec);
+                targetLocation = summoner.getLocation().getAdjacent(summoner.getOrientation());
+                targetTile = map.getTile((int)targetLocation.getX(), (int)targetLocation.getY());
+                if (targetTile.hasEntity()) {
+                    enemy = targetTile.getEntity();
+                    sm = ec.activate();
+                    enemy.getStats().modifyStats(sm);
+                }
+                else {
+                    System.out.println("not target found");
+                    //TODO: and do something?
+                }
                 break;
             case Skill5:
-                Boon bn = new Boon(summoner);
-                if (bn.allCheck()) {
-                    summoner.getStats().modifyStats(bn.activate());
-                    double duation = bn.getDuration();
+                if(!boonActivated) {
+                    // Calculate how long boon should last
+                    timer.start((int)boon.getDuration());
+                    sm = boon.activate();
+                    summoner.getStats().buff(sm);
+                    boonActivated = true;
                 }
                 break;
             case Skill6:
-                Bane be = new Bane(summoner);
-                if (be.allCheck()) applyBane(be);
+                MapLocationPoint origin = summoner.getLocation();
+                LinearEffect le = new LinearEffect();
+                Queue<MapLocationPoint> q = le.getAffectedArea((int) origin.getX(), (int) origin.getY(), bane.getLevel() / 2 + 1, summoner.getOrientation());
+                while (!q.isEmpty()) {
+                    try {
+                        targetLocation = q.dequeue();
+                        targetTile = map.getTile((int)targetLocation.getX(), (int) targetLocation.getY());
+                        if (targetTile.hasEntity()) {
+                            enemy = targetTile.getEntity();
+                            sm = bane.activate();
+                            enemy.getStats().modifyStats(sm);
+                            break;
+                        }
+                        else {
+                            System.out.println("not target found");
+                            //TODO: and do something?
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
                 break;
             case Skill7:
-                new Staff(summoner).activate();
+                targetLocation = summoner.getLocation().getAdjacent(summoner.getOrientation());
+                targetTile = map.getTile((int)targetLocation.getX(), (int)targetLocation.getY());
+                if (targetTile.hasEntity()) {
+                    enemy = targetTile.getEntity();
+                    sm = staff.activate();
+                    enemy.getStats().modifyStats(sm);
+                }
+                else {
+                    System.out.println("not target found");
+                    //TODO: and do something?
+                }
                 break;
             default:
                 System.out.print("Something went wrong in" + this.toString());
         }
     }
 
-    private void applyBane(Bane be) {
-        MapLocationPoint targetPoint = summoner.peek();
-        Entity target = map.getTile(targetPoint.x,targetPoint.y).getEntity();
-        if(target != null) target.getStats().modifyStats(be.activate());
-    }
 
-    private void applyEnchantment(Enchantment ec) {
-        MapLocationPoint point = summoner.peek();
-        Entity target = map.getTile(point.x,point.y).getEntity();
-//        if(target != null) target.getStats().modifyStats(ec.activate());
+    @Override
+    public void update() {
+        timer.tick();
+        if(timer.isExpired() && boonActivated) {
+            summoner.getStats().revert();
+            boonActivated = false;
+        }
     }
 }

@@ -14,13 +14,13 @@ public enum UserActionEnum {
     DownRight,
     DownLeft,
 
-    //menu actions [8,9]
+    //menu actions [8,11]
     Pause,
     Select,
     Shift,
     Control,
 
-    //entity actions [10, 17]
+    //entity actions [12, 20]
     Attack,
     Spell1,
     Spell2,
@@ -29,8 +29,9 @@ public enum UserActionEnum {
     Attack2,
     Attack3,
     Interact,
+    PickUpItem,
 
-    //views [18,23]
+    //views [21,26]
     ViewUp,
     ViewDown,
     ViewUpRight,
@@ -38,8 +39,16 @@ public enum UserActionEnum {
     ViewDownLeft,
     ViewDownRight,
 
+<<<<<<< HEAD
     //skills [24,30]
     SkillTree,
+=======
+    //other
+    None,
+
+    //skills [28,31]
+
+>>>>>>> origin
     Skill1,
     Skill2,
     Skill3,
@@ -48,6 +57,4 @@ public enum UserActionEnum {
     Skill6,
     Skill7,
 
-    //other
-    None;
 }

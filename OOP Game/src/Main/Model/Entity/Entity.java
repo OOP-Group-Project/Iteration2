@@ -3,6 +3,7 @@ package Main.Model.Entity;
 import Main.Model.DirectionEnum;
 import Main.Model.Equipment.Equipment;
 import Main.Model.Inventory.Inventory;
+import Main.Model.Items.Takable;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Occupation;
 import Main.Model.Occupation.Smasher;
@@ -149,16 +150,20 @@ public abstract class Entity {
 
     public void revertDeath() {stats.revertDeath();}
 
-    //
     public void modifyLives(int amt){stats.modifyLives(amt);}
-    //
+
     public void modifyExperience(int amt){stats.modifyExperience(amt);}
-    //
+
     public void checkExperience(){
         if(stats.checkExperience())
             stats.levelUp();
     }
-    //
+
+    public boolean addItem(Takable item) {
+        return inventory.addItem(item);
+    }
+
+
     public void levelUp(){stats.levelUp();}
 
     public Occupation getOccupation() {

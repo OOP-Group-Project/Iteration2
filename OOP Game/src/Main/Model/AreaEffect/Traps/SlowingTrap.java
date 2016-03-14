@@ -1,5 +1,6 @@
 package Main.Model.AreaEffect.Traps;
 
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Stats.StatsModifier;
 
 /**
@@ -7,8 +8,8 @@ import Main.Model.Stats.StatsModifier;
  */
 public class SlowingTrap extends Trap{
     /*** Constructor ***/
-    public SlowingTrap(double slowAmount){
-        super(TrapTypeEnum.SLOW , 0);
+    public SlowingTrap(double slowAmount, MapLocationPoint location){
+        super(TrapTypeEnum.SLOW , 0, location);
 
         StatsModifier sm = new StatsModifier();
         sm = sm.builder()
@@ -19,8 +20,8 @@ public class SlowingTrap extends Trap{
 
     }
 
-    public SlowingTrap(double slowAmount , int requiredDetectionSkill){
-        super(TrapTypeEnum.SLOW , requiredDetectionSkill);
+    public SlowingTrap(double slowAmount , int requiredDetectionSkill, MapLocationPoint location){
+        super(TrapTypeEnum.SLOW , requiredDetectionSkill, location);
 
         StatsModifier sm = new StatsModifier();
         sm = sm.builder()

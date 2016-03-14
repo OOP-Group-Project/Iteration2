@@ -2,6 +2,7 @@ package Main.Model.Skills;
 
 import Main.Model.DirectionEnum;
 import Main.Model.Map.MapLocationPoint;
+import Main.Model.Stats.StatsModifier;
 import sun.misc.Queue;
 
 import java.util.ArrayList;
@@ -13,17 +14,16 @@ import java.util.ArrayList;
  */
 
 public class AngularEffect implements InfluenceArea {
-    /* user manual
-    AngularEffect ar = new AngularEffect();
-    Queue<ArrayList<MapLocationPoint>> q = ar.getAffectedArea(5,4, DirectionEnum.Down, 4);
+
+    /*
     int currentRadius = 1;
     while (!q.isEmpty()) {
         try {
             ArrayList<MapLocationPoint> list = q.dequeue();
-            System.out.println("Radius: " + currentRadius++);
-            for (int i = 0; i < list.size(); i++) {
-                System.out.println(list.get(i).getX() + ", " + list.get(i).getY());
+            for (MapLocationPoint targetLocation : list) {
+                //codes here
             }
+            currentRadius++;
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

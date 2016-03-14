@@ -1,5 +1,6 @@
 package Main.Model.AreaEffect;
 
+import Main.Model.Map.MapLocationPoint;
 import Main.Model.Stats.StatsModifier;
 
 /**
@@ -8,8 +9,8 @@ import Main.Model.Stats.StatsModifier;
 
 public class SpeedUp extends AreaEffect{
     /*** Constructor ***/
-    public SpeedUp(double amount){
-        super(AreaEffectEnum.SPEEDUP);
+    public SpeedUp(double amount, MapLocationPoint location){
+        super(AreaEffectEnum.SPEEDUP, location);
 
         StatsModifier sm = new StatsModifier();
 
@@ -20,8 +21,8 @@ public class SpeedUp extends AreaEffect{
         this.modifier = sm;
     }
 
-    public SpeedUp(double amount , int charge){
-        super(AreaEffectEnum.SPEEDUP , charge);
+    public SpeedUp(double amount , int charge, MapLocationPoint location){
+        super(AreaEffectEnum.SPEEDUP , charge, location);
 
         StatsModifier sm = new StatsModifier();
         sm = sm.builder()
