@@ -32,10 +32,11 @@ public abstract class Entity {
     protected ArrayList<Skills> skills = new ArrayList<>();
 
     //create Entities at certain locations with a certain type
-    public Entity(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location, int level) {
+    public Entity(EntityTypeEnum entityType, EntitySpeechEnum entitySpiel, Occupation occupation, MapLocationPoint location, int level, Inventory inv) {
         this.type = entityType;
         this.spiel = entitySpiel;
         this.occupation = occupation;
+        this.inventory = inv;
         skills.add(new BindWounds(this));
         skills.add(new Bargain(this));
         skills.add(new Observation(this));
@@ -88,6 +89,10 @@ public abstract class Entity {
         return skills;
     }
 
+    public int getSkillPoints() {
+        return stats.getSkillPoints();
+    }
+
     public void setLocation(MapLocationPoint location) {
         this.location.x = location.x;
         this.location.y = location.y;
@@ -119,6 +124,7 @@ public abstract class Entity {
     //
     public void modifyStats(StatsModifier statsModifier) {
         stats.modifyStats(statsModifier);
+        stats.printStats();
     }
 
 
@@ -220,15 +226,7 @@ public abstract class Entity {
         this.equipment = equipment;
     }
 
-    public void respawn(MapLocationPoint location) {
-        this.location.x = location.x;
-        this.location.y = location.y;
-        StatsModifier sm = new StatsModifier();
-        sm = sm.builder().lifeModifier(15).build();
-        this.stats.modifyStats(sm);
-        // TODO: Reset avatar's stats when respawn
-        //this.stats.reset();
-    }
+    public abstract void respawn(MapLocationPoint location);
 
     //looks at the tile infront of it
     public MapLocationPoint peek() {

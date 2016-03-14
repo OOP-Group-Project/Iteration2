@@ -1,12 +1,14 @@
 package Main.Controller;
 
 import Main.Controller.Manager.ObjectControllerManager;
+import Main.Controller.Manager.UserActionEnum;
 import Main.Controller.ObjectControllers.EntityController.EntityController;
 import Main.Controller.ObjectControllers.TimedObjectController;
 import Main.Model.Model;
 import Main.Model.State.StateEnum;
 import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.KeyboardManager;
+import Main.Model.io.KeyBindingsIO;
 
 import java.awt.event.KeyListener;
 import java.util.HashMap;
@@ -28,7 +30,8 @@ public class Controller implements Runnable{
         // Create all the controllers
         objectControllerManager = new ObjectControllerManager(model);
         stateControllerManager = new StateControllerManager(objectControllerManager, model);
-        keyboardManager = new KeyboardManager(stateControllerManager, stateControllerManager.getGameStateControllers());
+        KeyBindingsIO io = new KeyBindingsIO();
+        keyboardManager = new KeyboardManager(stateControllerManager, stateControllerManager.getGameStateControllers(), io.load());
         // AIManager = new AIManager()
         // Construct all the entity controllers
         // NPCController pncc = new NPCController(aim)
@@ -40,6 +43,10 @@ public class Controller implements Runnable{
     }
 
     public KeyboardManager getKeyManager() { return keyboardManager;}
+
+    public void setKeyManager(HashMap<Integer, UserActionEnum> keyboardActionMapping) {
+        keyboardManager.setKeyboardActionMapping(keyboardActionMapping);
+    }
 
     public void update() {
         stateControllerManager.update();

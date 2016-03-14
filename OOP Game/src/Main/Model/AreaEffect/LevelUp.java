@@ -2,6 +2,7 @@ package Main.Model.AreaEffect;
 
 
 import Main.Model.Map.MapLocationPoint;
+import Main.Model.Stats.StatsModifier;
 
 /**
  * Created by Michael on 3/9/16.
@@ -29,10 +30,20 @@ public class LevelUp extends AreaEffect {
     //Applies Once
     public LevelUp(MapLocationPoint location){
         super(AreaEffectEnum.LEVELUP, location);
+        StatsModifier sm = new StatsModifier();
+        sm = sm.builder()
+                .experienceModifier(10)
+                .build();
+        this.modifier = sm;
     }
 
     public LevelUp(int charge, MapLocationPoint location){
         super(AreaEffectEnum.LEVELUP , charge, location);
+        StatsModifier sm = new StatsModifier();
+        sm = sm.builder()
+                .experienceModifier(100)
+                .build();
+        this.modifier = sm;
     }
 
 }

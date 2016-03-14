@@ -38,7 +38,7 @@ public class io {
             // Always close files.
             bufferedReader.close();
         } catch (FileNotFoundException ex) {
-            System.out.println("Unable to open file a saved file.. it wasn't found!");
+            System.out.println("Unable to open file named "+fileName+" it wasn't found! Copy it from the repo Andy!");
             System.exit(2);
         } catch (IOException ex) {
             ex.printStackTrace();

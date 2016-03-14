@@ -26,6 +26,7 @@ public class ActionController extends TimedObjectController {
         this.AC = new AttackController(objectControllerManager, map, entity);
         this.IC = new InteractionController(objectControllerManager, entity);
         this.occupation = entity.getOccupation().toString();
+        SC = new SkillsController(entity, map);
     }
 
     public void performAction(UserActionEnum u) {
@@ -34,7 +35,7 @@ public class ActionController extends TimedObjectController {
             entity.setDoingAction(true);
 
             // Calculate speed of action
-            int speed = 100; // milliseconds
+            int speed = 500; // milliseconds
 
             this.timer.start(speed);
             // Do action

@@ -73,12 +73,14 @@ public class AreaEffectsIO {
             String[] constructor = datapoints[0].split(",");
             int x = Integer.valueOf(location[0]);
             int y = Integer.valueOf(location[1]);
+            double damage;
+            int charge;
             MapLocationPoint point = new MapLocationPoint(x,y);
-            double x1 = Double.valueOf(constructor[1]);
-            int x2 = Integer.valueOf(datapoints[2]);
             switch (constructor[0]) {
                 case "0":
-                    AEList.add(new HealDamage(x1,x2,point));
+                    damage = Double.valueOf(constructor[1]);
+                    charge = Integer.valueOf(datapoints[2]);
+                    AEList.add(new HealDamage(damage,charge,point));
                     break;
                 case "1":
                     AEList.add(new InstantDeath(point));
@@ -87,16 +89,23 @@ public class AreaEffectsIO {
                     AEList.add(new LevelUp(point));
                     break;
                 case "3":
-                    AEList.add(new TakeDamage(x1,x2,point));
+                    damage = Double.valueOf(constructor[1]);
+                    charge = Integer.valueOf(datapoints[2]);
+                    AEList.add(new TakeDamage(damage,charge,point));
                     break;
                 case "4":
-                    // TODO: 3/14/16 add for portals
+                    String[] teleLocation = datapoints[2].split(",");
+                    int teleX = Integer.valueOf(teleLocation[0]);
+                    int teleY = Integer.valueOf(teleLocation[1]);
+                    AEList.add(new Portal(point, new MapLocationPoint(teleX,teleY)));
                     break;
                 case "5":
                     AEList.add(new Trap(point));
                     break;
                 case "6":
-                    AEList.add(new SpeedUp(x1,x2,point));
+                    damage = Double.valueOf(constructor[1]);
+                    charge = Integer.valueOf(datapoints[2]);
+                    AEList.add(new SpeedUp(damage,charge,point));
                     break;
             }
         }

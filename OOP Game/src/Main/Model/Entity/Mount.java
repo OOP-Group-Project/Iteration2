@@ -1,5 +1,7 @@
 package Main.Model.Entity;
 
+import Main.Model.DirectionEnum;
+import Main.Model.Inventory.Inventory;
 import Main.Model.Map.MapLocationPoint;
 import Main.Model.Occupation.Smasher;
 
@@ -12,7 +14,7 @@ public class Mount extends Entity {
     private Avatar player;
 
     public Mount(MapLocationPoint location) {
-        super(EntityTypeEnum.Mount, EntitySpeechEnum.TRASH, new Smasher(), location, 1);
+        super(EntityTypeEnum.Mount, EntitySpeechEnum.TRASH, new Smasher(), location, 1, new Inventory());
         this.player = null;
     }
 
@@ -31,7 +33,18 @@ public class Mount extends Entity {
     }
 
     @Override
+    public void move(DirectionEnum dir) {
+        super.move(dir);
+        if (this.player != null) player.move(dir);
+    }
+
+    public void respawn(MapLocationPoint location) {
+
+    }
+
+    @Override
     public void setLocation(MapLocationPoint location) {
-        this.location = location;
+        super.setLocation(location);
+        if (this.player != null) player.setLocation(location);
     }
 }

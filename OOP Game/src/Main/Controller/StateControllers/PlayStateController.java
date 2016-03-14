@@ -1,6 +1,7 @@
 package Main.Controller.StateControllers;
 
 import Main.Controller.Manager.ObjectControllerManager;
+import Main.Controller.ObjectControllers.EntityController.ActionControllers.SkillsControllers.SkillsController;
 import Main.Controller.ObjectControllers.EntityController.AvatarController;
 import Main.Controller.Manager.StateControllerManager;
 import Main.Controller.Manager.UserActionEnum;
@@ -20,6 +21,7 @@ public class PlayStateController extends StateController {
     private ObjectControllerManager objectControllerManager;
     private PlayState playState;
     private UserActionEnum lastAction;
+    private SkillsController skillsController;
 
     public PlayStateController(StateControllerManager stateControllerManager, ObjectControllerManager objectControllerManager, PlayState playState) {
         this.stateControllerManager = stateControllerManager;
@@ -96,6 +98,9 @@ public class PlayStateController extends StateController {
                 break;
             case Control:
                 stateControllerManager.setState(StateEnum.KeyBindingsState);
+                break;
+            case SkillTree:
+                stateControllerManager.setState(StateEnum.SkillState);
                 break;
         }
         if (!avatar.hasHealth() && avatar.getLives() == 0) {

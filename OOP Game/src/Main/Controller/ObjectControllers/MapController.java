@@ -3,11 +3,14 @@ package Main.Controller.ObjectControllers;
 import Main.Controller.Manager.ObjectControllerManager;
 import Main.Controller.ObjectControllers.EntityController.EntityController;
 import Main.Model.AreaEffect.AreaEffect;
+import Main.Model.AreaEffect.AreaEffectEnum;
+import Main.Model.AreaEffect.AttackEffect;
 import Main.Model.Entity.Entity;
 import Main.Model.Entity.EntityTypeEnum;
 import Main.Model.Map.Map;
-import Main.Model.Map.MapLocationPoint;
 import Main.Model.Map.Tile;
+
+import java.util.ArrayList;
 
 /**
  * Created by mason on 3/12/16.
@@ -34,11 +37,36 @@ public class MapController extends ObjectController {
                     AreaEffectController aec = (AreaEffectController) objectControllerManager.getObjectController(areaEffect);
                     aec.update();
 
+
                     // Apply to entity
                     if(currentTile.hasEntity()) {
-                        aec.activate(currentTile.getEntity());
+                        if(areaEffect.getType() == AreaEffectEnum.PORTAL) {
+                            aec.activate(currentTile.getEntity(), map);
+                            currentTile.removeEntity();
+                        }
+                        else {
+                            aec.activate(currentTile.getEntity());
+                        }
                     }
+                }
 
+                if(currentTile.hasAttackEffects()) {
+                    ArrayList<AttackEffect> attackEffects = currentTile.getAttackEffects();
+                    for(int k = 0; k < attackEffects.size(); ++k) {
+                        AttackEffect attackEffect = attackEffects.get(k);
+                        AttackEffectController attackEffectController = (AttackEffectController) objectControllerManager.getObjectController(attackEffect);
+
+                        attackEffectController.update();
+
+                        if(currentTile.hasEntity()) {
+                            Entity entity = currentTile.getEntity();
+                            if(attackEffectController.canActivate()) {
+                                attackEffectController.activate(entity);
+                                attackEffects.remove(k);
+                                objectControllerManager.removeObjectController(attackEffect, attackEffectController);
+                            }
+                        }
+                    }
                 }
 
                 // update characters
@@ -51,6 +79,8 @@ public class MapController extends ObjectController {
                             map.addEntity(tileEntity, 0,0);
                             currentTile.removeEntity();
                             tileEntity.revertDeath();
+                        } else if(tileEntity.getType() == EntityTypeEnum.NPC && !tileEntity.isDead()) {
+                            currentTile.removeEntity();
                         }
 
                     }

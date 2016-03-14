@@ -1,6 +1,7 @@
 package Main.Model.Map;
 
 import Main.Model.AreaEffect.AreaEffect;
+import Main.Model.AreaEffect.AttackEffect;
 import Main.Model.Entity.Entity;
 import Main.Model.Items.Item;
 
@@ -14,6 +15,7 @@ public class Tile {
 	private Entity entity = null;
 	private ArrayList<Item> items = new ArrayList<>();
     private AreaEffect areaEffect = null;
+	private ArrayList<AttackEffect> attackEffects = new ArrayList<>();
 
 // Default constructor
 	
@@ -47,6 +49,18 @@ public class Tile {
 
 	public boolean hasAreaEffect() {
 		return areaEffect != null;
+	}
+
+	public void addAttackEffect(AttackEffect attackEffect) {
+		this.attackEffects.add(attackEffect);
+	}
+
+	public ArrayList<AttackEffect> getAttackEffects() {
+		return attackEffects;
+	}
+
+	public boolean hasAttackEffects() {
+		return !attackEffects.isEmpty();
 	}
 
 	public boolean hasEntity() {

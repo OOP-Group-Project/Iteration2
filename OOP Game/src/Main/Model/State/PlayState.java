@@ -22,6 +22,8 @@ public class PlayState extends State {
         this.world = world;
         this.player = entity;
         this.centerPoint = new MapLocationPoint(player.getLocation().x, player.getLocation().y);
+
+        entity.initAreaSeen(world.getHeight(),world.getWidth());
 	}
 
     public Avatar getPlayer() {
