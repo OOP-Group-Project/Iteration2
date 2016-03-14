@@ -25,6 +25,20 @@ public class Creep extends SneakSkills {
         return sm;
     }
 
+
+    public StatsModifier activateCreep() {
+        StatsModifier sm = new StatsModifier();
+        if (allCheck()) {
+            enforceManaCost();
+            timeWhenPerformed = System.currentTimeMillis();
+            sm = sm.builder().agilityModifier(level * 2).build();
+            return sm;
+        }
+        else {
+            return sm;
+        }
+    }
+
     //duration in seconds
     public double getDuration() {
         return level * 10;
