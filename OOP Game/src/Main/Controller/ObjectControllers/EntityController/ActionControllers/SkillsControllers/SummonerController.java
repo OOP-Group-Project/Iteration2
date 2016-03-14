@@ -58,6 +58,6 @@ public class SummonerController {
     private void applyEnchantment(Enchantment ec) {
         MapLocationPoint point = summoner.peek();
         Entity target = map.getTile(point.x,point.y).getEntity();
-        if(target != null) target.getStats().modifyStats(ec.activate());
+//        if(target != null) target.getStats().modifyStats(ec.activate());
     }
 }
