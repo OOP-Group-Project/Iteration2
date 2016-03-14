@@ -66,14 +66,14 @@ public class GraphicsAssets {
         water = ImageLoader.loadImage("/Resources/water.png");
         grass = ImageLoader.loadImage("/Resources/grass.png");
         mountain = ImageLoader.loadImage("/Resources/mountain.png");
-        redCross = ImageLoader.loadImage("/Resources/redCross.png");
-        greenPlus = ImageLoader.loadImage("/Resources/greenPlus.png");
-        goldStar = ImageLoader.loadImage("/Resources/goldStar.png");
+        redCross = ImageLoader.loadImage("/Resources/AreaEffects/damage.png");
+        greenPlus = ImageLoader.loadImage("/Resources/AreaEffects/health.png");
+        goldStar = ImageLoader.loadImage("/Resources/AreaEffects/levelup.png");
         skeletonWalk = ImageLoader.loadImage("/Resources/skeletonWalk.png");
         pet = ImageLoader.loadImage("/Resources/tigerPet.png");
-        skullCrossBones = ImageLoader.loadImage("/Resources/skullAndCrossBones.png");
-        trap = ImageLoader.loadImage("/Resources/trap.gif");
-        portal = ImageLoader.loadImage("/Resources/portal.png");
+        skullCrossBones = ImageLoader.loadImage("/Resources/AreaEffects/death.png");
+        trap = ImageLoader.loadImage("/Resources/AreaEffects/trap.png");
+        portal = ImageLoader.loadImage("/Resources/AreaEffects/portal.png");
 
         for (int j = 0; j < 29; j++) {
             itemImages.add(ImageLoader.loadImage("/Resources/Items/item"+j+".png"));
