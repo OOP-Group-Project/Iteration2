@@ -16,6 +16,10 @@ import java.awt.*;
  */
 public class Avatar extends Entity{
 
+    private boolean[][] areaSeen;
+    private int radius = 5;
+
+
     public Avatar(MapLocationPoint location) {
         super(EntityTypeEnum.Avatar, EntitySpeechEnum.PLAYER, new Smasher(), location);
     }
@@ -24,4 +28,27 @@ public class Avatar extends Entity{
         super(EntityTypeEnum.Avatar, EntitySpeechEnum.PLAYER, o, location);
     }
 
+
+
+    public void initAreaSeen(int row, int col){
+        areaSeen = new boolean[row][col];
+        for (int i =0; i < row; i ++){
+            for(int j = 0; j < col; j++){
+                areaSeen[i][j] = false;
+            }
+        }
+    }
+
+    public void seeAround(){
+        
+    }
+
+    public boolean areaBeenSeen(int x, int y){
+        return areaSeen[x][y];
+    }
+
+    public void setLocation(MapLocationPoint location) {
+        super.setLocation(location);
+        seeAround();
+    }
 }
