@@ -24,3 +24,4 @@ In this example, we'll be adding InventoryState, which comes up when you want to
     c) In the play state, add a case for the Inventory action, and use the stateControllerManager object to stateControllerManager.setState(StateEnum.InventoryState)
 
      Now your state will begin executing, you'll have control over it, and it will be rendered to the screen!
+sal

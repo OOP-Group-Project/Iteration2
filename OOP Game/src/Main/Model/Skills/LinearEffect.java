@@ -20,5 +20,4 @@ public class LinearEffect implements InfluenceArea {
 
         return locationPointQueue;
     }
-
 }
